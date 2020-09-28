@@ -63,4 +63,6 @@ $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
+echo 'hola!!';
+
 echo $OUTPUT->footer();
