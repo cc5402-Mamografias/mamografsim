@@ -61,8 +61,10 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
+$PAGE->requires->js_call_amd('mod_mamografsim/sim','init');
+
 echo $OUTPUT->header();
 
-echo 'hola!!';
+echo 'hola!!<br> <canvas id="canv" width="600" height="400" style="border:1px solid #000000;"></canvas>';
 
 echo $OUTPUT->footer();
