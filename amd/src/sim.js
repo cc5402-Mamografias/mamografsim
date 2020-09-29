@@ -3,8 +3,16 @@ define(['jquery'], function($) {
     var c = document.getElementById("canv");
     var ctx = c.getContext("2d");
 
-    var alrt = function() {
+    /*var alrt = function() {
       alert("!");
+    };*/
+
+    var drawthing = function() {
+      var img = new Image();
+      img.onload = function()  {
+        ctx.drawImage(img, 15, 15);
+      };
+      img.src = "https://static.reol.cl/reol.png";
     };
 
     return {
@@ -27,7 +35,7 @@ define(['jquery'], function($) {
             resctx.fillStyle = "gray";
             resctx.fillText("Resultados",0,14);
 
-            $(".herram_button").click(alrt);
+            $(".herram_button").click(drawthing);
         }
     };
 });
