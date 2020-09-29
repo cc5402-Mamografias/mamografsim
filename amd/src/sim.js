@@ -14,6 +14,14 @@ define(['jquery'], function($) {
                 ctx.stroke();
                 x += 20;
             });
+            ctx.font = "14px Arial";
+            ctx.fillStyle = "gray";
+            ctx.fillText("Mamógrafo",0,14);
+            let res = document.getElementById("canvRes");
+            let resctx = res.getContext("2d");
+            resctx.font = "14px Arial";
+            resctx.fillStyle = "gray";
+            resctx.fillText("Resultados",0,14);
         }
     };
 });
