@@ -74,7 +74,7 @@ echo
         '<h2 style="width:100%;">Herramientas</h2>'.
         '<div style="width:100%;height:100%;overflow-y:auto;">';
 for($i = 0; $i < 6; $i++) {
-    echo '<button style="margin:20px;width:60%;" onclick="return false;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta '.$i.'</button>';
+    echo '<button class="herram_button" style="margin:20px;width:60%;" onclick="alrt();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta '.$i.'</button>';
 }
 echo '</div></div></div>';
 

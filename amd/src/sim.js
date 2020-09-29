@@ -3,6 +3,10 @@ define(['jquery'], function($) {
     var c = document.getElementById("canv");
     var ctx = c.getContext("2d");
 
+    var alrt = function() {
+      alert("!");
+    };
+
     return {
         init: function() {
 
@@ -22,6 +26,8 @@ define(['jquery'], function($) {
             resctx.font = "14px Arial";
             resctx.fillStyle = "gray";
             resctx.fillText("Resultados",0,14);
+
+            $(".herram_button").click(alrt);
         }
     };
 });
