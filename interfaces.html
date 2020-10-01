@@ -8,9 +8,9 @@
 <body>
     <div style="width:950px;height:600px;padding:50px;position:relative">
         <canvas id="canv" width="400" height="600" style="border:1px solid #000000;position:absolute;top:0;left:301px;"></canvas>
-        <canvas id="canvRes" width="300" height="300" style="border:1px solid #000000;position:absolute;top:300px;left:0;"></canvas>
+        <canvas id="canvRes" width="300" height="300" style="border:1px solid #000000;position:absolute;top:300px;left:702px;"></canvas>
     
-        <div style="position:absolute;top:0;left:700px;width:250px;height:600px;text-align:center;">
+        <div style="position:absolute;top:0;left:700px;width:300px;height:200px;text-align:center;">
             <h2 style="width:100%;">Herramientas</h2>
             <div style="width:100%;height:100%;overflow-y:auto;">
                 <button class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
@@ -21,7 +21,61 @@
                 <button class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 6</button>
                 <button class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 7</button>
             </div>
+            <button style="width:100%" onclick="show_h()">Ver mas</button>
+        </div>
+        <div style="position:absolute;top:0;left:0px;width:280px;height:300px;padding-left:20px;overflow-y:auto;border:solid 1px black">
+            <h3>Pasos</h3>
+            <ol>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+                <li>Paso 1</li>
+                <li>Paso 2</li>
+                <li>Paso 3</li>
+                <li>Paso 4</li>
+                <li>Paso 5</li>
+            </ol>
+        </div>
+        <div style="position:absolute;top:301px;left:0px;width:280px;height:299px;padding-left:20px;overflow-y:auto;border:solid 1px black">
+            <h3>Panel de control</h3>
+            <label>Kilovoltaje</label><input type="number" min="0" max="10" step="0.1" value="5.0">
+            <label>Miliamperioss</label><input type="number" min="10" max="900" step="10" value="200">
+        </div>
+        <div id="herrams" style="position:absolute;top:0;left:0;display:none;z-index: 100; background-color:#ccc;width:950px;height:600px;" onclick="hide_h();">
+            HOLA!!!!
         </div>
     </div>
+    <script>
+        function show_h() {
+            let x = document.getElementById("herrams");
+            x.style.display = "block";
+        }
+        function hide_h() {
+            let x = document.getElementById("herrams");
+            x.style.display = "none";
+        }
+    </script>
 </body>
 </html>

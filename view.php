@@ -65,7 +65,9 @@ $PAGE->requires->js_call_amd('mod_mamografsim/sim','init');
 
 echo $OUTPUT->header();
 
-echo 
+readfile("interfaces.html");
+
+/*echo 
 '<div style="width:950px;height:600px;padding:50px;position:relative">'.
     '<canvas id="canv" width="400" height="600" style="border:1px solid #000000;position:absolute;top:0;left:301px;"></canvas>'.
     '<canvas id="canvRes" width="300" height="300" style="border:1px solid #000000;position:absolute;top:300px;left:0;"></canvas>'.
@@ -76,6 +78,6 @@ echo
 for($i = 0; $i < 6; $i++) {
     echo '<button class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta '.$i.'</button>';
 }
-echo '</div></div></div>';
+echo '</div></div></div>';*/
 
 echo $OUTPUT->footer();
