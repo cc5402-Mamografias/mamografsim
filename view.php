@@ -63,6 +63,9 @@ $PAGE->set_context($modulecontext);
 
 $PAGE->requires->js_call_amd('mod_mamografsim/sim','init');
 
+
+
+
 echo $OUTPUT->header();
 
 readfile("interfaces.html");
