@@ -26,3 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Simulador de mamografías';
+
+$string['modulename'] = 'Modulo de Simulador de mamografías';
+
+$string['pluginadministration'] = 'Administracion de Simulador de mamografías';
