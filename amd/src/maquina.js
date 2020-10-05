@@ -1,15 +1,15 @@
 define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
-  // TODO rango superior altura
-  //      rango inferior altura
-  //      valores defecto (reemplazar nulls)
+  // TODO valores defecto (reemplazar nulls)
   //      construir estado
   //      no activar si esta muy alto?
   //      no deseleccionar herramienta si la altura es muy baja
 
   var herramienta = new hs.HerramNull();
 
-  
-  var alturaCompresor = null;
+  const alturaMax = 30;
+  const alturaMin = 0;
+
+  var alturaCompresor = 30;
   var fuerza = null;
   var kilovolt = null;
   var miliamperios = null;
@@ -49,12 +49,18 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
     },
     // Sube el compresor
     subirCompresor: function() {
-      alturaCompresor -= 1;
+      if (alturaCompresor + 1 > alturaMax) {
+        throw "ya en altura máxima";
+      }
+      alturaCompresor += 1;
       actualizar()
     },
     // Baja el compresor
     bajarCompresor: function() {
-      alturaCompresor += 1;
+      if (alturaCompresor - 1 < alturaMin) {
+        throw "ya en altura mínima";
+      }
+      alturaCompresor -= 1;
       actualizar()
     },
     // Activa el mamografo
