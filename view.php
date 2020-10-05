@@ -25,6 +25,7 @@
 require(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 
+
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
@@ -64,7 +65,7 @@ $PAGE->set_context($modulecontext);
 $PAGE->requires->js_call_amd('mod_mamografsim/sim','init');
 
 echo $OUTPUT->header();
-
+echo '<link href="styles.css" rel="stylesheet">';
 readfile("interfaces.html");
 
 /*echo 
