@@ -68,25 +68,36 @@
                 <li>Paso 5</li>
             </ol>
         </div>
-        <div style="position:absolute;top:301px;left:0px;width:280px;height:299px;padding-left:20px;overflow-y:auto;border:solid 1px black;background-color: #f5f5f5;">
+        <div class="panel-control">
             <h3>Panel de control</h3>
-
             <form>
                 <div class="numbers-row">
-                    <input type="number" id="kv" name="kv" min="1" max="5" style="width:30px;margin-left:20px" value=3> <label style="margin-left: 5px; margin-right: 12px"> kV</label> <button class="btnadd" >+</button> <button class="btnsub" value="kv" >-</button>
+                    <input type="number" id="kv" name="kv" min="1" max="5" class="kv" value=3> <label style="margin-left: 5px; margin-right: 12px"> kV</label> <button class="btnadd" value="kv" onclick="add(this)">+</button> <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
                 </div>
                 
                 
                 <div class="numbers-row">
-                    <input type="number" id="mas" name="mas" min="1" max="5" style="width:50px" value=3>  <label style="margin-left: 5px;"> mAs</label> <button class="btnadd" >+</button> <button class="btnsub" value="mas" >-</button>
+                    <input type="number" id="mas" name="mas" min="1" max="5" class="mas" value=3>  <label style="margin-left: 5px;"> mAs</label> <button class="btnadd" value="mas" onclick="add(this)">+</button> <button class="btnsub" value="mas" onclick="sub(this)">-</button>
                 </div>
                 
                 
                 <div class="numbers-row">
-                    <input type="number" id="den" name="den" min="1" max="5" style="width:30px;margin-left:20px" value=3> <label style="margin-left: 5px; margin-right: 3px;"> Den</label> <button class="btnadd" value="den" >+</button> <button class="btnsub" value="den" >-</button>
+                    <input type="number" id="den" name="den" min="1" max="5" class="den" value=3> <label style="margin-left: 5px; margin-right: 3px;"> Den</label> <button class="btnadd" value="den" onclick="add(this)" >+</button> <button class="btnsub" value="den" onclick="sub(this)">-</button>
                 </div>
             </form>
-
+            <div>
+                <div class="modes-left">
+                <label style="margin-left:30px"> AutoKV <input type="radio"  name="mode" value="autokv" id="c01"  />  </label>
+                <label style="margin-left:13px"> Auto Time <input type="radio"  name="mode" value="autotime" id="c02"   />  </label>
+                </div>
+                <div class="modes-center">
+                <button class="btnmode" onclick="changeMode()">MODE</button>
+                </div>
+                <div class="modes-right" >
+                    <label style="margin-left:-11px">  <input type="radio"  name="mode" value="manual" id="c03"   /> Manual </label>
+                    <label style="margin-left:10px">  <input type="radio"  name="mode" value="autopoint" id="c04"   /> Auto Point </label>
+                </div>
+            </div>
         </div>
         <!-- Menu oculto herramientas -->
         <div id="herrams" style="position:absolute;top:0;left:0;display:none;z-index: 100; background-color:#acc;width:1000px;height:600px;" >
@@ -123,24 +134,10 @@
         </div>
         <!-- /Menu oculto herramientas -->
     </div>
-<<<<<<< HEAD
-    <script>
-        function show_h() {
-            let x = document.getElementById("herrams");
-            x.style.display = "block";
-        }
-        function hide_h() {
-            let x = document.getElementById("herrams");
-            x.style.display = "none";
-        }
-        
-    </script>
-    <script src="control_panel.js" type="text/javascript"></script>
-=======
     <script type="text/javascript" src="moves.js"></script>
+    <script type="text/javascript" src="amd/src/control-panel.js"></script>
 
 
->>>>>>> develop
 </body>
 
 </html>
