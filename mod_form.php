@@ -68,7 +68,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_mamografsim settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
+        // $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
         $mform->addElement('header', 'mamografsimfieldset', get_string('mamografsimfieldset', 'mod_mamografsim'));
 
         // Add standard grading elements.
