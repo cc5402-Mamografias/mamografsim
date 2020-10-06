@@ -1,17 +1,17 @@
 define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
+  // Herramienta nula?/deseleccionar herramienta
   // TODO valores defecto (reemplazar nulls)
-  //      no activar si esta muy alto?
-  //      no deseleccionar herramienta si la altura es muy baja
 
-  var herramienta = new hs.HerramNull();
+  var herramienta = null;
 
   const alturaMax = 30;
   const alturaMin = 0;
-  const margenKV = 0.5;
-  const margenmA = 0.5;
+  const margenF = 0.5;
+  const margenKV = 1;
+  const margenmA = 10;
 
   var alturaCompresor = 30;
-  var fuerza = null;
+  var fuerza = 0;
   var kilovolt = null;
   var miliamperios = null;
   var errorKilovolt = 0;
@@ -20,7 +20,7 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
   function construirEstado(activo) {
     return {
       altura: alturaCompresor,
-      fuerza: fuerza,
+      fuerza: alturaCompresor == alturaMinima? fuerza (Math.random() * margenF) - margenF: 0,
       kilovolt: kilovolt + errorKilovolt + (Math.random() * margenKV) - margenKV,
       miliamperios: miliamperios + errorMiliamperios + (Math.random() * margenmA) - margenmA,
       activo: activo
@@ -33,11 +33,16 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
     v.dibujarMaquina(e);
   }
 
+  function alturaMinima() {
+    return herramienta === null? alturaMin : herramienta.getAltura();
+  }
+
   return {
     // Inicializa los errores
-    init: function(errorkv, errorma) {
+    init: function(errorkv, errorma, errorFuerza) {
       errorKilovolt = errorkv;
       errorMiliamperios = errorma;
+      fuerza = 20 + errorFuerza;
     },
     // Setea los parametros del panel de control
     setearParams: function(kv, ma) {
@@ -47,6 +52,9 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
     },
     // Selecciona una nueva herramienta o deselecciona la antigua
     setHerramienta: function(herram) {
+      if (alturaCompresor == alturaMinima()) {
+        return;
+      }
       herramienta = herram;
       actualizar()
     },
@@ -57,15 +65,15 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
     // Sube el compresor
     subirCompresor: function() {
       if (alturaCompresor + 1 > alturaMax) {
-        throw "ya en altura máxima";
+        throw "altura max";
       }
       alturaCompresor += 1;
       actualizar()
     },
     // Baja el compresor
     bajarCompresor: function() {
-      if (alturaCompresor - 1 < alturaMin) {
-        throw "ya en altura mínima";
+      if (alturaCompresor == alturaMinima()) {
+        throw "altura min";
       }
       alturaCompresor -= 1;
       actualizar()
