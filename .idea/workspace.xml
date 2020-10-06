@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3c7d08e-c492-4432-ab02-c17d4f235cd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/amd/src/vista.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amd/src/sim.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/sim.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces.html" beforeDir="false" afterPath="$PROJECT_DIR$/interfaces.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/moves.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amd/src/vista.js" beforeDir="false" afterPath="$PROJECT_DIR$/amd/src/vista.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moves.js" beforeDir="false" afterPath="$PROJECT_DIR$/moves.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
