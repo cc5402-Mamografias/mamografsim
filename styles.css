@@ -29,14 +29,22 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-button.btnadd{ 
+button.btnadd{
     border-radius: 8px;
 }
-button.btnsub{ 
+button.btnsub{
     border-radius: 8px;
 }
 button.btnmode{
   border-radius: 8px;
+}
+
+button.fltmode{
+    border-radius: 8px;
+}
+
+button.anodemode{
+    border-radius: 8px;
 }
 .panel-control {
     position: absolute;
@@ -83,6 +91,24 @@ button.btnmode{
   left:181px;
   width:100px;
   height:53px;
+}
+
+.filter-mode{
+  position:absolute;
+  top:220px;
+  left:5px;
+  width:300px;
+  height:53px;
+  margin-right: 0px;
+}
+
+.anode-mode{
+  position:absolute;
+  top:260px;
+  left:5px;
+  width:300px;
+  height:53px;
+  margin-right: 0px;
 }
 
 /* Interfaz mamografo */

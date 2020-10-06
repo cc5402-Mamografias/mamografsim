@@ -71,18 +71,20 @@
         <!-- Panel de Control -->
         <div class="panel-control">
             <h3>Panel de control</h3>
-            <form>
               <div class="container">
+
               <div class="row">
-                <div class="col-sm" style="text-align:right;">
-                  <input type="number" id="kv" name="kv" min="1" max="5" class="kv" value=3>
-                  <input type="number" id="mas" name="mas" min="1" max="5" class="mas" value=3>
+
+                <div class="col-sm">
+                  <form>
+                  <input type="number" id="kv" name="kv" min="22" max="35" class="kv" value=30>
+                  <input type="number" id="mas" name="mas" min="10" max="200" class="mas" value=100>
                   <input type="number" id="den" name="den" min="1" max="5" class="den" value=3>
+                  </form>
                 </div>
+
                 <div class="col-sm" style="text-align:center;">
-                  <p>
                   <label style="margin-left: 5px; margin-right: 12px"> kV</label>
-                </p>
                   <label style="margin-left: 5px;"> mAs</label>
                   <label style="margin-left: 5px; margin-right: 3px;"> Den</label>
                 </div>
@@ -94,17 +96,14 @@
                   <button class="btnsub" value="mas" onclick="sub(this)" >-</button>
 
                   <button class="btnadd" value="den" onclick="add(this)">+</button>
-                  <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
+                  <button class="btnsub" value="den" onclick="sub(this)" >-</button>
                 </div>
               </div>
               </div>
 
-
-
-            </form>
-            <div>
+            <div class="container">
                 <div class="modes-left">
-                <label style="margin-left:30px"> AutoKV <input type="radio"  name="mode" value="autokv" id="c01"  />  </label>
+                <label style="margin-left:30px;"> AutoKV <input type="radio"  name="mode" value="autokv" id="c01"  checked/>  </label>
                 <label style="margin-left:13px"> Auto Time <input type="radio"  name="mode" value="autotime" id="c02"   />  </label>
                 </div>
                 <div class="modes-center">
@@ -115,6 +114,28 @@
                     <label style="margin-left:10px">  <input type="radio"  name="mode" value="autopoint" id="c04"   /> Auto Point </label>
                 </div>
             </div>
+
+            <div class="container">
+                <div class="filter-mode">
+                  <button class="fltmode" onclick="changeFilter()">filter</button>
+                <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked />  </label>
+                <label> Rh <input type="radio"  name="filter" value="rh" id="f02"  />  </label>
+                <label> W <input type="radio"  name="filter" value="w" id="f03"  />  </label>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="anode-mode">
+                  <button class="anodemode" onclick="changeAnode()">anode</button>
+                <label > Mo <input type="radio"  name="anode" value="mo" id="a01" checked />  </label>
+                <label> Rh <input type="radio"  name="anode" value="rh" id="a02"  />  </label>
+                <label> W <input type="radio"  name="anode" value="w" id="a03"  />  </label>
+                </div>
+            </div>
+
+
+
+
         </div>
         <!-- /Panel de Control -->
         <!-- Menu oculto herramientas -->
