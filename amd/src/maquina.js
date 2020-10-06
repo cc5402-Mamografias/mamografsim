@@ -1,6 +1,5 @@
 define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
   // Herramienta nula?/deseleccionar herramienta
-  // TODO valores defecto (reemplazar nulls)
 
   var herramienta = null;
 
@@ -12,10 +11,14 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
 
   var alturaCompresor = 30;
   var fuerza = 0;
+  var den = 0;
   var kilovolt = null;
   var miliamperios = null;
   var errorKilovolt = 0;
   var errorMiliamperios = 0;
+  var modo = null;
+  var filtro = null;
+  var anodo = null;
 
   function construirEstado(activo) {
     return {
@@ -23,6 +26,9 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
       fuerza: alturaCompresor == alturaMinima? fuerza (Math.random() * margenF) - margenF: 0,
       kilovolt: kilovolt + errorKilovolt + (Math.random() * margenKV) - margenKV,
       miliamperios: miliamperios + errorMiliamperios + (Math.random() * margenmA) - margenmA,
+      den: den,
+      filtro: filtro,
+      anodo: anodo,
       activo: activo
     }
   }
@@ -38,17 +44,22 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
   }
 
   return {
+    // Setea los parametros del panel de control
+    setearParams: function(kv, ma, dn, md, fltr, anod) {
+      kilovolt = kv;
+      miliamperios = ma;
+      modo = md;
+      den = dn;
+      filtro = fltr;
+      anodo = anod;
+      actualizar();
+    },
     // Inicializa los errores
-    init: function(errorkv, errorma, errorFuerza) {
+    init: function(errorkv, errorma, errorFuerza, kv, ma, den, modo, filtro, anodo) {
       errorKilovolt = errorkv;
       errorMiliamperios = errorma;
       fuerza = 20 + errorFuerza;
-    },
-    // Setea los parametros del panel de control
-    setearParams: function(kv, ma) {
-      kilovolt = kv;
-      miliamperios = ma;
-      actualizar();
+      this.setearParams(kv, ma, den, modo, filtro, anodo);
     },
     // Selecciona una nueva herramienta o deselecciona la antigua
     setHerramienta: function(herram) {
