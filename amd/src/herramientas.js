@@ -1,23 +1,137 @@
 // Abstract Herramienta
-class AbstractTool() {
-	constructor() {
+'use strict';
+class AbstractTool {
+  constructor() {
 		if (this.constructor === AbstractTool){
 			throw new TypeError("Cannot construct abstract class");
 		}
-		if (this.update === AbstractTool.prototype.update) {
-			throw new TypeError("Please implement abstract method update");
+		if (this.actualizar === AbstractTool.prototype.actualizar) {
+			throw new TypeError("Please implement abstract method actualizar");
 		}
-		if (this.draw === AbstractTool.prototype.draw) {
-			throw new TypeError("Please implement abstract method draw");
+		if (this.dibujar === AbstractTool.prototype.dibujar) {
+			throw new TypeError("Please implement abstract method dibujar");
 		}
 	}
 
-	update(State) {
-		throw new TypeError("Do not call abstract method update from child");
+	actualizar(estado) {
+		throw new TypeError("Do not call abstract method actualizar from child");
 	}
 
-	draw() {
-		throw new TypeError("Do not call abstract method draw from child");
+	dibujar(ctx) {
+		throw new TypeError("Do not call abstract method dibujar from child");
 	}
 }
 
+class Balanza extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha Balanza go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
+
+class CamaraIonizacion extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha Camara de Ionizacion go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
+
+class Electrometro extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha Electrometro go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
+
+class Termometro extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha Termometro go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
+
+class Barometro extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha Barometro go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
+
+class CintaMetrica extends AbstractTool {
+	constructor(){
+		super();
+	}
+
+	actualizar(estado){
+		// TODO 
+		console.log("haha CintaMetrica go brrrr")
+	}
+
+	dibujar(ctx){
+		// var img = obtener imagen de la herramienta
+		// ctx.drawImage(img, 10, 10);
+		ctx.beginPath();
+		ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+		ctx.stroke();
+	}
+}
