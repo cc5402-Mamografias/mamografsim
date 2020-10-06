@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Document</title>
 
 </head>
@@ -68,22 +68,39 @@
                 <li>Paso 5</li>
             </ol>
         </div>
+        <!-- Panel de Control -->
         <div class="panel-control">
             <h3>Panel de control</h3>
             <form>
-                <div class="numbers-row">
-                    <input type="number" id="kv" name="kv" min="1" max="5" class="kv" value=3> <label style="margin-left: 5px; margin-right: 12px"> kV</label> <button class="btnadd" value="kv" onclick="add(this)">+</button> <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
+              <div class="container">
+              <div class="row">
+                <div class="col-sm" style="text-align:right;">
+                  <input type="number" id="kv" name="kv" min="1" max="5" class="kv" value=3>
+                  <input type="number" id="mas" name="mas" min="1" max="5" class="mas" value=3>
+                  <input type="number" id="den" name="den" min="1" max="5" class="den" value=3>
                 </div>
-                
-                
-                <div class="numbers-row">
-                    <input type="number" id="mas" name="mas" min="1" max="5" class="mas" value=3>  <label style="margin-left: 5px;"> mAs</label> <button class="btnadd" value="mas" onclick="add(this)">+</button> <button class="btnsub" value="mas" onclick="sub(this)">-</button>
+                <div class="col-sm" style="text-align:center;">
+                  <p>
+                  <label style="margin-left: 5px; margin-right: 12px"> kV</label>
+                </p>
+                  <label style="margin-left: 5px;"> mAs</label>
+                  <label style="margin-left: 5px; margin-right: 3px;"> Den</label>
                 </div>
-                
-                
-                <div class="numbers-row">
-                    <input type="number" id="den" name="den" min="1" max="5" class="den" value=3> <label style="margin-left: 5px; margin-right: 3px;"> Den</label> <button class="btnadd" value="den" onclick="add(this)" >+</button> <button class="btnsub" value="den" onclick="sub(this)">-</button>
+                <div class="col-sm" style="text-align:left;">
+                  <button class="btnadd" value="kv" onclick="add(this)">+</button>
+                  <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
+
+                  <button class="btnadd" value="mas" onclick="add(this)">+</button>
+                  <button class="btnsub" value="mas" onclick="sub(this)" >-</button>
+
+                  <button class="btnadd" value="den" onclick="add(this)">+</button>
+                  <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
                 </div>
+              </div>
+              </div>
+
+
+
             </form>
             <div>
                 <div class="modes-left">
@@ -99,6 +116,7 @@
                 </div>
             </div>
         </div>
+        <!-- /Panel de Control -->
         <!-- Menu oculto herramientas -->
         <div id="herrams" style="position:absolute;top:0;left:0;display:none;z-index: 100; background-color:#acc;width:1000px;height:600px;" >
           <button type = "button" onclick="hide_h();">X </button>

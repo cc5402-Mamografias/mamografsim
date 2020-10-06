@@ -16,10 +16,10 @@ function add(element){
 
 function changeMode(){
     let modes = ["c01", "c02", "c03", "c04"];
-    
+
     for(var i = 0; i<4; i++){
         if(document.getElementById(modes[i]).checked==true){
-            var index=i; 
+            var index=i;
         }
     }
     if(typeof index == 'undefined'){
