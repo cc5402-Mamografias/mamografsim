@@ -51,6 +51,11 @@
     width: 100%;
 }
 
+.herrams-lista {
+    width: 100%;
+    height:80%;
+    overflow-y: auto;
+}
 
 .boton-herram {
     position: absolute;
