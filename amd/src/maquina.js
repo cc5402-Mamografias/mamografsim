@@ -1,6 +1,5 @@
 define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
   // TODO valores defecto (reemplazar nulls)
-  //      construir estado
   //      no activar si esta muy alto?
   //      no deseleccionar herramienta si la altura es muy baja
 
@@ -8,6 +7,8 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
 
   const alturaMax = 30;
   const alturaMin = 0;
+  const margenKV = 0.5;
+  const margenmA = 0.5;
 
   var alturaCompresor = 30;
   var fuerza = null;
@@ -17,7 +18,13 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
   var errorMiliamperios = 0;
 
   function construirEstado(activo) {
-
+    return {
+      altura: alturaCompresor,
+      fuerza: fuerza,
+      kilovolt: kilovolt + errorKilovolt + (Math.random() * margenKV) - margenKV,
+      miliamperios: miliamperios + errorMiliamperios + (Math.random() * margenmA) - margenmA,
+      activo: activo
+    }
   }
 
   function actualizar(activo = false) {
