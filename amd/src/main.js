@@ -1,4 +1,11 @@
-import { Balanza, Electrometro, Termometro } from "./herramientas";
+import {
+  Balanza,
+  Barometro,
+  CamaraIonizacion,
+  CintaMetrica,
+  Electrometro,
+  Termometro,
+} from "./herramientas";
 import jQuery from "jquery";
 window.$ = window.jQuery = $ = jQuery;
 
@@ -7,38 +14,36 @@ class Main {
     this.herr_activas = [];
     this.herr_disponibles = [
       new Balanza(),
+      new Barometro(),
+      new CamaraIonizacion(),
+      new CintaMetrica(),
       new Electrometro(),
       new Termometro(),
     ];
 
-
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
 
-    // this.mamografo = 
-    // this.panel_control = 
-    // 
+    // this.mamografo =
+    // this.panel_control =
+    //
 
     this.herr_disponibles.forEach((tool) => {
       let r = $(`<button title= "AD." class="herrams-boton"> </button>`)
-        .append('<img src="https://static.reol.cl/reol.png" width=64><br>')
-        .append(`${tool.tipo}`);
+        .append(`<img src="icons/${tool.icon}" width=64><br>${tool.tipo}`)
 
       r.on("click", () => this.onClickTool(tool));
       r.appendTo("#herramientas-express");
     });
   }
 
-  update(){
-
+  update() {
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
 
     // dibujar en el canvas las herramientas nuevas
-    this.herr_activas.forEach(
-      (t) => t.dibujar(this.ctx)
-    )
+    this.herr_activas.forEach((t) => t.dibujar(this.ctx));
     //dibujar el mamografo
-    // 
+    //
   }
 
   onClickTool(tool) {

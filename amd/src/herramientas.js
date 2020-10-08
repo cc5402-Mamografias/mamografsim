@@ -45,6 +45,7 @@ class Balanza extends AbstractTool {
   constructor() {
     super();
     this.tipo = "balanza";
+    this.icon = "box.png";
   }
 
   actualizar(estado) {
@@ -67,6 +68,7 @@ class CamaraIonizacion extends AbstractTool {
   constructor() {
     super();
     this.tipo = "camIonizacion";
+    this.icon = "ionizador.png";
   }
 
   actualizar(estado) {
@@ -89,6 +91,7 @@ class Electrometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "electrometro";
+    this.icon = "box.png";
   }
 
   actualizar(estado) {
@@ -111,6 +114,7 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "termometro";
+    this.icon = "thermometer.png";
   }
 
   actualizar(estado) {
@@ -133,6 +137,7 @@ class Barometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "barometro";
+    this.icon = "barometer.png";
   }
 
   actualizar(estado) {
@@ -155,6 +160,7 @@ class CintaMetrica extends AbstractTool {
   constructor() {
     super();
     this.tipo = "cinta";
+    this.icon = "tape.png";
   }
 
   actualizar(estado) {
