@@ -4,8 +4,8 @@ window.$ = window.jQuery = $ = jQuery;
 
 class Main {
   constructor() {
-    this.active_tools = [];
-    this.available_tools = [
+    this.herr_activas = [];
+    this.herr_disponibles = [
       new Balanza(),
       new Electrometro(),
       new Termometro(),
@@ -17,9 +17,9 @@ class Main {
 
     // this.mamografo = 
     // this.panel_control = 
+    // 
 
-
-    this.available_tools.forEach((tool) => {
+    this.herr_disponibles.forEach((tool) => {
       let r = $(`<button title= "AD." class="herrams-boton"> </button>`)
         .append('<img src="https://static.reol.cl/reol.png" width=64><br>')
         .append(`${tool.tipo}`);
@@ -29,31 +29,31 @@ class Main {
     });
   }
 
-  onClickTool(tool) {
-    console.log(tool);
-    const i = this.active_tools.indexOf(tool);
-    if (i > -1) {
-      this.active_tools.splice(i, 1);
-    } else {
-      this.active_tools.push(tool);
-    }
+  update(){
 
-    this.clearCanvas();
-    this.active_tools.forEach(
+    this.ctx.clearRect(0, 0, this.c.width, this.c.height);
+
+    // dibujar en el canvas las herramientas nuevas
+    this.herr_activas.forEach(
       (t) => t.dibujar(this.ctx)
     )
-    
+    //dibujar el mamografo
+    // 
   }
 
-  // Esta función debería moverse a algun otro lugar 
-  clearCanvas(){
-    this.ctx.clearRect(0, 0, this.c.width, this.c.height);
+  onClickTool(tool) {
+    console.log(tool);
+    const i = this.herr_activas.indexOf(tool);
+    if (i > -1) {
+      this.herr_activas.splice(i, 1);
+    } else {
+      this.herr_activas.push(tool);
+    }
+    this.update();
   }
-
 }
 
 export let init = () => {
-  console.log("Aqui estamoss");
-  // var toolClick = this.bind(toolOnClick);
   new Main();
+  console.log("Simulador inicializado");
 };
