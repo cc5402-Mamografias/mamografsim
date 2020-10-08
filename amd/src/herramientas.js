@@ -172,3 +172,13 @@ class CintaMetrica extends AbstractTool {
     ctx.fill();
   }
 }
+
+export {
+  BaseNula,
+  Balanza,
+  Barometro,
+  CamaraIonizacion,
+  CintaMetrica,
+  Electrometro,
+  Termometro,
+};
