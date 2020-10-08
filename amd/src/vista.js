@@ -1,22 +1,16 @@
 
 
-define(function() {
-    function drawMam() {
-        alert("test");
-        let canvas = document.getElementById("canvas");
+export function drawMam() {
+        console.log("Draw mamografo")
+        let canvas1 = document.getElementById("canvas");
+        var ctx = canvas1.getContext('2d');
         let image = new Image();
         image.src = 'img/complete.svg';
         image.onload = function () {
-            canvas.drawImage(image, 50, 50);
+            ctx.drawImage(image, 5, 5);
         };
-
     }
 
-    return {
-        init: function(){
 
-            drawMam();
-        }
 
-    };
-});
+

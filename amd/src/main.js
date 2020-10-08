@@ -7,6 +7,7 @@ import {
   Termometro,
 } from "./herramientas";
 import jQuery from "jquery";
+import {drawMam} from "./vista";
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
@@ -20,6 +21,7 @@ class Main {
       new Electrometro(),
       new Termometro(),
     ];
+    
 
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
@@ -38,12 +40,15 @@ class Main {
   }
 
   update() {
+    console.log("Update");
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
-
+    drawMam();
     // dibujar en el canvas las herramientas nuevas
     this.herr_activas.forEach((t) => t.dibujar(this.ctx));
     //dibujar el mamografo
-    //
+    
+    
+    
   }
 
   onClickTool(tool) {
@@ -59,6 +64,7 @@ class Main {
 }
 
 export let init = () => {
-  new Main();
+ let m = new Main();
+  m.update();
   console.log("Simulador inicializado");
 };
