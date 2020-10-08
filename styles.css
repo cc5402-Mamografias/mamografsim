@@ -80,7 +80,12 @@
     background-color: #ccc;
     width: 1002px;
     height: 602px;
+    overflow-y: auto;
     text-align:center;
+}
+
+.herrams-salir {
+    text-align: left;
 }
 
 /* Interfaz resultados */
