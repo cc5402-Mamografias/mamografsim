@@ -96,17 +96,32 @@
             </div>
 
             <div class="modes" >
-                <div class="modes-left">
-                  <label class="autokv"> AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
-                  <label class="autotime"> Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
+              <div class="conrainer">
+                <div class="row" >
+                  <div class="col-sm">
+                    <button class="btnmode" onclick="changeMode()">MODE</button>
+                  </div>
                 </div>
-                <div class="modes-center">
-                  <button class="btnmode" onclick="changeMode()">MODE</button>
+                <div class="row">
+                  <div class="col-sm">
+                    <label > AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
+                  </div>  
+                  <div class="col-sm" >
+                    <label >  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
+                  </div>
                 </div>
-                <div class="modes-right" >
-                    <label class="manual">  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
-                    <label class="autopoint">  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+                
+                <div class="row">
+                  <div class="col-sm">
+                    <label > Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
+                  </div>
+                  
+                  <div class="col-sm" >
+                      <label >  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+                  </div>
                 </div>
+                
+              </div>
             </div>
 
             <div class="container">
