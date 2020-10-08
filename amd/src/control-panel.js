@@ -1,14 +1,16 @@
 function sub(element){
-    var to_sub = document.getElementById(element.value).value;
-    if (to_sub > 1){
-        var new_value = parseFloat(to_sub) - 1;
+    var to_sub = parseFloat(document.getElementById(element.value).value);
+    var min = parseFloat(document.getElementById(element.value).min);
+    if (to_sub > min){
+        var new_value = to_sub - 1;
         document.getElementById(element.value).value = new_value.toString();
     }
 }
 
 function add(element){
-    var to_add = document.getElementById(element.value).value;
-    if (to_add < 200){
+    var to_add = parseFloat(document.getElementById(element.value).value);
+    var max = parseFloat(document.getElementById(element.value).max);
+    if (to_add < max){
         var new_value = parseFloat(to_add) + 1;
         document.getElementById(element.value).value = new_value.toString();
     }
@@ -64,3 +66,4 @@ function changeAnode(){
         document.getElementById(modes[(index+1)%3]).checked=true;
     }
 }
+
