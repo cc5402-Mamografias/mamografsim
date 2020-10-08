@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,32 +7,35 @@
 
 </head>
 <body>
-    <div style="width:950px;height:600px;padding:50px;position:relative">
+    <div class ="contenedor-sim">
         <!-- INTERFAZ MAMOGRAFO -->
-        <canvas id="canvas" width="400" height="600" style="border:1px solid #000000;position:absolute;top:0;left:301px;"></canvas>
-
+        <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
         <!-- /INTERFAZ MAMOGRAFO -->
 
+        <!-- /INTERFAZ RESULTADOS -->
+        <canvas id="canvRes" class = "resultados" width="300" height="300"></canvas>
+        <!-- /INTERFAZ RESULTADOS -->
 
-        <canvas id="canvRes" width="300" height="300" style="border:1px solid #000000;position:absolute;top:300px;left:702px;"></canvas>
         <!-- INTERFAZ HERRAMIENTAS -->
-        <div style="position:absolute;top:0;left:702px;width:302px;height:300px;text-align:center;border:1px solid #000000;">
-            <h3>Herramientas</h3>
-            <div style="width:100%;height:80%;overflow-y:auto;">
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="draw_tool();"> <img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 4</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 5</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 6</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 7</button>
+        <div class="herramientas-mini">
+            <h3 class="herrams-titulo">Herramientas</h3>
+            <div class="herrams-lista">
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="draw_tool();"> <img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 4</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 5</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 6</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 7</button>
             </div>
-            <button style="width:100%" onclick="show_h()">Ver mas</button>
-        </div>
+            <button class="boton-ver-mas" onclick="show_h()">Ver mas</button>
+          </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
-        <div style="position:absolute;top:0;left:0px;width:280px;height:300px;padding-left:20px;overflow-y:auto;border:solid 1px black">
+        
+        <!-- INTERFAZ PASOS -->
+        <div class="pasos">
             <h3>Pasos</h3>
-            <ol>
+            <ol id="lista-pasos">
                 <li>Paso 1</li>
                 <li>Paso 2</li>
                 <li>Paso 3</li>
@@ -67,42 +68,49 @@
                 <li>Paso 5</li>
             </ol>
         </div>
-        <div style="position:absolute;top:301px;left:0px;width:280px;height:299px;padding-left:20px;overflow-y:auto;border:solid 1px black">
+        <!-- /INTERFAZ PASOS -->
+
+        <!-- INTERFAZ PANEL DE CONTROL -->
+        <div class="panel-control">
             <h3>Panel de control</h3>
             <div id='panel'>
             <label>Kilovoltaje</label><input type="number" min="0" max="10" step="0.1" value="5.0">
             <label>Miliamperioss</label><input type="number" min="10" max="900" step="10" value="200">
             </div>
         </div>
-        <!-- Menu oculto herramientas -->
-        <div id="herrams" style="position:absolute;top:0;left:0;display:none;z-index: 100; background-color:#acc;width:1000px;height:600px;" >
-          <button type = "button" onclick="hide_h();">X </button>
+        <!-- INTERFAZ PANEL DE CONTROL -->
 
-          <div class="container" style = "text-align:center;">
+        <!-- Menu oculto herramientas -->
+        <div id="herrams" class="herramientas-pop">
+          <div class="herrams-salir">
+            <button type = "button" onclick="hide_h();">X </button>
+          </div>
+
+          <div class="container">
             <div class="row">
               <div class="col-sm">
                 <h3>TIPO A</h3>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
               <div class="col-sm">
                 <h3>TIPO B</h3>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
               <div class="col-sm">
                 <h3>TIPO C</h3>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herram_button" style="margin:20px;width:60%;" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
             </div>
           </div>

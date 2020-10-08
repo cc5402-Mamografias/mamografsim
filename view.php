@@ -68,6 +68,7 @@ $PAGE->requires->js_call_amd('mod_mamografsim/sim','init');
 
 echo $OUTPUT->header();
 
+// Carga css para el archivo html
 echo '<link href="styles.css" rel="stylesheet">';
 
 readfile("interfaces.html");
