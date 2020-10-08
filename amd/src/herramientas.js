@@ -82,7 +82,7 @@ class CamaraIonizacion extends AbstractTool {
     ctx.beginPath();
     ctx.arc(95, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "yellow";
     ctx.fill();
   }
 }
@@ -100,13 +100,13 @@ class Electrometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
+    //var img = 
+    //ctx.drawImage(img, 10, 10);
+    /*ctx.beginPath();
     ctx.arc(200, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "green";
-    ctx.fill();
+    ctx.fill();*/
   }
 }
 

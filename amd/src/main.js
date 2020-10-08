@@ -7,7 +7,7 @@ import {
   Termometro,
 } from "./herramientas";
 import jQuery from "jquery";
-import {drawMam} from "./vista";
+import {drawMam,drawMamOnLoad} from "./vista";
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
@@ -65,6 +65,10 @@ class Main {
 
 export let init = () => {
  let m = new Main();
-  m.update();
+ const secondFunction = async () => {
+  const result = await drawMam()
+  // do something else here after firstFunction completes
+}  
+ secondFunction();
   console.log("Simulador inicializado");
 };
