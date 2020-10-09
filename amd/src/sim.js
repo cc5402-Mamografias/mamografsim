@@ -1,6 +1,6 @@
 define(['jquery'], function($) {
     var x = 0;
-    var c = document.getElementById("canv");
+    var c = document.getElementById("canvas");
     var ctx = c.getContext("2d");
 
     /*var alrt = function() {

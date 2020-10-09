@@ -45,6 +45,7 @@ class Balanza extends AbstractTool {
   constructor() {
     super();
     this.tipo = "balanza";
+    this.icon = "box.png";
   }
 
   actualizar(estado) {
@@ -56,7 +57,7 @@ class Balanza extends AbstractTool {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
     ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    ctx.arc(160, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "red";
     ctx.fill();
@@ -67,6 +68,7 @@ class CamaraIonizacion extends AbstractTool {
   constructor() {
     super();
     this.tipo = "camIonizacion";
+    this.icon = "ionizador.png";
   }
 
   actualizar(estado) {
@@ -80,7 +82,7 @@ class CamaraIonizacion extends AbstractTool {
     ctx.beginPath();
     ctx.arc(95, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "yellow";
     ctx.fill();
   }
 }
@@ -89,6 +91,7 @@ class Electrometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "electrometro";
+    this.icon = "box.png";
   }
 
   actualizar(estado) {
@@ -97,13 +100,13 @@ class Electrometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    //var img = 
+    //ctx.drawImage(img, 10, 10);
+    /*ctx.beginPath();
+    ctx.arc(200, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "green";
-    ctx.fill();
+    ctx.fill();*/
   }
 }
 
@@ -111,6 +114,9 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "termometro";
+    this.image = new Image();
+    this.image.src = 'icons/thermometer.png';
+    this.icon = "thermometer.png";
   }
 
   actualizar(estado) {
@@ -122,7 +128,8 @@ class Termometro extends AbstractTool {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
     ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    // ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    ctx.drawImage(this.image, 95, 50, 50, 50);
     ctx.stroke();
     ctx.fillStyle = "yellow";
     ctx.fill();
@@ -133,6 +140,7 @@ class Barometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "barometro";
+    this.icon = "barometer.png";
   }
 
   actualizar(estado) {
@@ -155,6 +163,7 @@ class CintaMetrica extends AbstractTool {
   constructor() {
     super();
     this.tipo = "cinta";
+    this.icon = "tape.png";
   }
 
   actualizar(estado) {
