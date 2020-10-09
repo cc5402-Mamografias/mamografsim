@@ -1,101 +1,101 @@
-define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
+import BaseNula from "./herramientas";
 
-  var herramienta = null;
+const alturaMax = 30;
+const margenF = 0.5;
+const margenKV = 1;
+const margenmA = 10;
 
-  const alturaMax = 30;
-  const alturaMin = 0;
-  const margenF = 0.5;
-  const margenKV = 1;
-  const margenmA = 10;
 
-  var alturaCompresor = 30;
-  var fuerza = 20;
+export class Maquina {
+  constructor(errorkv, errorma, errorF) {
+    this.herramienta = new BaseNula();
 
-  var kilovolt = null;
-  var miliamperios = null;
+    this.alturaCompresor = 30;
+    this.fuerza = 0;
 
-  var errorKilovolt = 0;
-  var errorMiliamperios = 0;
-  var errorFuerza = 0;
+    this.kilovolt = null;
+    this.miliamperios = null;
 
-  var modo = null;
-  var filtro = null;
-  var anodo = null;
+    this.errorKilovolt = errorkv;
+    this.errorMiliamperios = errorma;
+    this.errorFuerza = errorF;
 
-  function mError(x) {
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
+  }
+
+  mError(x) {
     return (Math.random() * x) - x;
   }
 
-  function construirEstado(activo) {
+  construirEstado(isActivo) {
     return {
-      altura: alturaCompresor,
-      fuerza: alturaCompresor == alturaMinima? fuerza + mError(margenF) + errorFuerza: 0,
-      kilovolt: kilovolt + errorKilovolt + mError(margenKV),
-      miliamperios: miliamperios + errorMiliamperios + mError(margenmA),
-      filtro: filtro,
-      anodo: anodo,
-      activo: activo
+      altura: this.alturaCompresor,
+      fuerza:
+        this.alturaCompresor == this.alturaMinima()
+          ? this.fuerza + this.errorFuerza + this.mError(margenF)
+          : 0,
+      kilovolt: this.kilovolt + this.errorKilovolt + this.mError(margenKV),
+      miliamperios:
+        this.miliamperios + this.errorMiliamperios + this.mError(margenmA),
+      filtro: this.filtro,
+      anodo: this.anodo,
+      activo: isActivo,
     };
   }
 
-  function actualizar(activo = false) {
-    let e = construirEstado(activo)
-    herramienta.actualizar(e);
-    v.dibujarMaquina(e);
+  alturaMinima() {
+    return this.herramienta.getAltura();
   }
 
-  function alturaMinima() {
-    return herramienta === null? alturaMin : herramienta.getAltura();
+  actualizar(activo = false){
+    this.herramienta.actualizar(this.construirEstado(activo));
   }
 
-  return {
-    // Setea los parametros del panel de control
-    setearParams: function(kv, ma, md, fltr, anod) {
-      kilovolt = kv;
-      miliamperios = ma;
-      modo = md;
-      filtro = fltr;
-      anodo = anod;
-      actualizar();
-    },
-    // Inicializa los errores
-    init: function(errorkv, errorma, errorFuerza, kv, ma, den, modo, filtro, anodo) {
-      errorKilovolt = errorkv;
-      errorMiliamperios = errorma;
-      fuerza = 20 + errorFuerza;
-      this.setearParams(kv, ma, den, modo, filtro, anodo);
-    },
-    // Selecciona una nueva herramienta o deselecciona la antigua
-    setHerramienta: function(herram) {
-      if (alturaCompresor == alturaMinima()) {
-        return;
-      }
-      herramienta = herram;
-      actualizar();
-    },
-    // Entrega la herramienta actual
-    getHerramienta: function() {
-      return herramienta;
-    },
-    // Sube el compresor
-    subirCompresor: function() {
-      if (alturaCompresor + 1 > alturaMax) {
-        throw "altura max";
-      }
-      alturaCompresor += 1;
-      actualizar();
-    },
-    // Baja el compresor
-    bajarCompresor: function() {
-      if (alturaCompresor == alturaMinima()) {
-        throw "altura min";
-      }
-      alturaCompresor -= 1;
-      actualizar();
-    },
-    // Activa el mamografo
-    activar: function() {
-      actualizar(true);
+  // Setea los parametros del panel de control
+  setearParams(kv, ma, md, fltr, anod) {
+    this.kilovolt = kv;
+    this.miliamperios = ma;
+    this.modo = md;
+    this.filtro = fltr;
+    this.anodo = anod;
+  }
+
+  // Selecciona una nueva herramienta o deselecciona la antigua
+  setHerramienta(herram) {
+    if (this.alturaCompresor == this.alturaMinima()) {
+      return;
     }
-  };
-});
+    if (this.herramienta.tipo == herram.tipo) {
+      this.herramienta = new BaseNula();
+    } else {
+      this.herramienta = herram;
+    }
+    this.actualizar();
+  }
+
+  getHerramienta() {
+    return this.herramienta;
+  }
+
+  activar() {
+    this.actualizar(true);
+  }
+
+  subirCompresor() {
+    if (this.alturaCompresor + 1 > alturaMax) {
+      throw "altura max";
+    }
+    this.alturaCompresor += 1;
+    this.actualizar();
+  }
+
+  bajarCompresor() {
+    if (this.alturaCompresor == this.alturaMinima()) {
+      throw "altura min";
+    }
+    this.alturaCompresor -= 1;
+    this.actualizar();
+  }
+}
