@@ -70,7 +70,7 @@ export class Maquina {
     if (this.alturaCompresor == this.alturaMinima()) {
       return;
     }
-    if (this.herramienta.tipo == herram.tipo) {
+    if (this.herramienta.getTipo() == herram.getTipo()) {
       this.herramienta = new BaseNula();
     } else {
       this.herramienta = herram;
