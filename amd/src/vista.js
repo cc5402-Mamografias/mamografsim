@@ -1,12 +1,8 @@
-
-
-
-
 export async function drawMam() {
         var scale = 0.4;
         var x = 100;
         var y = 0;
-        console.log("Draw mamografo")
+        console.log("Draw mamografo");
         var canvas1 = document.getElementById("canvas");
         var ctx = canvas1.getContext('2d');
         var image = new Image();
@@ -26,9 +22,9 @@ export async function drawMam() {
         ctx.drawImage(visor,10+x,150+y,visor.width*scale,visor.height*scale);
     }
 
-    
+
 export function drawMamOnLoad(){
-    console.log("Draw mamografo on load")
+    console.log("Draw mamografo on load");
     var canvas1 = document.getElementById("canvas");
     var ctx = canvas1.getContext('2d');
     var image = new Image();
@@ -50,7 +46,7 @@ export function drawMamOnLoad(){
 
         ctx.drawImage(mamogram,-60,10,480,480);
     };
-   
+
     lector.onload=function(){
 
         ctx.drawImage(lector,-60,10,480,480);
@@ -59,14 +55,5 @@ export function drawMamOnLoad(){
 
         ctx.drawImage(visor,-60,10,480,480);
     };
-   
-
-
-    
-    
 
 }
-
-
-
-

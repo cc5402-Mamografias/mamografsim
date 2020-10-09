@@ -1,4 +1,4 @@
-function sub(element){
+export function sub(element){
     var to_sub = parseFloat(document.getElementById(element.value).value);
     var min = parseFloat(document.getElementById(element.value).min);
     if (to_sub > min){
@@ -7,7 +7,7 @@ function sub(element){
     }
 }
 
-function add(element){
+export function add(element){
     var to_add = parseFloat(document.getElementById(element.value).value);
     var max = parseFloat(document.getElementById(element.value).max);
     if (to_add < max){
@@ -16,7 +16,7 @@ function add(element){
     }
 }
 
-function changeMode(){
+export function changeMode(){
     let modes = ["c01", "c02", "c03", "c04"];
 
     for(var i = 0; i<4; i++){
@@ -33,7 +33,7 @@ function changeMode(){
     }
 }
 
-function changeFilter(){
+export function changeFilter(){
     let modes = ["f01", "f02", "f03"];
 
     for(var i = 0; i<3; i++){
@@ -50,7 +50,7 @@ function changeFilter(){
     }
 }
 
-function changeAnode(){
+export function changeAnode(){
     let modes = ["a01", "a02", "a03"];
 
     for(var i = 0; i<3; i++){
