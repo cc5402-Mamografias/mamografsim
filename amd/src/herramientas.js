@@ -114,6 +114,8 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "termometro";
+    this.image = new Image();
+    this.image.src = 'icons/thermometer.png';
     this.icon = "thermometer.png";
   }
 
@@ -126,7 +128,8 @@ class Termometro extends AbstractTool {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
     ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    // ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    ctx.drawImage(this.image, 95, 50, 50, 50);
     ctx.stroke();
     ctx.fillStyle = "yellow";
     ctx.fill();
