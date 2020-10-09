@@ -87,7 +87,42 @@ button.anodemode{
   border-radius:8px;
   border-color: rgb(118,118,118);
 }
-
+.modes-left{
+  position:absolute;
+  top:5px;
+  left:5px;
+  width:100px;
+  height:53px;
+  margin-right: 0px;
+  margin-left: auto;
+}
+.modes-center{
+  position:absolute;
+  top:15px;
+  left:98px;
+  width:100px;
+  height:43px;
+  text-align: center;
+}
+.modes-right{
+  position:absolute;
+  top:5px;
+  left:181px;
+  width:100px;
+  height:53px;
+}
+.autokv{
+  margin-left:15px;
+}
+.autotime{
+  margin-left:0px;
+}
+.manual{
+  margin-left:-11px;
+}
+.autopoint{
+  margin-left:10px;
+}
 .filter-mode{
   position:absolute;
   top:210px;
