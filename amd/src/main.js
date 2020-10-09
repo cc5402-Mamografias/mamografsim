@@ -30,6 +30,9 @@ class Main {
 
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
+    this.cres = document.getElementById("canvRes");
+    this.ctxres = this.cres.getContext("2d");
+
 
     // this.mamografo =
     // this.panel_control =
@@ -51,10 +54,13 @@ class Main {
   update() {
     console.log("Update");
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
+    this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
     drawMam();
     // dibujar en el canvas las herramientas nuevas
     this.herr_activas.forEach((t) => t.dibujar(this.ctx));
     //dibujar el mamografo
+    //dibujar resultados
+    this.herr_activas.forEach((t) => t.dibujar_resultados(this.ctxres));
   }
 
   onClickTool(tool) {
