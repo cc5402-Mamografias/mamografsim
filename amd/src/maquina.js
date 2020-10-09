@@ -1,78 +1,103 @@
+import BaseNula from "./herramientas";
+
 const alturaMax = 30;
-const alturaMin = 0;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
 
 export default class Maquina {
-  constructor() {
+  constructor(errorkv, errorma, errorF) {
+    this.herramienta = new BaseNula();
+
     this.alturaCompresor = 30;
     this.fuerza = 0;
-    this.den = 0;
+
     this.kilovolt = null;
     this.miliamperios = null;
-    this.errorKilovolt = 0;
-    this.errorMiliamperios = 0;
+
+    this.errorKilovolt = errorkv;
+    this.errorMiliamperios = errorma;
+    this.errorFuerza = errorF;
+
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
   }
 
-  construirEstado(activo) {
+  mError(x) {
+    return (Math.random() * x) - x;
+  }
+
+  construirEstado(isActivo) {
     return {
       altura: this.alturaCompresor,
       fuerza:
-        this.alturaCompresor == this.alturaMinima
-          ? fuerza(Math.random() * margenF) - margenF
+        this.alturaCompresor == this.alturaMinima()
+          ? this.fuerza + this.errorFuerza + this.mError(margenF)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt + Math.random() * margenKV - margenKV,
-      miliamperios:
-        this.miliamperios + this.errorMiliamperios + Math.random() * margenmA - margenmA,
-      den: this.den,
+      kilovolt: isActivo
+        ? this.kilovolt + this.errorKilovolt + this.mError(margenKV)
+        : 0,
+      miliamperios: isActivo
+        ? this.miliamperios + this.errorMiliamperios + this.mError(margenmA)
+        : 0,
       filtro: this.filtro,
       anodo: this.anodo,
-      activo: activo,
+      activo: isActivo,
     };
   }
 
+  alturaMinima() {
+    return this.herramienta.getAltura();
+  }
+
   actualizar(activo = false){
-    e = construirEstado(activo)
-    // herramienta.actualizar(e);
-    // v.dibujarMaquina(e);
-
+    this.herramienta.actualizar(this.construirEstado(activo));
   }
 
-
-  setearParams(kv, ma, dn, md, fltr, anod){
-    kilovolt = kv;
-    miliamperios = ma;
-    modo = md;
-    den = dn;
-    filtro = fltr;
-    anodo = anod;
-    // actualizar();
-
+  // Setea los parametros del panel de control
+  setearParams(kv, ma, md, fltr, anod) {
+    this.kilovolt = kv;
+    this.miliamperios = ma;
+    this.modo = md;
+    this.filtro = fltr;
+    this.anodo = anod;
   }
 
-  setHerramienta(herramienta){
-    this.herramienta = herramienta;
+  // Selecciona una nueva herramienta o deselecciona la antigua
+  setHerramienta(herram) {
+    if (this.alturaCompresor == this.alturaMinima()) {
+      return;
+    }
+    if (this.herramienta.getTipo() == herram.getTipo()) {
+      this.herramienta = new BaseNula();
+    } else {
+      this.herramienta = herram;
+    }
+    this.actualizar();
   }
 
-  getHerramienta(herramienta){
+  getHerramienta() {
     return this.herramienta;
   }
 
-  subirCompresor(){
+  activar() {
+    this.actualizar(true);
+  }
+
+  subirCompresor() {
     if (this.alturaCompresor + 1 > alturaMax) {
       throw "altura max";
     }
     this.alturaCompresor += 1;
-    // actualizar()
+    this.actualizar();
   }
 
-  activar(){
-    this.activo = activo; 
-
+  bajarCompresor() {
+    if (this.alturaCompresor == this.alturaMinima()) {
+      throw "altura min";
+    }
+    this.alturaCompresor -= 1;
+    this.actualizar();
   }
-
 }
