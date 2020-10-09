@@ -4,7 +4,7 @@ const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
 
-export class Maquina {
+export default class Maquina {
   constructor() {
     this.alturaCompresor = 30;
     this.fuerza = 0;
