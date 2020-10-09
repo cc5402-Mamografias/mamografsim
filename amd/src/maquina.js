@@ -1,97 +1,78 @@
-define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
-  // Herramienta nula?/deseleccionar herramienta
+const alturaMax = 30;
+const alturaMin = 0;
+const margenF = 0.5;
+const margenKV = 1;
+const margenmA = 10;
 
-  var herramienta = null;
+export class Maquina {
+  constructor() {
+    this.alturaCompresor = 30;
+    this.fuerza = 0;
+    this.den = 0;
+    this.kilovolt = null;
+    this.miliamperios = null;
+    this.errorKilovolt = 0;
+    this.errorMiliamperios = 0;
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
+  }
 
-  const alturaMax = 30;
-  const alturaMin = 0;
-  const margenF = 0.5;
-  const margenKV = 1;
-  const margenmA = 10;
-
-  var alturaCompresor = 30;
-  var fuerza = 0;
-  var den = 0;
-  var kilovolt = null;
-  var miliamperios = null;
-  var errorKilovolt = 0;
-  var errorMiliamperios = 0;
-  var modo = null;
-  var filtro = null;
-  var anodo = null;
-
-  function construirEstado(activo) {
+  construirEstado(activo) {
     return {
-      altura: alturaCompresor,
-      fuerza: alturaCompresor == alturaMinima? fuerza (Math.random() * margenF) - margenF: 0,
-      kilovolt: kilovolt + errorKilovolt + (Math.random() * margenKV) - margenKV,
-      miliamperios: miliamperios + errorMiliamperios + (Math.random() * margenmA) - margenmA,
-      den: den,
-      filtro: filtro,
-      anodo: anodo,
-      activo: activo
-    }
+      altura: this.alturaCompresor,
+      fuerza:
+        this.alturaCompresor == this.alturaMinima
+          ? fuerza(Math.random() * margenF) - margenF
+          : 0,
+      kilovolt: this.kilovolt + this.errorKilovolt + Math.random() * margenKV - margenKV,
+      miliamperios:
+        this.miliamperios + this.errorMiliamperios + Math.random() * margenmA - margenmA,
+      den: this.den,
+      filtro: this.filtro,
+      anodo: this.anodo,
+      activo: activo,
+    };
   }
 
-  function actualizar(activo = false) {
+  actualizar(activo = false){
     e = construirEstado(activo)
-    herramienta.actualizar(e);
-    v.dibujarMaquina(e);
+    // herramienta.actualizar(e);
+    // v.dibujarMaquina(e);
+
   }
 
-  function alturaMinima() {
-    return herramienta === null? alturaMin : herramienta.getAltura();
+
+  setearParams(kv, ma, dn, md, fltr, anod){
+    kilovolt = kv;
+    miliamperios = ma;
+    modo = md;
+    den = dn;
+    filtro = fltr;
+    anodo = anod;
+    // actualizar();
+
   }
 
-  return {
-    // Setea los parametros del panel de control
-    setearParams: function(kv, ma, dn, md, fltr, anod) {
-      kilovolt = kv;
-      miliamperios = ma;
-      modo = md;
-      den = dn;
-      filtro = fltr;
-      anodo = anod;
-      actualizar();
-    },
-    // Inicializa los errores
-    init: function(errorkv, errorma, errorFuerza, kv, ma, den, modo, filtro, anodo) {
-      errorKilovolt = errorkv;
-      errorMiliamperios = errorma;
-      fuerza = 20 + errorFuerza;
-      this.setearParams(kv, ma, den, modo, filtro, anodo);
-    },
-    // Selecciona una nueva herramienta o deselecciona la antigua
-    setHerramienta: function(herram) {
-      if (alturaCompresor == alturaMinima()) {
-        return;
-      }
-      herramienta = herram;
-      actualizar()
-    },
-    // Entrega la herramienta actual
-    getHerramienta: function() {
-      return herramienta;
-    },
-    // Sube el compresor
-    subirCompresor: function() {
-      if (alturaCompresor + 1 > alturaMax) {
-        throw "altura max";
-      }
-      alturaCompresor += 1;
-      actualizar()
-    },
-    // Baja el compresor
-    bajarCompresor: function() {
-      if (alturaCompresor == alturaMinima()) {
-        throw "altura min";
-      }
-      alturaCompresor -= 1;
-      actualizar()
-    },
-    // Activa el mamografo
-    activar: function() {
-      actualizar(activo=true);
+  setHerramienta(herramienta){
+    this.herramienta = herramienta;
+  }
+
+  getHerramienta(herramienta){
+    return this.herramienta;
+  }
+
+  subirCompresor(){
+    if (this.alturaCompresor + 1 > alturaMax) {
+      throw "altura max";
     }
+    this.alturaCompresor += 1;
+    // actualizar()
   }
-});
+
+  activar(){
+    this.activo = activo; 
+
+  }
+
+}
