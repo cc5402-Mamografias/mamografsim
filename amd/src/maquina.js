@@ -1,5 +1,4 @@
 define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, v) {
-  // Herramienta nula?/deseleccionar herramienta
 
   var herramienta = null;
 
@@ -10,31 +9,37 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
   const margenmA = 10;
 
   var alturaCompresor = 30;
-  var fuerza = 0;
-  var den = 0;
+  var fuerza = 20;
+
   var kilovolt = null;
   var miliamperios = null;
+
   var errorKilovolt = 0;
   var errorMiliamperios = 0;
+  var errorFuerza = 0;
+
   var modo = null;
   var filtro = null;
   var anodo = null;
 
+  function mError(x) {
+    return (Math.random() * x) - x;
+  }
+
   function construirEstado(activo) {
     return {
       altura: alturaCompresor,
-      fuerza: alturaCompresor == alturaMinima? fuerza (Math.random() * margenF) - margenF: 0,
-      kilovolt: kilovolt + errorKilovolt + (Math.random() * margenKV) - margenKV,
-      miliamperios: miliamperios + errorMiliamperios + (Math.random() * margenmA) - margenmA,
-      den: den,
+      fuerza: alturaCompresor == alturaMinima? fuerza + mError(margenF) + errorFuerza: 0,
+      kilovolt: kilovolt + errorKilovolt + mError(margenKV),
+      miliamperios: miliamperios + errorMiliamperios + mError(margenmA),
       filtro: filtro,
       anodo: anodo,
       activo: activo
-    }
+    };
   }
 
   function actualizar(activo = false) {
-    e = construirEstado(activo)
+    let e = construirEstado(activo)
     herramienta.actualizar(e);
     v.dibujarMaquina(e);
   }
@@ -45,11 +50,10 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
 
   return {
     // Setea los parametros del panel de control
-    setearParams: function(kv, ma, dn, md, fltr, anod) {
+    setearParams: function(kv, ma, md, fltr, anod) {
       kilovolt = kv;
       miliamperios = ma;
       modo = md;
-      den = dn;
       filtro = fltr;
       anodo = anod;
       actualizar();
@@ -67,7 +71,7 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
         return;
       }
       herramienta = herram;
-      actualizar()
+      actualizar();
     },
     // Entrega la herramienta actual
     getHerramienta: function() {
@@ -79,7 +83,7 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
         throw "altura max";
       }
       alturaCompresor += 1;
-      actualizar()
+      actualizar();
     },
     // Baja el compresor
     bajarCompresor: function() {
@@ -87,11 +91,11 @@ define(['mod_mamografsim/herramientas', 'mod_mamografsim/vista'], function (hs, 
         throw "altura min";
       }
       alturaCompresor -= 1;
-      actualizar()
+      actualizar();
     },
     // Activa el mamografo
     activar: function() {
-      actualizar(activo=true);
+      actualizar(true);
     }
-  }
+  };
 });
