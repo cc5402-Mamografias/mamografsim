@@ -36,9 +36,12 @@ export class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? this.fuerza + this.errorFuerza + this.mError(margenF)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt + this.mError(margenKV),
-      miliamperios:
-        this.miliamperios + this.errorMiliamperios + this.mError(margenmA),
+      kilovolt: isActivo
+        ? this.kilovolt + this.errorKilovolt + this.mError(margenKV)
+        : 0,
+      miliamperios: isActivo
+        ? this.miliamperios + this.errorMiliamperios + this.mError(margenmA)
+        : 0,
       filtro: this.filtro,
       anodo: this.anodo,
       activo: isActivo,
