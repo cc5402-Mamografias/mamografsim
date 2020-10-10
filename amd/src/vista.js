@@ -3,9 +3,22 @@
 
 
 export function drawMam() {
-        var scale = 0.4;
-        var x = 100;
+        var scale = 0.45;
+        var x = 250;
         var y = 0;
+
+        var fondoX = 0;
+        var fondoY = 10;
+
+        var mamogramX = 17;
+        var mamogramY = 10;
+
+        var compresorX = 40;
+        var compresorY = 410;
+
+        var visorX = 55;
+        var visorY = 250;
+
         console.log("Draw mamografo")
         var canvas1 = document.getElementById("canvas");
         var ctx = canvas1.getContext('2d');
@@ -15,33 +28,20 @@ export function drawMam() {
         fondo.src = 'img/fondo.svg';
         var mamogram = new Image();
         mamogram.src = 'img/mamogram.svg';
-        var lector = new Image();
-        lector.src = 'img/lector.svg';
+        var compresor = new Image();
+        compresor.src = 'img/compresor.svg';
         var visor = new Image();
         visor.src = 'img/visor.svg';
 
-        ctx.drawImage(fondo,0+x*scale,10+y*scale,fondo.width*scale,fondo.height*scale);
-        ctx.drawImage(mamogram,0+x*scale,10+y*scale,mamogram.width*scale,mamogram.height*scale);
-        ctx.drawImage(lector,10+x*scale,190+y*scale,lector.width*scale,lector.height*scale);
-        ctx.drawImage(visor,10+x*scale,150+y*scale,visor.width*scale,visor.height*scale);
+        ctx.drawImage(fondo,(fondoX+x)*scale,(fondoY+y)*scale,fondo.width*scale,fondo.height*scale);
+        ctx.drawImage(mamogram,(mamogramX+x)*scale,(mamogramY+y)*scale,mamogram.width*scale,mamogram.height*scale);
+        ctx.drawImage(compresor,(compresorX+x)*scale,(compresorY+y)*scale,compresor.width*scale,compresor.height*scale);
+        ctx.drawImage(visor,(visorX+x)*scale,(visorY+y)*scale,visor.width*scale,visor.height*scale);
     }
 
-function waitForLoad(obj){
-    
-new Promise((resolve)=> {
 
-obj.onload = resolve();
-});
-
-}
-
-
-export async function drawMamOnLoad(){
-      var scale = 0.4;
-        var x = 100;
-        var y = 0;
-
-    const preloadImage = src => 
+export async function preloadImages(){
+  const preloadImage = src => 
   new Promise(r => {
     const image = new Image()
     image.onload = r
@@ -49,14 +49,9 @@ export async function drawMamOnLoad(){
     image.src = src
   })
     var images = [];
-  
-    console.log("Draw mamografo on load")
+    //var image = new Image();
+    //image.src = 'img/complete.svg';
 
-    var canvas1 = document.getElementById("canvas");
-    var ctx = canvas1.getContext('2d');
-    var image = new Image();
-    image.src = 'img/complete.svg';
-    
     var fondo = new Image();
     fondo.src = 'img/fondo.svg';
   
@@ -66,23 +61,11 @@ export async function drawMamOnLoad(){
   
     images.push(mamogram);
     var compresor = new Image();
-    compresor.src = 'img/lector.svg';
+    compresor.src = 'img/compresor.svg';
 
     images.push(compresor);
     var visor = new Image();
     visor.src = 'img/visor.svg';
-    
     images.push(visor);
-    await preloadImage('img/fondo.svg');
-    ctx.drawImage(fondo,0+x*scale,10+y*scale,fondo.width*scale,fondo.height*scale);
-    await preloadImage('img/mamogram.svg')
-    ctx.drawImage(mamogram,0+x*scale,10+y*scale,mamogram.width*scale,mamogram.height*scale);
-    await preloadImage('img/lector.svg')
-    ctx.drawImage(compresor,10+x*scale,190+y*scale,compresor.width*scale,compresor.height*scale);
-    await preloadImage('img/visor.svg')
-    ctx.drawImage(visor,10+x*scale,150+y*scale,visor.width*scale,visor.height*scale);   
-    //await Promise.all(images.map(x => preloadImage(x.src))).then(ctx.drawImage(fondo,-60,10,480,480)).then(console.log("testload"));
-
-   
-
+    await Promise.all(images.map(x => preloadImage(x.src)));
 }

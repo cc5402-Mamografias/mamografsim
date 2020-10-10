@@ -7,7 +7,7 @@ import {
   Termometro,
 } from "./herramientas";
 import jQuery from "jquery";
-import {drawMam,drawMamOnLoad} from "./vista";
+import {drawMam,preloadImages} from "./vista";
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
@@ -22,7 +22,7 @@ class Main {
       new Termometro(),
     ];
     
-    drawMamOnLoad();
+    
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
 
@@ -65,6 +65,6 @@ class Main {
 
 export let init = () => {
  let m = new Main();
-drawMamOnLoad()
+preloadImages().then(drawMam);
 console.log("Simulador inicializado");
 };
