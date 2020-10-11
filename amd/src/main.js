@@ -10,11 +10,7 @@ import {
 import { Maquina } from "./maquina";
 
 import jQuery from "jquery";
-<<<<<<< HEAD
 import {drawMam,preloadImages} from "./vista";
-=======
-import { drawMam, drawMamOnLoad } from "./vista";
->>>>>>> 0f6f3ff0b27605121d4dfa344ced7ea3a5182b14
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
@@ -29,14 +25,8 @@ class Main {
       new Electrometro(),
       new Termometro(),
     ];
-<<<<<<< HEAD
     
     
-=======
-
-    // this.mamografo = new Maquina();
-
->>>>>>> 0f6f3ff0b27605121d4dfa344ced7ea3a5182b14
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
     this.cres = document.getElementById("canvRes");
