@@ -84,7 +84,7 @@ class Balanza extends AbstractTool {
   dibujar_resultado(ctx) {
     if (this.estado = "activo"){
       ctx.font = "30px Arial";
-      ctx.fillText(fuerza.toString(), 10, 50);
+      ctx.fillText(this.fuerza.toString(), 10, 50);
     }
   } 
 }

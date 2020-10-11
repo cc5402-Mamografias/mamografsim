@@ -1,4 +1,5 @@
-import BaseNula from "./herramientas";
+import {BaseNula} from "./herramientas";
+import {preloadImages,drawMam} from "./vista";
 
 const alturaMax = 30;
 const margenF = 0.5;
@@ -22,6 +23,7 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+    preloadImages().then(drawMam);
   }
 
   mError(x) {
@@ -53,8 +55,12 @@ export default class Maquina {
 
   actualizar(activo = false){
     this.herramienta.actualizar(this.construirEstado(activo));
+    this.dibujar();
   }
-
+  dibujar(){
+    drawMam();
+  }
+  
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
     this.kilovolt = kv;
@@ -63,6 +69,7 @@ export default class Maquina {
     this.filtro = fltr;
     this.anodo = anod;
   }
+ 
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {

@@ -7,10 +7,9 @@ import {
   Termometro,
 } from "./herramientas";
 
-import { Maquina } from "./maquina";
-
+import Maquina  from "./maquina";
 import jQuery from "jquery";
-import {drawMam,preloadImages} from "./vista";
+
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
@@ -32,10 +31,10 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-
-    // this.mamografo =
+    
+    this.mamografo = new Maquina(0,0,0);
     // this.panel_control =
-    //
+    
     console.log("dibujar iconos");
     this.herr_disponibles.forEach((tool) => {
       let r = $(`<button title= "AD." class="herrams-boton"> </button>`).append(
@@ -46,20 +45,21 @@ class Main {
       r.appendTo("#herramientas-express");
       console.log("dibujar 1");
     });
-
-    this.update();
+    
+    this.actualizar();
   }
 
-  update() {
+  actualizar() {
     console.log("Update");
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
-    drawMam();
+    //dibujar el mamografo
+    this.mamografo.actualizar();
     // dibujar en el canvas las herramientas nuevas
     this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-    //dibujar el mamografo
+    
     //dibujar resultados
-    this.herr_activas.forEach((t) => t.dibujar_resultados(this.ctxres));
+    this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
   }
 
   onClickTool(tool) {
@@ -70,7 +70,7 @@ class Main {
     } else {
       this.herr_activas.push(tool);
     }
-    this.update();
+    this.actualizar();
   }
 
   // Este método se levanta cada vez que hay un click en el canvas
@@ -82,6 +82,5 @@ class Main {
 
 export let init = () => {
  let m = new Main();
-preloadImages().then(drawMam);
 console.log("Simulador inicializado");
 };
