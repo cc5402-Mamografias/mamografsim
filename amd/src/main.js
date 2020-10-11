@@ -25,14 +25,15 @@ class Main {
       new Termometro(),
     ];
     
-    
+    this.mamografo = new Maquina(0,0,0);
     this.c = document.getElementById("canvas");
+    this.c.addEventListener('click',() => this.onCanvasClick() , false);
     this.ctx = this.c.getContext("2d");
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
-
+   
     
-    this.mamografo = new Maquina(0,0,0);
+    
     // this.panel_control =
     
     console.log("dibujar iconos");
@@ -47,6 +48,7 @@ class Main {
     });
     
     this.actualizar();
+   
   }
 
   actualizar() {
@@ -66,16 +68,26 @@ class Main {
     console.log(tool);
     const i = this.herr_activas.indexOf(tool);
     if (i > -1) {
+      
       this.herr_activas.splice(i, 1);
     } else {
+      
       this.herr_activas.push(tool);
     }
+    this.mamografo.bajarCompresor();
     this.actualizar();
+   
   }
 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
-  onCanvasClick(e) {}
+  onCanvasClick() {
+    
+    console.log("click on canvas");
+    
+   this.mamografo.subirCompresor();
+   this.actualizar();
+  }
 
   onCanvasReleaseClick(e) {}
 }

@@ -1,7 +1,7 @@
 import {BaseNula} from "./herramientas";
 import {preloadImages,drawMam} from "./vista";
 
-const alturaMax = 30;
+const alturaMax = 160;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
@@ -10,8 +10,8 @@ export default class Maquina {
   constructor(errorkv, errorma, errorF) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 30;
-    this.fuerza = 0;
+    this.alturaCompresor = 0;
+    this.fuerza = 10;
 
     this.kilovolt = null;
     this.miliamperios = null;
@@ -58,7 +58,7 @@ export default class Maquina {
     this.dibujar();
   }
   dibujar(){
-    drawMam();
+    drawMam(this.alturaCompresor);
   }
   
   // Setea los parametros del panel de control
@@ -81,7 +81,7 @@ export default class Maquina {
     } else {
       this.herramienta = herram;
     }
-    this.actualizar();
+    //this.actualizar();
   }
 
   getHerramienta() {
@@ -94,17 +94,19 @@ export default class Maquina {
 
   subirCompresor() {
     if (this.alturaCompresor + 1 > alturaMax) {
-      throw "altura max";
+      throw "compresion max";
     }
-    this.alturaCompresor += 1;
-    this.actualizar();
+    this.alturaCompresor += 10;
+    console.log(this.alturaCompresor);
+    //this.actualizar();
   }
 
   bajarCompresor() {
-    if (this.alturaCompresor == this.alturaMinima()) {
-      throw "altura min";
+    if (this.alturaCompresor == 0) {
+      throw "compresion min";
     }
-    this.alturaCompresor -= 1;
-    this.actualizar();
+    this.alturaCompresor -= 10;
+    console.log(this.alturaCompresor);
+    //this.actualizar();
   }
 }

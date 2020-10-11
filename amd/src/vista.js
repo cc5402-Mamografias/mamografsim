@@ -2,7 +2,7 @@
 
 
 
-export function drawMam() {
+export function drawMam(addcompresorY=0) {
         var scale = 0.45;
         var x = 280;
         var y = 0;
@@ -14,7 +14,7 @@ export function drawMam() {
         var mamogramY = 10;
 
         var compresorX = 40;
-        var compresorY = 410;
+        var compresorY = 300;
 
         var visorX = 55;
         var visorY = 250;
@@ -35,7 +35,7 @@ export function drawMam() {
 
         ctx.drawImage(fondo,(fondoX+x)*scale,(fondoY+y)*scale,fondo.width*scale,fondo.height*scale);
         ctx.drawImage(mamogram,(mamogramX+x)*scale,(mamogramY+y)*scale,mamogram.width*scale,mamogram.height*scale);
-        ctx.drawImage(compresor,(compresorX+x)*scale,(compresorY+y)*scale,compresor.width*scale,compresor.height*scale);
+        ctx.drawImage(compresor,(compresorX+x)*scale,(compresorY+y+addcompresorY)*scale,compresor.width*scale,compresor.height*scale);
         ctx.drawImage(visor,(visorX+x)*scale,(visorY+y)*scale,visor.width*scale,visor.height*scale);
     }
 
