@@ -25,10 +25,10 @@
         <div class="herramientas-mini">
             <h3 class="herrams-titulo">Herramientas</h3>
             <div id="herramientas-express" class="herrams-lista">
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="draw_tool();"> <img src="icons/ionizador.png" width=64><br>Ionizador</button>
+                <!-- <button title= "Esta es la herramienta X." class="herrams-boton" onclick="draw_tool();"> <img src="icons/ionizador.png" width=64><br>Ionizador</button>
                 <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/thermometer.png" width=64><br>Termometro</button>
                 <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/barometer.png" width=64><br>Barometro</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/tape.png" width=64><br>Cinta</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/tape.png" width=64><br>Cinta</button> -->
             </div>
             <button class="boton-ver-mas" onclick="show_h()">Ver mas</button>
           </div>
@@ -89,32 +89,47 @@
                   <label class="mas_label"> mAs</label>
                 </div>
                 <div class="col-sm" style="text-align:left;">
-                  <button class="btnadd" value="kv" onclick="add(this)">+</button>
                   <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
-                  <button class="btnadd" value="mas" onclick="add(this)">+</button>
+                  <button class="btnadd" value="kv" onclick="add(this)">+</button>
                   <button class="btnsub" value="mas" onclick="sub(this)" >-</button>
+                  <button class="btnadd" value="mas" onclick="add(this)">+</button>
                 </div>
               </div>
             </div>
 
             <div class="modes" >
-                <div class="modes-left">
-                  <label class="autokv"> AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
-                  <label class="autotime"> Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
+              <div class="container">
+                <div class="row" >
+                  <div class="col-sm">
+                    <button class="btnmode" onclick="changeMode()">MODE</button>
+                  </div>
                 </div>
-                <div class="modes-center">
-                  <button class="btnmode" onclick="changeMode()">MODE</button>
+                <div class="row">
+                  <div class="col-sm">
+                    <label > AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
+                  </div>
+                  <div class="col-sm" >
+                    <label >  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
+                  </div>
                 </div>
-                <div class="modes-right" >
-                    <label class="manual">  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
-                    <label class="autopoint">  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+
+                <div class="row">
+                  <div class="col-sm">
+                    <label > Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
+                  </div>
+
+                  <div class="col-sm" >
+                      <label >  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+                  </div>
                 </div>
+
+              </div>
             </div>
 
             <div class="container">
                 <div class="filter-mode">
                   <button class="fltmode" onclick="changeFilter()">filter</button>
-                  <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disables />  </label>
+                  <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disabled />  </label>
                   <label> Rh <input type="radio"  name="filter" value="rh" id="f02" disabled />  </label>
                   <label> W <input type="radio"  name="filter" value="w" id="f03" disabled />  </label>
                 </div>

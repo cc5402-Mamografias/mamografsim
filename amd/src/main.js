@@ -6,13 +6,21 @@ import {
   Electrometro,
   Termometro,
 } from "./herramientas";
+
+import { Maquina } from "./maquina";
+
 import jQuery from "jquery";
+<<<<<<< HEAD
 import {drawMam,preloadImages} from "./vista";
+=======
+import { drawMam, drawMamOnLoad } from "./vista";
+>>>>>>> 0f6f3ff0b27605121d4dfa344ced7ea3a5182b14
 window.$ = window.jQuery = $ = jQuery;
 
 class Main {
   constructor() {
     this.herr_activas = [];
+
     this.herr_disponibles = [
       new Balanza(),
       new Barometro(),
@@ -21,22 +29,32 @@ class Main {
       new Electrometro(),
       new Termometro(),
     ];
+<<<<<<< HEAD
     
     
+=======
+
+    // this.mamografo = new Maquina();
+
+>>>>>>> 0f6f3ff0b27605121d4dfa344ced7ea3a5182b14
     this.c = document.getElementById("canvas");
     this.ctx = this.c.getContext("2d");
 
     // this.mamografo =
     // this.panel_control =
     //
-
+    console.log("dibujar iconos");
     this.herr_disponibles.forEach((tool) => {
-      let r = $(`<button title= "AD." class="herrams-boton"> </button>`)
-        .append(`<img src="icons/${tool.icon}" width=64><br>${tool.tipo}`)
+      let r = $(`<button title= "AD." class="herrams-boton"> </button>`).append(
+        `<img src="icons/${tool.icon}" width=64><br>${tool.tipo}`
+      );
 
       r.on("click", () => this.onClickTool(tool));
       r.appendTo("#herramientas-express");
+      console.log("dibujar 1");
     });
+
+    this.update();
   }
 
   update() {
@@ -46,9 +64,6 @@ class Main {
     // dibujar en el canvas las herramientas nuevas
     this.herr_activas.forEach((t) => t.dibujar(this.ctx));
     //dibujar el mamografo
-    
-    
-    
   }
 
   onClickTool(tool) {
@@ -61,6 +76,12 @@ class Main {
     }
     this.update();
   }
+
+  // Este método se levanta cada vez que hay un click en el canvas
+  // Checkea que se haya clickeado
+  onCanvasClick(e) {}
+
+  onCanvasReleaseClick(e) {}
 }
 
 export let init = () => {
