@@ -4,7 +4,7 @@
 
 export function drawMam() {
         var scale = 0.45;
-        var x = 250;
+        var x = 280;
         var y = 0;
 
         var fondoX = 0;
