@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -20,6 +21,13 @@ export function drawMam() {
         var visorY = 250;
 
         console.log("Draw mamografo")
+=======
+export async function drawMam() {
+        var scale = 0.4;
+        var x = 100;
+        var y = 0;
+        console.log("Draw mamografo");
+>>>>>>> origin/grunt-warnings
         var canvas1 = document.getElementById("canvas");
         var ctx = canvas1.getContext('2d');
         var image = new Image();
@@ -40,6 +48,7 @@ export function drawMam() {
     }
 
 
+<<<<<<< HEAD
 export async function preloadImages(){
   const preloadImage = src => 
   new Promise(r => {
@@ -51,6 +60,14 @@ export async function preloadImages(){
     var images = [];
     //var image = new Image();
     //image.src = 'img/complete.svg';
+=======
+export function drawMamOnLoad(){
+    console.log("Draw mamografo on load");
+    var canvas1 = document.getElementById("canvas");
+    var ctx = canvas1.getContext('2d');
+    var image = new Image();
+    image.src = 'img/complete.svg';
+>>>>>>> origin/grunt-warnings
 
     var fondo = new Image();
     fondo.src = 'img/fondo.svg';
@@ -66,6 +83,28 @@ export async function preloadImages(){
     images.push(compresor);
     var visor = new Image();
     visor.src = 'img/visor.svg';
+<<<<<<< HEAD
     images.push(visor);
     await Promise.all(images.map(x => preloadImage(x.src)));
 }
+=======
+    fondo.onload=function(){
+
+        ctx.drawImage(fondo,-60,10,480,480);
+    };
+    mamogram.onload=function(){
+
+        ctx.drawImage(mamogram,-60,10,480,480);
+    };
+
+    lector.onload=function(){
+
+        ctx.drawImage(lector,-60,10,480,480);
+    };
+    visor.onload=function(){
+
+        ctx.drawImage(visor,-60,10,480,480);
+    };
+
+}
+>>>>>>> origin/grunt-warnings
