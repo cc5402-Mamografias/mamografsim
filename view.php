@@ -63,6 +63,7 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init');
+$PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
 
