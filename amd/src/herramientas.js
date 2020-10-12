@@ -11,6 +11,8 @@ class AbstractTool {
     if (this.dibujar === AbstractTool.prototype.dibujar) {
       throw new TypeError("Please implement abstract method dibujar");
     }
+
+    this.altura = 0;
   }
 
   actualizar(estado) {

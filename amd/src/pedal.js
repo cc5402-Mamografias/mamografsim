@@ -44,21 +44,3 @@ export class Pedal {
     );
   }
 }
-
-//   function checkCanvasClick(elemento, click) {
-//     let x = click[0];
-//     let y = click[1];
-
-//     if (
-//       x < elemento.posicion[0] ||
-//       x > elemento.posicion[0] + elemento.boundingBox[0] ||
-//       y < elemento.posicion[1] ||
-//       y > elemento.posicion[1] + elemento.boundingBox[1]
-//     ) {
-//       return false;
-//     }
-
-//     return true;
-//   }
-
-// }
