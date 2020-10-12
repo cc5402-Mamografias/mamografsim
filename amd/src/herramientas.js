@@ -62,6 +62,10 @@ class Balanza extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y=265;
+
+    this.balanza = new Image();
+    this.balanza.src = 'img/balanza.svg';
+
   }
 
   actualizar(estado) {
@@ -75,9 +79,7 @@ class Balanza extends AbstractTool {
   }
   
   dibujar(ctx) {
-    var balanza = new Image();
-    balanza.src = 'img/balanza.svg';
-    ctx.drawImage(balanza, this.x, this.y,balanza.width*this.scale,balanza.height*this.scale);
+    ctx.drawImage(this.balanza, this.x, this.y,this.balanza.width*this.scale,this.balanza.height*this.scale);
     
     /*ctx.beginPath();
     ctx.arc(160, 50, 20, 0, 2 * Math.PI);

@@ -78,8 +78,6 @@ class Main {
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
 
-   
-    this.pedalDown.dibujar(this.ctx);
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
@@ -99,7 +97,7 @@ class Main {
 
   onClickTool(tool) {
     console.log(tool);
-    this.mamografo.setHerramienta(tool)
+    this.mamografo.setHerramienta(tool);
     /*const i = this.herr_activas.indexOf(tool);
     if (i > -1) {
       this.herr_activas.splice(i, 1);
@@ -108,14 +106,8 @@ class Main {
 
     }*/
 
-
     this.actualizar();
-    try {
-      this.mamografo.bajarCompresor();
-    } catch (error) {
-      this.mamografo.dibujar();
-    }
-    //this.actualizar();
+ 
   }
 
   // Este método se levanta cada vez que hay un click en el canvas

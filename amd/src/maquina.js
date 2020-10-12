@@ -1,7 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
 
-const alturaMax = 30;
+const alturaMax = 155;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
@@ -23,7 +23,7 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    preloadImages().then( () => drawMam(ctx) );
+    preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
   }
 
   mError(x) {
@@ -34,7 +34,7 @@ export default class Maquina {
     return {
       altura: this.alturaCompresor,
       fuerza:
-        this.alturaCompresor == this.alturaMinima()
+        this.alturaCompresor == this.alturaMaxima()
           ? this.fuerza + this.errorFuerza + this.mError(margenF)
           : 0,
       kilovolt: isActivo
@@ -49,15 +49,15 @@ export default class Maquina {
     };
   }
 
-  alturaMinima() {
-    return this.herramienta.getAltura();
+  alturaMaxima() {
+    return alturaMax - this.herramienta.getAltura();
   }
 
   actualizar(activo = false) {
-    this.herramienta.actualizar(this.construirEstado(activo));
-    this.dibujar();
+    if(this.herramienta!==null)
+      this.herramienta.actualizar(this.construirEstado(activo));
+    // this.dibujar();
   }
-
 
   dibujar(ctx) {
     drawMam(ctx, this.alturaCompresor, [this.herramienta]);
@@ -74,8 +74,9 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
-    if (this.alturaCompresor == this.alturaMinima()) {
-      return;
+    if (this.alturaCompresor >  alturaMax - herram.altura ) {
+      throw 'No se puede posicionar la herramienta con el compresor tan bajo';
+      // return;
     }
     if (this.herramienta.getTipo() == herram.getTipo()) {
       this.herramienta = new BaseNula();
@@ -94,7 +95,12 @@ export default class Maquina {
   }
 
   subirCompresor() {
-    if (this.alturaCompresor + 1 > alturaMax) {
+    if (
+      this.herramienta !== null &&
+      this.alturaCompresor + 1 > alturaMax - this.herramienta.altura
+    ) {
+      throw "compresion max";
+    } else if (this.alturaCompresor + 1 > alturaMax) {
       throw "compresion max";
     }
     this.alturaCompresor += 5;
