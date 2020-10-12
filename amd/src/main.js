@@ -8,7 +8,6 @@ import {
 } from "./herramientas";
 
 import Maquina from "./maquina";
-// import { drawMam } from "./vista";
 import jQuery from "jquery";
 import { checkBoundingBoxClick } from "./utils";
 
@@ -90,19 +89,33 @@ class Main {
 
 
     //dibujar resultados
-    this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
+    //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
+    try {
+      this.mamografo.getHerramienta().dibujar_resultado(this.ctxres);
+    } catch (error) {
+      //console.log(error);
+    }
   }
 
   onClickTool(tool) {
     console.log(tool);
-    const i = this.herr_activas.indexOf(tool);
+    this.mamografo.setHerramienta(tool)
+    /*const i = this.herr_activas.indexOf(tool);
     if (i > -1) {
       this.herr_activas.splice(i, 1);
     } else {
       this.herr_activas.push(tool);
-    }
+
+    }*/
+
 
     this.actualizar();
+    try {
+      this.mamografo.bajarCompresor();
+    } catch (error) {
+      this.mamografo.dibujar();
+    }
+    //this.actualizar();
   }
 
   // Este método se levanta cada vez que hay un click en el canvas
