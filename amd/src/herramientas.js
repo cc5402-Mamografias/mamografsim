@@ -55,7 +55,7 @@ class Balanza extends AbstractTool {
   constructor() {
     super();
     this.tipo = "balanza";
-    this.icon = "box.png";
+    this.icon = "balanza.png";
     this.altura = 5;
     this.estado = "inactivo";
     this.fuerza = 0;
