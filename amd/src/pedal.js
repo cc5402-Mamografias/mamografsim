@@ -11,13 +11,13 @@ export class Pedal {
     console.log("pedal is clicked jojo");
     this.clicked = true;
     this.hook();
-    // this.loop = setInterval(this.hook, 2000);
+    this.loop = setInterval(this.hook, 200);
   }
 
   on_release() {
     console.log("pedal released");
     this.clicked = false;
-    //clearInterval(this.loop);
+    clearInterval(this.loop);
   }
 
   dibujar(ctx) {

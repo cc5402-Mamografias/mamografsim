@@ -29,7 +29,7 @@ class Main {
       new Termometro(),
     ];
 
-    this.mamografo = new Maquina(0, 0, 0);
+    
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
@@ -38,6 +38,8 @@ class Main {
     this.ctx = this.c.getContext("2d");
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
+
+    this.mamografo = new Maquina(0, 0, 0, ctx);
 
     // this.panel_control =
 
@@ -77,13 +79,15 @@ class Main {
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
 
-    // dibujar en el canvas las herramientas nuevas
-    this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-
+   
     this.pedalDown.dibujar(this.ctx);
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
+
+    // dibujar en el canvas las herramientas nuevas
+    this.herr_activas.forEach((t) => t.dibujar(this.ctx));
+
 
     //dibujar resultados
     this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));

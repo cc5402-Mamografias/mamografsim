@@ -1,5 +1,5 @@
-import {BaseNula} from "./herramientas";
-import {preloadImages,drawMam} from "./vista";
+import { BaseNula } from "./herramientas";
+import { preloadImages, drawMam } from "./vista";
 
 const alturaMax = 160;
 const margenF = 0.5;
@@ -7,7 +7,7 @@ const margenKV = 1;
 const margenmA = 10;
 
 export default class Maquina {
-  constructor(errorkv, errorma, errorF) {
+  constructor(errorkv, errorma, errorF, ctx) {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 0;
@@ -23,11 +23,11 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    preloadImages().then(drawMam);
+    preloadImages().then( () => drawMam(ctx) );
   }
 
   mError(x) {
-    return (Math.random() * x) - x;
+    return Math.random() * x - x;
   }
 
   construirEstado(isActivo) {
@@ -53,14 +53,14 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
-  actualizar(activo = false,herramientas=null){
+  actualizar(activo = false, herramientas = null) {
     this.herramienta.actualizar(this.construirEstado(activo));
     this.dibujar(herramientas);
   }
-  dibujar(herramientas=null){
-    drawMam(this.alturaCompresor,herramientas);
+  dibujar(ctx, herramientas = null) {
+    drawMam(ctx, this.alturaCompresor, herramientas);
   }
-  
+
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
     this.kilovolt = kv;
@@ -69,7 +69,6 @@ export default class Maquina {
     this.filtro = fltr;
     this.anodo = anod;
   }
- 
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
