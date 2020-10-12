@@ -1,7 +1,5 @@
 "use strict";
 
-//import { init } from "./main";
-
 function sub(element) {
   var to_sub = parseFloat(document.getElementById(element.value).value);
   var min = parseFloat(document.getElementById(element.value).min);
