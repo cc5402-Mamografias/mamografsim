@@ -7,7 +7,7 @@ import {
   Termometro,
 } from "./herramientas";
 
-import Maquina  from "./maquina";
+import Maquina from "./maquina";
 import jQuery from "jquery";
 
 window.$ = window.jQuery = $ = jQuery;
@@ -24,18 +24,18 @@ class Main {
       new Electrometro(),
       new Termometro(),
     ];
-    
-    this.mamografo = new Maquina(0,0,0);
+
+    this.mamografo = new Maquina(0, 0, 0);
     this.c = document.getElementById("canvas");
-    this.c.addEventListener('click',() => this.onCanvasClick() , false);
+    this.c.addEventListener('click', () => this.onCanvasClick(), false);
     this.ctx = this.c.getContext("2d");
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
-   
-    
-    
+
+
+
     // this.panel_control =
-    
+
     console.log("dibujar iconos");
     this.herr_disponibles.forEach((tool) => {
       let r = $(`<button title= "AD." class="herrams-boton"> </button>`).append(
@@ -46,9 +46,9 @@ class Main {
       r.appendTo("#herramientas-express");
       console.log("dibujar 1");
     });
-    
+
     this.actualizar();
-   
+
   }
 
   actualizar() {
@@ -56,44 +56,60 @@ class Main {
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
     //dibujar el mamografo
-    this.mamografo.actualizar(false,this.herr_activas);
+    //this.mamografo.actualizar(false);
     // dibujar en el canvas las herramientas nuevas
-    
-    
+
+
     //dibujar resultados
-    this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
+    //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
+    try {
+      this.mamografo.getHerramienta().dibujar_resultado(this.ctxres);
+    } catch (error) {
+      //console.log(error);
+    }
   }
 
   onClickTool(tool) {
     console.log(tool);
-    const i = this.herr_activas.indexOf(tool);
+    this.mamografo.setHerramienta(tool)
+    /*const i = this.herr_activas.indexOf(tool);
     if (i > -1) {
       
       this.herr_activas.splice(i, 1);
     } else {
       
       this.herr_activas.push(tool);
+
+    }*/
+
+
+    this.actualizar();
+    try {
+      this.mamografo.bajarCompresor();
+    } catch (error) {
+      this.mamografo.dibujar();
     }
-    
-    this.actualizar();
-    this.mamografo.bajarCompresor();
-    this.actualizar();
+    //this.actualizar();
   }
 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
   onCanvasClick() {
-    
+
     console.log("click on canvas");
-    
-   this.mamografo.subirCompresor();
-   this.actualizar();
+
+    this.actualizar();
+    try {
+      this.mamografo.subirCompresor();
+    } catch (error) {
+      this.mamografo.dibujar();
+    }
   }
 
-  onCanvasReleaseClick(e) {}
+  onCanvasReleaseClick(e) { }
 }
 
 export let init = () => {
- let m = new Main();
-console.log("Simulador inicializado");
+  let m = new Main();
+  console.log("Simulador inicializado");
 };

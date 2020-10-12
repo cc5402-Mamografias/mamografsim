@@ -1,5 +1,5 @@
-import {BaseNula} from "./herramientas";
-import {preloadImages,drawMam} from "./vista";
+import { BaseNula } from "./herramientas";
+import { preloadImages, drawMam } from "./vista";
 
 const alturaMax = 160;
 const margenF = 0.5;
@@ -10,8 +10,8 @@ export default class Maquina {
   constructor(errorkv, errorma, errorF) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 0;
-    this.fuerza = 10;
+    this.alturaCompresor = 160;
+    this.fuerza = 20;
 
     this.kilovolt = null;
     this.miliamperios = null;
@@ -53,14 +53,15 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
-  actualizar(activo = false,herramientas=null){
+  actualizar(activo = false) {
     this.herramienta.actualizar(this.construirEstado(activo));
-    this.dibujar(herramientas);
+    this.dibujar();
   }
-  dibujar(herramientas=null){
-    drawMam(this.alturaCompresor,herramientas);
+
+  dibujar() {
+    drawMam(this.alturaCompresor, [this.herramienta]);
   }
-  
+
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
     this.kilovolt = kv;
@@ -69,7 +70,6 @@ export default class Maquina {
     this.filtro = fltr;
     this.anodo = anod;
   }
- 
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
@@ -81,7 +81,7 @@ export default class Maquina {
     } else {
       this.herramienta = herram;
     }
-    //this.actualizar();
+    this.actualizar();
   }
 
   getHerramienta() {
@@ -96,17 +96,17 @@ export default class Maquina {
     if (this.alturaCompresor + 1 > alturaMax) {
       throw "compresion max";
     }
-    this.alturaCompresor += 10;
+    this.alturaCompresor += 5;
     console.log(this.alturaCompresor);
-    //this.actualizar();
+    this.actualizar();
   }
 
   bajarCompresor() {
     if (this.alturaCompresor == 0) {
       throw "compresion min";
     }
-    this.alturaCompresor -= 10;
+    this.alturaCompresor -= 5;
     console.log(this.alturaCompresor);
-    //this.actualizar();
+    this.actualizar();
   }
 }
