@@ -64,7 +64,7 @@ export function drawMam(ctx, addcompresorY = 0, herramientas = null, fuerza = 0)
   );
   ctx.font = "10px Arial";
   ctx.fillStyle = "red";
-  ctx.fillText(fuerza.toString(), (visorX + x) * scale + 30,  (visorY + y) * scale - 80);
+  ctx.fillText(fuerza.toString() + " Kg.", (visorX + x) * scale + 30,  (visorY + y) * scale - 80);
 }
 
 export async function preloadImages() {
