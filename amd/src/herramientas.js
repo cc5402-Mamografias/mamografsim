@@ -11,6 +11,8 @@ class AbstractTool {
     if (this.dibujar === AbstractTool.prototype.dibujar) {
       throw new TypeError("Please implement abstract method dibujar");
     }
+
+    this.altura = 0;
   }
 
   actualizar(estado) {
@@ -21,8 +23,16 @@ class AbstractTool {
     throw new TypeError("Do not call abstract method dibujar from child");
   }
 
+  dibujar_resultado() {
+    throw new TypeError("Do not call abstract method dibujar_resultados from child");
+  }
+
   getTipo() {
     return this.tipo;
+  }
+
+  getAltura() {
+    return this.altura;
   }
 }
 
@@ -30,6 +40,8 @@ class BaseNula extends AbstractTool {
   constructor() {
     super();
     this.tipo = "null";
+    this.estado = "null";
+    this.altura = 0;
   }
 
   actualizar(estado) {
@@ -45,22 +57,38 @@ class Balanza extends AbstractTool {
   constructor() {
     super();
     this.tipo = "balanza";
-    this.icon = "box.png";
+    this.icon = "balanza.png";
+    this.altura = 5;
+    this.estado = "inactivo";
+    this.fuerza = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+
+    this.balanza = new Image();
+    this.balanza.src = 'img/balanza.svg';
+
   }
 
   actualizar(estado) {
-    // TODO
-    console.log("haha Balanza go brrrr");
+    if (estado.fuerza != 0) {
+      this.fuerza = estado.fuerza;
+      this.estado = "activo";
+    } else {
+      this.fuerza = 0;
+      this.estado = "inactivo"
+    }
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(160, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "red";
-    ctx.fill();
+    ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
+  }
+
+  dibujar_resultado(ctx) {
+    if (this.estado = "activo") {
+      ctx.font = "30px Arial";
+      ctx.fillText(this.fuerza.toFixed(2) + " Kg.", 10, 50);
+    }
   }
 }
 
@@ -69,6 +97,7 @@ class CamaraIonizacion extends AbstractTool {
     super();
     this.tipo = "camIonizacion";
     this.icon = "ionizador.png";
+    this.estado = "inactivo";
   }
 
   actualizar(estado) {
@@ -79,11 +108,15 @@ class CamaraIonizacion extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "yellow";
-    ctx.fill();
+    //ctx.beginPath();
+    //ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    //ctx.stroke();
+    //ctx.fillStyle = "yellow";
+    //ctx.fill();
+  }
+
+  dibujar_resultado(ctx) {
+
   }
 }
 
@@ -92,6 +125,7 @@ class Electrometro extends AbstractTool {
     super();
     this.tipo = "electrometro";
     this.icon = "box.png";
+    this.estado = "inactivo";
   }
 
   actualizar(estado) {
@@ -100,13 +134,17 @@ class Electrometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    //var img = 
+    //var img =
     //ctx.drawImage(img, 10, 10);
     /*ctx.beginPath();
     ctx.arc(200, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "green";
     ctx.fill();*/
+  }
+
+  dibujar_resultado(ctx) {
+
   }
 }
 
@@ -115,8 +153,9 @@ class Termometro extends AbstractTool {
     super();
     this.tipo = "termometro";
     this.image = new Image();
-    this.image.src = 'icons/thermometer.png';
+    this.image.src = "icons/thermometer.png";
     this.icon = "thermometer.png";
+    this.estado = "inactivo";
   }
 
   actualizar(estado) {
@@ -127,12 +166,16 @@ class Termometro extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    // ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.drawImage(this.image, 95, 50, 50, 50);
-    ctx.stroke();
-    ctx.fillStyle = "yellow";
-    ctx.fill();
+    //.beginPath();
+    // //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.drawImage(this.image, 95, 50, 50, 50);
+    //.stroke();
+    //.fillStyle = "yellow";
+    //.fill();
+  }
+
+  dibujar_resultado(ctx) {
+
   }
 }
 
@@ -141,6 +184,7 @@ class Barometro extends AbstractTool {
     super();
     this.tipo = "barometro";
     this.icon = "barometer.png";
+    this.estado = "inactivo";
   }
 
   actualizar(estado) {
@@ -151,11 +195,15 @@ class Barometro extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "purple";
-    ctx.fill();
+    //.beginPath();
+    //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.stroke();
+    //.fillStyle = "purple";
+    //.fill();
+  }
+
+  dibujar_resultado(ctx) {
+
   }
 }
 
@@ -164,6 +212,7 @@ class CintaMetrica extends AbstractTool {
     super();
     this.tipo = "cinta";
     this.icon = "tape.png";
+    this.estado = "inactivo";
   }
 
   actualizar(estado) {
@@ -174,11 +223,15 @@ class CintaMetrica extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "black";
-    ctx.fill();
+    //.beginPath();
+    //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.stroke();
+    //.fillStyle = "black";
+    //.fill();
+  }
+
+  dibujar_resultado(ctx) {
+
   }
 }
 

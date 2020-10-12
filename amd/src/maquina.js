@@ -1,16 +1,18 @@
-import BaseNula from "./herramientas";
+import { BaseNula } from "./herramientas";
+import { preloadImages, drawMam } from "./vista";
 
-const alturaMax = 30;
+const alturaMax = 155;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
+const offsetCompressor = 155;
 
 export default class Maquina {
-  constructor(errorkv, errorma, errorF) {
+  constructor(errorkv, errorma, errorF, ctx) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 30;
-    this.fuerza = 0;
+    this.alturaCompresor = 155;
+    this.fuerza = 20;
 
     this.kilovolt = null;
     this.miliamperios = null;
@@ -22,10 +24,11 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+    preloadImages().then(() => drawMam(ctx, offsetCompressor - this.alturaCompresor));
   }
 
   mError(x) {
-    return (Math.random() * x) - x;
+    return Math.random() * x - x;
   }
 
   construirEstado(isActivo) {
@@ -51,8 +54,16 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
-  actualizar(activo = false){
+  actualizar(activo = false) {
+    
     this.herramienta.actualizar(this.construirEstado(activo));
+    // this.dibujar();
+  }
+
+  dibujar(ctx) {
+    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
+    ? this.fuerza 
+    : 0);
   }
 
   // Setea los parametros del panel de control
@@ -66,8 +77,9 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
-    if (this.alturaCompresor == this.alturaMinima()) {
-      return;
+    if (this.alturaCompresor + 1 <  herram.altura ) {
+      throw 'No se puede posicionar la herramienta con el compresor tan bajo';
+      // return;
     }
     if (this.herramienta.getTipo() == herram.getTipo()) {
       this.herramienta = new BaseNula();
@@ -86,18 +98,28 @@ export default class Maquina {
   }
 
   subirCompresor() {
-    if (this.alturaCompresor + 1 > alturaMax) {
-      throw "altura max";
+    if (
+      this.alturaCompresor + 1 > alturaMax
+    ) {
+      throw "compresor tope arriba";
     }
-    this.alturaCompresor += 1;
+    this.alturaCompresor += 5;
     this.actualizar();
   }
 
   bajarCompresor() {
-    if (this.alturaCompresor == this.alturaMinima()) {
-      throw "altura min";
+    
+    if (
+      this.alturaCompresor  <= this.herramienta.altura
+    ) {
+      throw "compresion max";
     }
-    this.alturaCompresor -= 1;
+
+    this.alturaCompresor -= 5;
     this.actualizar();
+  }
+
+  getFuerza(){
+    return this.fuerza;
   }
 }
