@@ -5,12 +5,13 @@ const alturaMax = 155;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
+const offsetCompressor = 155;
 
 export default class Maquina {
   constructor(errorkv, errorma, errorF, ctx) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 30;
+    this.alturaCompresor = 155;
     this.fuerza = 20;
 
     this.kilovolt = null;
@@ -23,7 +24,7 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
+    preloadImages().then(() => drawMam(ctx, offsetCompressor - this.alturaCompresor));
   }
 
   mError(x) {
@@ -34,7 +35,7 @@ export default class Maquina {
     return {
       altura: this.alturaCompresor,
       fuerza:
-        this.alturaCompresor == this.alturaMaxima()
+        this.alturaCompresor == this.alturaMinima()
           ? this.fuerza + this.errorFuerza + this.mError(margenF)
           : 0,
       kilovolt: isActivo
@@ -49,18 +50,18 @@ export default class Maquina {
     };
   }
 
-  alturaMaxima() {
-    return alturaMax - this.herramienta.getAltura();
+  alturaMinima() {
+    return this.herramienta.getAltura();
   }
 
   actualizar(activo = false) {
-    if(this.herramienta!==null)
-      this.herramienta.actualizar(this.construirEstado(activo));
+    
+    this.herramienta.actualizar(this.construirEstado(activo));
     // this.dibujar();
   }
 
   dibujar(ctx) {
-    drawMam(ctx, this.alturaCompresor, [this.herramienta]);
+    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta]);
   }
 
   // Setea los parametros del panel de control
@@ -96,24 +97,23 @@ export default class Maquina {
 
   subirCompresor() {
     if (
-      this.herramienta !== null &&
-      this.alturaCompresor + 1 > alturaMax - this.herramienta.altura
+      this.alturaCompresor + 1 > alturaMax
     ) {
-      throw "compresion max";
-    } else if (this.alturaCompresor + 1 > alturaMax) {
-      throw "compresion max";
+      throw "compresor tope arriba";
     }
     this.alturaCompresor += 5;
-    console.log(this.alturaCompresor);
     this.actualizar();
   }
 
   bajarCompresor() {
-    if (this.alturaCompresor == 0) {
-      throw "compresion min";
+    
+    if (
+      this.alturaCompresor  <= this.herramienta.altura
+    ) {
+      throw "compresion max";
     }
+
     this.alturaCompresor -= 5;
-    console.log(this.alturaCompresor);
     this.actualizar();
   }
 }

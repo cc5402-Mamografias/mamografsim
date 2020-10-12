@@ -8,14 +8,12 @@ export class Pedal {
   }
 
   on_click() {
-    console.log("pedal is clicked jojo");
     this.clicked = true;
     this.hook();
     this.loop = setInterval(this.hook, 200);
   }
 
   on_release() {
-    console.log("pedal released");
     this.clicked = false;
     clearInterval(this.loop);
   }

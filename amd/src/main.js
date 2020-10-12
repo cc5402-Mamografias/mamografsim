@@ -9,7 +9,7 @@ import {
 
 import Maquina from "./maquina";
 import jQuery from "jquery";
-import { checkBoundingBoxClick } from "./utils";
+//import { checkBoundingBoxClick } from "./utils";
 
 import { Pedal } from "./pedal";
 
@@ -42,12 +42,12 @@ class Main {
 
     // this.panel_control =
 
-    this.pedalUp = new Pedal(() => {
+    this.pedalUp = new Pedal(() => { // pedal derecho sube el compresor
       this.mamografo.subirCompresor();
       this.actualizar();
     }, [230, 500]);
 
-    this.pedalDown = new Pedal(() => {
+    this.pedalDown = new Pedal(() => { // pedal izquierdo baja el compresor
       this.mamografo.bajarCompresor();
       this.actualizar();
     }, [170, 500]);
@@ -113,7 +113,6 @@ class Main {
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
   onCanvasClick(e) {
-    console.log("click on canvas");
     // let rect = this.c.getBoundingClientRect();
     
     console.log(e);
@@ -123,7 +122,6 @@ class Main {
     for (let index = 0; index < this.clickeableOnCanvas.length; index++) {
       let elemento = this.clickeableOnCanvas[index];
       if (elemento.isClicked(click)) {
-        console.log("pedal fue clickeado");
         this.clicked = elemento;
         elemento.on_click();
         break;
@@ -132,7 +130,6 @@ class Main {
   }
   // Checkea que se elementó se clickeo y activa su callback
   releaseCanvasClick(e) {
-    console.log("release canvas");
     if (this.clicked !== null) {
       this.clicked.on_release();
       this.clicked = null;
