@@ -61,7 +61,9 @@ export default class Maquina {
   }
 
   dibujar(ctx) {
-    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta]);
+    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
+    ? this.fuerza 
+    : 0);
   }
 
   // Setea los parametros del panel de control
@@ -75,7 +77,7 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
-    if (this.alturaCompresor >  alturaMax - herram.altura ) {
+    if (this.alturaCompresor + 1 <  herram.altura ) {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
@@ -115,5 +117,9 @@ export default class Maquina {
 
     this.alturaCompresor -= 5;
     this.actualizar();
+  }
+
+  getFuerza(){
+    return this.fuerza;
   }
 }

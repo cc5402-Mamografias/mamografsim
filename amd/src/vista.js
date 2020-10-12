@@ -1,4 +1,4 @@
-export function drawMam(ctx, addcompresorY = 0, herramientas = null) {
+export function drawMam(ctx, addcompresorY = 0, herramientas = null, fuerza = 0) {
   console.log(herramientas);
   var scale = 0.45;
   var x = 280;
@@ -62,6 +62,9 @@ export function drawMam(ctx, addcompresorY = 0, herramientas = null) {
     visor.width * scale,
     visor.height * scale
   );
+  ctx.font = "10px Arial";
+  ctx.fillStyle = "red";
+  ctx.fillText(fuerza.toString(), (visorX + x) * scale + 30,  (visorY + y) * scale - 80);
 }
 
 export async function preloadImages() {
