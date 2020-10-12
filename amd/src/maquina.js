@@ -1,7 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
 
-const alturaMax = 160;
+const alturaMax = 30;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
@@ -10,7 +10,7 @@ export default class Maquina {
   constructor(errorkv, errorma, errorF) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 160;
+    this.alturaCompresor = 30;
     this.fuerza = 20;
 
     this.kilovolt = null;
