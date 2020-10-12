@@ -56,9 +56,9 @@ class Main {
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
     //dibujar el mamografo
-    this.mamografo.actualizar();
+    this.mamografo.actualizar(false,this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
-    this.herr_activas.forEach((t) => t.dibujar(this.ctx));
+    
     
     //dibujar resultados
     this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
@@ -74,9 +74,10 @@ class Main {
       
       this.herr_activas.push(tool);
     }
+    
+    this.actualizar();
     this.mamografo.bajarCompresor();
     this.actualizar();
-   
   }
 
   // Este método se levanta cada vez que hay un click en el canvas

@@ -53,12 +53,12 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
-  actualizar(activo = false){
+  actualizar(activo = false,herramientas=null){
     this.herramienta.actualizar(this.construirEstado(activo));
-    this.dibujar();
+    this.dibujar(herramientas);
   }
-  dibujar(){
-    drawMam(this.alturaCompresor);
+  dibujar(herramientas=null){
+    drawMam(this.alturaCompresor,herramientas);
   }
   
   // Setea los parametros del panel de control

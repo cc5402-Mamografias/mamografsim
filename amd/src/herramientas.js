@@ -59,6 +59,9 @@ class Balanza extends AbstractTool {
     this.altura = 5;
     this.estado = "inactivo";
     this.fuerza = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y=265;
   }
 
   actualizar(estado) {
@@ -72,13 +75,15 @@ class Balanza extends AbstractTool {
   }
   
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
+    var balanza = new Image();
+    balanza.src = 'img/balanza.svg';
+    ctx.drawImage(balanza, this.x, this.y,balanza.width*this.scale,balanza.height*this.scale);
+    
+    /*ctx.beginPath();
     ctx.arc(160, 50, 20, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = "red";
-    ctx.fill();
+    ctx.fill();*/
   }
   
   dibujar_resultado(ctx) {
