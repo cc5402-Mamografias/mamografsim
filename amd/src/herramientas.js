@@ -21,7 +21,7 @@ class AbstractTool {
     throw new TypeError("Do not call abstract method dibujar from child");
   }
 
-  dibujar_resultado(){
+  dibujar_resultado() {
     throw new TypeError("Do not call abstract method dibujar_resultados from child");
   }
 
@@ -61,7 +61,7 @@ class Balanza extends AbstractTool {
     this.fuerza = 0;
     this.scale = 0.5;
     this.x = 152;
-    this.y=265;
+    this.y = 265;
 
     this.balanza = new Image();
     this.balanza.src = 'img/balanza.svg';
@@ -77,23 +77,17 @@ class Balanza extends AbstractTool {
       this.estado = "inactivo"
     }
   }
-  
+
   dibujar(ctx) {
-    ctx.drawImage(this.balanza, this.x, this.y,this.balanza.width*this.scale,this.balanza.height*this.scale);
-    
-    /*ctx.beginPath();
-    ctx.arc(160, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "red";
-    ctx.fill();*/
+    ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
   }
-  
+
   dibujar_resultado(ctx) {
-    if (this.estado = "activo"){
+    if (this.estado = "activo") {
       ctx.font = "30px Arial";
       ctx.fillText(this.fuerza.toString(), 10, 50);
     }
-  } 
+  }
 }
 
 class CamaraIonizacion extends AbstractTool {
@@ -112,11 +106,11 @@ class CamaraIonizacion extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "yellow";
-    ctx.fill();
+    //ctx.beginPath();
+    //ctx.arc(95, 50, 20, 0, 2 * Math.PI);
+    //ctx.stroke();
+    //ctx.fillStyle = "yellow";
+    //ctx.fill();
   }
 
   dibujar_resultado(ctx) {
@@ -148,7 +142,7 @@ class Electrometro extends AbstractTool {
   }
 
   dibujar_resultado(ctx) {
-    
+
   }
 }
 
@@ -170,16 +164,16 @@ class Termometro extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    // ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.drawImage(this.image, 95, 50, 50, 50);
-    ctx.stroke();
-    ctx.fillStyle = "yellow";
-    ctx.fill();
+    //.beginPath();
+    // //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.drawImage(this.image, 95, 50, 50, 50);
+    //.stroke();
+    //.fillStyle = "yellow";
+    //.fill();
   }
 
   dibujar_resultado(ctx) {
-    
+
   }
 }
 
@@ -199,15 +193,15 @@ class Barometro extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "purple";
-    ctx.fill();
+    //.beginPath();
+    //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.stroke();
+    //.fillStyle = "purple";
+    //.fill();
   }
 
   dibujar_resultado(ctx) {
-    
+
   }
 }
 
@@ -227,15 +221,15 @@ class CintaMetrica extends AbstractTool {
   dibujar(ctx) {
     // var img = obtener imagen de la herramienta
     // ctx.drawImage(img, 10, 10);
-    ctx.beginPath();
-    ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "black";
-    ctx.fill();
+    //.beginPath();
+    //.arc(95, 50, 20, 0, 2 * Math.PI);
+    //.stroke();
+    //.fillStyle = "black";
+    //.fill();
   }
 
   dibujar_resultado(ctx) {
-    
+
   }
 }
 

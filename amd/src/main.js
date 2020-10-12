@@ -50,7 +50,7 @@ class Main {
     this.pedalDown = new Pedal(() => { // pedal izquierdo baja el compresor
       this.mamografo.bajarCompresor();
       this.actualizar();
-    }, [170, 500]);
+    }, [140, 500]);
 
     console.log("dibujar iconos");
     this.herr_disponibles.forEach((tool) => {
