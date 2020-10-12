@@ -10,7 +10,7 @@
 <body>
     <div class ="contenedor-sim">
         <!-- INTERFAZ MAMOGRAFO -->
-        <canvas id="canvas" class ="mamografo" width="400" height="600" onload="drawMam();"></canvas>
+        <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
 
 
 
@@ -89,10 +89,10 @@
                   <label class="mas_label"> mAs</label>
                 </div>
                 <div class="col-sm" style="text-align:left;">
-                  <button class="btnsub" value="kv" onclick="sub(this)" >-</button>
-                  <button class="btnadd" value="kv" onclick="add(this)">+</button>
-                  <button class="btnsub" value="mas" onclick="sub(this)" >-</button>
-                  <button class="btnadd" value="mas" onclick="add(this)">+</button>
+                  <button class="btnsub" id="kv-" value="kv">-</button>
+                  <button class="btnadd" id="kv+" value="kv">+</button>
+                  <button class="btnsub" id="ma-" value="mas">-</button>
+                  <button class="btnadd" id="ma+" value="mas">+</button>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
               <div class="container">
                 <div class="row" >
                   <div class="col-sm">
-                    <button class="btnmode" onclick="changeMode()">MODE</button>
+                    <button class="btnmode" id="mode-b">MODE</button>
                   </div>
                 </div>
                 <div class="row">
@@ -128,7 +128,7 @@
 
             <div class="container">
                 <div class="filter-mode">
-                  <button class="fltmode" onclick="changeFilter()">filter</button>
+                  <button class="fltmode" id="filter-b">filter</button>
                   <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disabled />  </label>
                   <label> Rh <input type="radio"  name="filter" value="rh" id="f02" disabled />  </label>
                   <label> W <input type="radio"  name="filter" value="w" id="f03" disabled />  </label>
@@ -137,7 +137,7 @@
 
             <div class="container">
                 <div class="anode-mode">
-                  <button class="anodemode" onclick="changeAnode()">anode</button>
+                  <button class="anodemode" id="anode-b">anode</button>
                   <label > Mo <input type="radio"  name="anode" value="mo" id="a01" checked disabled />  </label>
                   <label> Rh <input type="radio"  name="anode" value="rh" id="a02" disabled />  </label>
                   <label> W <input type="radio"  name="anode" value="w" id="a03" disabled />  </label>
@@ -186,9 +186,6 @@
     </div>
 
     <script type="text/javascript" src="amd/src/moves.js"></script>
-    <script type="text/javascript" src="amd/src/control-panel.js"></script>
-
-
 
 </body>
 

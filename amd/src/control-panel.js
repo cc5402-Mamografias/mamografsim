@@ -1,69 +1,85 @@
-function sub(element){
-    var to_sub = parseFloat(document.getElementById(element.value).value);
-    var min = parseFloat(document.getElementById(element.value).min);
-    if (to_sub > min){
-        var new_value = to_sub - 1;
-        document.getElementById(element.value).value = new_value.toString();
-    }
+"use strict";
+
+function menos1(elemento) {
+  var valor = parseFloat(document.getElementById(elemento.value).value);
+  var min = parseFloat(document.getElementById(elemento.value).min);
+  if (valor > min) {
+    valor = valor - 1;
+    document.getElementById(elemento.value).value = valor.toString();
+  }
 }
 
-function add(element){
-    var to_add = parseFloat(document.getElementById(element.value).value);
-    var max = parseFloat(document.getElementById(element.value).max);
-    if (to_add < max){
-        var new_value = parseFloat(to_add) + 1;
-        document.getElementById(element.value).value = new_value.toString();
-    }
+function mas1(elemento) {
+  var valor = parseFloat(document.getElementById(elemento.value).value);
+  var max = parseFloat(document.getElementById(elemento.value).max);
+  if (valor < max) {
+    valor = valor + 1;
+    document.getElementById(elemento.value).value = valor.toString();
+  }
 }
 
-function changeMode(){
-    let modes = ["c01", "c02", "c03", "c04"];
+function cambiarModo() {
+  let modos = ["c01", "c02", "c03", "c04"];
 
-    for(var i = 0; i<4; i++){
-        if(document.getElementById(modes[i]).checked==true){
-            var index=i;
-        }
+  for (var i = 0; i < 4; i++) {
+    if (document.getElementById(modos[i]).checked == true) {
+      var index = i;
     }
-    if(typeof index == 'undefined'){
-        document.getElementById(modes[0]).checked=true;
-    }
-    else{
-        document.getElementById(modes[index]).checked=false;
-        document.getElementById(modes[(index+1)%4]).checked=true;
-    }
+  }
+  if (typeof index == 'undefined') {
+    document.getElementById(modos[0]).checked = true;
+  }
+  else {
+    document.getElementById(modos[index]).checked = false;
+    document.getElementById(modos[(index + 1) % 4]).checked = true;
+  }
 }
 
-function changeFilter(){
-    let modes = ["f01", "f02", "f03"];
+function cambiarFiltro() {
+  let modos = ["f01", "f02", "f03"];
 
-    for(var i = 0; i<3; i++){
-        if(document.getElementById(modes[i]).checked==true){
-            var index=i;
-        }
+  for (var i = 0; i < 3; i++) {
+    if (document.getElementById(modos[i]).checked == true) {
+      var index = i;
     }
-    if(typeof index == 'undefined'){
-        document.getElementById(modes[0]).checked=true;
-    }
-    else{
-        document.getElementById(modes[index]).checked=false;
-        document.getElementById(modes[(index+1)%3]).checked=true;
-    }
+  }
+  if (typeof index == 'undefined') {
+    document.getElementById(modos[0]).checked = true;
+  }
+  else {
+    document.getElementById(modos[index]).checked = false;
+    document.getElementById(modos[(index + 1) % 3]).checked = true;
+  }
 }
 
-function changeAnode(){
-    let modes = ["a01", "a02", "a03"];
+function cambiarAnodo() {
+  let modos = ["a01", "a02", "a03"];
 
-    for(var i = 0; i<3; i++){
-        if(document.getElementById(modes[i]).checked==true){
-            var index=i;
-        }
+  for (var i = 0; i < 3; i++) {
+    if (document.getElementById(modos[i]).checked == true) {
+      var index = i;
     }
-    if(typeof index == 'undefined'){
-        document.getElementById(modes[0]).checked=true;
-    }
-    else{
-        document.getElementById(modes[index]).checked=false;
-        document.getElementById(modes[(index+1)%3]).checked=true;
-    }
+  }
+  if (typeof index == 'undefined') {
+    document.getElementById(modos[0]).checked = true;
+  }
+  else {
+    document.getElementById(modos[index]).checked = false;
+    document.getElementById(modos[(index + 1) % 3]).checked = true;
+  }
 }
 
+function setearOnClick(id, fun) {
+  let e = document.getElementById(id);
+  e.onclick = () => { fun(e); };
+}
+
+export let init = () => {
+  setearOnClick("kv-", menos1);
+  setearOnClick("kv+", mas1);
+  setearOnClick("ma-", menos1);
+  setearOnClick("ma+", mas1);
+  document.getElementById("mode-b").onclick = cambiarModo;
+  document.getElementById("filter-b").onclick = cambiarFiltro;
+  document.getElementById("anode-b").onclick = cambiarAnodo;
+};
