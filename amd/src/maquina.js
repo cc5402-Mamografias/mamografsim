@@ -54,6 +54,15 @@ export default class Maquina {
     };
   }
 
+  valoresMedidos() {
+    return {
+      altura: this.alturaCompresor, // + error de altura?,
+      fuerza: this.alturaCompresor == this.alturaMinima()
+        ? (this.fuerza + this.margenF) * this.factorCompresion
+        : 0
+    };
+  }
+
   alturaMinima() {
     return this.herramienta.getAltura();
   }
@@ -65,9 +74,12 @@ export default class Maquina {
   }
 
   dibujar(ctx) {
-    drawMam(ctx, this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
-      ? this.fuerza
-      : 0);
+    drawMam(
+      ctx,
+      this.alturaCompresor,
+      [this.herramienta],
+      this.valoresMedidos().fuerza
+    );
   }
 
   // Setea los parametros del panel de control
