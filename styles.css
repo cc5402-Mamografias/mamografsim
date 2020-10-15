@@ -3,8 +3,21 @@
     height: 600px;
     padding: 50px;
     position: relative;
+    display: none;
 }
 
+.contenedor-button {
+  width: 950px;
+  height: 600px;
+  padding: 200px;
+  position: relative;
+  text-align: center;
+}
+
+.open-sim {
+  border-radius: 8px;
+  
+}
 /* Interfaz pasos a seguir */
 .pasos {
     position: absolute;
