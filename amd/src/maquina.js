@@ -16,6 +16,8 @@ export default class Maquina {
     this.factorCompMax = 1.0;
     this.factorCompManual = 1.5;
 
+    this.margenF = this.mError(margenF);
+
     this.kilovolt = null;
     this.miliamperios = null;
 
@@ -30,7 +32,7 @@ export default class Maquina {
   }
 
   mError(x) {
-    return Math.random() * x - x;
+    return Math.random() * x - (x/2);
   }
 
   construirEstado(isActivo) {
@@ -38,7 +40,7 @@ export default class Maquina {
       altura: this.alturaCompresor,
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? this.fuerza + this.errorFuerza + this.mError(margenF)
+          ? (this.fuerza + this.errorFuerza + this.margenF) * this.factorCompresion
           : 0,
       kilovolt: isActivo
         ? this.kilovolt + this.errorKilovolt + this.mError(margenKV)
@@ -57,15 +59,15 @@ export default class Maquina {
   }
 
   actualizar(activo = false) {
-    
+
     this.herramienta.actualizar(this.construirEstado(activo));
     // this.dibujar();
   }
 
   dibujar(ctx) {
     drawMam(ctx, this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
-    ? this.fuerza 
-    : 0);
+      ? this.fuerza
+      : 0);
   }
 
   // Setea los parametros del panel de control
@@ -79,7 +81,7 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
-    if (this.alturaCompresor + 1 <  herram.altura ) {
+    if (this.alturaCompresor + 1 < herram.altura) {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
@@ -111,15 +113,15 @@ export default class Maquina {
   }
 
   bajarCompresor() {
-    if (this.alturaCompresor  <= this.herramienta.altura) {
+    if (this.alturaCompresor <= this.herramienta.altura) {
       this.factorCompresion = (this.factorCompresion + this.factorCompMax) / 2;
+    } else {
+      this.alturaCompresor -= 5;
     }
-
-    this.alturaCompresor -= 5;
     this.actualizar();
   }
 
-  getFuerza(){
+  getFuerza() {
     return this.fuerza;
   }
 }
