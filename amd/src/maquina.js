@@ -5,14 +5,18 @@ const alturaMax = 155;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
-const offsetCompressor = 155;
 
 export default class Maquina {
   constructor(errorkv, errorma, errorF, ctx) {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 155;
-    this.fuerza = 20;
+    this.fuerza = 17;
+    this.factorCompresion = 0.0;
+    this.factorCompMax = 1.0;
+    this.factorCompManual = 1.5;
+
+    this.margenF = this.mError(margenF);
 
     this.kilovolt = null;
     this.miliamperios = null;
@@ -24,11 +28,11 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    preloadImages().then(() => drawMam(ctx, offsetCompressor - this.alturaCompresor));
+    preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
   }
 
   mError(x) {
-    return Math.random() * x - x;
+    return Math.random() * x - (x/2);
   }
 
   construirEstado(isActivo) {
@@ -36,7 +40,7 @@ export default class Maquina {
       altura: this.alturaCompresor,
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? this.fuerza + this.errorFuerza + this.mError(margenF)
+          ? (this.fuerza + this.errorFuerza + this.margenF) * this.factorCompresion
           : 0,
       kilovolt: isActivo
         ? this.kilovolt + this.errorKilovolt + this.mError(margenKV)
@@ -50,20 +54,32 @@ export default class Maquina {
     };
   }
 
+  valoresMedidos() {
+    return {
+      altura: this.alturaCompresor, // + error de altura?,
+      fuerza: this.alturaCompresor == this.alturaMinima()
+        ? (this.fuerza + this.margenF) * this.factorCompresion
+        : 0
+    };
+  }
+
   alturaMinima() {
     return this.herramienta.getAltura();
   }
 
   actualizar(activo = false) {
-    
+
     this.herramienta.actualizar(this.construirEstado(activo));
     // this.dibujar();
   }
 
   dibujar(ctx) {
-    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
-    ? this.fuerza 
-    : 0);
+    drawMam(
+      ctx,
+      this.alturaCompresor,
+      [this.herramienta],
+      this.valoresMedidos().fuerza.toFixed(2)
+    );
   }
 
   // Setea los parametros del panel de control
@@ -77,7 +93,7 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram) {
-    if (this.alturaCompresor + 1 <  herram.altura ) {
+    if (this.alturaCompresor + 1 < herram.altura) {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
@@ -104,22 +120,16 @@ export default class Maquina {
       throw "compresor tope arriba";
     }
     this.alturaCompresor += 5;
+    this.factorCompresion = 0.0
     this.actualizar();
   }
 
   bajarCompresor() {
-    
-    if (
-      this.alturaCompresor  <= this.herramienta.altura
-    ) {
-      throw "compresion max";
+    if (this.alturaCompresor <= this.herramienta.altura) {
+      this.factorCompresion = (this.factorCompresion + this.factorCompMax) / 2;
+    } else {
+      this.alturaCompresor -= 5;
     }
-
-    this.alturaCompresor -= 5;
     this.actualizar();
-  }
-
-  getFuerza(){
-    return this.fuerza;
   }
 }

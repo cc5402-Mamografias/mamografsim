@@ -1,4 +1,6 @@
 export function drawMam(ctx, addcompresorY = 0, herramientas = null, fuerza = 0) {
+  let offsetCompresor = 155;
+  addcompresorY = offsetCompresor - addcompresorY;
   console.log(herramientas);
   var scale = 0.45;
   var x = 280;
