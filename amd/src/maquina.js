@@ -5,14 +5,16 @@ const alturaMax = 155;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
-const offsetCompressor = 155;
 
 export default class Maquina {
   constructor(errorkv, errorma, errorF, ctx) {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 155;
-    this.fuerza = 20;
+    this.fuerza = 17;
+    this.factorCompresion = 0.0;
+    this.factorCompMax = 1.0;
+    this.factorCompManual = 1.5;
 
     this.kilovolt = null;
     this.miliamperios = null;
@@ -24,7 +26,7 @@ export default class Maquina {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    preloadImages().then(() => drawMam(ctx, offsetCompressor - this.alturaCompresor));
+    preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
   }
 
   mError(x) {
@@ -61,7 +63,7 @@ export default class Maquina {
   }
 
   dibujar(ctx) {
-    drawMam(ctx, offsetCompressor - this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
+    drawMam(ctx, this.alturaCompresor, [this.herramienta], this.alturaCompresor == this.alturaMinima()
     ? this.fuerza 
     : 0);
   }
@@ -104,15 +106,13 @@ export default class Maquina {
       throw "compresor tope arriba";
     }
     this.alturaCompresor += 5;
+    this.factorCompresion = 0.0
     this.actualizar();
   }
 
   bajarCompresor() {
-    
-    if (
-      this.alturaCompresor  <= this.herramienta.altura
-    ) {
-      throw "compresion max";
+    if (this.alturaCompresor  <= this.herramienta.altura) {
+      this.factorCompresion = (this.factorCompresion + this.factorCompMax) / 2;
     }
 
     this.alturaCompresor -= 5;
