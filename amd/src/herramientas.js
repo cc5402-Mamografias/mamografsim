@@ -45,18 +45,18 @@ class BaseNula extends AbstractTool {
   }
 
   actualizar(estado) {
-    console.log("haha BaseNula go brrrr");
+    // Undefined method
   }
 
   dibujar() {
-    console.log("dibujar go brrr");
+    // Undefined method
   }
 }
 
 class Balanza extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "balanza";
+    this.tipo = "Balanza";
     this.icon = "balanza.png";
     this.altura = 5;
     this.estado = "inactivo";
@@ -76,7 +76,7 @@ class Balanza extends AbstractTool {
       this.estado = "activo";
     } else {
       this.fuerza = 0;
-      this.estado = "inactivo"
+      this.estado = "inactivo";
     }
   }
 
@@ -86,8 +86,8 @@ class Balanza extends AbstractTool {
 
   dibujar_resultado(ctx) {
     if (this.estado = "activo") {
-      ctx.font = "30px Arial";
-      ctx.fillText(this.fuerza.toFixed(2) + " Kg.", 10, 50);
+      ctx.font = "28px Arial";
+      ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
     }
   }
 }
