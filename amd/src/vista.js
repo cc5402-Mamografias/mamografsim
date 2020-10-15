@@ -1,36 +1,42 @@
-export function drawMam(ctx, addcompresorY = 0, herramientas = null, fuerza = 0) {
-  let offsetCompresor = 155;
-  addcompresorY = offsetCompresor - addcompresorY;
+var scale = 0.45;
+var x = 280;
+var y = 0;
+
+var fondoX = 0;
+var fondoY = 10;
+
+var mamogramX = 17;
+var mamogramY = 10;
+
+var compresorX = 40;
+var compresorY = 300;
+var addcompresorY = 0;
+const offsetCompresor = 155;
+
+var visorX = 55;
+var visorY = 250;
+
+var image = new Image();
+image.src = "img/complete.svg";
+var fondo = new Image();
+fondo.src = "img/fondo.svg";
+var mamogram = new Image();
+mamogram.src = "img/mamogram.svg";
+var compresor = new Image();
+compresor.src = "img/compresor.svg";
+var visor = new Image();
+visor.src = "img/visor.svg";
+
+export function drawMam(
+  ctx,
+  alturaCompresorY = 0,
+  herramientas = null,
+  fuerza = 0
+) {
+  addcompresorY = offsetCompresor - alturaCompresorY;
   console.log(herramientas);
-  var scale = 0.45;
-  var x = 280;
-  var y = 0;
-
-  var fondoX = 0;
-  var fondoY = 10;
-
-  var mamogramX = 17;
-  var mamogramY = 10;
-
-  var compresorX = 40;
-  var compresorY = 300;
-
-  var visorX = 55;
-  var visorY = 250;
 
   console.log("Draw mamografo");
-  // var canvas1 = document.getElementById("canvas");
-  // var ctx = canvas1.getContext("2d");
-  var image = new Image();
-  image.src = "img/complete.svg";
-  var fondo = new Image();
-  fondo.src = "img/fondo.svg";
-  var mamogram = new Image();
-  mamogram.src = "img/mamogram.svg";
-  var compresor = new Image();
-  compresor.src = "img/compresor.svg";
-  var visor = new Image();
-  visor.src = "img/visor.svg";
 
   ctx.drawImage(
     fondo,
@@ -66,7 +72,15 @@ export function drawMam(ctx, addcompresorY = 0, herramientas = null, fuerza = 0)
   );
   ctx.font = "10px Arial";
   ctx.fillStyle = "red";
-  ctx.fillText(fuerza.toString() + " Kg.", (visorX + x) * scale + 30,  (visorY + y) * scale - 80);
+  ctx.fillText(
+    fuerza.toString() + " Kg.",
+    (visorX + x) * scale + 30,
+    (visorY + y) * scale - 80
+  );
+}
+
+export function getCompresorPosY() {
+  return (compresorY + y + addcompresorY) * scale;
 }
 
 export async function preloadImages() {

@@ -12,6 +12,8 @@ import jQuery from "jquery";
 //import { checkBoundingBoxClick } from "./utils";
 
 import { Pedal } from "./pedal";
+import { ClickeableObject } from "./utils";
+import { getCompresorPosY } from "./vista";
 
 window.$ = window.jQuery = $ = jQuery;
 
@@ -28,31 +30,51 @@ class Main {
       new Termometro(),
     ];
 
-    
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-    // releaseCanvasClick(e) {
 
     this.ctx = this.c.getContext("2d");
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0, ctx);
+    this.mamografo = new Maquina(0, 0, 0, this.ctx);
 
-    // this.panel_control =
-
-    this.pedalUp = new Pedal(() => { // pedal derecho sube el compresor
+    // pedal derecho sube el compresor
+    this.pedalUp = new Pedal(() => {
       this.mamografo.subirCompresor();
       this.actualizar();
     }, [230, 500]);
 
-    this.pedalDown = new Pedal(() => { // pedal izquierdo baja el compresor
+    // pedal izquierdo baja el compresor
+    this.pedalDown = new Pedal(() => {
       this.mamografo.bajarCompresor();
       this.actualizar();
     }, [140, 500]);
 
-    console.log("dibujar iconos");
+    // perilla derecha sube el compresor
+    this.perrillaUp = new ClickeableObject(
+      () => {
+        this.mamografo.subirCompresorPerilla();
+        this.actualizar();
+      },
+      [230, getCompresorPosY()],
+      [50, 50],
+      200
+    );
+
+    // perilla izqueirda baja el compresor
+    this.perrillaDown = new ClickeableObject(
+      () => {
+        this.mamografo.bajarCompresorPerilla();
+        this.actualizar();
+        console.log("se clickeo la perilla Abajo");
+      },
+      [140, getCompresorPosY()],
+      [50, 50],
+      200
+    );
+
     this.herr_disponibles.forEach((tool) => {
       let r = $(`<button title= "AD." class="herrams-boton"> </button>`).append(
         `<img src="icons/${tool.icon}" width=64><br>${tool.tipo}`
@@ -60,16 +82,32 @@ class Main {
 
       r.on("click", () => this.onClickTool(tool));
       r.appendTo("#herramientas-express");
-      console.log("dibujar 1");
     });
 
-    this.clickeableOnCanvas = [this.pedalUp, this.pedalDown];
+    this.clickeableOnCanvas = [
+      this.pedalUp,
+      this.pedalDown,
+      this.perrillaDown,
+      this.perrillaUp,
+    ];
     this.clicked = null;
 
     this.actualizar();
   }
 
   actualizar() {
+  
+
+    // Debemos actualizar la posición de la perilla
+    this.perrillaUp.posicion = [
+      this.perrillaUp.posicion[0],
+      getCompresorPosY(),
+    ];
+    this.perrillaDown.posicion = [
+      this.perrillaDown.posicion[0],
+      getCompresorPosY(),
+    ];
+
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
@@ -77,14 +115,12 @@ class Main {
     //dibujar el mamografo
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
-
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
 
     // dibujar en el canvas las herramientas nuevas
     this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-
 
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
@@ -105,18 +141,12 @@ class Main {
       this.herr_activas.push(tool);
 
     }*/
-
     this.actualizar();
- 
   }
 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
   onCanvasClick(e) {
-    // let rect = this.c.getBoundingClientRect();
-    
-    console.log(e);
-    // let click = [e.pageX - this.c.offsetLeft, e.pageY - this.c.offsetLeft];
     let click = [e.layerX, e.layerY];
 
     for (let index = 0; index < this.clickeableOnCanvas.length; index++) {
@@ -133,9 +163,8 @@ class Main {
     if (this.clicked !== null) {
       this.clicked.on_release();
       this.clicked = null;
+      this.actualizar();
     }
-
-    this.actualizar();
   }
 }
 
@@ -143,3 +172,20 @@ export let init = () => {
   let m = new Main();
   console.log("Simulador inicializado");
 };
+
+export function show_h() {
+  let x = document.getElementById("herrams");
+  x.style.display = "block";
+}
+
+export function hide_h() {
+  let x = document.getElementById("herrams");
+  x.style.display = "none";
+}
+
+export function show_sim() {
+  let x = document.getElementById("contenedor-sim");
+  x.style.display = "block";
+  let y = document.getElementById("contenedor-button");
+  y.style.display = "none";
+}

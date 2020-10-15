@@ -132,4 +132,26 @@ export default class Maquina {
     }
     this.actualizar();
   }
+  
+  
+  subirCompresorPerilla() {
+    if (
+      this.alturaCompresor + 1 > alturaMax
+    ) {
+      throw "compresor tope arriba";
+    }
+    this.alturaCompresor += 3;
+    this.factorCompresion = 0.0
+    this.actualizar();
+  }
+
+  bajarCompresorPerilla() {
+    if (this.alturaCompresor <= this.herramienta.altura) {
+      this.factorCompresion = (this.factorCompresion + this.factorCompManual) / 2;
+    } else {
+      this.alturaCompresor -= 3;
+    }
+    this.actualizar();
+  }
+
 }

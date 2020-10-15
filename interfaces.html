@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Document</title>
 
 </head>
@@ -11,13 +10,10 @@
   <div id="contenedor-button" class ="contenedor-button">
     <button class="open-sim" onclick="show_sim();"><img src="icons/play.png" width=64><br>Play</button>
   </div>
-
      
     <div id="contenedor-sim" class ="contenedor-sim">
         <!-- INTERFAZ MAMOGRAFO -->
         <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
-
-
 
         <!-- /INTERFAZ MAMOGRAFO -->
 
@@ -168,7 +164,24 @@
         <!-- /Menu oculto herramientas -->
     </div>
 
-    <script type="text/javascript" src="amd/src/moves.js"></script>
+    <script type="text/javascript">
+      function show_h() {
+        let x = document.getElementById("herrams");
+        x.style.display = "block";
+      }
+
+      function hide_h() {
+        let x = document.getElementById("herrams");
+        x.style.display = "none";
+      }
+
+      function show_sim() {
+        let x = document.getElementById("contenedor-sim");
+        x.style.display = "block";
+        let y = document.getElementById("contenedor-button");
+        y.style.display = "none";
+      }
+    </script>
 
 </body>
 
