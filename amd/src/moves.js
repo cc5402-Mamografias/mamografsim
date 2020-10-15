@@ -9,6 +9,13 @@
         x.style.display = "none";
     }
 
+    function show_sim() {
+        let x = document.getElementById("contenedor-sim");
+        x.style.display = "block";
+        let y = document.getElementById("contenedor-button");
+        y.style.display = "none";
+    }
+
     function draw_tool() {
         var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
