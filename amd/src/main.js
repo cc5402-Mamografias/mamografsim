@@ -38,7 +38,7 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0, ctx);
+    this.mamografo = new Maquina(0, 0, 0, this.ctx);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -107,7 +107,7 @@ class Main {
       this.perrillaDown.posicion[0],
       getCompresorPosY(),
     ];
-    
+
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
@@ -172,3 +172,20 @@ export let init = () => {
   let m = new Main();
   console.log("Simulador inicializado");
 };
+
+export function show_h() {
+  let x = document.getElementById("herrams");
+  x.style.display = "block";
+}
+
+export function hide_h() {
+  let x = document.getElementById("herrams");
+  x.style.display = "none";
+}
+
+export function show_sim() {
+  let x = document.getElementById("contenedor-sim");
+  x.style.display = "block";
+  let y = document.getElementById("contenedor-button");
+  y.style.display = "none";
+}
