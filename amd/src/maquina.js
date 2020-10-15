@@ -132,8 +132,4 @@ export default class Maquina {
     }
     this.actualizar();
   }
-
-  getFuerza() {
-    return this.fuerza;
-  }
 }
