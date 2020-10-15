@@ -78,7 +78,7 @@ export default class Maquina {
       ctx,
       this.alturaCompresor,
       [this.herramienta],
-      this.valoresMedidos().fuerza
+      this.valoresMedidos().fuerza.toFixed(2)
     );
   }
 
