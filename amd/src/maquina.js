@@ -12,7 +12,7 @@ export default class Maquina {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 155;
-    this.alturaEspesor= 25;
+    this.alturaEspesor = 25;
     this.fuerza = 17;
     this.factorCompresion = 0.0;
     this.factorCompMax = 1.0;
@@ -35,7 +35,7 @@ export default class Maquina {
   }
 
   mError(x) {
-    return Math.random() * x - (x/2);
+    return Math.random() * x - (x / 2);
   }
 
   construirEstado(isActivo) {
@@ -60,10 +60,10 @@ export default class Maquina {
   valoresMedidos() {
     return {
       altura: this.alturaCompresor == this.alturaMinima()
-      ? (this.alturaCompresor + this.errorAltura) 
-      : this.alturaCompresor < this.alturaEspesor 
-      ? (this.alturaCompresor) 
-      : 0 ,
+        ? (this.alturaCompresor + this.errorAltura)* 10
+        : this.alturaCompresor < this.alturaEspesor
+          ? (this.alturaCompresor) *10
+          : 0,
       fuerza: this.alturaCompresor == this.alturaMinima()
         ? (this.fuerza + this.margenF) * this.factorCompresion
         : 0
@@ -86,7 +86,7 @@ export default class Maquina {
       this.alturaCompresor,
       [this.herramienta],
       this.valoresMedidos().fuerza.toFixed(2),
-      this.valoresMedidos().altura.toFixed(2)
+      this.valoresMedidos().altura
     );
   }
 
@@ -140,8 +140,8 @@ export default class Maquina {
     }
     this.actualizar();
   }
-  
-  
+
+
   subirCompresorPerilla() {
     if (
       this.alturaCompresor + 1 > alturaMax

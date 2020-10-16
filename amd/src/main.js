@@ -5,6 +5,7 @@ import {
   CintaMetrica,
   Electrometro,
   Termometro,
+  Slabs
 } from "./herramientas";
 
 import Maquina from "./maquina";
@@ -23,6 +24,7 @@ class Main {
 
     this.herr_disponibles = [
       new Balanza(),
+      new Slabs(), 
       new Barometro(),
       new CamaraIonizacion(),
       new CintaMetrica(),
@@ -38,7 +40,7 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0,0.5, this.ctx);
+    this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -96,7 +98,7 @@ class Main {
   }
 
   actualizar() {
-  
+
 
     // Debemos actualizar la posición de la perilla
     this.perrillaUp.posicion = [

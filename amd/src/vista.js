@@ -79,7 +79,7 @@ export function drawMam(
     (visorY + y) * scale - 80
   );
   ctx.fillStyle = "green";
-  ctx.fillText(altura.toString() + " cm.", 
+  ctx.fillText(altura.toString() + " mm.", 
   (visorX + x) * scale + 30,  
   (visorY + y) * scale - 65
   );

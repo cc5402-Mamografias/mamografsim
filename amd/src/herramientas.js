@@ -92,6 +92,46 @@ class Balanza extends AbstractTool {
   }
 }
 
+class Slabs extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Slabs";
+    this.icon = "slabs.png";
+    this.altura = 5;
+    this.estado = "inactivo";
+    this.fuerza = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+
+    this.slabs = new Image();
+    //nuevo sprite aca
+    this.slabs.src = 'img/balanza.svg';
+
+  }
+
+  actualizar(estado) {
+    if (estado.fuerza != 0) {
+      this.fuerza = estado.fuerza;
+      this.estado = "activo";
+    } else {
+      this.fuerza = 0;
+      this.estado = "inactivo";
+    }
+  }
+
+  dibujar(ctx) {
+    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+  }
+
+  dibujar_resultado(ctx) {
+    if (this.estado = "activo") {
+      ctx.font = "28px Arial";
+      ctx.fillText("Altura Slabs: " + "50" + " mm.", 10, 80);
+    }
+  }
+}
+
 class CamaraIonizacion extends AbstractTool {
   constructor() {
     super();
@@ -243,4 +283,5 @@ export {
   CintaMetrica,
   Electrometro,
   Termometro,
+  Slabs
 };
