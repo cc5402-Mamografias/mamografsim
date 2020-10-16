@@ -85,7 +85,7 @@ class Balanza extends AbstractTool {
   }
 
   dibujar_resultado(ctx) {
-    if (this.estado = "activo") {
+    if (this.estado == "activo") {
       ctx.font = "28px Arial";
       ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
     }
@@ -125,7 +125,7 @@ class Slabs extends AbstractTool {
   }
 
   dibujar_resultado(ctx) {
-    if (this.estado = "activo") {
+    if (this.estado == "activo") {
       ctx.font = "28px Arial";
       ctx.fillText("Altura Slabs: " + "50" + " mm.", 10, 80);
     }
