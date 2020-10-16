@@ -38,7 +38,7 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0, this.ctx);
+    this.mamografo = new Maquina(0, 0, 0,0.5, this.ctx);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
