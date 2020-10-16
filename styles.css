@@ -67,6 +67,7 @@ button.fltmode{
 button.anodemode{
     border-radius: 8px;
 }
+button.
 .panel-control {
     position: absolute;
     top: 301px;
@@ -220,8 +221,9 @@ input[type='radio']:checked:after {
 }
 
 .herrams-boton {
-    margin: 20px;
-    width: 60%;
+    margin: 5px;
+    width: 40%;
+    padding: 5px;
 }
 
 .boton-ver-mas {

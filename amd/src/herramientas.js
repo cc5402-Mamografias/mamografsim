@@ -64,6 +64,7 @@ class Balanza extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
+    this.description = "Esta es una balanza.";
 
     this.balanza = new Image();
     this.balanza.src = 'img/balanza.svg';
@@ -98,6 +99,7 @@ class CamaraIonizacion extends AbstractTool {
     this.tipo = "camIonizacion";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
+    this.description = "Esta es una camara de ionizacion.";
   }
 
   actualizar(estado) {
@@ -126,6 +128,7 @@ class Electrometro extends AbstractTool {
     this.tipo = "electrometro";
     this.icon = "box.png";
     this.estado = "inactivo";
+    this.description = "Este es un electrometro.";
   }
 
   actualizar(estado) {
@@ -156,6 +159,7 @@ class Termometro extends AbstractTool {
     this.image.src = "icons/thermometer.png";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
+    this.description = "Este es un termometro.";
   }
 
   actualizar(estado) {
@@ -185,6 +189,7 @@ class Barometro extends AbstractTool {
     this.tipo = "barometro";
     this.icon = "barometer.png";
     this.estado = "inactivo";
+    this.description = "Este es un barometro.";
   }
 
   actualizar(estado) {
@@ -213,6 +218,7 @@ class CintaMetrica extends AbstractTool {
     this.tipo = "cinta";
     this.icon = "tape.png";
     this.estado = "inactivo";
+    this.description = "Esta es una cinta.";
   }
 
   actualizar(estado) {
