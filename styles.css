@@ -263,3 +263,38 @@ input[type='radio']:checked:after {
     width: 100%;
     text-align: center;
 }
+
+/* Interfaz boton plantilla */
+.contenedor-boton-plantilla{
+    position: absolute;
+    top: 564px;
+    left: 700px;
+    width: 300px;
+    height: 38px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.boton-plantilla {
+  width: 100%;
+  height: 38px;
+}
+
+
+/* Interfaz plantilla pop over */
+.plantilla-pop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 100;
+  background-color: #ccc;
+  width: 1002px;
+  height: 602px;
+  overflow-y: auto;
+  text-align:center;
+}
+
+.plantilla-salir {
+  text-align: left;
+}
