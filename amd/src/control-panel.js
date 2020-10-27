@@ -18,54 +18,23 @@ function mas1(elemento) {
   }
 }
 
-function cambiarModo() {
-  let modos = ["c01", "c02", "c03", "c04"];
-
-  for (var i = 0; i < 4; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
+function getValorActivoRadioButtons(valores) {
+  for (var i = 0; i < valores.length; i++) {
+    if (document.getElementById(valores[i]).checked == true) {
+      return i;
     }
   }
-  if (typeof index == 'undefined') {
-    document.getElementById(modos[0]).checked = true;
-  }
-  else {
-    document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 4]).checked = true;
-  }
+  return -1
 }
 
-function cambiarFiltro() {
-  let modos = ["f01", "f02", "f03"];
-
-  for (var i = 0; i < 3; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
-    }
-  }
-  if (typeof index == 'undefined') {
+function cambiarModo(modos) {
+  let index = getValorActivoRadioButtons(modos);
+  if (index == -1) {
     document.getElementById(modos[0]).checked = true;
   }
   else {
     document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 3]).checked = true;
-  }
-}
-
-function cambiarAnodo() {
-  let modos = ["a01", "a02", "a03"];
-
-  for (var i = 0; i < 3; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
-    }
-  }
-  if (typeof index == 'undefined') {
-    document.getElementById(modos[0]).checked = true;
-  }
-  else {
-    document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 3]).checked = true;
+    document.getElementById(modos[(index + 1) % modos.length]).checked = true;
   }
 }
 
@@ -75,11 +44,16 @@ function setearOnClick(id, fun) {
 }
 
 export let init = () => {
+  // botones KiloVolts
   setearOnClick("kv-", menos1);
   setearOnClick("kv+", mas1);
+  // botones miliAmperes
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
-  document.getElementById("mode-b").onclick = cambiarModo;
-  document.getElementById("filter-b").onclick = cambiarFiltro;
-  document.getElementById("anode-b").onclick = cambiarAnodo;
+  // boton modo mamografo
+  document.getElementById("mode-b").onclick = () => cambiarModo(["c01", "c02", "c03", "c04"]);
+  // boton filtro
+  document.getElementById("filter-b").onclick = () => cambiarModo(["f01", "f02", "f03"]);
+  // boton anodo
+  document.getElementById("anode-b").onclick = () => cambiarModo(["a01", "a02", "a03"]);
 };
