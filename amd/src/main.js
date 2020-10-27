@@ -184,12 +184,12 @@ export function hide_h() {
 }
 
 export function show_p() {
-  let x = document.getElementById("herrams");
+  let x = document.getElementById("plantilla");
   x.style.display = "block";
 }
 
 export function hide_p() {
-  let x = document.getElementById("herrams");
+  let x = document.getElementById("plantilla");
   x.style.display = "none";
 }
 
