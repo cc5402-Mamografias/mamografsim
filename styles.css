@@ -38,6 +38,17 @@
   padding: 8px;
 }
 
+table {
+  width:100%; 
+  text-align:center;
+  border: 1px solid black;
+  table-layout:fixed;
+  margin-top: 60px;
+}
+th, td {
+  border: 1px solid black;
+}
+
 /* Interfaz panel de control */
 /* Quitar flechas de input number para diferentes navegadores */
 /* Chrome, Safari, Edge, Opera */
@@ -288,7 +299,7 @@ input[type='radio']:checked:after {
   left: 0;
   display: none;
   z-index: 100;
-  background-color: #ccc;
+  background-color: white;
   width: 1002px;
   height: 602px;
   overflow-y: auto;

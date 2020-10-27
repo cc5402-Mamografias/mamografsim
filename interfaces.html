@@ -177,9 +177,8 @@
             <button type = "button" onclick="hide_p();">X </button>
           </div>
 
-          <div class="container">
+          <div id="test1" class="container">
             
-          </div>
         </div>
         <!-- /PLANTILLA OCULTA RESULTADOS -->
     </div>
@@ -212,6 +211,12 @@
         y.style.display = "none";
       }
     </script>
+
+<script>
+  $(document).ready(function(){
+     $('#test1').load("plantillas/test1.html");
+  });
+  </script>
 
 </body>
 
