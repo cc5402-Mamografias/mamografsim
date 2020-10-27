@@ -78,8 +78,8 @@ class Main {
     );
 
     this.herr_disponibles.forEach((tool) => {
-      let r = $(`<button title= "AD." class="herrams-boton"> </button>`).append(
-        `<img src="icons/${tool.icon}" width=64><br>${tool.tipo}`
+      let r = $(`<button title= "${tool.description}" class="herrams-boton"> </button>`).append(
+        `<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`
       );
 
       r.on("click", () => this.onClickTool(tool));

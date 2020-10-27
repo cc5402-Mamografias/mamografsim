@@ -136,7 +136,7 @@ export default class Maquina {
     if (this.alturaCompresor <= this.herramienta.altura) {
       this.factorCompresion = (this.factorCompresion + this.factorCompMax) / 2;
     } else {
-      this.alturaCompresor -= 5;
+      this.alturaCompresor = Math.max(this.alturaCompresor - 5, this.alturaMinima());
     }
     this.actualizar();
   }
@@ -157,7 +157,7 @@ export default class Maquina {
     if (this.alturaCompresor <= this.herramienta.altura) {
       this.factorCompresion = (this.factorCompresion + this.factorCompManual) / 2;
     } else {
-      this.alturaCompresor -= 3;
+      this.alturaCompresor = Math.max(this.alturaCompresor - 3, this.alturaMinima());
     }
     this.actualizar();
   }
