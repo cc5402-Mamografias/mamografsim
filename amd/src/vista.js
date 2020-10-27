@@ -31,7 +31,8 @@ export function drawMam(
   ctx,
   alturaCompresorY = 0,
   herramientas = null,
-  fuerza = 0
+  fuerza = 0,
+  altura = 0
 ) {
   addcompresorY = offsetCompresor - alturaCompresorY;
   console.log(herramientas);
@@ -76,6 +77,11 @@ export function drawMam(
     fuerza.toString() + " Kg.",
     (visorX + x) * scale + 30,
     (visorY + y) * scale - 80
+  );
+  ctx.fillStyle = "green";
+  ctx.fillText(altura.toString() + " mm.", 
+  (visorX + x) * scale + 30,  
+  (visorY + y) * scale - 65
   );
 }
 

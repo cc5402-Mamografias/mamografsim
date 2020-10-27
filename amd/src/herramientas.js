@@ -85,11 +85,55 @@ class Balanza extends AbstractTool {
     ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    if (this.estado = "activo") {
-      ctx.font = "28px Arial";
-      ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
+  dibujar_resultado(ctx) {  
+    ctx.font = "28px Arial";
+    ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
+  }
+}
+
+class Slabs extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Slabs";
+    this.icon = "slabs.png";
+    this.altura = 5;
+    this.estado = "inactivo";
+    this.fuerza = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+
+    this.slabs = new Image();
+    //nuevo sprite aca
+    this.slabs.src = 'img/balanza.svg';
+
+  }
+
+  actualizar(estado) {
+    if (estado.fuerza != 0) {
+      this.fuerza = estado.fuerza;
+      this.estado = "activo";
+    } else {
+      this.fuerza = 0;
+      this.estado = "inactivo";
     }
+  }
+
+  dibujar(ctx) {
+    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.fillStyle = "green";
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
+
+  }
+
+  dibujar_resultado(ctx) {
+    ctx.font = "28px Arial";
+    ctx.fillText("Altura Slabs: " + "50" + " mm.", 10, 80);
   }
 }
 
@@ -137,13 +181,7 @@ class Electrometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    //var img =
-    //ctx.drawImage(img, 10, 10);
-    /*ctx.beginPath();
-    ctx.arc(200, 50, 20, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.fillStyle = "green";
-    ctx.fill();*/
+
   }
 
   dibujar_resultado(ctx) {
@@ -168,14 +206,7 @@ class Termometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    //.beginPath();
-    // //.arc(95, 50, 20, 0, 2 * Math.PI);
-    //.drawImage(this.image, 95, 50, 50, 50);
-    //.stroke();
-    //.fillStyle = "yellow";
-    //.fill();
+  
   }
 
   dibujar_resultado(ctx) {
@@ -198,13 +229,7 @@ class Barometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    //.beginPath();
-    //.arc(95, 50, 20, 0, 2 * Math.PI);
-    //.stroke();
-    //.fillStyle = "purple";
-    //.fill();
+  
   }
 
   dibujar_resultado(ctx) {
@@ -227,13 +252,7 @@ class CintaMetrica extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    //.beginPath();
-    //.arc(95, 50, 20, 0, 2 * Math.PI);
-    //.stroke();
-    //.fillStyle = "black";
-    //.fill();
+ 
   }
 
   dibujar_resultado(ctx) {
@@ -249,4 +268,5 @@ export {
   CintaMetrica,
   Electrometro,
   Termometro,
+  Slabs
 };
