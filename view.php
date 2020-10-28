@@ -62,6 +62,13 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
+
+foreach ($moduleinstance as $key=>$value){
+    echo("key:" . $key . " value:" . $value . "\n");
+
+}
+unset($value);
+$test_number = $moduleinstance->test;
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init');
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 

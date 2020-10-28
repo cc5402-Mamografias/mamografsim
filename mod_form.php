@@ -55,9 +55,13 @@ class mod_mamografsim_mod_form extends moodleform_mod {
             $mform->setType('name', PARAM_CLEANHTML);
         }
 
+        
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'mamografsimname', 'mod_mamografsim');
+
+        
+        //$mform->addHelpButton('test', 'mamografsimname', 'mod_mamografsim');
 
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
@@ -70,6 +74,12 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
         // $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
         $mform->addElement('header', 'mamografsimfieldset', get_string('mamografsimfieldset', 'mod_mamografsim'));
+
+        $mform->addElement('text', 'test', "Número de prueba", array('size' => '64'));
+        $mform->setType('test', PARAM_TEXT);
+
+        $mform->addRule('test', null, 'required', null, 'client');
+        $mform->addRule('test', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();
