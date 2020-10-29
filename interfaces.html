@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -17,12 +18,19 @@
 
         <!-- /INTERFAZ MAMOGRAFO -->
 
-        <!-- /INTERFAZ RESULTADOS -->
+        <!-- INTERFAZ RESULTADOS -->
         <canvas id="canvRes" class = "resultados" width="300" height="300"></canvas>
         <!-- /INTERFAZ RESULTADOS -->
         <div id="resultados" class = "resultados">
           <h3 class="res-titulo">Resultados</h3>
         </div>
+
+        <!-- INTERFAZ BOTON PLANTILLA -->
+        <div id="div-boton-plantilla" class = "contenedor-boton-plantilla">
+          <button class="boton-plantilla" onclick="show_p()">Hoja de Resultados</button>
+        </div>
+        <!-- /INTERFAZ BOTON PLANTILLA -->
+
         <!-- INTERFAZ HERRAMIENTAS -->
 
         <div class="herramientas-mini">
@@ -126,7 +134,7 @@
         </div>
         <!-- INTERFAZ PANEL DE CONTROL -->
 
-        <!-- Menu oculto herramientas -->
+        <!-- MENU OCULTO HERRAMIENTAS -->
         <div id="herrams" class="herramientas-pop">
           <div class="herrams-salir">
             <button type = "button" onclick="hide_h();">X </button>
@@ -161,8 +169,109 @@
             </div>
           </div>
         </div>
-        <!-- /Menu oculto herramientas -->
+        <!-- /MENU OCULTO HERRAMIENTAS -->
+
+
+        <!-- PLANTILLA OCULTA RESULTADOS -->
+        <div id="plantilla" class="plantilla-pop">
+          <div class="plantilla-salir">
+            <button type = "button" onclick="hide_p();">X </button>
+          </div>
+          
+          <div id="test1" class="container">
+            <div style="height: 100px;">
+              <div class="row h-100">
+                <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
+              </div>
+            </div>
+          
+            
+            <div style="height: 100px;">
+              
+              <table>
+                <tr>
+                  <th ></th>
+                  <th>Motorizada(N)</th>
+                  <th>Manual(N)</th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión máxima</th>
+                  <th><input type="number" id="comp_max_moto"></th>
+                  <th><input type="number" id="comp_max_manual"></th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión mostrada</th>
+                  <th><input type="number" id="comp_mostrada_moto"></th>
+                  <th><input type="number" id="comp_mostrada_manual"></th>
+                </tr>
+          
+                <tr>
+                  <th>Cumple Si/No</th>
+                  <th><select name="cumple" id="cumple_moto">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                  <th><select name="cumple" id="cumple_manual">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                </tr>
+          
+          
+              </table>
+            </div>
+            
+          
+              
+          <!--          division de tablas                   -->
+          
+              <div style="height: 100px;">
+              <table>
+                <tr>
+                  <th> </th>
+                  <th>Espesor Indicado</th>
+                  <th>Fuerza de Compresion</th> 
+                  <th>S/N</th>
+                </tr>
+                <tr>
+                  <td>20mm</td>
+                  <td><input type="number" id="esp_20"></td>
+                  <td><input type="number" id="fuer_20"></td>
+                  <td><select name="cumple" id="cumple_20">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>45mm</td>
+                  <td><input type="number" id="esp_45"></td>
+                  <td><input type="number" id="fuer_45"></td>
+                  <td><select name="cumple" id="cumple_45">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>70mm</td>
+                  <td><input type="number" id="esp_75"></td>
+                  <td><input type="number" id="fuer_75"></td>
+                  <td><select name="cumple" id="cumple_75">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+          
+          
+              </table>
+              </div>
+          </div>
+          
+          
+        
     </div>
+    <!-- /PLANTILLA OCULTA RESULTADOS -->
 
     <script type="text/javascript">
       function show_h() {
@@ -175,13 +284,26 @@
         x.style.display = "none";
       }
 
+      function show_p() {
+        let x = document.getElementById("plantilla");
+        x.style.display = "block";
+      }
+
+      function hide_p() {
+        let x = document.getElementById("plantilla");
+        x.style.display = "none";
+      }
+
       function show_sim() {
         let x = document.getElementById("contenedor-sim");
         x.style.display = "block";
         let y = document.getElementById("contenedor-button");
         y.style.display = "none";
       }
-    </script>
+      $(document).ready(function(){
+        $("#test1").load("test.html");
+      });
+  </script>
 
 </body>
 

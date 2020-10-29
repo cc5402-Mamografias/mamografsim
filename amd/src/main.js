@@ -185,6 +185,16 @@ export function hide_h() {
   x.style.display = "none";
 }
 
+export function show_p() {
+  let x = document.getElementById("plantilla");
+  x.style.display = "block";
+}
+
+export function hide_p() {
+  let x = document.getElementById("plantilla");
+  x.style.display = "none";
+}
+
 export function show_sim() {
   let x = document.getElementById("contenedor-sim");
   x.style.display = "block";
