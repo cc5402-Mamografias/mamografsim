@@ -9,7 +9,8 @@
 </head>
 <body>
   <div id="contenedor-button" class ="contenedor-button">
-    <button class="open-sim" onclick="show_sim();"><img src="icons/play.png" width=64><br>Play</button>
+    <button id = "open-sim-button" class="open-sim" onclick="show_sim();"><img src="icons/play.png" width=64><br>Compresion</button>
+    <button id = "open-sim-button-2" class="open-sim" onclick="show_sim();"><img src="icons/play.png" width=64><br>Rendimiento</button>
   </div>
      
     <div id="contenedor-sim" class ="contenedor-sim">
@@ -46,7 +47,8 @@
         <!-- /INTERFAZ HERRAMIENTAS -->
 
         <!-- INTERFAZ PASOS -->
-        <div class="pasos">
+        <div id="container-pasos" class="pasos">
+          <!--
             <h3 class="pasos-titulo">Pasos</h3>
             <ol id="lista-pasos" class="pasos-lista">
                 <li>Elegir herramienta Balanza en la sección Herramientas.</li>
@@ -56,6 +58,7 @@
                 <li>Si se quiere medir nuevamente el peso, repetir los puntos 2 y 3.</li>
                 <li>Para finalizar, apretar nuevamente el ícono de la Balanza en la sección Herramientas.</li>
             </ol>
+            -->
         </div>
         <!-- /INTERFAZ PASOS -->
 
@@ -178,7 +181,8 @@
             <button type = "button" onclick="hide_p();">X </button>
           </div>
           
-          <div id="test1" class="container">
+          <div id="container-plantilla" class="container">
+            <!--
             <div style="height: 100px;">
               <div class="row h-100">
                 <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
@@ -222,12 +226,13 @@
           
               </table>
             </div>
+            -->
             
           
               
           <!--          division de tablas                   -->
-          
-              <div style="height: 100px;">
+          <!--
+            <div style="height: 100px;">
               <table>
                 <tr>
                   <th> </th>
@@ -265,12 +270,11 @@
           
           
               </table>
-              </div>
+            </div>
+              -->
           </div>
-          
-          
         
-    </div>
+        </div>
     <!-- /PLANTILLA OCULTA RESULTADOS -->
 
     <script type="text/javascript">
@@ -300,9 +304,20 @@
         let y = document.getElementById("contenedor-button");
         y.style.display = "none";
       }
-      $(document).ready(function(){
-        $("#test1").load("test.html");
-      });
+  </script>
+  <script>
+  $(document).ready(function(){
+    //boton primera prueba
+    $("#open-sim-button").click(function(event) {
+      $("#container-pasos").load("pasos/pasos_prueba_compresion.html");
+      $("#container-plantilla").load("plantillas/plantilla_prueba_compresion.html");
+    });
+    //boton segunda prueba
+    $("#open-sim-button-2").click(function(event) {
+      $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
+      $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
+    });
+  });
   </script>
 
 </body>
