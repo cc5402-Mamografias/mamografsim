@@ -91,14 +91,14 @@ class Balanza extends AbstractTool {
   }
 }
 
-class Slabs extends AbstractTool {
+class Slab_20mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slabs";
+    this.tipo = "Slab20";
     this.icon = "slabs.png";
-    this.altura = 5;
-    this.estado = "inactivo";
-    this.fuerza = 0;
+    this.altura = 20;
+
+    // pasar parametros a vista?
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
@@ -109,14 +109,8 @@ class Slabs extends AbstractTool {
 
   }
 
-  actualizar(estado) {
-    if (estado.fuerza != 0) {
-      this.fuerza = estado.fuerza;
-      this.estado = "activo";
-    } else {
-      this.fuerza = 0;
-      this.estado = "inactivo";
-    }
+  actualizar(estado){
+    // nada
   }
 
   dibujar(ctx) {
@@ -133,7 +127,87 @@ class Slabs extends AbstractTool {
 
   dibujar_resultado(ctx) {
     ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + "50" + " mm.", 10, 80);
+    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
+  }
+}
+
+class Slab_45mm extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Slab45";
+    this.icon = "slabs.png";
+    this.altura = 45;
+
+    // pasar parametros a vista?
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+
+    this.slabs = new Image();
+    //nuevo sprite aca
+    this.slabs.src = 'img/balanza.svg';
+
+  }
+
+  actualizar(estado){
+    // nada
+  }
+
+  dibujar(ctx) {
+    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.fillStyle = "green";
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
+
+  }
+
+  dibujar_resultado(ctx) {
+    ctx.font = "28px Arial";
+    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
+  }
+}
+
+class Slab_70mm extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Slab70";
+    this.icon = "slabs.png";
+    this.altura = 70;
+
+    // pasar parametros a vista?
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+
+    this.slabs = new Image();
+    //nuevo sprite aca
+    this.slabs.src = 'img/balanza.svg';
+
+  }
+
+  actualizar(estado){
+    // nada
+  }
+
+  dibujar(ctx) {
+    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.fillStyle = "green";
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
+
+  }
+
+  dibujar_resultado(ctx) {
+    ctx.font = "28px Arial";
+    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
   }
 }
 
@@ -268,5 +342,7 @@ export {
   CintaMetrica,
   Electrometro,
   Termometro,
-  Slabs
+  Slab_20mm,
+  Slab_45mm,
+  Slab_70mm
 };
