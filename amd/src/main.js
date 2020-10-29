@@ -18,6 +18,8 @@ import { getCompresorPosY } from "./vista";
 
 window.$ = window.jQuery = $ = jQuery;
 
+let m = null;
+
 class Main {
   constructor() {
     this.herr_activas = [];
@@ -133,6 +135,10 @@ class Main {
     }
   }
 
+  getMamografo() {
+    return this.mamografo;
+  }
+
   onClickTool(tool) {
     console.log(tool);
     this.mamografo.setHerramienta(tool);
@@ -217,3 +223,7 @@ function show_sim() {
   let y = document.getElementById("contenedor-button");
   y.style.display = "none";
 }
+
+export let setear_params = (kv, ma, md, fltr, anod) => {
+  m.getMamografo().setearParams(kv, ma, md, fltr, anod);
+};
