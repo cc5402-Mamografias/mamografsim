@@ -18,6 +18,8 @@ import { getCompresorPosY } from "./vista";
 
 window.$ = window.jQuery = $ = jQuery;
 
+let m = null;
+
 class Main {
   constructor() {
     this.herr_activas = [];
@@ -133,6 +135,10 @@ class Main {
     }
   }
 
+  getMamografo() {
+    return this.mamografo;
+  }
+
   onClickTool(tool) {
     console.log(tool);
     this.mamografo.setHerramienta(tool);
@@ -172,32 +178,52 @@ class Main {
 
 export let init = () => {
   let m = new Main();
+  let elems;
+
+  document.getElementById("herrams-mas").onclick = show_h;
+  document.getElementById("herrams-menos").onclick = hide_h;
+  // botones de herramientas en popup
+  elems = document.getElementsByClassName("herrams-boton");
+  for (let i = 0; i < elems.length; i++) {
+    elems[i].onclick = hide_h;
+  }
+  document.getElementById("plantilla-abrir").onclick = show_p;
+  document.getElementById("plantilla-cerrar").onclick = hide_p;
+  elems = document.getElementsByClassName("open-sim");
+  for (let i = 0; i < elems.length; i++) {
+    elems[i].onclick = show_sim;
+  }
+
   console.log("Simulador inicializado");
 };
 
-export function show_h() {
+function show_h() {
   let x = document.getElementById("herrams");
   x.style.display = "block";
 }
 
-export function hide_h() {
+function hide_h() {
   let x = document.getElementById("herrams");
   x.style.display = "none";
 }
 
-export function show_p() {
+function show_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "block";
 }
 
-export function hide_p() {
+function hide_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "none";
 }
 
-export function show_sim() {
+function show_sim() {
   let x = document.getElementById("contenedor-sim");
   x.style.display = "block";
   let y = document.getElementById("contenedor-button");
   y.style.display = "none";
 }
+
+export let setear_params = (kv, ma, md, fltr, anod) => {
+  m.getMamografo().setearParams(kv, ma, md, fltr, anod);
+};

@@ -1,5 +1,11 @@
 "use strict";
 
+import { setear_params } from "./main";
+
+let valores_modo = ["c01", "c02", "c03", "c04"];
+let valores_filtro = ["f01", "f02", "f03"];
+let valores_anodo = ["a01", "a02", "a03"];
+
 function menos1(elemento) {
   var valor = parseFloat(document.getElementById(elemento.value).value);
   var min = parseFloat(document.getElementById(elemento.value).min);
@@ -7,6 +13,8 @@ function menos1(elemento) {
     valor = valor - 1;
     document.getElementById(elemento.value).value = valor.toString();
   }
+
+  setearParamsMamografo();
 }
 
 function mas1(elemento) {
@@ -16,57 +24,41 @@ function mas1(elemento) {
     valor = valor + 1;
     document.getElementById(elemento.value).value = valor.toString();
   }
+
+  setearParamsMamografo();
 }
 
-function cambiarModo() {
-  let modos = ["c01", "c02", "c03", "c04"];
-
-  for (var i = 0; i < 4; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
+function getValorActivoRadioButtons(valores) {
+  for (var i = 0; i < valores.length; i++) {
+    if (document.getElementById(valores[i]).checked == true) {
+      return i;
     }
   }
-  if (typeof index == 'undefined') {
+  return -1;
+}
+
+function cambiarModo(modos) {
+  let index = getValorActivoRadioButtons(modos);
+  if (index == -1) {
     document.getElementById(modos[0]).checked = true;
   }
   else {
     document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 4]).checked = true;
+    document.getElementById(modos[(index + 1) % modos.length]).checked = true;
   }
+
+  setearParamsMamografo();
 }
 
-function cambiarFiltro() {
-  let modos = ["f01", "f02", "f03"];
 
-  for (var i = 0; i < 3; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
-    }
-  }
-  if (typeof index == 'undefined') {
-    document.getElementById(modos[0]).checked = true;
-  }
-  else {
-    document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 3]).checked = true;
-  }
-}
+function setearParamsMamografo() {
+  let kv = parseFloat(document.getElementById("kv").value);
+  let ma = parseFloat(document.getElementById("mas").value);
+  let modo = valores_modo[getValorActivoRadioButtons(valores_modo)];
+  let filtro = valores_filtro[getValorActivoRadioButtons(valores_filtro)];
+  let anodo = valores_anodo[getValorActivoRadioButtons(valores_anodo)];
 
-function cambiarAnodo() {
-  let modos = ["a01", "a02", "a03"];
-
-  for (var i = 0; i < 3; i++) {
-    if (document.getElementById(modos[i]).checked == true) {
-      var index = i;
-    }
-  }
-  if (typeof index == 'undefined') {
-    document.getElementById(modos[0]).checked = true;
-  }
-  else {
-    document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % 3]).checked = true;
-  }
+  setear_params(kv,ma,modo,filtro,anodo);
 }
 
 function setearOnClick(id, fun) {
@@ -75,11 +67,16 @@ function setearOnClick(id, fun) {
 }
 
 export let init = () => {
+  // botones KiloVolts
   setearOnClick("kv-", menos1);
   setearOnClick("kv+", mas1);
+  // botones miliAmperes
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
-  document.getElementById("mode-b").onclick = cambiarModo;
-  document.getElementById("filter-b").onclick = cambiarFiltro;
-  document.getElementById("anode-b").onclick = cambiarAnodo;
+  // boton modo mamografo
+  document.getElementById("mode-b").onclick = () => cambiarModo(valores_modo);
+  // boton filtro
+  document.getElementById("filter-b").onclick = () => cambiarModo(valores_filtro);
+  // boton anodo
+  document.getElementById("anode-b").onclick = () => cambiarModo(valores_anodo);
 };
