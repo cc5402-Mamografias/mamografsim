@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -176,12 +177,101 @@
           <div class="plantilla-salir">
             <button type = "button" onclick="hide_p();">X </button>
           </div>
-
+          
           <div id="test1" class="container">
+            <div style="height: 100px;">
+              <div class="row h-100">
+                <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
+              </div>
+            </div>
+          
             
-        </div>
-        <!-- /PLANTILLA OCULTA RESULTADOS -->
+            <div style="height: 100px;">
+              
+              <table>
+                <tr>
+                  <th ></th>
+                  <th>Motorizada(N)</th>
+                  <th>Manual(N)</th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión máxima</th>
+                  <th><input type="number" id="comp_max_moto"></th>
+                  <th><input type="number" id="comp_max_manual"></th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión mostrada</th>
+                  <th><input type="number" id="comp_mostrada_moto"></th>
+                  <th><input type="number" id="comp_mostrada_manual"></th>
+                </tr>
+          
+                <tr>
+                  <th>Cumple Si/No</th>
+                  <th><select name="cumple" id="cumple_moto">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                  <th><select name="cumple" id="cumple_manual">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                </tr>
+          
+          
+              </table>
+            </div>
+            
+          
+              
+          <!--          division de tablas                   -->
+          
+              <div style="height: 100px;">
+              <table>
+                <tr>
+                  <th> </th>
+                  <th>Espesor Indicado</th>
+                  <th>Fuerza de Compresion</th> 
+                  <th>S/N</th>
+                </tr>
+                <tr>
+                  <td>20mm</td>
+                  <td><input type="number" id="esp_20"></td>
+                  <td><input type="number" id="fuer_20"></td>
+                  <td><select name="cumple" id="cumple_20">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>45mm</td>
+                  <td><input type="number" id="esp_45"></td>
+                  <td><input type="number" id="fuer_45"></td>
+                  <td><select name="cumple" id="cumple_45">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>70mm</td>
+                  <td><input type="number" id="esp_75"></td>
+                  <td><input type="number" id="fuer_75"></td>
+                  <td><select name="cumple" id="cumple_75">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+          
+          
+              </table>
+              </div>
+          </div>
+          
+          
+        
     </div>
+    <!-- /PLANTILLA OCULTA RESULTADOS -->
 
     <script type="text/javascript">
       function show_h() {
@@ -210,12 +300,9 @@
         let y = document.getElementById("contenedor-button");
         y.style.display = "none";
       }
-    </script>
-
-<script>
-  $(document).ready(function(){
-     $('#test1').load("plantillas/test1.html");
-  });
+      $(document).ready(function(){
+        $("#test1").load("test.html");
+      });
   </script>
 
 </body>
