@@ -99,6 +99,7 @@ class Slabs extends AbstractTool {
     this.altura = 5;
     this.estado = "inactivo";
     this.fuerza = 0;
+    this.description = "Estos son unos slabs.";
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
