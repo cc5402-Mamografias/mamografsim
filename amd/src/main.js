@@ -5,7 +5,9 @@ import {
   CintaMetrica,
   Electrometro,
   Termometro,
-  Slabs
+  Slab_20mm,
+  Slab_45mm,
+  Slab_70mm
 } from "./herramientas";
 
 import Maquina from "./maquina";
@@ -26,7 +28,9 @@ class Main {
 
     this.herr_disponibles = [
       new Balanza(),
-      new Slabs(), 
+      new Slab_20mm(),
+      new Slab_45mm(),
+      new Slab_70mm(),
       new Barometro(),
       new CamaraIonizacion(),
       new CintaMetrica(),
@@ -177,47 +181,31 @@ class Main {
 }
 
 export let init = () => {
-  let m = new Main();
-  let elems;
-
-  document.getElementById("herrams-mas").onclick = show_h;
-  document.getElementById("herrams-menos").onclick = hide_h;
-  // botones de herramientas en popup
-  elems = document.getElementsByClassName("herrams-boton");
-  for (let i = 0; i < elems.length; i++) {
-    elems[i].onclick = hide_h;
-  }
-  document.getElementById("plantilla-abrir").onclick = show_p;
-  document.getElementById("plantilla-cerrar").onclick = hide_p;
-  elems = document.getElementsByClassName("open-sim");
-  for (let i = 0; i < elems.length; i++) {
-    elems[i].onclick = show_sim;
-  }
-
+  m = new Main();
   console.log("Simulador inicializado");
 };
 
-function show_h() {
+export function show_h() {
   let x = document.getElementById("herrams");
   x.style.display = "block";
 }
 
-function hide_h() {
+export function hide_h() {
   let x = document.getElementById("herrams");
   x.style.display = "none";
 }
 
-function show_p() {
+export function show_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "block";
 }
 
-function hide_p() {
+export function hide_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "none";
 }
 
-function show_sim() {
+export function show_sim() {
   let x = document.getElementById("contenedor-sim");
   x.style.display = "block";
   let y = document.getElementById("contenedor-button");
