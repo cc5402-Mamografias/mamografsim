@@ -96,7 +96,7 @@ class Slab_20mm extends AbstractTool {
     super();
     this.tipo = "Slab20";
     this.icon = "slabs.png";
-    this.altura = 20;
+    this.altura = 2.0;
 
     // pasar parametros a vista?
     this.scale = 0.5;
@@ -136,7 +136,7 @@ class Slab_45mm extends AbstractTool {
     super();
     this.tipo = "Slab45";
     this.icon = "slabs.png";
-    this.altura = 45;
+    this.altura = 4.5;
 
     // pasar parametros a vista?
     this.scale = 0.5;
@@ -176,7 +176,7 @@ class Slab_70mm extends AbstractTool {
     super();
     this.tipo = "Slab70";
     this.icon = "slabs.png";
-    this.altura = 70;
+    this.altura = 7.0;
 
     // pasar parametros a vista?
     this.scale = 0.5;
