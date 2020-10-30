@@ -71,16 +71,16 @@ export function drawMam(
     visor.width * scale,
     visor.height * scale
   );
-  ctx.font = "10px Arial";
-  ctx.fillStyle = "red";
+  ctx.font = "bold 12px Arial";
+  ctx.fillStyle = "#FF6363";
   ctx.fillText(
     fuerza.toString() + " Kg.",
-    (visorX + x) * scale + 30,
+    (visorX + x) * scale + 20,
     (visorY + y) * scale - 80
   );
-  ctx.fillStyle = "green";
+  ctx.fillStyle = "#54FF54";
   ctx.fillText(altura.toString() + " mm.", 
-  (visorX + x) * scale + 30,  
+  (visorX + x) * scale + 20,  
   (visorY + y) * scale - 65
   );
 }

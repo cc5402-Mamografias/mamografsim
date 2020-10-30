@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 <body>
   <div id="contenedor-button" class ="contenedor-button">
-    <button class="open-sim" onclick="show_sim();"><img src="icons/play.png" width=64><br>Play</button>
+    <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
+    <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button>
   </div>
      
     <div id="contenedor-sim" class ="contenedor-sim">
@@ -17,12 +19,19 @@
 
         <!-- /INTERFAZ MAMOGRAFO -->
 
-        <!-- /INTERFAZ RESULTADOS -->
+        <!-- INTERFAZ RESULTADOS -->
         <canvas id="canvRes" class = "resultados" width="300" height="300"></canvas>
         <!-- /INTERFAZ RESULTADOS -->
         <div id="resultados" class = "resultados">
           <h3 class="res-titulo">Resultados</h3>
         </div>
+
+        <!-- INTERFAZ BOTON PLANTILLA -->
+        <div id="div-boton-plantilla" class = "contenedor-boton-plantilla">
+          <button id="plantilla-abrir" class="boton-plantilla" onclick="show_p()">Hoja de Resultados</button>
+        </div>
+        <!-- /INTERFAZ BOTON PLANTILLA -->
+
         <!-- INTERFAZ HERRAMIENTAS -->
 
         <div class="herramientas-mini">
@@ -33,12 +42,13 @@
                 <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/barometer.png" width=64><br>Barometro</button>
                 <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/tape.png" width=64><br>Cinta</button> -->
             </div>
-            <button class="boton-ver-mas" onclick="show_h()">Ver mas</button>
+            <button id="herrams-mas" class="boton-ver-mas">Ver mas</button>
           </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
 
         <!-- INTERFAZ PASOS -->
-        <div class="pasos">
+        <div id="container-pasos" class="pasos">
+          <!--
             <h3 class="pasos-titulo">Pasos</h3>
             <ol id="lista-pasos" class="pasos-lista">
                 <li>Elegir herramienta Balanza en la sección Herramientas.</li>
@@ -48,6 +58,7 @@
                 <li>Si se quiere medir nuevamente el peso, repetir los puntos 2 y 3.</li>
                 <li>Para finalizar, apretar nuevamente el ícono de la Balanza en la sección Herramientas.</li>
             </ol>
+            -->
         </div>
         <!-- /INTERFAZ PASOS -->
 
@@ -126,62 +137,160 @@
         </div>
         <!-- INTERFAZ PANEL DE CONTROL -->
 
-        <!-- Menu oculto herramientas -->
+        <!-- MENU OCULTO HERRAMIENTAS -->
         <div id="herrams" class="herramientas-pop">
-          <div class="herrams-salir">
-            <button type = "button" onclick="hide_h();">X </button>
+          <div id="herrams-menos" class="herrams-salir">
+            <button type="button">X </button>
           </div>
 
           <div class="container">
             <div class="row">
               <div class="col-sm">
                 <h3>TIPO A</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
               <div class="col-sm">
                 <h3>TIPO B</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
               <div class="col-sm">
                 <h3>TIPO C</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" onclick="hide_h();"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
+                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
               </div>
             </div>
           </div>
         </div>
-        <!-- /Menu oculto herramientas -->
-    </div>
+        <!-- /MENU OCULTO HERRAMIENTAS -->
 
-    <script type="text/javascript">
-      function show_h() {
-        let x = document.getElementById("herrams");
-        x.style.display = "block";
-      }
 
-      function hide_h() {
-        let x = document.getElementById("herrams");
-        x.style.display = "none";
-      }
-
-      function show_sim() {
-        let x = document.getElementById("contenedor-sim");
-        x.style.display = "block";
-        let y = document.getElementById("contenedor-button");
-        y.style.display = "none";
-      }
-    </script>
+        <!-- PLANTILLA OCULTA RESULTADOS -->
+        <div id="plantilla" class="plantilla-pop">
+          <div class="plantilla-salir">
+            <button id="plantilla-cerrar" type="button">X </button>
+          </div>
+          
+          <div id="container-plantilla" class="container">
+            <!--
+            <div style="height: 100px;">
+              <div class="row h-100">
+                <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
+              </div>
+            </div>
+          
+            
+            <div style="height: 100px;">
+              
+              <table>
+                <tr>
+                  <th ></th>
+                  <th>Motorizada(N)</th>
+                  <th>Manual(N)</th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión máxima</th>
+                  <th><input type="number" id="comp_max_moto"></th>
+                  <th><input type="number" id="comp_max_manual"></th>
+                </tr>
+                
+                <tr>
+                  <th>Fuerza de compresión mostrada</th>
+                  <th><input type="number" id="comp_mostrada_moto"></th>
+                  <th><input type="number" id="comp_mostrada_manual"></th>
+                </tr>
+          
+                <tr>
+                  <th>Cumple Si/No</th>
+                  <th><select name="cumple" id="cumple_moto">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                  <th><select name="cumple" id="cumple_manual">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></th>
+                </tr>
+          
+          
+              </table>
+            </div>
+            -->
+            
+          
+              
+          <!--          division de tablas                   -->
+          <!--
+            <div style="height: 100px;">
+              <table>
+                <tr>
+                  <th> </th>
+                  <th>Espesor Indicado</th>
+                  <th>Fuerza de Compresion</th> 
+                  <th>S/N</th>
+                </tr>
+                <tr>
+                  <td>20mm</td>
+                  <td><input type="number" id="esp_20"></td>
+                  <td><input type="number" id="fuer_20"></td>
+                  <td><select name="cumple" id="cumple_20">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>45mm</td>
+                  <td><input type="number" id="esp_45"></td>
+                  <td><input type="number" id="fuer_45"></td>
+                  <td><select name="cumple" id="cumple_45">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+                <tr>
+                  <td>70mm</td>
+                  <td><input type="number" id="esp_75"></td>
+                  <td><input type="number" id="fuer_75"></td>
+                  <td><select name="cumple" id="cumple_75">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                  </select></td>
+                </tr>
+          
+          
+              </table>
+            </div>
+              -->
+          </div>
+        
+        </div>
+    <!-- /PLANTILLA OCULTA RESULTADOS -->
+    
+  <script>
+  $(document).ready(function(){
+    //boton primera prueba
+    $("#open-sim-button").click(function(event) {
+      $("#container-pasos").load("pasos/pasos_prueba_compresion.html");
+      $("#container-plantilla").load("plantillas/plantilla_prueba_compresion.html");
+    });
+    //boton segunda prueba
+    $("#open-sim-button-2").click(function(event) {
+      $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
+      $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
+    });
+  });
+  </script>
 
 </body>
 
