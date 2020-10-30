@@ -197,6 +197,7 @@ export let init = () => {
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
   }
+
   console.log("Simulador inicializado");
 };
 
