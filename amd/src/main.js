@@ -180,10 +180,10 @@ class Main {
   }
 }
 
-export let init = () => {
+export const init = (test_number) => {
   m = new Main();
   let elems;
-
+  console.log(test_number)
   document.getElementById("herrams-mas").onclick = show_h;
   document.getElementById("herrams-menos").onclick = hide_h;
   // botones de herramientas en popup

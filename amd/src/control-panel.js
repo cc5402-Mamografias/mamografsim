@@ -66,7 +66,7 @@ function setearOnClick(id, fun) {
   e.onclick = () => { fun(e); };
 }
 
-export let init = () => {
+export const init = () => {
   // botones KiloVolts
   setearOnClick("kv-", menos1);
   setearOnClick("kv+", mas1);

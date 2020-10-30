@@ -69,7 +69,7 @@ foreach ($moduleinstance as $key=>$value){
 }
 unset($value);
 $test_number = $moduleinstance->test;
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init');
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array($test_number));
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
