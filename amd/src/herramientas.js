@@ -127,7 +127,7 @@ class Slab_20mm extends AbstractTool {
 
   dibujar_resultado(ctx) {
     ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
+    ctx.fillText("Altura Slabs: " + this.getAltura()  * 10 + " mm.", 10, 80);
   }
 }
 
@@ -167,7 +167,7 @@ class Slab_45mm extends AbstractTool {
 
   dibujar_resultado(ctx) {
     ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
+    ctx.fillText("Altura Slabs: " + this.getAltura() * 10 + " mm.", 10, 80);
   }
 }
 
@@ -207,7 +207,7 @@ class Slab_70mm extends AbstractTool {
 
   dibujar_resultado(ctx) {
     ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura() + " mm.", 10, 80);
+    ctx.fillText("Altura Slabs: " + this.getAltura() * 10 + " mm.", 10, 80);
   }
 }
 
