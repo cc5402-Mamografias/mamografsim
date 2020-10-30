@@ -29,6 +29,8 @@ defined('MOODLE_INTERNAL') || die();
 $string['mamografsimname'] = 'Nombre Prueba o Actividad';
 $string['mamografsimname_help'] = 'Nombre de la instancia';
 $string['mamografsimfieldset'] = 'Configuraciones del Mamógrafo';
+$string['mamografsimcomp'] = 'Configuraciones de la prueba de compresión';
+$string['mamografsimrend'] = 'Configuraciones de la prueba de rendimiento';
 
 $string['modulename'] = 'Mamografsim';
 $string['modulename_help'] = '';

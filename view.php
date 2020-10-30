@@ -68,8 +68,11 @@ foreach ($moduleinstance as $key=>$value){
 
 }
 unset($value);
-$test_number = $moduleinstance->test;
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array($test_number));
+$errorkv = $moduleinstance->errorkv;
+$errorma = $moduleinstance->errorma;
+$errorf = $moduleinstance->errorf;
+$erroralt = $moduleinstance->erroralt;
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array($errorkv,$errorma,$errorf,$erroralt));
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
