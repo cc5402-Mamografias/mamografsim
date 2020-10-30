@@ -133,6 +133,15 @@ class Main {
     } catch (error) {
       //console.log(error);
     }
+
+
+    //dibujar resultado disparo mamografo
+    try {
+      this.mamografo.dibujarResultadoDisparo(this.ctxres);
+      console.log("Shoot");
+    } catch (error) {
+      //console
+    }
   }
 
   getMamografo() {

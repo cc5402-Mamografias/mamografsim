@@ -20,8 +20,8 @@ export default class Maquina {
 
     this.margenF = this.mError(margenF);
 
-    this.kilovolt = null;
-    this.miliamperios = null;
+    this.kilovolt = 32;
+    this.miliamperios = 100;
 
     this.errorKilovolt = errorkv;
     this.errorMiliamperios = errorma;
@@ -161,5 +161,13 @@ export default class Maquina {
     }
     this.actualizar();
   }
+  dibujarResultadoDisparo(ctx) {
+    ctx.font = "28px Arial";
+    ctx.fillText("KV: " + this.kilovolt.toFixed(2) , 10, 150);
+    
+
+
+  }
+
 
 }
