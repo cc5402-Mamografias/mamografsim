@@ -2,6 +2,8 @@
 
 import { setear_params } from "./main";
 
+import { disparo } from "./main";
+
 let valores_modo = ["c01", "c02", "c03", "c04"];
 let valores_filtro = ["f01", "f02", "f03"];
 let valores_anodo = ["a01", "a02", "a03"];
@@ -50,6 +52,10 @@ function cambiarModo(modos) {
   setearParamsMamografo();
 }
 
+function disparoMamografo() {
+  disparo()
+}
+
 
 function setearParamsMamografo() {
   let kv = parseFloat(document.getElementById("kv").value);
@@ -57,6 +63,7 @@ function setearParamsMamografo() {
   let modo = valores_modo[getValorActivoRadioButtons(valores_modo)];
   let filtro = valores_filtro[getValorActivoRadioButtons(valores_filtro)];
   let anodo = valores_anodo[getValorActivoRadioButtons(valores_anodo)];
+
 
   setear_params(kv,ma,modo,filtro,anodo);
 }
@@ -79,4 +86,8 @@ export let init = () => {
   document.getElementById("filter-b").onclick = () => cambiarModo(valores_filtro);
   // boton anodo
   document.getElementById("anode-b").onclick = () => cambiarModo(valores_anodo);
+
+
+  //boton disparo
+  setearOnClick("shoot-b", disparoMamografo);
 };

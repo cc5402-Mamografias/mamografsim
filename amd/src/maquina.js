@@ -19,7 +19,7 @@ export default class Maquina {
     this.factorCompManual = 1.5;
 
     this.margenF = this.mError(margenF);
-
+    //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
     this.kilovolt = 32;
     this.miliamperios = 100;
 
@@ -92,6 +92,7 @@ export default class Maquina {
 
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
+    console.log("seteo nuevos parametros");
     this.kilovolt = kv;
     this.miliamperios = ma;
     this.modo = md;
@@ -162,11 +163,18 @@ export default class Maquina {
     this.actualizar();
   }
   dibujarResultadoDisparo(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("KV: " + this.kilovolt.toFixed(2) , 10, 150);
+    ctx.font = "14px Arial";
+    ctx.fillText("KV: " + this.kilovolt , 10, 150);
+    ctx.font = "14px Arial";
+    ctx.fillText("mAs: " + this.miliamperios , 10, 170);
+    ctx.font = "14px Arial";
+    ctx.fillText("modo: " + this.modo , 10, 190);
+    ctx.font = "14px Arial";
+    ctx.fillText("filtro: " + this.filtro , 10, 210);
+    ctx.font = "14px Arial";
+    ctx.fillText("anodo: " + this.anodo , 10, 230);
+    this.actualizar();
     
-
-
   }
 
 

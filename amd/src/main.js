@@ -18,7 +18,7 @@ import { getCompresorPosY } from "./vista";
 
 window.$ = window.jQuery = $ = jQuery;
 
-let m = null;
+var m = null;
 
 class Main {
   constructor() {
@@ -136,17 +136,21 @@ class Main {
 
 
     //dibujar resultado disparo mamografo
+    //CREO QUE DEBERIA HABER OTRO CANVAS PARA LOS RESULTADOS DEL DISPARO/TOMA 
     try {
       this.mamografo.dibujarResultadoDisparo(this.ctxres);
       console.log("Shoot");
     } catch (error) {
+      //console.log("F")
       //console
     }
   }
 
   getMamografo() {
+    console.log("Conseguimos mamografo");
     return this.mamografo;
   }
+
 
   onClickTool(tool) {
     console.log(tool);
@@ -186,7 +190,7 @@ class Main {
 }
 
 export let init = () => {
-  let m = new Main();
+  m = new Main();
   let elems;
 
   document.getElementById("herrams-mas").onclick = show_h;
@@ -233,6 +237,11 @@ function show_sim() {
   y.style.display = "none";
 }
 
+//error: null has no properties
 export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
+};
+
+export let disparo = () => {
+  m.actualizar();
 };
