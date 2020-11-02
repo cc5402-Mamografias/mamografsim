@@ -76,12 +76,23 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         
         $mform->addElement('header', 'mamografsimrend', get_string('mamografsimcomp', 'mod_mamografsim'));
 
-        $mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
+        $mform->addElement('select', 'errorf', "Error Fuerza", array('Aleatorio'=>'Aleatorio','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('errorf', PARAM_TEXT);
         //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('errorf', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        
 
-        $mform->addElement('text', 'erroralt', "Error Altura (mm)", array('size' => '64'));
+
+        $radioarray=array();
+        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Aleatorio', 'Aleatorio');
+        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Bajo', 'Bajo');
+        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Medio', 'Medio');
+        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Alto', 'Alto');
+        $mform->addGroup($radioarray, 'erroralt', 'Error Altura', array(' '), false);
+        $mform->setDefault('erroralt', 'Aleatorio');
+
+        //$mform->addElement('text', 'erroralt', "Error Altura (mm)", array('size' => '64'));
         $mform->setType('erroralt', PARAM_TEXT);
         //$mform->addRule('errorAlt', null, 'required', null, 'client');
         $mform->addRule('erroralt', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');

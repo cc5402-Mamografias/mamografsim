@@ -13,7 +13,7 @@ function rand(lowest, highest){
 }
 
 export default class Maquina {
-  constructor(errorkv, errorma, errorF, errorAlt, ctx) {
+  constructor(errors, ctx) {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 155;
@@ -28,10 +28,10 @@ export default class Maquina {
     this.kilovolt = null;
     this.miliamperios = null;
 
-    this.errorKilovolt = errorkv;
-    this.errorMiliamperios = errorma;
-    this.errorFuerza = errorF;
-    this.errorAltura = errorAlt;
+    this.errorKilovolt = errors["errorkv"];
+    this.errorMiliamperios = errors["errorma"];
+    this.errorFuerza = errors["errorF"];
+    this.errorAltura = errors["errorAlt"];
 
     this.modo = null;
     this.filtro = null;

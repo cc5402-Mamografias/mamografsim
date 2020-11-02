@@ -72,7 +72,7 @@ $errorkv = $moduleinstance->errorkv;
 $errorma = $moduleinstance->errorma;
 $errorf = $moduleinstance->errorf;
 $erroralt = $moduleinstance->erroralt;
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array($errorkv,$errorma,$errorf,$erroralt));
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorkv',$errorkv),array('errorma',$errorma),array('errorf',$errorf),array('erroralt',$erroralt))));
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
