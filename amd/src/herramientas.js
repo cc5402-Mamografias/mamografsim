@@ -267,13 +267,11 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "termometro";
-    this.image = new Image();
-    this.image.src = "icons/thermometer.png";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
     this.termometro = new Image();
-    this.termometro.src = 'img/thermometer.png'; 
+    this.termometro.src = 'img/thermometer.svg'; 
     this.x = 10;
     this.y = 10;
     this.scale = 0.18;
@@ -282,8 +280,7 @@ class Termometro extends AbstractTool {
   }
 
   actualizar(estado) {
-    // TODO
-    console.log("haha Termometro go brrrr");
+    
   }
 
   dibujar(ctx) {
@@ -304,7 +301,7 @@ class Barometro extends AbstractTool {
     this.estado = "inactivo";
     this.description = "Este es un barometro.";
     this.barometro = new Image();
-    this.barometro.src = "img/barometer.png";
+    this.barometro.src = "img/barometer.svg";
     this.scale = 0.15;
     this.x = 33;
     this.y = 13;
