@@ -1,3 +1,4 @@
+import jQuery from "jquery";
 import {
   Balanza,
   Barometro,
@@ -10,10 +11,8 @@ import {
   Slab_70mm
 } from "./herramientas";
 
+import Habitacion from "./habitacion";
 import Maquina from "./maquina";
-import jQuery from "jquery";
-//import { checkBoundingBoxClick } from "./utils";
-
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
 import { getCompresorPosY } from "./vista";
@@ -24,18 +23,15 @@ let m = null;
 
 class Main {
   constructor() {
-    this.herr_activas = [];
-
-    this.herr_disponibles = [
+    this.herramientas_hab = [new Barometro(), new Termometro()];
+    this.herramientas_mam = [
       new Balanza(),
       new Slab_20mm(),
       new Slab_45mm(),
       new Slab_70mm(),
-      new Barometro(),
-      new CamaraIonizacion(),
       new CintaMetrica(),
+      new CamaraIonizacion(),
       new Electrometro(),
-      new Termometro(),
     ];
 
     this.c = document.getElementById("canvas");
@@ -47,7 +43,7 @@ class Main {
     this.ctxres = this.cres.getContext("2d");
 
     this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
-
+    this.habitacion = new Habitacion(() => { this.actualizar() });
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
       this.mamografo.subirCompresor();
@@ -83,12 +79,22 @@ class Main {
       200
     );
 
-    this.herr_disponibles.forEach((tool) => {
-      let r = $(`<button title= "${tool.description}" class="herrams-boton"> </button>`).append(
-        `<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`
-      );
+    this.herramientas_mam.forEach((tool) => {
+      let r = $(
+        `<button title= "${tool.description}" class="herrams-boton"> </button>`
+      ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
 
-      r.on("click", () => this.onClickTool(tool));
+      r.on("click", () => this.onClickTool(this.mamografo, tool));
+      r.appendTo("#herramientas-express");
+    });
+
+    this.herramientas_hab.forEach((tool) => {
+
+      let r = $(
+        `<button title= "${tool.description}" class="herrams-boton"> </button>`
+      ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
+
+      r.on("click", () => this.onClickTool(this.habitacion, tool));
       r.appendTo("#herramientas-express");
     });
 
@@ -103,9 +109,8 @@ class Main {
     this.actualizar();
   }
 
+
   actualizar() {
-
-
     // Debemos actualizar la posición de la perilla
     this.perrillaUp.posicion = [
       this.perrillaUp.posicion[0],
@@ -126,14 +131,16 @@ class Main {
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
+    this.habitacion.dibujar(this.ctx);
 
     // dibujar en el canvas las herramientas nuevas
-    this.herr_activas.forEach((t) => t.dibujar(this.ctx));
+    // this.herr_activas.forEach((t) => t.dibujar(this.ctx));
 
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
     try {
       this.mamografo.getHerramienta().dibujar_resultado(this.ctxres);
+      this.habitacion.getHerramienta().dibujar_resultado(this.ctxres);
     } catch (error) {
       //console.log(error);
     }
@@ -143,16 +150,8 @@ class Main {
     return this.mamografo;
   }
 
-  onClickTool(tool) {
-    console.log(tool);
-    this.mamografo.setHerramienta(tool);
-    /*const i = this.herr_activas.indexOf(tool);
-    if (i > -1) {
-      this.herr_activas.splice(i, 1);
-    } else {
-      this.herr_activas.push(tool);
-
-    }*/
+  onClickTool(herramientaHolder, tool) {
+    herramientaHolder.setHerramienta(tool);
     this.actualizar();
   }
 
@@ -179,6 +178,7 @@ class Main {
     }
   }
 }
+
 
 export let init = () => {
   m = new Main();
@@ -228,6 +228,8 @@ function show_sim() {
   y.style.display = "none";
 }
 
+
 export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
 };
+

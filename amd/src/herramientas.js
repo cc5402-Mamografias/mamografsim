@@ -54,6 +54,7 @@ class BaseNula extends AbstractTool {
 }
 
 class Balanza extends AbstractTool {
+  
   constructor() {
     super();
     this.tipo = "Balanza";
@@ -272,6 +273,11 @@ class Termometro extends AbstractTool {
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
+    this.scale = 1;
+    this.x = 320;
+    this.y = 80;
+    this.width = 40;
+    this.height = 40;
   }
 
   actualizar(estado) {
@@ -280,6 +286,14 @@ class Termometro extends AbstractTool {
   }
 
   dibujar(ctx) {
+    ctx.fillStyle = "blue";
+    ctx.fillRect(
+      this.x,
+      this.y,
+      this.width * this.scale,
+      this.height * this.scale
+    );
+
   
   }
 
