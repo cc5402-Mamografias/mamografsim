@@ -96,9 +96,11 @@ class Slab_20mm extends AbstractTool {
     super();
     this.tipo = "Slab20";
     this.icon = "slabs.png";
+    this.estado = "inactivo";
+    this.fuerza = 0;
+    this.description = "Estos son unos slabs.";
     this.altura = 2.0;
 
-    // pasar parametros a vista?
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
@@ -218,11 +220,24 @@ class CamaraIonizacion extends AbstractTool {
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
+    this.kilovolt = 0;
+    this.miliamperios = 0;
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
   }
 
   actualizar(estado) {
-    // TODO
+    console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
+    if (estado.activo == true){
+      this.kilovolt = estado.kilovolt;
+      this.miliamperios = estado.miliamperios;
+      this.modo = estado.modo;
+      this.filtro = estado.filtro;
+      this.anodo = estado.anodo;
+      console.log("haha Camara de Ionizacion go brrrr");
+    }
   }
 
   dibujar(ctx) {
@@ -236,7 +251,16 @@ class CamaraIonizacion extends AbstractTool {
   }
 
   dibujar_resultado(ctx) {
-
+    ctx.font = "14px Arial";
+    ctx.fillText("KV: " + this.kilovolt , 10, 150);
+    ctx.font = "14px Arial";
+    ctx.fillText("mAs: " + this.miliamperios , 10, 170);
+    ctx.font = "14px Arial";
+    ctx.fillText("modo: " + this.modo , 10, 190);
+    ctx.font = "14px Arial";
+    ctx.fillText("filtro: " + this.filtro , 10, 210);
+    ctx.font = "14px Arial";
+    ctx.fillText("anodo: " + this.anodo , 10, 230);
   }
 }
 

@@ -193,7 +193,7 @@ button.anodemode{
 .filter-mode{
   position:absolute;
   top:210px;
-  left:5px;
+  left:-55px;
   width:300px;
   height:53px;
   margin-right: 0px;
@@ -202,7 +202,16 @@ button.anodemode{
 .anode-mode{
   position:absolute;
   top:250px;
-  left:5px;
+  left:-50px;
+  width:300px;
+  height:30px;
+  margin-right: 0px;
+}
+
+.shoot-mode{
+  position:absolute;
+  top:230px;
+  left:100px;
   width:300px;
   height:30px;
   margin-right: 0px;

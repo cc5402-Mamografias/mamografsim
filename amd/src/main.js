@@ -20,7 +20,7 @@ import { getCompresorPosY } from "./vista";
 
 window.$ = window.jQuery = $ = jQuery;
 
-let m = null;
+var m = null;
 
 class Main {
   constructor() {
@@ -46,7 +46,7 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
+    this.mamografo = new Maquina(0.1, 0.1, 0.5, 0, this.ctx);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -104,8 +104,6 @@ class Main {
   }
 
   actualizar() {
-
-
     // Debemos actualizar la posición de la perilla
     this.perrillaUp.posicion = [
       this.perrillaUp.posicion[0],
@@ -137,11 +135,17 @@ class Main {
     } catch (error) {
       //console.log(error);
     }
+
+
+    //dibujar resultado disparo mamografo
+    
   }
 
   getMamografo() {
+    console.log("Conseguimos mamografo");
     return this.mamografo;
   }
+
 
   onClickTool(tool) {
     console.log(tool);
@@ -198,6 +202,7 @@ export let init = () => {
     elems[i].onclick = show_sim;
   }
 
+
   console.log("Simulador inicializado");
 };
 
@@ -228,6 +233,13 @@ function show_sim() {
   y.style.display = "none";
 }
 
+//error: null has no properties
 export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
+};
+
+export let disparo = () => {
+  console.log("Shoot2");
+  m.getMamografo().activar();
+  m.actualizar();
 };
