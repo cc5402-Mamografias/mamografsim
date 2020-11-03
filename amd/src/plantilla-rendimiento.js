@@ -98,5 +98,5 @@ function rendimiento_normalizado(r1, r2, r3){
     }
     var avg = average([r1, r2, r3]);
     //asumiento que la distancia del mamografo es de 60 cm
-    return avg/0.6;
+    return (avg/0.6).toFixed(2);
 }
