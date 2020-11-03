@@ -48,7 +48,7 @@ function calcular_funciones(SelectedObject){
     var l2 = linealidad(y2, y3);
     (document.getElementById('l1_' + conf).innerHTML) = l1;
     (document.getElementById('l2_' + conf).innerHTML) = l2;
-    document.getElementById('rend_norm' + conf).innerHTML = rendimiento_normalizado(y1, y2, y3);
+    document.getElementById('rend_norm_' + conf).innerHTML = rendimiento_normalizado(y1, y2, y3);
 }
 
 function average(data){
