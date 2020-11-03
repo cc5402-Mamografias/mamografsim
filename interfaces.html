@@ -16,6 +16,7 @@
     <div id="contenedor-sim" class ="contenedor-sim">
         <!-- INTERFAZ MAMOGRAFO -->
         <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
+        <a href=""><button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button></a>
 
         <!-- /INTERFAZ MAMOGRAFO -->
 
@@ -48,17 +49,7 @@
 
         <!-- INTERFAZ PASOS -->
         <div id="container-pasos" class="pasos">
-          <!--
-            <h3 class="pasos-titulo">Pasos</h3>
-            <ol id="lista-pasos" class="pasos-lista">
-                <li>Elegir herramienta Balanza en la sección Herramientas.</li>
-                <li>Mantener el pedal izquierdo apretado hasta que el compresor llegue a su punto más bajo.</li>
-                <li>Una vez que el compresor tope con la balanza, en la sección Resultados aparecerá la fuerza real ejercida por la máquina. En el visor del mamógrafo aparecerá la fuerza calculada por el este. Anotar ambos valores en tabla de resultados</li>
-                <li>Apretar el pedal derecho para subir el compresor.</li>
-                <li>Si se quiere medir nuevamente el peso, repetir los puntos 2 y 3.</li>
-                <li>Para finalizar, apretar nuevamente el ícono de la Balanza en la sección Herramientas.</li>
-            </ol>
-            -->
+         
         </div>
         <!-- /INTERFAZ PASOS -->
 
@@ -134,6 +125,12 @@
                 </div>
             </div>
 
+            <div class="container">
+              <div class="shoot-mode">
+                <button class="shoot" id="shoot-b" >Shoot</button>
+              </div>
+          </div>
+
         </div>
         <!-- INTERFAZ PANEL DE CONTROL -->
 
@@ -182,96 +179,7 @@
           </div>
           
           <div id="container-plantilla" class="container">
-            <!--
-            <div style="height: 100px;">
-              <div class="row h-100">
-                <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
-              </div>
-            </div>
-          
             
-            <div style="height: 100px;">
-              
-              <table>
-                <tr>
-                  <th ></th>
-                  <th>Motorizada(N)</th>
-                  <th>Manual(N)</th>
-                </tr>
-                
-                <tr>
-                  <th>Fuerza de compresión máxima</th>
-                  <th><input type="number" id="comp_max_moto"></th>
-                  <th><input type="number" id="comp_max_manual"></th>
-                </tr>
-                
-                <tr>
-                  <th>Fuerza de compresión mostrada</th>
-                  <th><input type="number" id="comp_mostrada_moto"></th>
-                  <th><input type="number" id="comp_mostrada_manual"></th>
-                </tr>
-          
-                <tr>
-                  <th>Cumple Si/No</th>
-                  <th><select name="cumple" id="cumple_moto">
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select></th>
-                  <th><select name="cumple" id="cumple_manual">
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select></th>
-                </tr>
-          
-          
-              </table>
-            </div>
-            -->
-            
-          
-              
-          <!--          division de tablas                   -->
-          <!--
-            <div style="height: 100px;">
-              <table>
-                <tr>
-                  <th> </th>
-                  <th>Espesor Indicado</th>
-                  <th>Fuerza de Compresion</th> 
-                  <th>S/N</th>
-                </tr>
-                <tr>
-                  <td>20mm</td>
-                  <td><input type="number" id="esp_20"></td>
-                  <td><input type="number" id="fuer_20"></td>
-                  <td><select name="cumple" id="cumple_20">
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select></td>
-                </tr>
-                <tr>
-                  <td>45mm</td>
-                  <td><input type="number" id="esp_45"></td>
-                  <td><input type="number" id="fuer_45"></td>
-                  <td><select name="cumple" id="cumple_45">
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select></td>
-                </tr>
-                <tr>
-                  <td>70mm</td>
-                  <td><input type="number" id="esp_75"></td>
-                  <td><input type="number" id="fuer_75"></td>
-                  <td><select name="cumple" id="cumple_75">
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                  </select></td>
-                </tr>
-          
-          
-              </table>
-            </div>
-              -->
           </div>
         
         </div>
@@ -288,6 +196,9 @@
     $("#open-sim-button-2").click(function(event) {
       $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
       $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
+    });    
+    $("#volver").click(function(event) {
+      $("#contenedor-button").load("interfaces.html");
     });
   });
   </script>
@@ -295,3 +206,4 @@
 </body>
 
 </html>
+

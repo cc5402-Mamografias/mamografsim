@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21.208mm" height="100.49mm" version="1.1" viewBox="0 0 21.208 100.49" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <radialGradient id="radialGradient1258" cx="56.184" cy="251.35" r="19.844" gradientTransform="matrix(.40648 0 0 .40648 33.346 95.814)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#fff" offset="0"/>
+   <stop stop-color="#fff" stop-opacity=".41569" offset=".7"/>
+   <stop stop-color="#fff" stop-opacity="0" offset="1"/>
+  </radialGradient>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-45.58 -116.19)">
+  <path d="m56.184 116.19c5.8745 0 10.604 4.7293 10.604 10.604v79.282c0 5.8745-4.7293 10.604-10.604 10.604-5.8745 0-10.604-4.7293-10.604-10.604v-79.282c0-5.8745 4.7293-10.604 10.604-10.604z" opacity=".88147" stroke-width=".09831"/>
+  <path d="m56.184 116.57c5.4311 0 9.8034 4.6928 9.8034 10.522v78.67c0 5.8292-4.3723 10.522-9.8034 10.522-5.4311 0-9.8034-4.6928-9.8034-10.522v-78.67c0-5.8292 4.3723-10.522 9.8034-10.522z" fill="#fff" opacity=".88147" stroke-width=".094162"/>
+  <g>
+   <path d="m64.052 198.05a7.8678 7.8678 0 0 1-7.8678 7.8678 7.8678 7.8678 0 0 1-7.8678-7.8678 7.8678 7.8678 0 0 1 7.8678-7.8678 7.8678 7.8678 0 0 1 7.8678 7.8678z" fill="#f00" stroke-width=".09831"/>
+   <path d="m56.184 122.44c0.67809 0 1.224 0.5459 1.224 1.224v72.235c0 0.67809-0.5459 1.224-1.224 1.224-0.67809 0-1.224-0.54591-1.224-1.224v-72.235c0-0.67809 0.5459-1.224 1.224-1.224z" fill="#f00" stroke-width=".09831"/>
+   <path d="m63.557 197.98a7.3733 7.3733 0 0 1-7.3733 7.3733 7.3733 7.3733 0 0 1-7.3733-7.3733 7.3733 7.3733 0 0 1 7.3733-7.3733 7.3733 7.3733 0 0 1 7.3733 7.3733z" fill="url(#radialGradient1258)" stroke-width=".092132"/>
+  </g>
+  <g fill="none" stroke="#000">
+   <path d="m50.032 189.12h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 187.91h2.6983"/>
+    <path d="m50.724 186.73h2.6983"/>
+    <path d="m50.724 185.56h2.6983"/>
+    <path d="m50.724 184.38h2.6983"/>
+   </g>
+   <path d="m50.032 183.22h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 182.02h2.6983"/>
+    <path d="m50.724 180.84h2.6983"/>
+    <path d="m50.724 179.66h2.6983"/>
+    <path d="m50.724 178.48h2.6983"/>
+   </g>
+   <path d="m50.032 177.13h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 175.92h2.6983"/>
+    <path d="m50.724 174.74h2.6983"/>
+    <path d="m50.724 173.56h2.6983"/>
+    <path d="m50.724 172.38h2.6983"/>
+   </g>
+   <path d="m50.032 171.23h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 170.02h2.6983"/>
+    <path d="m50.724 168.84h2.6983"/>
+    <path d="m50.724 167.66h2.6983"/>
+    <path d="m50.724 166.48h2.6983"/>
+   </g>
+   <path d="m50.032 165.33h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 164.12h2.6983"/>
+    <path d="m50.724 162.94h2.6983"/>
+    <path d="m50.724 161.76h2.6983"/>
+    <path d="m50.724 160.58h2.6983"/>
+   </g>
+   <path d="m50.032 159.43h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 158.22h2.6983"/>
+    <path d="m50.724 157.05h2.6983"/>
+    <path d="m50.724 155.87h2.6983"/>
+    <path d="m50.724 154.69h2.6983"/>
+   </g>
+   <path d="m50.032 153.34h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 152.13h2.6983"/>
+    <path d="m50.724 150.95h2.6983"/>
+    <path d="m50.724 149.77h2.6983"/>
+    <path d="m50.724 148.59h2.6983"/>
+   </g>
+   <path d="m50.032 147.44h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 146.23h2.6983"/>
+    <path d="m50.724 145.05h2.6983"/>
+    <path d="m50.724 143.87h2.6983"/>
+    <path d="m50.724 142.69h2.6983"/>
+   </g>
+   <path d="m50.032 141.34h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 140.14h2.6983"/>
+    <path d="m50.724 138.96h2.6983"/>
+    <path d="m50.724 137.78h2.6983"/>
+    <path d="m50.724 136.6h2.6983"/>
+   </g>
+   <path d="m50.032 135.45h3.3901" stroke-width=".27806px"/>
+   <g stroke-width=".09831px">
+    <path d="m50.724 134.24h2.6983"/>
+    <path d="m50.724 133.06h2.6983"/>
+    <path d="m50.724 131.88h2.6983"/>
+    <path d="m50.724 130.7h2.6983"/>
+   </g>
+   <path d="m50.032 129.55h3.3901" stroke-width=".27806px"/>
+  </g>
+  <path d="m56.184 122.67c0.60863 0 1.0986 0.26942 1.0986 0.60407v35.649c0 0.33467-0.48998 0.60408-1.0986 0.60408s-1.0986-0.26941-1.0986-0.60408v-35.649c0-0.33465 0.48998-0.60407 1.0986-0.60407z" fill="#fff" stroke-width=".06543"/>
+ </g>
+</svg>

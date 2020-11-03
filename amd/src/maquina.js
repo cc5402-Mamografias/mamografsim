@@ -1,5 +1,6 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
+//import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 155;
 const margenF = 0.5;
@@ -24,19 +25,21 @@ export default class Maquina {
     this.factorCompManual = 1.5;
 
     this.margenF = this.mError(margenF);
-
+    //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
     this.kilovolt = null;
     this.miliamperios = null;
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
 
     this.errorKilovolt = errors["errorkv"];
     this.errorMiliamperios = errors["errorma"];
     this.errorFuerza = errors["errorF"];
     this.errorAltura = errors["errorAlt"];
 
-    this.modo = null;
-    this.filtro = null;
-    this.anodo = null;
     preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
+    //setearParamsMamografo();
+    
   }
 
   mError(x) {
@@ -52,14 +55,11 @@ export default class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion) 
           : 0,
-      kilovolt: isActivo
-        ? this.kilovolt + this.errorKilovolt + this.mError(margenKV)
-        : 0,
-      miliamperios: isActivo
-        ? this.miliamperios + this.errorMiliamperios + this.mError(margenmA)
-        : 0,
+      kilovolt: this.kilovolt + this.errorKilovolt,
+      miliamperios: this.miliamperios + this.errorMiliamperios,
       filtro: this.filtro,
       anodo: this.anodo,
+      modo: this.modo,
       activo: isActivo,
     };
   }
@@ -82,9 +82,7 @@ export default class Maquina {
   }
 
   actualizar(activo = false) {
-
     this.herramienta.actualizar(this.construirEstado(activo));
-    // this.dibujar();
   }
 
   dibujar(ctx) {
@@ -99,6 +97,7 @@ export default class Maquina {
 
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
+    console.log("seteo nuevos parametros");
     this.kilovolt = kv;
     this.miliamperios = ma;
     this.modo = md;
@@ -168,5 +167,6 @@ export default class Maquina {
     }
     this.actualizar();
   }
+
 
 }
