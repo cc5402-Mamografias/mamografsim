@@ -3,9 +3,8 @@ import { actualizar } from "./main";
 import { drawHab } from "./vista";
 
 export default class Habitacion {
-  constructor(actualizarSim, presion = 1, temperatura = 20) {
+  constructor(presion = 1, temperatura = 22) {
 
-    this.actualizarSim = actualizarSim;
     this.presion = presion; // presion en bar
     this.temperatura = temperatura; // temperatura en celsius
 
@@ -18,8 +17,6 @@ export default class Habitacion {
       temperatura: this.temperatura,
       estado: true
     });
-
-    this.actualizarSim();
   }
 
   setHerramienta(herram) {

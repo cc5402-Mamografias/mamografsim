@@ -138,8 +138,13 @@ class Main {
 
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
+    console.log('dibujando resultados');
     try {
       this.mamografo.getHerramienta().dibujar_resultado(this.ctxres);
+    } catch (error) {
+      //console.log(error);
+    }
+    try {
       this.habitacion.getHerramienta().dibujar_resultado(this.ctxres);
     } catch (error) {
       //console.log(error);

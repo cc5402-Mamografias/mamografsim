@@ -293,12 +293,11 @@ class Termometro extends AbstractTool {
       this.width * this.scale,
       this.height * this.scale
     );
-
-  
   }
 
   dibujar_resultado(ctx) {
-
+    ctx.font = "28px Arial";
+    ctx.fillText("Temperatura: 20 C°.", 10, 80);
   }
 }
 

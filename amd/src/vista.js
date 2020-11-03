@@ -27,6 +27,13 @@ compresor.src = "img/compresor.svg";
 var visor = new Image();
 visor.src = "img/visor.svg";
 
+
+export function drawHab(ctx, herramientas) {
+  if (herramientas !== null) {
+    herramientas.forEach((t) => t.dibujar(ctx));
+  }
+}
+
 export function drawMam(
   ctx,
   alturaCompresorY = 0,
@@ -79,9 +86,9 @@ export function drawMam(
     (visorY + y) * scale - 80
   );
   ctx.fillStyle = "#54FF54";
-  ctx.fillText(altura.toString() + " mm.", 
-  (visorX + x) * scale + 20,  
-  (visorY + y) * scale - 65
+  ctx.fillText(altura.toString() + " mm.",
+    (visorX + x) * scale + 20,
+    (visorY + y) * scale - 65
   );
 }
 
