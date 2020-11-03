@@ -85,7 +85,7 @@ class Balanza extends AbstractTool {
     ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {  
+  dibujar_resultado(ctx) {
     ctx.font = "28px Arial";
     ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
   }
@@ -271,11 +271,11 @@ class Termometro extends AbstractTool {
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
     this.termometro = new Image();
-    this.termometro.src = 'img/thermometer.svg'; 
+    this.termometro.src = 'img/thermometer.svg';
     this.x = 10;
     this.y = 10;
     this.scale = 0.18;
-    this.temperatura = 20;
+    this.temperatura = 22;
 
   }
 
@@ -338,7 +338,7 @@ class CintaMetrica extends AbstractTool {
   }
 
   dibujar(ctx) {
- 
+    
   }
 
   dibujar_resultado(ctx) {
