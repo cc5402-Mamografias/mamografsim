@@ -20,7 +20,7 @@ import PanelResultados from "./panel-resultados";
 
 window.$ = window.jQuery = $ = jQuery;
 
-let m = null;
+var m = null;
 
 class Main {
   constructor() {
@@ -111,7 +111,6 @@ class Main {
     this.actualizar();
   }
 
-
   actualizar() {
     // Debemos actualizar la posición de la perilla
     this.perrillaUp.posicion = [
@@ -154,6 +153,7 @@ class Main {
   }
 
   getMamografo() {
+    console.log("Conseguimos mamografo");
     return this.mamografo;
   }
 
@@ -206,6 +206,7 @@ export let init = () => {
     elems[i].onclick = show_sim;
   }
 
+
   console.log("Simulador inicializado");
 };
 
@@ -237,7 +238,13 @@ function show_sim() {
 }
 
 
+//error: null has no properties
 export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
 };
 
+export let disparo = () => {
+  console.log("Shoot2");
+  m.getMamografo().activar();
+  m.actualizar();
+};

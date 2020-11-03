@@ -96,9 +96,11 @@ class Slab_20mm extends AbstractTool {
     super();
     this.tipo = "Slab20";
     this.icon = "slabs.png";
+    this.estado = "inactivo";
+    this.fuerza = 0;
+    this.description = "Estos son unos slabs.";
     this.altura = 2.0;
 
-    // pasar parametros a vista?
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
@@ -213,11 +215,24 @@ class CamaraIonizacion extends AbstractTool {
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
+    this.kilovolt = 0;
+    this.miliamperios = 0;
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
   }
 
   actualizar(estado) {
-    // TODO
+    console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
+    if (estado.activo == true) {
+      this.kilovolt = estado.kilovolt;
+      this.miliamperios = estado.miliamperios;
+      this.modo = estado.modo;
+      this.filtro = estado.filtro;
+      this.anodo = estado.anodo;
+      console.log("haha Camara de Ionizacion go brrrr");
+    }
   }
 
   dibujar(ctx) {
@@ -228,6 +243,19 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.stroke();
     //ctx.fillStyle = "yellow";
     //ctx.fill();
+  }
+
+  dibujar_resultado(ctx) {
+    ctx.font = "14px Arial";
+    ctx.fillText("KV: " + this.kilovolt , 10, 150);
+    ctx.font = "14px Arial";
+    ctx.fillText("mAs: " + this.miliamperios , 10, 170);
+    ctx.font = "14px Arial";
+    ctx.fillText("modo: " + this.modo , 10, 190);
+    ctx.font = "14px Arial";
+    ctx.fillText("filtro: " + this.filtro , 10, 210);
+    ctx.font = "14px Arial";
+    ctx.fillText("anodo: " + this.anodo , 10, 230);
   }
 }
 
@@ -254,36 +282,29 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "termometro";
-    this.image = new Image();
-    this.image.src = "icons/thermometer.png";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
-    this.scale = 1;
-    this.x = 320;
-    this.y = 80;
-    this.width = 40;
-    this.height = 40;
+    this.termometro = new Image();
+    this.termometro.src = 'img/thermometer.svg';
+    this.x = 10;
+    this.y = 10;
+    this.scale = 0.18;
+    this.temperatura = 22;
   }
 
   actualizar(estado) {
-    // TODO
-    console.log("haha Termometro go brrrr");
+
   }
 
   dibujar(ctx) {
-    ctx.fillStyle = "blue";
-    ctx.fillRect(
-      this.x,
-      this.y,
-      this.width * this.scale,
-      this.height * this.scale
-    );
+    ctx.drawImage(this.termometro, this.x, this.y, this.termometro.width * this.scale, this.termometro.height * this.scale);
   }
 
   getResultado() {
-    return { termometro: "Temperatura: 20°." };
+    return { termometro: "Temperatura: " + this.temperatura + " °C" };
   }
+
 }
 
 class Barometro extends AbstractTool {
@@ -293,6 +314,12 @@ class Barometro extends AbstractTool {
     this.icon = "barometer.png";
     this.estado = "inactivo";
     this.description = "Este es un barometro.";
+    this.barometro = new Image();
+    this.barometro.src = "img/barometer.svg";
+    this.scale = 0.15;
+    this.x = 33;
+    this.y = 13;
+    this.presion = 1013;
   }
 
   actualizar(estado) {
@@ -301,7 +328,12 @@ class Barometro extends AbstractTool {
   }
 
   dibujar(ctx) {
+    ctx.drawImage(this.barometro, this.x, this.y, this.barometro.width * this.scale, this.barometro.height * this.scale);
+  }
 
+  dibujar_resultado(ctx) {
+    ctx.font = "28px Arial";
+    ctx.fillText("Presión: " + this.presion + " hPa", 10, 80);
   }
 }
 
@@ -320,7 +352,6 @@ class CintaMetrica extends AbstractTool {
   }
 
   dibujar(ctx) {
-
   }
 }
 
