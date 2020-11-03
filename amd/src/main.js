@@ -42,7 +42,7 @@ class Main {
     this.ctx = this.c.getContext("2d");
 
     this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
-    this.habitacion = new Habitacion(() => { this.actualizar() });
+    this.habitacion = new Habitacion();
 
     this.panelResultados = new PanelResultados();
 

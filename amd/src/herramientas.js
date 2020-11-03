@@ -87,7 +87,7 @@ class Balanza extends AbstractTool {
   }
 
   getResultado() {
-    return { balanza: "Balanza: " + this.fuerza.toFixed(2) + " Kg." };
+    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."]};
   }
 }
 
@@ -127,7 +127,7 @@ class Slab_20mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab20: "Altura Slabs: " + this.getAltura() * 10 + " mm." };
+    return { slab20: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
   }
 }
 class Slab_45mm extends AbstractTool {
@@ -165,7 +165,7 @@ class Slab_45mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab45: "Altura Slabs: " + this.getAltura() * 10 + " mm." };
+    return { slab45: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
   }
 }
 
@@ -204,7 +204,7 @@ class Slab_70mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab70: "Altura Slabs: " + this.getAltura() * 10 + " mm." };
+    return { slab70: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
   }
 }
 
@@ -244,18 +244,15 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fillStyle = "yellow";
     //ctx.fill();
   }
-
-  dibujar_resultado(ctx) {
-    ctx.font = "14px Arial";
-    ctx.fillText("KV: " + this.kilovolt , 10, 150);
-    ctx.font = "14px Arial";
-    ctx.fillText("mAs: " + this.miliamperios , 10, 170);
-    ctx.font = "14px Arial";
-    ctx.fillText("modo: " + this.modo , 10, 190);
-    ctx.font = "14px Arial";
-    ctx.fillText("filtro: " + this.filtro , 10, 210);
-    ctx.font = "14px Arial";
-    ctx.fillText("anodo: " + this.anodo , 10, 230);
+  getResultado() {
+    return {camara: [
+      "Camara de Ionización",
+      "\t\t\tKV: " + this.kilovolt,
+      "\t\t\tmAs: " + this.miliamperios,
+      "\t\t\tmodo: " + this.modo,
+      "\t\t\tfiltro: " + this.filtro,
+      "\t\t\tanodo: " + this.anodo,
+    ]}
   }
 }
 
@@ -294,7 +291,7 @@ class Termometro extends AbstractTool {
   }
 
   actualizar(estado) {
-
+    this.temperatura = estado.temperatura;
   }
 
   dibujar(ctx) {
@@ -302,7 +299,7 @@ class Termometro extends AbstractTool {
   }
 
   getResultado() {
-    return { termometro: "Temperatura: " + this.temperatura + " °C" };
+    return { termometro: ["Temperatura: " + this.temperatura + " °C"] };
   }
 
 }
@@ -323,17 +320,15 @@ class Barometro extends AbstractTool {
   }
 
   actualizar(estado) {
-    // TODO
-    console.log("haha Barometro go brrrr");
+    this.presion = estado.presion;
   }
 
   dibujar(ctx) {
     ctx.drawImage(this.barometro, this.x, this.y, this.barometro.width * this.scale, this.barometro.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Presión: " + this.presion + " hPa", 10, 80);
+  getResultado() {
+    return { barometro: ["Presión: " + this.presion + " hPa"] };
   }
 }
 

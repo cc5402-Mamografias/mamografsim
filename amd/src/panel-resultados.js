@@ -11,9 +11,7 @@ export default class PanelResultados {
 
 
   registrarResultado(res) {
-    console.log(res);
     this.resultados = { ...this.resultados, ...res };
-    console.log(this.resultados);
   }
 
   limpiarResultados() {
@@ -26,14 +24,16 @@ export default class PanelResultados {
 
   dibujarResultados() {
     this.limpiarPanel();
+    var y = 0;
+    this.ctx.font = "18px Arial";
 
-    var y = 1;
-    console.log(this.resultados);
 
     for (const res in this.resultados) {
-      this.ctx.font = "24px Arial";
-      this.ctx.fillText(this.resultados[res], 10, 50 + 30 * y);
-      y += 1;
+      for(const line in this.resultados[res]){
+        this.ctx.fillText(this.resultados[res][line], 10, 50 + 30 * y);  
+        y += 1;
+      }
+      
     }
   }
 }
