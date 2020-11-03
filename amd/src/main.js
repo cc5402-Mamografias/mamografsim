@@ -42,7 +42,7 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
+    this.mamografo = new Maquina(0.1, 0.1, 0.5, 0, this.ctx);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -100,8 +100,6 @@ class Main {
   }
 
   actualizar() {
-
-
     // Debemos actualizar la posición de la perilla
     this.perrillaUp.posicion = [
       this.perrillaUp.posicion[0],
@@ -136,14 +134,7 @@ class Main {
 
 
     //dibujar resultado disparo mamografo
-    //CREO QUE DEBERIA HABER OTRO CANVAS PARA LOS RESULTADOS DEL DISPARO/TOMA 
-    try {
-      this.mamografo.dibujarResultadoDisparo(this.ctxres);
-      console.log("Shoot");
-    } catch (error) {
-      //console.log("F")
-      //console
-    }
+    
   }
 
   getMamografo() {
@@ -207,6 +198,7 @@ export let init = () => {
     elems[i].onclick = show_sim;
   }
 
+
   console.log("Simulador inicializado");
 };
 
@@ -243,5 +235,7 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
 };
 
 export let disparo = () => {
+  console.log("Shoot2");
+  m.getMamografo().activar();
   m.actualizar();
 };
