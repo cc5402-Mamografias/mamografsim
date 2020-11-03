@@ -5,7 +5,9 @@ import {
   CintaMetrica,
   Electrometro,
   Termometro,
-  Slabs
+  Slab_20mm,
+  Slab_45mm,
+  Slab_70mm
 } from "./herramientas";
 
 import Maquina from "./maquina";
@@ -26,7 +28,9 @@ class Main {
 
     this.herr_disponibles = [
       new Balanza(),
-      new Slabs(), 
+      new Slab_20mm(),
+      new Slab_45mm(),
+      new Slab_70mm(),
       new Barometro(),
       new CamaraIonizacion(),
       new CintaMetrica(),

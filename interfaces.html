@@ -16,6 +16,7 @@
     <div id="contenedor-sim" class ="contenedor-sim">
         <!-- INTERFAZ MAMOGRAFO -->
         <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
+        <a href=""><button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button></a>
 
         <!-- /INTERFAZ MAMOGRAFO -->
 
@@ -195,6 +196,9 @@
     $("#open-sim-button-2").click(function(event) {
       $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
       $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
+    });    
+    $("#volver").click(function(event) {
+      $("#contenedor-button").load("interfaces.html");
     });
   });
   </script>
@@ -202,3 +206,4 @@
 </body>
 
 </html>
+
