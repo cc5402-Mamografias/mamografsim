@@ -48,6 +48,7 @@ function calcular_funciones(SelectedObject){
     var l2 = linealidad(y2, y3);
     (document.getElementById('l1_' + conf).innerHTML) = l1;
     (document.getElementById('l2_' + conf).innerHTML) = l2;
+    document.getElementById('rend_norm_' + conf).innerHTML = rendimiento_normalizado(y1, y2, y3);
 }
 
 function average(data){
@@ -89,4 +90,13 @@ function linealidad(y1, y2){
     var abs = Math.abs(y2 - y1);
     var sum = y2 + y1;
     return (100*abs/sum).toFixed(2);
+}
+
+function rendimiento_normalizado(r1, r2, r3){
+    if (isNaN(r1) || isNaN(r2) || isNaN(r3)){
+        return "";
+    }
+    var avg = average([r1, r2, r3]);
+    //asumiento que la distancia del mamografo es de 60 cm
+    return (avg/0.6).toFixed(2);
 }
