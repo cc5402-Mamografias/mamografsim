@@ -16,6 +16,7 @@ import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
 import { getCompresorPosY } from "./vista";
+import PanelResultados from "./panel-resultados";
 
 window.$ = window.jQuery = $ = jQuery;
 
@@ -39,11 +40,12 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
-    this.cres = document.getElementById("canvRes");
-    this.ctxres = this.cres.getContext("2d");
 
     this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
     this.habitacion = new Habitacion(() => { this.actualizar() });
+
+    this.panelResultados = new PanelResultados();
+
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
       this.mamografo.subirCompresor();
@@ -123,8 +125,6 @@ class Main {
 
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
-    this.ctxres.clearRect(0, 0, this.c.width, this.c.height);
-
     //dibujar el mamografo
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
@@ -139,16 +139,18 @@ class Main {
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
     console.log('dibujando resultados');
+    this.panelResultados.limpiarResultados();
     try {
-      this.mamografo.getHerramienta().dibujar_resultado(this.ctxres);
+      this.panelResultados.registrarResultado(this.mamografo.getHerramienta().getResultado());
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
     try {
-      this.habitacion.getHerramienta().dibujar_resultado(this.ctxres);
+      this.panelResultados.registrarResultado(this.habitacion.getHerramienta().getResultado());
     } catch (error) {
-      //console.log(error);
+      console.log(error);
     }
+    this.panelResultados.dibujarResultados();
   }
 
   getMamografo() {
@@ -174,6 +176,7 @@ class Main {
       }
     }
   }
+
   // Checkea que se elementó se clickeo y activa su callback
   releaseCanvasClick(e) {
     if (this.clicked !== null) {
