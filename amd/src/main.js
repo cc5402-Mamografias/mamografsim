@@ -232,7 +232,7 @@ function hide_p() {
 
 function show_sim() {
   let x = document.getElementById("contenedor-sim");
-  x.style.display = "block";
+  x.style.display = "flex";
   let y = document.getElementById("contenedor-button");
   y.style.display = "none";
 }
