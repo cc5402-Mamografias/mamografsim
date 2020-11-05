@@ -13,8 +13,13 @@
   <div id="contenedor-main" class="contenedor-main">
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class ="contenedor-button">
-      <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
-      <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button>
+      <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
+      <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button> -->
+      <div id="loader">
+        <div class="loader">
+      </div>
+      <h2>Cargando...</h2>
+      </div>
     </div>
     <!-- INTERFAZ MENU INICIO -->
     
@@ -109,7 +114,7 @@
       <div id="panel-central">
         <!-- CANVAS MAMOGRAFO -->
         <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
-        <a href=""><button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button></a>
+        <button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->
@@ -130,22 +135,18 @@
         <!-- INTERFAZ RESULTADOS -->
         <div id="resultados" class = "resultados">
           <h3 class="titulo-panel">Resultados</h3>
-          <canvas id="canvRes"></canvas>  
+          <canvas id="canvRes" width="300px" height="220px"></canvas>  
         
           <!-- INTERFAZ BOTON PLANTILLA -->
           <!-- <div id="div-boton-plantilla" class = "contenedor-boton-plantilla"> -->
-            <button id="plantilla-abrir" class="boton-ver-mas" onclick="show_p()">Hoja de Resultados</button>
+            <button id="plantilla-abrir" class="boton-ver-mas">Hoja de Resultados</button>
           <!-- </div> -->
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
-        
-
-        
       </div>
       <!-- /DERECHO -->
     
-
       <!-- MENU OCULTO HERRAMIENTAS -->
       <div id="herrams" class="herramientas-pop">
         <div id="herrams-menos" class="herrams-salir">
@@ -192,31 +193,8 @@
         <div id="container-plantilla" class="container"></div>  
       </div>
       <!-- /PLANTILLA OCULTA RESULTADOS -->
-
     </div>
-    
   </div>
-    
-    
-
-
-  <script>
-  $(document).ready(function(){
-    //boton primera prueba
-    $("#open-sim-button").click(function(event) {
-      $("#container-pasos").load("pasos/pasos_prueba_compresion.html");
-      $("#container-plantilla").load("plantillas/plantilla_prueba_compresion.html");
-    });
-    //boton segunda prueba
-    $("#open-sim-button-2").click(function(event) {
-      $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
-      $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
-    });    
-    $("#volver").click(function(event) {
-      $("#contenedor-button").load("interfaces.html");
-    });
-  });
-  </script>
 
 </body>
 

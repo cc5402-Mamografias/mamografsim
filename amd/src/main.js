@@ -189,11 +189,17 @@ class Main {
 
 
 export let init = () => {
+
+
+  // inicializador del Mamografo! :)
   m = new Main();
   let elems;
 
+
   document.getElementById("herrams-mas").onclick = show_h;
   document.getElementById("herrams-menos").onclick = hide_h;
+
+
   // botones de herramientas en popup
   elems = document.getElementsByClassName("herrams-boton");
   for (let i = 0; i < elems.length; i++) {
@@ -201,12 +207,30 @@ export let init = () => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
+
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
   }
 
 
+  let pruebas = ['compresion', 'rendimiento'];
+
+  $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
+
+  let r;
+  for (let x of pruebas) {
+    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${x}</button>`);
+    r.on("click", () => cargarPrueba(x));
+    r.appendTo("#contenedor-button");
+  }
+
+  $("#volver").on('click', () => {
+    $("#contenedor-button").show();
+    $("#contenedor-sim").hide();
+  })
+  $("#loader").remove()
+  
   console.log("Simulador inicializado");
 };
 
@@ -230,13 +254,13 @@ function hide_p() {
   x.style.display = "none";
 }
 
-function show_sim() {
-  let x = document.getElementById("contenedor-sim");
-  x.style.display = "flex";
-  let y = document.getElementById("contenedor-button");
-  y.style.display = "none";
-}
-
+function cargarPrueba(prueba) {
+  console.log(`cargar prueba ${prueba}`);
+  $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
+  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
+  $("#contenedor-sim").css('display', 'flex');
+  $("#contenedor-button").hide();
+};
 
 //error: null has no properties
 export let setear_params = (kv, ma, md, fltr, anod) => {
