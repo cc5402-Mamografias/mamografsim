@@ -2,7 +2,7 @@ import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
 //import { setearParamsMamografo } from "./control-panel";
 
-const alturaMax = 155;
+const alturaMax = 80;
 const margenF = 0.5;
 const margenKV = 1;
 const margenmA = 10;
@@ -17,7 +17,7 @@ export default class Maquina {
   constructor(errors, ctx) {
     this.herramienta = new BaseNula();
 
-    this.alturaCompresor = 155;
+    this.alturaCompresor = 80;
     this.alturaEspesor = 25;
     this.fuerza = 17;
     this.factorCompresion = 0.0;
@@ -37,7 +37,7 @@ export default class Maquina {
     this.errorFuerza = errors["errorF"];
     this.errorAltura = errors["errorAlt"];
 
-    preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
+    preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
     //setearParamsMamografo();
     
   }
@@ -81,6 +81,11 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
+  alturaDesplegada(){
+    return this.alturaCompresor*2
+  }
+
+
   actualizar(activo = false) {
     this.herramienta.actualizar(this.construirEstado(activo));
   }
@@ -88,7 +93,7 @@ export default class Maquina {
   dibujar(ctx) {
     drawMam(
       ctx,
-      this.alturaCompresor,
+      this.alturaDesplegada(),
       [this.herramienta],
       this.valoresMedidos().fuerza.toFixed(2),
       this.valoresMedidos().altura
