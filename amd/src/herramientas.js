@@ -120,19 +120,18 @@ class Toalla extends AbstractTool {
         balanza.src = 'img/balanza.svg';
         balanza.toalla = false;
       }
+      balanza.actualizar();
       maquina.actualizar();
-      console.log("toalla: ",balanza.toalla);
-      console.log("balanza src: ",balanza.src);
+      console.log("balanza: ",balanza);
     }
-    
+  }
+  actualizar(ctx){
+    //nada
   }
   dibujar(ctx) {
-    ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
+   //nada
   }
 
-  getResultado() {
-    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
-  }
 }
 
 class Slab_20mm extends AbstractTool {
