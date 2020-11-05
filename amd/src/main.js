@@ -23,7 +23,7 @@ window.$ = window.jQuery = $ = jQuery;
 var m = null;
 
 class Main {
-  constructor() {
+  constructor(errors) {
     this.herramientas_hab = [new Barometro(), new Termometro()];
     this.herramientas_mam = [
       new Balanza(),
@@ -40,8 +40,7 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
-
-    this.mamografo = new Maquina(0, 0, 0, 0.5, this.ctx);
+    this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
 
     this.panelResultados = new PanelResultados();
@@ -82,22 +81,11 @@ class Main {
     );
 
     this.herramientas_mam.forEach((tool) => {
-      let r = $(
-        `<button title= "${tool.description}" class="herrams-boton"> </button>`
-      ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
-
-      r.on("click", () => this.onClickTool(this.mamografo, tool));
-      r.appendTo("#herramientas-express");
+      crearHerramButton(tool, () => this.onClickTool(this.mamografo, tool))
     });
 
     this.herramientas_hab.forEach((tool) => {
-
-      let r = $(
-        `<button title= "${tool.description}" class="herrams-boton"> </button>`
-      ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
-
-      r.on("click", () => this.onClickTool(this.habitacion, tool));
-      r.appendTo("#herramientas-express");
+      crearHerramButton(tool, () => this.onClickTool(this.habitacion, tool))
     });
 
     this.clickeableOnCanvas = [
@@ -187,15 +175,16 @@ class Main {
   }
 }
 
+export const init = (errors) => {
+  //console.log(errors);
+  let errordict = {}
+  errors.forEach((pair) => {
+    errordict[pair[0]] = pair[1];
 
-export let init = () => {
-
-
-  // inicializador del Mamografo! :)
-  m = new Main();
+  });
+  console.log(errordict);
+  m = new Main(errordict);
   let elems;
-
-
   document.getElementById("herrams-mas").onclick = show_h;
   document.getElementById("herrams-menos").onclick = hide_h;
 
@@ -230,7 +219,7 @@ export let init = () => {
     $("#contenedor-sim").hide();
   })
   $("#loader").remove()
-  
+
   console.log("Simulador inicializado");
 };
 
@@ -252,6 +241,22 @@ function show_p() {
 function hide_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "none";
+}
+
+
+function crearHerramButton(tool, onClickF) {
+
+  let r = $(
+    `<button title= "${tool.description}" class="herrams-boton her-b-s"> </button>`
+  ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
+  r.on("click", onClickF);
+  r.appendTo("#herramientas-express");
+
+  let r_col = $(`<div class="col-sm-2"></div>`);
+  let r2 = r.clone().removeClass("her-b-s").addClass("her-b-l");
+  r2.on("click", onClickF);
+  r_col.append(r2);
+  r_col.appendTo("#herrams-lista-completa");
 }
 
 function cargarPrueba(prueba) {

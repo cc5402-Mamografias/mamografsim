@@ -8,8 +8,13 @@ const margenKV = 1;
 const margenmA = 10;
 const margenAlt = 2;
 
+function rand(lowest, highest){
+  var adjustedHigh = (highest - lowest) + 1;       
+  return Math.floor(Math.random()*adjustedHigh) + parseFloat(lowest);
+}
+
 export default class Maquina {
-  constructor(errorkv, errorma, errorF, errorAlt, ctx) {
+  constructor(errors, ctx) {
     this.herramienta = new BaseNula();
 
     this.alturaCompresor = 155;
@@ -27,10 +32,10 @@ export default class Maquina {
     this.filtro = null;
     this.anodo = null;
 
-    this.errorKilovolt = errorkv;
-    this.errorMiliamperios = errorma;
-    this.errorFuerza = errorF;
-    this.errorAltura = errorAlt;
+    this.errorKilovolt = errors["errorkv"];
+    this.errorMiliamperios = errors["errorma"];
+    this.errorFuerza = errors["errorF"];
+    this.errorAltura = errors["errorAlt"];
 
     preloadImages().then(() => drawMam(ctx, this.alturaCompresor));
     //setearParamsMamografo();
@@ -42,11 +47,13 @@ export default class Maquina {
   }
 
   construirEstado(isActivo) {
+    //let errorF = rand(-this.errorFuerza,this.errorFuerza)
+    console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? (this.fuerza + this.errorFuerza + this.margenF) * this.factorCompresion
+          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion) 
           : 0,
       kilovolt: this.kilovolt + this.errorKilovolt,
       miliamperios: this.miliamperios + this.errorMiliamperios,

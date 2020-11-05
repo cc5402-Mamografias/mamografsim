@@ -291,6 +291,14 @@ input[type="radio"]:checked:after {
   padding: 5px;
 }
 
+.her-b-s {
+  width: 40%;
+}
+
+.her-b-l {
+  width: 100%;
+}
+
 .boton-ver-mas {
   width: 100%;
   height: 38px;
