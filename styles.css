@@ -71,24 +71,31 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 8%;
+  height: 7%;
   overflow-y: auto;
   outline: solid 1px black;
   text-align: center;
 }
 
 .botones button{
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-left: 30px;
   padding-right: 30px;
 }
 
+.espacio-boton{
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
 /* Interfaz pasos a seguir */
 .pasos {
-  position: relative; 
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 42%;
+  height: 43%;
   padding-left: 20px;
   overflow-y: auto;
   outline: solid 1px black;
