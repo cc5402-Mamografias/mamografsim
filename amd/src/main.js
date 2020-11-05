@@ -91,7 +91,10 @@ class Main {
 
       r.on("click", () => this.onClickTool(tool));
       r.appendTo("#herramientas-express");
-      r_col.append(r.clone().removeClass("her-b-s").addClass("her-b-l"));
+      let r2 = r.clone().removeClass("her-b-s").addClass("her-b-l");
+      r2.on("click", () => this.onClickTool(tool));
+
+      r_col.append(r2);
 
       r_col.appendTo("#herrams-lista-completa");
     });
