@@ -1,88 +1,99 @@
+.contenedor-main {
+  position: relative;
+}
+
 .contenedor-sim {
-    width: 950px;
-    height: 600px;
-    padding: 50px;
-    position: relative;
-    display: none;
+  width: 1010px;
+  height: 600px;
+  position: relative;
+  display: none;
+  margin: auto;
+
+  flex-direction: column;
+  flex-flow: row nowrap;  
+  /* justify-content: space-around; */
+  /* padding: 0; */
+  /* margin: 0; */ 
 }
 
 .contenedor-button {
-  width: 950px;
+  width: 1000px;
   height: 600px;
   padding: 200px;
   position: relative;
   text-align: center;
+  margin: auto;
+  outline: solid 1px black;
+}
+
+#panel-izquierdo {
+  /* position: absolute; */
+  /* float: left; */
+  width: 300px;
+  height: 100%;
+  /* display: inline-block; */
+}
+
+#panel-central {
+  /* position: absolute; */
+  /* float: left; */
+  width: 400px;
+  height: 100%;
+  /* display: inline-block; */
+}
+
+#panel-derecho {
+  /* float: right; */
+  /* position: absolute; */
+  width: 300px;
+  height: 100%;
+  /* display: inline-block; */
+}
+
+
+.titulo-panel {
+  font-size: large;
+  text-align: center;
+  width: 100%;
 }
 
 .open-sim {
+  min-width: 120px;
   border-radius: 8px;
-  
+  text-transform:capitalize;
+  text-align: center;
+  margin: 0 10px 0 10px;
+
 }
 /* Interfaz pasos a seguir */
 .pasos {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 302px;
-    padding-left: 20px;
-    overflow-y: auto;
-    border: solid 1px black;
-    text-align: justify;
+  position: relative; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  padding-left: 20px;
+  overflow-y: auto;
+  outline: solid 1px black;
+  text-align: justify;
 }
-.pasos-titulo {
-  text-align: center;
-}
+
 .pasos-lista {
   margin: 0;
   padding: 8px;
 }
 
 table {
-  width:100%; 
-  text-align:center;
+  width: 100%;
+  text-align: center;
   border: 1px solid black;
-  table-layout:fixed;
+  table-layout: fixed;
   margin-top: 60px;
 }
-th, td {
+th,
+td {
   border: 1px solid black;
 }
-
-/*Plantilla prueba rendimiento*/
-.custom-table{
-  width:100%; 
-  text-align:center;
-  border: none !important;
-  table-layout:fixed;
-  margin-top: 20px;
-}
-
-.margin-top-40{
-  margin-top: 40px;
-}
-
-.custom-th, .custom-td, .custom-tr{
-  border: none !important;
-}
-
-.text-right{
-  text-align: right;
-}
-
-.text-center{
-  text-align: center;
-}
-
-.custom-h3{
-  margin-left: 220px;
-  margin-top: 30px
-}
-
-.height-100{
-  height: 100px;
-}
-
 
 /* Interfaz panel de control */
 /* Quitar flechas de input number para diferentes navegadores */
@@ -93,130 +104,130 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
-button.btnadd{
-    border-radius: 8px;
+button.btnadd {
+  border-radius: 8px;
 }
-button.btnsub{
-    border-radius: 8px;
+button.btnsub {
+  border-radius: 8px;
 }
-button.btnmode{
+button.btnmode {
   border-radius: 8px;
 }
 
-button.fltmode{
-    border-radius: 8px;
+button.fltmode {
+  border-radius: 8px;
 }
 
-button.anodemode{
-    border-radius: 8px;
+button.anodemode {
+  border-radius: 8px;
 }
 .panel-control {
-    position: absolute;
-    top: 301px;
-    left: 0;
-    width: 300px;
-    height: 301px;
-    overflow: hidden;
-    border: solid 1px black;
-    background-color: #f5f5f5;
-    text-align: center;
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  outline: solid 1px black;
+  background-color: #f5f5f5;
+  text-align: center;
 }
 
-.numeric_input{
-  position:absolute; 
-  top:50px
+.numeric_input {
+  position: absolute;
+  top: 50px;
 }
 .mas_input {
-  width:50px;
+  width: 50px;
 }
 .kv_input {
-  width:35px;
-  margin-left:15px;
+  width: 35px;
+  margin-left: 15px;
 }
 .mas_label {
   margin-left: 5px;
 }
 .kv_label {
-  margin-left: 5px; 
-  margin-right: 12px
+  margin-left: 5px;
+  margin-right: 12px;
 }
 
-.modes{
-  position:absolute;
-  top:105px;
-  left:4px;
-  width:290px;
-  height:90px;
+.modes {
+  position: absolute;
+  top: 105px;
+  left: 4px;
+  width: 290px;
+  height: 90px;
   border-style: solid;
-  border-radius:8px;
-  border-color: rgb(118,118,118);
+  border-radius: 8px;
+  border-color: rgb(118, 118, 118);
 }
-.modes-left{
-  position:absolute;
-  top:5px;
-  left:5px;
-  width:100px;
-  height:53px;
+.modes-left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100px;
+  height: 53px;
   margin-right: 0px;
   margin-left: auto;
 }
-.modes-center{
-  position:absolute;
-  top:15px;
-  left:98px;
-  width:100px;
-  height:43px;
+.modes-center {
+  position: absolute;
+  top: 15px;
+  left: 98px;
+  width: 100px;
+  height: 43px;
   text-align: center;
 }
-.modes-right{
-  position:absolute;
-  top:5px;
-  left:181px;
-  width:100px;
-  height:53px;
+.modes-right {
+  position: absolute;
+  top: 5px;
+  left: 181px;
+  width: 100px;
+  height: 53px;
 }
-.autokv{
-  margin-left:15px;
+.autokv {
+  margin-left: 15px;
 }
-.autotime{
-  margin-left:0px;
+.autotime {
+  margin-left: 0px;
 }
-.manual{
-  margin-left:-11px;
+.manual {
+  margin-left: -11px;
 }
-.autopoint{
-  margin-left:10px;
+.autopoint {
+  margin-left: 10px;
 }
-.filter-mode{
-  position:absolute;
-  top:210px;
-  left:-55px;
-  width:300px;
-  height:53px;
+.filter-mode {
+  position: absolute;
+  top: 210px;
+  left: -55px;
+  width: 300px;
+  height: 53px;
   margin-right: 0px;
 }
 
-.anode-mode{
-  position:absolute;
-  top:250px;
-  left:-50px;
-  width:300px;
-  height:30px;
+.anode-mode {
+  position: absolute;
+  top: 250px;
+  left: -50px;
+  width: 300px;
+  height: 30px;
   margin-right: 0px;
 }
 
-.shoot-mode{
-  position:absolute;
-  top:230px;
-  left:100px;
-  width:300px;
-  height:30px;
+.shoot-mode {
+  position: absolute;
+  top: 230px;
+  left: 100px;
+  width: 300px;
+  height: 30px;
   margin-right: 0px;
 }
-input[type='radio']:after {
+input[type="radio"]:after {
   width: 15px;
   height: 15px;
   border-radius: 15px;
@@ -224,60 +235,68 @@ input[type='radio']:after {
   left: -1px;
   position: relative;
   background-color: #d1d3d1;
-  content: '';
+  content: "";
   display: inline-block;
   visibility: visible;
   border: 2px solid white;
 }
 
-input[type='radio']:checked:after {
+input[type="radio"]:checked:after {
   width: 15px;
   height: 15px;
   border-radius: 15px;
   top: -2px;
   left: -1px;
   position: relative;
-  background-color:rgb(0,112,216);
-  content: '';
+  background-color: rgb(0, 112, 216);
+  content: "";
   display: inline-block;
   visibility: visible;
   border: 2px solid white;
 }
 
-
 /* Interfaz mamografo */
 .mamografo {
-    position: absolute;
-    top: 0;
-    left: 299px;
-    border: 1px solid black;
+  position: relative;
+  top: 0;
+  outline: 1px solid black;
+  /* width: 100%; */
+  /* height: 100%; */
 }
 
 /* Interfaz herramientas mini */
 .herramientas-mini {
-    position: absolute;
-    top: 0;
-    left: 700px;
-    width: 302px;
-    height: 301px;
-    border: 1px solid black;
-    text-align: center;
+  position: relative;
+  top: 0;
+  /* left: 700px; */
+  /* width: 302px; */
+  height: 50%;
+  outline: 1px solid black;
+  text-align: center;
 }
 
 .herrams-titulo {
-    width: 100%;
+  width: 100%;
 }
 
 .herrams-lista {
-    width: 100%;
-    height:75%;
-    overflow-y: auto;
+  width: 100%;
+  height: 75%;
+  overflow-y: auto;
 }
 
 .herrams-boton {
-    margin: 5px;
-    width: 40%;
-    padding: 5px;
+  margin: 5px;
+  width: 40%;
+  padding: 5px;
+}
+
+.her-b-s {
+  width: 40%;
+}
+
+.her-b-l {
+  width: 100%;
 }
 
 .her-b-s {
@@ -289,60 +308,112 @@ input[type='radio']:checked:after {
 }
 
 .boton-ver-mas {
-    width: 100%;
-    height: 38px;
+  width: 100%;
+  height: 38px;
+  outline: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 /* Interfaz herramientas pop over */
 .herramientas-pop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    z-index: 100;
-    background-color: #ccc;
-    width: 1002px;
-    height: 602px;
-    overflow-y: auto;
-    text-align:center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 100;
+  background-color: #ccc;
+  width: 1002px;
+  height: 602px;
+  overflow-y: auto;
+  text-align: center;
 }
 
 .herrams-salir {
-    text-align: left;
+  text-align: left;
 }
 
 /* Interfaz resultados */
 .resultados {
-    position: absolute;
-    top: 300px;
-    left: 700px;
-    width: 300px;
-    height: 300px;
-    text-align: center;
-    border: 1px solid black;
+  position: relative;
+  bottom: 0;
+  /* top: 300px; */
+  /* left: 700px; */
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  outline: 1px solid black;
 }
 
 .res-titulo {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
+#canvRes {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  bottom:0px;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+
+/*Plantilla prueba rendimiento*/
+.custom-table {
+  width: 100%;
+  text-align: center;
+  border: none !important;
+  table-layout: fixed;
+  margin-top: 20px;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
+
+.custom-th,
+.custom-td,
+.custom-tr {
+  border: none !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.custom-h3 {
+  margin-left: 220px;
+  margin-top: 30px;
+}
+
+.height-100 {
+  height: 100px;
+}
+
+
+
 /* Interfaz boton plantilla */
-.contenedor-boton-plantilla{
-    position: absolute;
-    top: 564px;
-    left: 700px;
-    width: 300px;
-    height: 38px;
-    text-align: center;
-    border: 1px solid black;
+.contenedor-boton-plantilla {
+  /* position: absolute; */
+  /* top: 564px; */
+  /* left: 700px; */
+  width: 300px;
+  height: 38px;
+  text-align: center;
+  border: 1px solid black;
 }
 
 .boton-plantilla {
   width: 100%;
   height: 38px;
 }
-
 
 /* Interfaz plantilla pop over */
 .plantilla-pop {
@@ -352,12 +423,77 @@ input[type='radio']:checked:after {
   display: none;
   z-index: 100;
   background-color: white;
-  width: 1002px;
-  height: 602px;
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
-  text-align:center;
+  text-align: center;
+  outline: solid 1px black;
+
 }
 
 .plantilla-salir {
   text-align: left;
+}
+
+
+
+/* Loading Animation */
+/* https://projects.lukehaas.me/css-loaders/ */
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #000000;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
 }

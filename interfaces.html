@@ -1,208 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-<body>
-  <div id="contenedor-button" class ="contenedor-button">
-    <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
-    <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button>
-  </div>
-     
-    <div id="contenedor-sim" class ="contenedor-sim">
-        <!-- INTERFAZ MAMOGRAFO -->
-        <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
-        <a href=""><button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button></a>
-
-        <!-- /INTERFAZ MAMOGRAFO -->
-
-        <!-- INTERFAZ RESULTADOS -->
-        <canvas id="canvRes" class = "resultados" width="300" height="300"></canvas>
-        <!-- /INTERFAZ RESULTADOS -->
-        <div id="resultados" class = "resultados">
-          <h3 class="res-titulo">Resultados</h3>
-        </div>
-
-        <!-- INTERFAZ BOTON PLANTILLA -->
-        <div id="div-boton-plantilla" class = "contenedor-boton-plantilla">
-          <button id="plantilla-abrir" class="boton-plantilla" onclick="show_p()">Hoja de Resultados</button>
-        </div>
-        <!-- /INTERFAZ BOTON PLANTILLA -->
-
-        <!-- INTERFAZ HERRAMIENTAS -->
-
-        <div class="herramientas-mini">
-            <h3 class="herrams-titulo">Herramientas</h3>
-            <div id="herramientas-express" class="herrams-lista">
-                <!-- <button title= "Esta es la herramienta X." class="herrams-boton" onclick="draw_tool();"> <img src="icons/ionizador.png" width=64><br>Ionizador</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/thermometer.png" width=64><br>Termometro</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/barometer.png" width=64><br>Barometro</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton" ><img src="icons/tape.png" width=64><br>Cinta</button> -->
-            </div>
-            <button id="herrams-mas" class="boton-ver-mas">Ver mas</button>
-          </div>
-        <!-- /INTERFAZ HERRAMIENTAS -->
-
+<body>  
+  
+  
+  <div id="contenedor-main" class="contenedor-main">
+    <!-- INTERFAZ MENU INICIO -->
+    <div id="contenedor-button" class ="contenedor-button">
+      <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
+      <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button> -->
+      <div id="loader">
+        <div class="loader">
+      </div>
+      <h2>Cargando...</h2>
+      </div>
+    </div>
+    <!-- INTERFAZ MENU INICIO -->
+    
+    <div id="contenedor-sim" class ="contenedor-sim">  
+      <!-- IZQUIERDA -->
+      <div id="panel-izquierdo">
         <!-- INTERFAZ PASOS -->
         <div id="container-pasos" class="pasos">
-         
         </div>
         <!-- /INTERFAZ PASOS -->
 
         <!-- INTERFAZ PANEL DE CONTROL -->
         <div class="panel-control">
-            <h3>Panel de control</h3>
-            <div class="container" >
+          <div class="titulo-panel">Panel de Control</div>
+          <div class="container" >
+            <div class="row">
+              <div class="col-sm">
+                <form>
+                  <input type="number" id="kv" name="kv" min="22" max="35" class="kv_input" value=30>
+                  <input type="number" id="mas" name="mas" min="10" max="200" class="mas_input" value=100>
+                </form>
+              </div>
+              <div class="col-sm" style="text-align:center;">
+                <label class="kv_label"> kV</label>
+                <label class="mas_label"> mAs</label>
+              </div>
+              <div class="col-sm" style="text-align:left;">
+                <button class="btnsub" id="kv-" value="kv">-</button>
+                <button class="btnadd" id="kv+" value="kv">+</button>
+                <button class="btnsub" id="ma-" value="mas">-</button>
+                <button class="btnadd" id="ma+" value="mas">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="modes" >
+            <div class="container">
+              <div class="row" >
+                <div class="col-sm">
+                  <button class="btnmode" id="mode-b">MODE</button>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-sm">
-                  <form>
-                    <input type="number" id="kv" name="kv" min="22" max="35" class="kv_input" value=30>
-                    <input type="number" id="mas" name="mas" min="10" max="200" class="mas_input" value=100>
-                  </form>
+                  <label > AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
+                </div>
+                <div class="col-sm" >
+                  <label >  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm">
+                  <label > Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
                 </div>
 
-                <div class="col-sm" style="text-align:center;">
-                  <label class="kv_label"> kV</label>
-                  <label class="mas_label"> mAs</label>
-                </div>
-                <div class="col-sm" style="text-align:left;">
-                  <button class="btnsub" id="kv-" value="kv">-</button>
-                  <button class="btnadd" id="kv+" value="kv">+</button>
-                  <button class="btnsub" id="ma-" value="mas">-</button>
-                  <button class="btnadd" id="ma+" value="mas">+</button>
+                <div class="col-sm" >
+                  <label >  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
                 </div>
               </div>
             </div>
-
-            <div class="modes" >
-              <div class="container">
-                <div class="row" >
-                  <div class="col-sm">
-                    <button class="btnmode" id="mode-b">MODE</button>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm">
-                    <label > AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
-                  </div>
-                  <div class="col-sm" >
-                    <label >  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm">
-                    <label > Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
-                  </div>
-
-                  <div class="col-sm" >
-                      <label >  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="container">
-                <div class="filter-mode">
-                  <button class="fltmode" id="filter-b">filter</button>
-                  <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disabled />  </label>
-                  <label> Rh <input type="radio"  name="filter" value="rh" id="f02" disabled />  </label>
-                  <label> W <input type="radio"  name="filter" value="w" id="f03" disabled />  </label>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="anode-mode">
-                  <button class="anodemode" id="anode-b">anode</button>
-                  <label > Mo <input type="radio"  name="anode" value="mo" id="a01" checked disabled />  </label>
-                  <label> Rh <input type="radio"  name="anode" value="rh" id="a02" disabled />  </label>
-                  <label> W <input type="radio"  name="anode" value="w" id="a03" disabled />  </label>
-                </div>
-            </div>
-
-            <div class="container">
-              <div class="shoot-mode">
-                <button class="shoot" id="shoot-b" >Shoot</button>
+          </div>
+          <div class="container">
+            <div class="filter-mode">
+              <button class="fltmode" id="filter-b">filter</button>
+                <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disabled />  </label>
+                <label> Rh <input type="radio"  name="filter" value="rh" id="f02" disabled />  </label>
+                <label> W <input type="radio"  name="filter" value="w" id="f03" disabled />  </label>
               </div>
           </div>
-
-        </div>
-        <!-- INTERFAZ PANEL DE CONTROL -->
-
-        <!-- MENU OCULTO HERRAMIENTAS -->
-        <div id="herrams" class="herramientas-pop">
-          <div id="herrams-menos" class="herrams-salir">
-            <button type="button">X </button>
+          <div class="container">
+            <div class="anode-mode">
+              <button class="anodemode" id="anode-b">anode</button>
+              <label > Mo <input type="radio"  name="anode" value="mo" id="a01" checked disabled />  </label>
+              <label> Rh <input type="radio"  name="anode" value="rh" id="a02" disabled />  </label>
+              <label> W <input type="radio"  name="anode" value="w" id="a03" disabled />  </label>
+              </div>
           </div>
 
           <div class="container">
-            <h3>Herramientas</h3>
-            <div id="herrams-lista-completa" class="row">
-              <!--div class="col-sm">
-                <h3>TIPO A</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-              </div>
-              <div class="col-sm">
-                <h3>TIPO B</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-              </div>
-              <div class="col-sm">
-                <h3>TIPO C</h3>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 1</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 2</button>
-                <button title= "Esta es la herramienta X." class="herrams-boton"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta 3</button>
-              </div-->
+            <div class="shoot-mode">
+              <button class="shoot" id="shoot-b" >Shoot</button>
             </div>
           </div>
         </div>
-        <!-- /MENU OCULTO HERRAMIENTAS -->
+        <!-- INTERFAZ PANEL DE CONTROL -->
+      </div>
 
-
-        <!-- PLANTILLA OCULTA RESULTADOS -->
-        <div id="plantilla" class="plantilla-pop">
-          <div class="plantilla-salir">
-            <button id="plantilla-cerrar" type="button">X </button>
-          </div>
-          
-          <div id="container-plantilla" class="container">
-            
-          </div>
-        
-        </div>
-    <!-- /PLANTILLA OCULTA RESULTADOS -->
+      <!-- /IZQUIERDA -->
     
-  <script>
-  $(document).ready(function(){
-    //boton primera prueba
-    $("#open-sim-button").click(function(event) {
-      $("#container-pasos").load("pasos/pasos_prueba_compresion.html");
-      $("#container-plantilla").load("plantillas/plantilla_prueba_compresion.html");
-    });
-    //boton segunda prueba
-    $("#open-sim-button-2").click(function(event) {
-      $("#container-pasos").load("pasos/pasos_prueba_rendimiento.html");
-      $("#container-plantilla").load("plantillas/plantilla_prueba_rendimiento.html");
-    });    
-    $("#volver").click(function(event) {
-      $("#contenedor-button").load("interfaces.html");
-    });
-  });
-  </script>
+
+      <!-- CENTRO -->
+      <div id="panel-central">
+        <!-- CANVAS MAMOGRAFO -->
+        <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
+        <button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
+        <!-- /CANVAS MAMOGRAFO -->
+      </div>
+      <!-- /CENTRO -->
+
+
+      <!-- DERECHO -->
+      <div id="panel-derecho">
+      
+        <!-- INTERFAZ HERRAMIENTAS -->
+        <div class="herramientas-mini">
+          <h3 class="titulo-panel">Herramientas</h3>
+          <div id="herramientas-express" class="herrams-lista"></div>
+      
+          <button id="herrams-mas" class="boton-ver-mas">Ver mas</button>
+        </div>
+        <!-- /INTERFAZ HERRAMIENTAS -->
+
+        <!-- INTERFAZ RESULTADOS -->
+        <div id="resultados" class = "resultados">
+          <h3 class="titulo-panel">Resultados</h3>
+          <canvas id="canvRes" width="300px" height="220px"></canvas>  
+        
+          <!-- INTERFAZ BOTON PLANTILLA -->
+          <!-- <div id="div-boton-plantilla" class = "contenedor-boton-plantilla"> -->
+            <button id="plantilla-abrir" class="boton-ver-mas">Hoja de Resultados</button>
+          <!-- </div> -->
+          <!-- /INTERFAZ BOTON PLANTILLA -->
+        </div>
+        <!-- /INTERFAZ RESULTADOS -->
+      </div>
+      <!-- /DERECHO -->
+    
+      <!-- MENU OCULTO HERRAMIENTAS -->
+      <div id="herrams" class="herramientas-pop">
+        <div id="herrams-menos" class="herrams-salir">
+          <button type="button">X </button>
+        </div>
+
+        <div class="container">
+          <h3>Herramientas</h3>
+          <div id="herrams-lista-completa" class="row">
+          </div>
+        </div>
+      </div>
+      <!-- /MENU OCULTO HERRAMIENTAS -->
+
+
+      <!-- PLANTILLA OCULTA RESULTADOS -->
+      <div id="plantilla" class="plantilla-pop">
+        <div class="plantilla-salir">
+          <button id="plantilla-cerrar" type="button">X </button>
+        </div>    
+        <div id="container-plantilla" class="container"></div>  
+      </div>
+      <!-- /PLANTILLA OCULTA RESULTADOS -->
+    </div>
+  </div>
 
 </body>
 

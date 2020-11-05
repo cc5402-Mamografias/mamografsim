@@ -23,8 +23,8 @@ class AbstractTool {
     throw new TypeError("Do not call abstract method dibujar from child");
   }
 
-  dibujar_resultado() {
-    throw new TypeError("Do not call abstract method dibujar_resultados from child");
+  getResultado() {
+    return {};
   }
 
   getTipo() {
@@ -54,6 +54,7 @@ class BaseNula extends AbstractTool {
 }
 
 class Balanza extends AbstractTool {
+
   constructor() {
     super();
     this.tipo = "Balanza";
@@ -85,9 +86,8 @@ class Balanza extends AbstractTool {
     ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Balanza: " + this.fuerza.toFixed(2) + " Kg.", 10, 80);
+  getResultado() {
+    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
   }
 }
 
@@ -110,7 +110,7 @@ class Slab_20mm extends AbstractTool {
 
   }
 
-  actualizar(estado){
+  actualizar(estado) {
     // nada
   }
 
@@ -118,12 +118,10 @@ class Slab_20mm extends AbstractTool {
     ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura()  * 10 + " mm.", 10, 80);
+  getResultado() {
+    return { slab20: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
-
 class Slab_45mm extends AbstractTool {
   constructor() {
     super();
@@ -142,7 +140,7 @@ class Slab_45mm extends AbstractTool {
 
   }
 
-  actualizar(estado){
+  actualizar(estado) {
     // nada
   }
 
@@ -150,9 +148,8 @@ class Slab_45mm extends AbstractTool {
     ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura() * 10 + " mm.", 10, 80);
+  getResultado() {
+    return { slab45: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
 
@@ -174,7 +171,7 @@ class Slab_70mm extends AbstractTool {
 
   }
 
-  actualizar(estado){
+  actualizar(estado) {
     // nada
   }
 
@@ -182,9 +179,8 @@ class Slab_70mm extends AbstractTool {
     ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Altura Slabs: " + this.getAltura() * 10 + " mm.", 10, 80);
+  getResultado() {
+    return { slab70: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
 
@@ -205,7 +201,7 @@ class CamaraIonizacion extends AbstractTool {
   actualizar(estado) {
     console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
-    if (estado.activo == true){
+    if (estado.activo == true) {
       this.kilovolt = estado.kilovolt;
       this.miliamperios = estado.miliamperios;
       this.modo = estado.modo;
@@ -224,18 +220,17 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fillStyle = "yellow";
     //ctx.fill();
   }
-
-  dibujar_resultado(ctx) {
-    ctx.font = "14px Arial";
-    ctx.fillText("KV: " + this.kilovolt , 10, 150);
-    ctx.font = "14px Arial";
-    ctx.fillText("mAs: " + this.miliamperios , 10, 170);
-    ctx.font = "14px Arial";
-    ctx.fillText("modo: " + this.modo , 10, 190);
-    ctx.font = "14px Arial";
-    ctx.fillText("filtro: " + this.filtro , 10, 210);
-    ctx.font = "14px Arial";
-    ctx.fillText("anodo: " + this.anodo , 10, 230);
+  getResultado() {
+    return {
+      camara: [
+        "Camara de Ionización",
+        "\t\t\tKV: " + this.kilovolt,
+        "\t\t\tmAs: " + this.miliamperios,
+        "\t\t\tmodo: " + this.modo,
+        "\t\t\tfiltro: " + this.filtro,
+        "\t\t\tanodo: " + this.anodo,
+      ]
+    }
   }
 }
 
@@ -256,10 +251,6 @@ class Electrometro extends AbstractTool {
   dibujar(ctx) {
 
   }
-
-  dibujar_resultado(ctx) {
-
-  }
 }
 
 class Termometro extends AbstractTool {
@@ -275,21 +266,20 @@ class Termometro extends AbstractTool {
     this.y = 10;
     this.scale = 0.18;
     this.temperatura = 22;
-
   }
 
   actualizar(estado) {
-    
+    this.temperatura = estado.temperatura;
   }
 
   dibujar(ctx) {
     ctx.drawImage(this.termometro, this.x, this.y, this.termometro.width * this.scale, this.termometro.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Temperatura: " + this.temperatura + " °C", 10, 80);
+  getResultado() {
+    return { termometro: ["Temperatura: " + this.temperatura + " °C"] };
   }
+
 }
 
 class Barometro extends AbstractTool {
@@ -308,17 +298,15 @@ class Barometro extends AbstractTool {
   }
 
   actualizar(estado) {
-    // TODO
-    console.log("haha Barometro go brrrr");
+    this.presion = estado.presion;
   }
 
   dibujar(ctx) {
     ctx.drawImage(this.barometro, this.x, this.y, this.barometro.width * this.scale, this.barometro.height * this.scale);
   }
 
-  dibujar_resultado(ctx) {
-    ctx.font = "28px Arial";
-    ctx.fillText("Presión: " + this.presion + " hPa", 10, 80);
+  getResultado() {
+    return { barometro: ["Presión: " + this.presion + " hPa"] };
   }
 }
 
@@ -337,11 +325,6 @@ class CintaMetrica extends AbstractTool {
   }
 
   dibujar(ctx) {
-    
-  }
-
-  dibujar_resultado(ctx) {
-
   }
 }
 
