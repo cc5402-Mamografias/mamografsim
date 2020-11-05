@@ -9,7 +9,7 @@ var mamogramX = 17;
 var mamogramY = 10;
 
 var compresorX = 40;
-var compresorY = 300;
+var compresorY = 320;
 var addcompresorY = 0;
 const offsetCompresor = 155;
 
