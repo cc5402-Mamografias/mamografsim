@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0.1 (0767f8302a, 2020-10-17)"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="pedal-down-on.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6"
-     inkscape:cx="96.722389"
+     inkscape:cx="66.27596"
      inkscape:cy="59.760318"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
@@ -32,8 +32,8 @@
      showgrid="false"
      inkscape:window-width="1439"
      inkscape:window-height="918"
-     inkscape:window-x="295"
-     inkscape:window-y="27"
+     inkscape:window-x="345"
+     inkscape:window-y="341"
      inkscape:window-maximized="0"
      units="px"
      showguides="false" />
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,39 +58,41 @@
      id="layer2"
      inkscape:label="Layer 2">
     <rect
-       style="fill:#f0cabc;fill-opacity:1;stroke:#bc726f;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99498999"
+       style="fill:#f0cabc;fill-opacity:1;stroke:#bc726f;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99499"
        id="rect1018"
        width="18.331938"
        height="21.921997"
-       x="4.10571"
-       y="2.3111935" />
+       x="2.0038054"
+       y="4.1229229"
+       transform="rotate(-8.4786248)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 15.980916,16.105325 1.87198,1.871979 V 7.7792403"
+       d="M 16.369025,15.67491 18.496551,17.250425 16.992944,7.1638165"
        id="path1082"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 19.724876,16.105325 -1.87198,1.871979 V 7.7792403"
+       d="M 20.072067,15.122899 18.496551,17.250425 16.992944,7.1638165"
        id="path1082-2"
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 6.7400092,16.73494 h 6.9824388 v 1.336499 H 8.2766562 Z"
+       d="m 7.3219433,17.660128 6.9061277,-1.029494 0.197054,1.321892 -5.3862748,0.80293 z"
        id="path1121" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 13.722448,16.73494 V 7.5146453 h -2.973459"
+       d="M 14.228071,16.630634 12.868626,7.5111083 9.9276645,7.9495164"
        id="path1123" />
     <circle
        style="fill:#f0c9bb;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99499"
        id="path1125"
-       cx="9.4462652"
-       cy="7.7815704"
-       r="1.3027228" />
+       cx="7.3443604"
+       cy="9.5932999"
+       r="1.3027228"
+       transform="rotate(-8.4786248)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 8.7777752,9.1180453 h 1.5366468 l 0.447326,1.6694457 H 8.3099312 Z"
+       d="M 8.2144002,9.8260293 9.7342529,9.5994655 10.422834,11.184712 7.9978131,11.546209 Z"
        id="path1127" />
   </g>
 </svg>
