@@ -8,7 +8,8 @@ import {
   Termometro,
   Slab_20mm,
   Slab_45mm,
-  Slab_70mm
+  Slab_70mm,
+  Toalla
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
@@ -27,6 +28,7 @@ class Main {
     this.herramientas_hab = [new Barometro(), new Termometro()];
     this.herramientas_mam = [
       new Balanza(),
+      new Toalla(),
       new Slab_20mm(),
       new Slab_45mm(),
       new Slab_70mm(),
@@ -146,7 +148,13 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
-    herramientaHolder.setHerramienta(tool);
+    if (tool.addon){
+      herramientaHolder.setHerramienta(tool,true);
+    }
+    else{
+      herramientaHolder.setHerramienta(tool);
+    }
+    
     this.actualizar();
   }
 

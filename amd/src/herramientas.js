@@ -57,6 +57,7 @@ class Balanza extends AbstractTool {
 
   constructor() {
     super();
+    this.toalla = false;
     this.tipo = "Balanza";
     this.icon = "balanza.png";
     this.altura = 5;
@@ -82,6 +83,49 @@ class Balanza extends AbstractTool {
     }
   }
 
+  dibujar(ctx) {
+    ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
+  }
+
+  getResultado() {
+    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
+  }
+}
+class Toalla extends AbstractTool {
+
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Toalla";
+    this.icon = "balanza.png";
+    this.altura = 5;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Poner la toalla encima de la balanza.";
+
+    //this.balanza = new Image();
+    //this.balanza.src = 'img/balanzatoalla.svg';
+
+  }
+
+  action(maquina){
+    if(maquina.herramienta.tipo == "Balanza"){
+      let balanza = maquina.herramienta.balanza
+      if (!balanza.toalla){
+        balanza.src = 'img/balanzatoalla.svg';
+        balanza.toalla = true;
+      }
+      else{
+        balanza.src = 'img/balanza.svg';
+        balanza.toalla = false;
+      }
+      maquina.actualizar();
+      console.log("toalla: ",balanza.toalla);
+      console.log("balanza src: ",balanza.src);
+    }
+    
+  }
   dibujar(ctx) {
     ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
   }
@@ -331,6 +375,7 @@ class CintaMetrica extends AbstractTool {
 export {
   BaseNula,
   Balanza,
+  Toalla,
   Barometro,
   CamaraIonizacion,
   CintaMetrica,

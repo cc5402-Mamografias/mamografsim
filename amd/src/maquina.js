@@ -111,18 +111,28 @@ export default class Maquina {
   }
 
   // Selecciona una nueva herramienta o deselecciona la antigua
-  setHerramienta(herram) {
-    if (this.alturaCompresor + 1 < herram.altura) {
+  setHerramienta(herram, addon = false) {
+    if (this.alturaCompresor + 5 < herram.altura) {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
-    if (this.herramienta.getTipo() == herram.getTipo()) {
-      this.herramienta = new BaseNula();
-    } else {
-      this.herramienta = herram;
+    if (!addon){
+     
+      if (this.herramienta.getTipo() == herram.getTipo()) {
+        this.herramienta = new BaseNula();
+      } else {
+        this.herramienta = herram;
+      }
+      
+    }
+    else{
+
+      herram.action(this);
     }
     this.actualizar();
-  }
+    
+    }
+    
 
   getHerramienta() {
     return this.herramienta;
