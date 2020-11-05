@@ -40,9 +40,9 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
+    
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
-
     this.panelResultados = new PanelResultados();
 
     // pedal derecho sube el compresor
