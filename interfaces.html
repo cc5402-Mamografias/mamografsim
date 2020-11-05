@@ -26,6 +26,12 @@
     <div id="contenedor-sim" class ="contenedor-sim">  
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
+        <!-- INTERFAZ BOTONES -->
+        <div id="container-botones" class="botones"> 
+          <button id="volver"><img src="icons/curve-arrow.png" width=15><br>Volver</button>
+          <button id="ayuda"><img src="icons/question.png" width=15><br>Ayuda</button>
+        </div>
+
         <!-- INTERFAZ PASOS -->
         <div id="container-pasos" class="pasos">
         </div>
@@ -114,7 +120,6 @@
       <div id="panel-central">
         <!-- CANVAS MAMOGRAFO -->
         <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
-        <button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->
@@ -150,7 +155,7 @@
       <!-- MENU OCULTO HERRAMIENTAS -->
       <div id="herrams" class="herramientas-pop">
         <div id="herrams-menos" class="herrams-salir">
-          <button type="button">X </button>
+          <button type="button"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
         </div>
 
         <div class="container">
@@ -165,9 +170,9 @@
       <!-- PLANTILLA OCULTA RESULTADOS -->
       <div id="plantilla" class="plantilla-pop">
         <div class="plantilla-salir">
-          <button id="plantilla-cerrar" type="button">X </button>
+          <button id="plantilla-cerrar" type="button"><img src="icons/curve-arrow.png" width=30><br>Volver </button>
         </div>    
-        <div id="container-plantilla" class="container"></div>  
+        <div id="container-plantilla" class="container plantilla"></div>  
       </div>
       <!-- /PLANTILLA OCULTA RESULTADOS -->
     </div>

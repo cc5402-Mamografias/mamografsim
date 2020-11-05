@@ -65,13 +65,30 @@
   margin: 0 10px 0 10px;
 
 }
+/* Interfaz Botones */
+.botones {
+  position: relative; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8%;
+  overflow-y: auto;
+  outline: solid 1px black;
+  text-align: center;
+}
+
+.botones button{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 /* Interfaz pasos a seguir */
 .pasos {
   position: relative; 
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 42%;
   padding-left: 20px;
   overflow-y: auto;
   outline: solid 1px black;
@@ -103,6 +120,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
@@ -348,12 +366,21 @@ input[type="radio"]:checked:after {
   top: 0px;
   left: 0px;
   bottom:0px;
-  /* width: 100%; */
-  /* height: 100%; */
 }
 
 
 /*Plantilla prueba rendimiento*/
+.plantilla input{
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  outline: none;
+  text-align: center;
+}
+
+
+
+
 .custom-table {
   width: 100%;
   text-align: center;
