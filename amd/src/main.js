@@ -85,12 +85,19 @@ class Main {
     );
 
     this.herr_disponibles.forEach((tool) => {
-      let r = $(`<button title= "${tool.description}" class="herrams-boton"> </button>`).append(
+      let r_col = $(`<div class="col-sm-2"></div>`);
+      let r = $(`<button title= "${tool.description}" class="herrams-boton her-b-s"> </button>`).append(
         `<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`
       );
 
       r.on("click", () => this.onClickTool(tool));
       r.appendTo("#herramientas-express");
+      let r2 = r.clone().removeClass("her-b-s").addClass("her-b-l");
+      r2.on("click", () => this.onClickTool(tool));
+
+      r_col.append(r2);
+
+      r_col.appendTo("#herrams-lista-completa");
     });
 
     this.clickeableOnCanvas = [
