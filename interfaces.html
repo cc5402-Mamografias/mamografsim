@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
-<body>  
-  
-  
+
+<body>
+
+
   <div id="contenedor-main" class="contenedor-main">
     <!-- INTERFAZ MENU INICIO -->
-    <div id="contenedor-button" class ="contenedor-button">
+    <div id="contenedor-button" class="contenedor-button">
       <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
       <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button> -->
       <div id="loader">
         <div class="loader">
-      </div>
-      <h2>Cargando...</h2>
+        </div>
+        <h2>Cargando...</h2>
       </div>
     </div>
     <!-- INTERFAZ MENU INICIO -->
-    
-    <div id="contenedor-sim" class ="contenedor-sim">  
+
+    <div id="contenedor-sim" class="contenedor-sim">
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
+        <!-- INTERFAZ BOTONES -->
+        <div id="container-botones" class="botones">
+          <button id="volver">Volver<img class="espacio-boton" src="icons/curve-arrow.png" width=15></button>
+          <button id="ayuda">Ayuda<img class="espacio-boton" src="icons/question.png" width=15></button>
+        </div>
+
         <!-- INTERFAZ PASOS -->
         <div id="container-pasos" class="pasos">
         </div>
@@ -34,7 +42,7 @@
         <!-- INTERFAZ PANEL DE CONTROL -->
         <div class="panel-control">
           <div class="titulo-panel">Panel de Control</div>
-          <div class="container" >
+          <div class="container">
             <div class="row">
               <div class="col-sm">
                 <form>
@@ -54,29 +62,29 @@
               </div>
             </div>
           </div>
-          <div class="modes" >
+          <div class="modes">
             <div class="container">
-              <div class="row" >
+              <div class="row">
                 <div class="col-sm">
                   <button class="btnmode" id="mode-b">MODE</button>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <label > AutoKV <input type="radio"  name="mode" value="autokv" id="c01" checked disabled />  </label>
+                  <label> AutoKV <input type="radio" name="mode" value="autokv" id="c01" checked disabled /> </label>
                 </div>
-                <div class="col-sm" >
-                  <label >  <input type="radio"  name="mode" value="manual" id="c03" disabled /> Manual </label>
+                <div class="col-sm">
+                  <label> <input type="radio" name="mode" value="manual" id="c03" disabled /> Manual </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm">
-                  <label > Auto Time <input type="radio"  name="mode" value="autotime" id="c02" disabled  />  </label>
+                  <label> Auto Time <input type="radio" name="mode" value="autotime" id="c02" disabled /> </label>
                 </div>
 
-                <div class="col-sm" >
-                  <label >  <input type="radio"  name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+                <div class="col-sm">
+                  <label> <input type="radio" name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
                 </div>
               </div>
             </div>
@@ -84,23 +92,23 @@
           <div class="container">
             <div class="filter-mode">
               <button class="fltmode" id="filter-b">filter</button>
-                <label> Mo <input type="radio"  name="filter" value="mo" id="f01" checked disabled />  </label>
-                <label> Rh <input type="radio"  name="filter" value="rh" id="f02" disabled />  </label>
-                <label> W <input type="radio"  name="filter" value="w" id="f03" disabled />  </label>
-              </div>
+              <label> Mo <input type="radio" name="filter" value="mo" id="f01" checked disabled /> </label>
+              <label> Rh <input type="radio" name="filter" value="rh" id="f02" disabled /> </label>
+              <label> W <input type="radio" name="filter" value="w" id="f03" disabled /> </label>
+            </div>
           </div>
           <div class="container">
             <div class="anode-mode">
               <button class="anodemode" id="anode-b">anode</button>
-              <label > Mo <input type="radio"  name="anode" value="mo" id="a01" checked disabled />  </label>
-              <label> Rh <input type="radio"  name="anode" value="rh" id="a02" disabled />  </label>
-              <label> W <input type="radio"  name="anode" value="w" id="a03" disabled />  </label>
-              </div>
+              <label> Mo <input type="radio" name="anode" value="mo" id="a01" checked disabled /> </label>
+              <label> Rh <input type="radio" name="anode" value="rh" id="a02" disabled /> </label>
+              <label> W <input type="radio" name="anode" value="w" id="a03" disabled /> </label>
+            </div>
           </div>
 
           <div class="container">
             <div class="shoot-mode">
-              <button class="shoot" id="shoot-b" >Shoot</button>
+              <button class="shoot" id="shoot-b">Shoot</button>
             </div>
           </div>
         </div>
@@ -108,13 +116,12 @@
       </div>
 
       <!-- /IZQUIERDA -->
-    
+
 
       <!-- CENTRO -->
       <div id="panel-central">
         <!-- CANVAS MAMOGRAFO -->
-        <canvas id="canvas" class ="mamografo" width="400" height="600"></canvas>
-        <button id="volver" style="position:absolute;left:33%;top:7%"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
+        <canvas id="canvas" class="mamografo" width="400" height="600"></canvas>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->
@@ -122,35 +129,35 @@
 
       <!-- DERECHO -->
       <div id="panel-derecho">
-      
+
         <!-- INTERFAZ HERRAMIENTAS -->
         <div class="herramientas-mini">
           <h3 class="titulo-panel">Herramientas</h3>
           <div id="herramientas-express" class="herrams-lista"></div>
-      
+
           <button id="herrams-mas" class="boton-ver-mas">Ver mas</button>
         </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
 
         <!-- INTERFAZ RESULTADOS -->
-        <div id="resultados" class = "resultados">
+        <div id="resultados" class="resultados">
           <h3 class="titulo-panel">Resultados</h3>
-          <canvas id="canvRes" width="300px" height="220px"></canvas>  
-        
+          <canvas id="canvRes" width="300px" height="220px"></canvas>
+
           <!-- INTERFAZ BOTON PLANTILLA -->
           <!-- <div id="div-boton-plantilla" class = "contenedor-boton-plantilla"> -->
-            <button id="plantilla-abrir" class="boton-ver-mas">Hoja de Resultados</button>
+          <button id="plantilla-abrir" class="boton-ver-mas">Hoja de Resultados</button>
           <!-- </div> -->
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
       </div>
       <!-- /DERECHO -->
-    
+
       <!-- MENU OCULTO HERRAMIENTAS -->
       <div id="herrams" class="herramientas-pop">
         <div id="herrams-menos" class="herrams-salir">
-          <button type="button">X </button>
+          <button type="button"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
         </div>
 
         <div class="container">
@@ -165,9 +172,9 @@
       <!-- PLANTILLA OCULTA RESULTADOS -->
       <div id="plantilla" class="plantilla-pop">
         <div class="plantilla-salir">
-          <button id="plantilla-cerrar" type="button">X </button>
-        </div>    
-        <div id="container-plantilla" class="container"></div>  
+          <button id="plantilla-cerrar" type="button"><img src="icons/curve-arrow.png" width=30><br>Volver </button>
+        </div>
+        <div id="container-plantilla" class="container plantilla"></div>
       </div>
       <!-- /PLANTILLA OCULTA RESULTADOS -->
     </div>
@@ -176,4 +183,3 @@
 </body>
 
 </html>
-

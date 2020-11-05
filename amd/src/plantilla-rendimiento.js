@@ -27,19 +27,19 @@ function calcular_funciones(SelectedObject){
     var r4 = (document.getElementById("r4_"+ mas + "_" + conf).value.length == 0) ? "sin_valor" : parseFloat(document.getElementById("r4_"+ mas + "_" + conf).value); 
     var r5 = (document.getElementById("r5_"+ mas + "_" + conf).value.length == 0) ? "sin_valor" : parseFloat(document.getElementById("r5_"+ mas + "_" + conf).value); 
     var rs = [r1, r2, r3, r4, r5];
-    console.log(rs);
-    var promedio = average(rs);
-    console.log(promedio);
-    var dev_est = standardDeviation(rs);
+    var promedio = average(rs).toFixed(2);
+    var dev_est = standardDeviation(rs).toFixed(2);
     var mas_value = parseFloat(document.getElementById(mas).value);
-    console.log(mas_value);
-    var repet = 100*dev_est/promedio;
-    var rendimiento = (document.getElementById(mas).value.length == 0) ? "-" : (promedio/mas_value).toFixed(2);
+    var repet = (promedio == 0) ? "#DIV/0!" : (100*dev_est/promedio).toFixed(2);
+    console.log("repetibilidad");
+    console.log(repet);
+    console.log(100*dev_est/promedio);
+    var rendimiento = (document.getElementById(mas).value.length == 0) ? "-" : (mas_value==0)? "#DIV/0!" : (promedio/mas_value).toFixed(2);
     
-    document.getElementById('promedio_' + mas + "_" + conf).innerHTML = promedio.toFixed(2);
-    document.getElementById('desvest_' + mas + "_" + conf).innerHTML = dev_est.toFixed(2);
+    document.getElementById('promedio_' + mas + "_" + conf).innerHTML = promedio;
+    document.getElementById('desvest_' + mas + "_" + conf).innerHTML = dev_est;
     document.getElementById('rendimiento_' + mas + "_" + conf).innerHTML = rendimiento;
-    document.getElementById('repetibilidad_' + mas + "_" + conf).innerHTML = repet.toFixed(2);
+    document.getElementById('repetibilidad_' + mas + "_" + conf).innerHTML = repet;
 
     var y1 = parseFloat(document.getElementById("rendimiento_mas1" + "_" + conf).innerHTML); 
     var y2 = parseFloat(document.getElementById("rendimiento_mas2" + "_" + conf).innerHTML); 
@@ -89,7 +89,7 @@ function linealidad(y1, y2){
     }
     var abs = Math.abs(y2 - y1);
     var sum = y2 + y1;
-    return (100*abs/sum).toFixed(2);
+    return (sum==0) ? "#DIV/0!":(100*abs/sum).toFixed(2);
 }
 
 function rendimiento_normalizado(r1, r2, r3){
