@@ -317,6 +317,14 @@ input[type="radio"]:checked:after {
   width: 100%;
 }
 
+.her-b-s {
+  width: 40%;
+}
+
+.her-b-l {
+  width: 100%;
+}
+
 .boton-ver-mas {
   width: 100%;
   height: 38px;

@@ -87,7 +87,7 @@ class Balanza extends AbstractTool {
   }
 
   getResultado() {
-    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."]};
+    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
   }
 }
 
@@ -103,11 +103,10 @@ class Slab_20mm extends AbstractTool {
 
     this.scale = 0.5;
     this.x = 152;
-    this.y = 265;
+    this.y = 250;
 
     this.slabs = new Image();
-    //nuevo sprite aca
-    this.slabs.src = 'img/balanza.svg';
+    this.slabs.src = 'img/slab20.svg';
 
   }
 
@@ -116,18 +115,11 @@ class Slab_20mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
-    ctx.fillStyle = "green";
-    ctx.fillRect(
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
+    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
   getResultado() {
-    return { slab20: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
+    return { slab20: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
 class Slab_45mm extends AbstractTool {
@@ -140,11 +132,11 @@ class Slab_45mm extends AbstractTool {
     // pasar parametros a vista?
     this.scale = 0.5;
     this.x = 152;
-    this.y = 265;
+    this.y = 250;
 
     this.slabs = new Image();
     //nuevo sprite aca
-    this.slabs.src = 'img/balanza.svg';
+    this.slabs.src = 'img/slab45.svg';
 
   }
 
@@ -153,19 +145,11 @@ class Slab_45mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
-    ctx.fillStyle = "green";
-    ctx.fillRect(
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
-
+    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
   getResultado() {
-    return { slab45: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
+    return { slab45: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
 
@@ -179,11 +163,11 @@ class Slab_70mm extends AbstractTool {
     // pasar parametros a vista?
     this.scale = 0.5;
     this.x = 152;
-    this.y = 265;
+    this.y = 250;
 
     this.slabs = new Image();
     //nuevo sprite aca
-    this.slabs.src = 'img/balanza.svg';
+    this.slabs.src = 'img/slab70.svg';
 
   }
 
@@ -192,19 +176,11 @@ class Slab_70mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
-    ctx.fillStyle = "green";
-    ctx.fillRect(
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
-
+    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
   }
 
   getResultado() {
-    return { slab70: ["Altura Slabs: " + this.getAltura() * 10 + " mm."]};
+    return { slab70: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
   }
 }
 
@@ -245,14 +221,16 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fill();
   }
   getResultado() {
-    return {camara: [
-      "Camara de Ionización",
-      "\t\t\tKV: " + this.kilovolt,
-      "\t\t\tmAs: " + this.miliamperios,
-      "\t\t\tmodo: " + this.modo,
-      "\t\t\tfiltro: " + this.filtro,
-      "\t\t\tanodo: " + this.anodo,
-    ]}
+    return {
+      camara: [
+        "Camara de Ionización",
+        "\t\t\tKV: " + this.kilovolt,
+        "\t\t\tmAs: " + this.miliamperios,
+        "\t\t\tmodo: " + this.modo,
+        "\t\t\tfiltro: " + this.filtro,
+        "\t\t\tanodo: " + this.anodo,
+      ]
+    }
   }
 }
 
