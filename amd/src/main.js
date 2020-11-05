@@ -23,7 +23,7 @@ window.$ = window.jQuery = $ = jQuery;
 var m = null;
 
 class Main {
-  constructor() {
+  constructor(errors) {
     this.herr_activas = [];
 
     this.herr_disponibles = [
@@ -46,7 +46,8 @@ class Main {
     this.cres = document.getElementById("canvRes");
     this.ctxres = this.cres.getContext("2d");
 
-    this.mamografo = new Maquina(0.1, 0.1, 0.5, 0, this.ctx);
+    this.mamografo = new Maquina(errors, this.ctx);
+
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -184,10 +185,16 @@ class Main {
   }
 }
 
-export let init = () => {
-  m = new Main();
-  let elems;
+export const init = (errors) => {
+  //console.log(errors);
+  let errordict = {}
+  errors.forEach((pair)=>{
+    errordict[pair[0]] = pair[1];
 
+  });
+  console.log(errordict);
+  m = new Main(errordict);
+  let elems;
   document.getElementById("herrams-mas").onclick = show_h;
   document.getElementById("herrams-menos").onclick = hide_h;
   // botones de herramientas en popup
