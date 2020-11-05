@@ -40,7 +40,7 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
-    
+
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
@@ -196,7 +196,8 @@ export const init = (errors) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
-
+  document.getElementById("vista-desde-arriba").onclick = mostrar_mesa;
+  document.getElementsByClassName("close")[0].onclick = cerrar_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -243,6 +244,18 @@ function hide_p() {
   x.style.display = "none";
 }
 
+//MOSTRAR MODAL DE VISTA DESDE ARRIBA DEL MAMOGRAFO
+function mostrar_mesa(){
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+
+}
+
+//ESCONDER MODAL DE VISTA DESDE ARRIBA DEL MAMOGRAFO
+function cerrar_mesa(){
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
 
 function crearHerramButton(tool, onClickF) {
 
