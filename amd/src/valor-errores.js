@@ -1,7 +1,7 @@
 var valores = {
     "errorFuerzaEjercida": {
         "valores_base": [0.0, 1.0, 2.5, 3.5, 5.0],
-        "factor_random": 0.4
+        "factor_random": 0.5
     },
     "errorFuerzaMedida": {
         "valores_base": [0.0, 1.0, 2.0, 3.0, 4.0],
@@ -14,9 +14,25 @@ var valores = {
     }
 }
 
-function getError(tipo, intensidad) {
+const INTENSIDADES = [
+    "Ninguno",
+    "Bajo",
+    "Medio",
+    "Alto"
+];
+
+function indiceIntensidad(intensidad) {
+    let i = INTENSIDADES.findIndex((e) => e == intensidad);
+    if (i < 0) {
+        i = Math.floor(Math.random() * 4); // Entero entre 0 y 3 inclusives;
+    }
+    return i;
+}
+
+export function getError(tipo, intensidad) {
+    let ind = indiceIntensidad(intensidad);
     let error = valores[tipo]
     let variacion = Math.random() *
         error.factor_random * 2 - error.factor_random; //+- factor
-    return error.valores_base[intensidad] + variacion;
+    return error.valores_base[ind] + variacion;
 }

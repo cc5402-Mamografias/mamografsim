@@ -32,9 +32,10 @@ export default class Maquina {
     this.filtro = null;
     this.anodo = null;
 
+    console.log(errors);
     this.errorKilovolt = parseInt(errors["errorkv"]);
     this.errorMiliamperios = parseInt(errors["errorma"]);
-    this.errorFuerza = parseFloat(errors["errorf"]);
+    this.errorFuerza = errors["errorf"];
     this.errorAltura = parseFloat(errors["erroralt"]);
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
