@@ -13,6 +13,54 @@
 
 
   <div id="contenedor-main" class="contenedor-main">
+
+    <!-- MODAL VISTA DESDE ARRIBA -->
+    <div id="modal-vista-arriba" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Receptor Mamógrafo</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body modal-mesa">
+            <canvas id="canvas-receptor" class="receptor" width="1000" height="600"></canvas>
+            <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODAL VOLVER -->
+    <div id="modal-volver" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">¿Deseas volver al menú principal?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body modal-volver">
+            <p>Todo el progreso que has hecho dentro de esta prueba será borrado si regresas al menú principal.</p>
+            <br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="volver-menu"class="btn btn-danger" data-dismiss="modal">Volver</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
       <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
@@ -26,6 +74,9 @@
     <!-- INTERFAZ MENU INICIO -->
 
     <div id="contenedor-sim" class="contenedor-sim">
+
+
+
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
         <!-- INTERFAZ BOTONES -->
@@ -123,15 +174,6 @@
         <!-- CANVAS MAMOGRAFO -->
         <canvas id="canvas" class="mamografo" width="400" height="600"></canvas>
         <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%; display: None;"><img src="icons/grid.png" width=30><br>Ver mesa</button>
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
-          </div>
-        </div>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->

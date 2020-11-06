@@ -2,6 +2,7 @@
   position: relative;
 }
 
+
 .contenedor-sim {
   width: 1010px;
   height: 600px;
@@ -532,32 +533,81 @@ input[type="radio"]:checked:after {
   }
 }
 
-/*Clases para el pop-up de mesa para la prueba de rendimiento */
+/*Clases para el pop-up de mesa para la prueba de rendimiento
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none; 
+  position: absolute; 
+  z-index: 1; 
+  padding-top: 100px; 
   left: 0;
   top: 0;
-  width: 50%; /* Full width */
-  height: 50%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 50%; 
+  height: 50%; 
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
 }
+*/
 
-/* Modal Content */
+/* Modal Content 
 .modal-content {
   position: relative;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
+  border: 1px solid #fefefe;
   width: 70%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s
+}*/
+
+/* MODAL */
+
+.modal{
+  position: absolute !important;
+
+}
+
+.modal-backdrop {
+  position: absolute !important;
+  width:50%;
+  height:50%;
+
+}
+
+.modal-dialog{
+  overflow-y: initial !important
+}
+
+.modal-body{
+  overflow-y: auto;
+}
+
+.modal-volver{
+  height: 20vh;
+}
+
+.modal-mesa{
+  height:70vh;
+  
+}
+
+
+.block 
+{
+  width:100%;
+  height:200px;
+}
+ 
+
+body.modal-open {
+  overflow: auto;
+} 
+
+.after_modal_appended
+{  
+  position:relative;
 }

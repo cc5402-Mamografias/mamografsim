@@ -27,6 +27,9 @@ compresor.src = "img/compresor.svg";
 var visor = new Image();
 visor.src = "img/visor.svg";
 
+var receptor = new Image();
+receptor.src = "img/receptor.svg";
+
 
 export function drawHab(ctx, herramientas) {
   if (herramientas !== null) {
@@ -128,4 +131,8 @@ export async function preloadImages() {
   images.push(visor);
 
   await Promise.all(images.map((x) => preloadImage(x.src)));
+}
+
+export function drawReceptor(ctx) {
+  ctx.drawImage(receptor,0,0,receptor.width*scale*1.8,receptor.height*scale*1.8);
 }

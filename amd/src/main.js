@@ -18,6 +18,8 @@ import { ClickeableObject } from "./utils";
 import { getCompresorPosY } from "./vista";
 import PanelResultados from "./panel-resultados";
 
+import { drawReceptor } from "./vista";
+
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
@@ -40,6 +42,14 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
+
+
+    this.cr = document.getElementById("canvas-receptor");
+    this.ctxr = this.cr.getContext("2d");
+
+    drawReceptor(this.ctxr);
+
+
 
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
@@ -196,8 +206,8 @@ export const init = (errors) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
-  document.getElementById("vista-desde-arriba").onclick = mostrar_mesa;
-  document.getElementsByClassName("close")[0].onclick = cerrar_mesa;
+  //document.getElementById("vista-desde-arriba").onclick = mostrar_mesa;
+  //document.getElementsByClassName("close")[0].onclick = cerrar_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -215,11 +225,36 @@ export const init = (errors) => {
     r.appendTo("#contenedor-button");
   }
 
-  $("#volver").on('click', () => {
+  $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
   })
   $("#loader").remove()
+
+
+  $("body").on("click","#vista-desde-arriba",function(){
+            
+    $("#modal-vista-arriba").modal("show");
+  
+    //appending modal background inside the contenedor-main div
+    $('.modal-backdrop').appendTo('#contenedor-sim');   
+  
+    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+    $('body').removeClass("modal-open")
+    $('body').css("padding-right","");     
+  });
+
+  $("body").on("click","#volver",function(){
+            
+    $("#modal-volver").modal("show");
+  
+    //appending modal background inside the contenedor-main div
+    $('.modal-backdrop').appendTo('#contenedor-sim');   
+  
+    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+    $('body').removeClass("modal-open")
+    $('body').css("padding-right","");     
+  });
 
   console.log("Simulador inicializado");
 };
@@ -244,18 +279,9 @@ function hide_p() {
   x.style.display = "none";
 }
 
-//MOSTRAR MODAL DE VISTA DESDE ARRIBA DEL MAMOGRAFO
-function mostrar_mesa(){
-  var modal = document.getElementById("myModal");
-  modal.style.display = "block";
 
-}
 
-//ESCONDER MODAL DE VISTA DESDE ARRIBA DEL MAMOGRAFO
-function cerrar_mesa(){
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-}
+
 
 function crearHerramButton(tool, onClickF) {
 
