@@ -15,7 +15,10 @@ import Habitacion from "./habitacion";
 import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
-import { getCompresorPosY } from "./vista";
+import { 
+  getCompresorPosY,
+  drawPedal
+} from "./vista";
 import PanelResultados from "./panel-resultados";
 import { getError } from "./valor-errores";
 
@@ -119,6 +122,7 @@ class Main {
     //dibujar el mamografo
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
+    drawPedal(this.ctx, true, true);
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);

@@ -26,7 +26,16 @@ var compresor = new Image();
 compresor.src = "img/compresor.svg";
 var visor = new Image();
 visor.src = "img/visor.svg";
-
+var pedal_base = new Image();
+pedal_base.src = "img/pedals/pedal-base.svg"
+var pedal_left_off = new Image();
+pedal_base.src = "img/pedals/pedal-down-off.svg"
+var pedal_base = new Image();
+pedal_base.src = "img/pedals/pedal-down-on.svg"
+var pedal_base = new Image();
+pedal_base.src = "img/pedals/pedal-up-off.svg"
+var pedal_base = new Image();
+pedal_base.src = "img/pedals/pedal-up-on.svg"
 
 export function drawHab(ctx, herramientas) {
   if (herramientas !== null) {
@@ -94,6 +103,19 @@ export function drawMam(
 
 export function getCompresorPosY() {
   return (compresorY + y + addcompresorY) * scale;
+}
+
+export function drawPedal(ctx, leftActive, rightActive) {
+  let pbx = 85;
+  let pby = 395;
+  let lscale = scale * 2.4;
+  ctx.drawImage(
+    pedal_base,
+    pbx * lscale,
+    pby * lscale,
+    visor.width * lscale,
+    visor.height * lscale
+  );
 }
 
 export async function preloadImages() {
