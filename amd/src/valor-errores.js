@@ -9,8 +9,8 @@ var valores = {
 
     },
     "errorAltura": {
-        "valores_base": [0, 3, 7, 11, 15],
-        "factor_random": 2
+        "valores_base": [0.0, 0.3, 0.7, 1.1, 1.5],
+        "factor_random": 0.2
     }
 }
 
