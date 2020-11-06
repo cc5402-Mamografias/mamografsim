@@ -122,7 +122,7 @@ class Main {
     //dibujar el mamografo
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
-    drawPedal(this.ctx, true, true);
+    drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.pedalUp.dibujar(this.ctx);
     this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
