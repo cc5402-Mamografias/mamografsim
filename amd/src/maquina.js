@@ -34,8 +34,8 @@ export default class Maquina {
 
     this.errorKilovolt = errors["errorkv"];
     this.errorMiliamperios = errors["errorma"];
-    this.errorFuerza = errors["errorF"];
-    this.errorAltura = errors["errorAlt"];
+    this.errorFuerza = errors["errorf"];
+    this.errorAltura = errors["erroralt"];
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
     //setearParamsMamografo();
