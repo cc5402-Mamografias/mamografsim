@@ -86,7 +86,7 @@ export function drawMam(
     (visorY + y) * scale - 80
   );
   ctx.fillStyle = "#54FF54";
-  ctx.fillText(altura.toString() + " mm.",
+  ctx.fillText(altura.toFixed(0).toString() + " mm.",
     (visorX + x) * scale + 20,
     (visorY + y) * scale - 65
   );
