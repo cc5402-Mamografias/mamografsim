@@ -592,7 +592,7 @@ input[type="radio"]:checked:after {
 
 .modal-mesa{
   height:70vh;
-  
+  padding:0px;
 }
 
 
@@ -604,10 +604,31 @@ input[type="radio"]:checked:after {
  
 
 body.modal-open {
-  overflow: auto;
+  overflow: none !important;
 } 
 
 .after_modal_appended
 {  
   position:relative;
+}
+
+.receptor {
+  width:800px;
+  height:480px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.vista-arriba-receptor{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 100;
+  background-color: #ccc;
+  width: 1002px;
+  height: 602px;
+  overflow-y: auto;
+  text-align: center;
 }

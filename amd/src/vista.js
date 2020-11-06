@@ -134,5 +134,5 @@ export async function preloadImages() {
 }
 
 export function drawReceptor(ctx) {
-  ctx.drawImage(receptor,0,0,receptor.width*scale*1.8,receptor.height*scale*1.8);
+  ctx.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8);
 }

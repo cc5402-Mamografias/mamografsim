@@ -206,8 +206,8 @@ export const init = (errors) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
-  //document.getElementById("vista-desde-arriba").onclick = mostrar_mesa;
-  //document.getElementsByClassName("close")[0].onclick = cerrar_mesa;
+  document.getElementById("vista-desde-arriba").onclick = show_mesa;
+  document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -230,19 +230,6 @@ export const init = (errors) => {
     $("#contenedor-sim").hide();
   })
   $("#loader").remove()
-
-
-  $("body").on("click","#vista-desde-arriba",function(){
-            
-    $("#modal-vista-arriba").modal("show");
-  
-    //appending modal background inside the contenedor-main div
-    $('.modal-backdrop').appendTo('#contenedor-sim');   
-  
-    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
-    $('body').removeClass("modal-open")
-    $('body').css("padding-right","");     
-  });
 
   $("body").on("click","#volver",function(){
             
@@ -279,6 +266,39 @@ function hide_p() {
   x.style.display = "none";
 }
 
+function show_mesa() {
+  let x = document.getElementById("vista-arriba-receptor");
+  x.style.display = "block";
+  var receptor = new Image();
+  receptor.src = "img/receptor.svg";
+  var cr = document.getElementById("canvas-receptor");
+  cr.style.display = "block";
+  var ctxr = cr.getContext("2d");
+
+  ctxr.clearRect(0, 0, cr.width, cr.height);
+
+  // cr.style.display= "block";
+  
+  var scale = 0.45;
+  console.log("HOLA");
+
+  // ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
+  setInterval(() => {ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)}, 5000);
+
+  ctxr.beginPath();
+  ctxr.arc(300, 300, 20, 0, 2 * Math.PI);
+  ctxr.stroke();
+  ctxr.fillStyle = "yellow";
+  ctxr.fill();
+  ctxr.closePath();
+
+
+}
+
+function hide_mesa() {
+  let x = document.getElementById("vista-arriba-receptor");
+  x.style.display = "none";
+}
 
 
 

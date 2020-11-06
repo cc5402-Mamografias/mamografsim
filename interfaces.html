@@ -24,8 +24,8 @@
             <h4 class="modal-title">Receptor Mamógrafo</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-          <div class="modal-body modal-mesa">
-            <canvas id="canvas-receptor" class="receptor" width="1000" height="600"></canvas>
+          <div class="modal-mesa modal-body">
+            <canvas id="canvas-receptor" class="receptor"></canvas>
             <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
           </div>
           <div class="modal-footer">
@@ -229,6 +229,20 @@
         <div id="container-plantilla" class="container plantilla"></div>
       </div>
       <!-- /PLANTILLA OCULTA RESULTADOS -->
+
+      <!-- VISTA DESDE ARRIBA DEL RECEPTOR OCULTA-->
+      <div id="vista-arriba-receptor" class="vista-arriba-receptor">
+        <div class="plantilla-salir">
+          <button id="cerrar-vista-desde-arriba" type="button"><img src="icons/curve-arrow.png" width=30><br>Volver </button>
+        </div>
+        <div id="container-vista-arriba" class="container plantilla">
+          <canvas id="canvas-receptor" class="receptor" width="800" height="480" style="border: solid 10px red">
+            <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%;"><img src="icons/grid.png" width=30><br>Ver mesa</button>
+          </canvas>
+          <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
+        </div>
+      </div>
+      <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
     </div>
   </div>
 
