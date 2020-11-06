@@ -56,13 +56,13 @@ class Main {
     this.pedalUp = new Pedal(() => {
       this.mamografo.subirCompresor();
       this.actualizar();
-    }, [230, 500]);
+    }, [220, 500]);
 
     // pedal izquierdo baja el compresor
     this.pedalDown = new Pedal(() => {
       this.mamografo.bajarCompresor();
       this.actualizar();
-    }, [140, 500]);
+    }, [130, 500]);
 
     // perilla derecha sube el compresor
     this.perrillaUp = new ClickeableObject(
@@ -123,8 +123,6 @@ class Main {
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
     drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
-    this.pedalUp.dibujar(this.ctx);
-    this.pedalDown.dibujar(this.ctx);
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
 
