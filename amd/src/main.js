@@ -17,6 +17,7 @@ import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
 import { getCompresorPosY } from "./vista";
 import PanelResultados from "./panel-resultados";
+import { getError } from "./valor-errores";
 
 window.$ = window.jQuery = $ = jQuery;
 
@@ -40,6 +41,9 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
 
     this.ctx = this.c.getContext("2d");
+
+    errors.errorf = getError("errorFuerzaMedida", errors.errorf);
+    errors.erroralt = getError("errorAltura", errors.erroralt);
     
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
