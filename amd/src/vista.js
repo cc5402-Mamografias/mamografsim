@@ -26,7 +26,16 @@ var compresor = new Image();
 compresor.src = "img/compresor.svg";
 var visor = new Image();
 visor.src = "img/visor.svg";
-
+var pedal_base = new Image();
+pedal_base.src = "img/pedals/pedal-base.svg"
+var pedal_left_off = new Image();
+pedal_left_off.src = "img/pedals/pedal-down-off.svg"
+var pedal_left_on = new Image();
+pedal_left_on.src = "img/pedals/pedal-down-on.svg"
+var pedal_right_off = new Image();
+pedal_right_off.src = "img/pedals/pedal-up-off.svg"
+var pedal_right_on = new Image();
+pedal_right_on.src = "img/pedals/pedal-up-on.svg"
 
 export function drawHab(ctx, herramientas) {
   if (herramientas !== null) {
@@ -86,7 +95,7 @@ export function drawMam(
     (visorY + y) * scale - 80
   );
   ctx.fillStyle = "#54FF54";
-  ctx.fillText(altura.toString() + " mm.",
+  ctx.fillText(altura.toFixed(0).toString() + " mm.",
     (visorX + x) * scale + 20,
     (visorY + y) * scale - 65
   );
@@ -94,6 +103,51 @@ export function drawMam(
 
 export function getCompresorPosY() {
   return (compresorY + y + addcompresorY) * scale;
+}
+
+export function drawPedal(ctx, leftActive, rightActive) {
+  let pbx = 170;
+  let pby = 900;
+  let poffx = 85;
+  let poffy = 25;
+  let left;
+  let right;
+
+  if (leftActive) {
+    left = pedal_left_on;
+  } else {
+    left = pedal_left_off;
+  }
+  if (rightActive) {
+    right = pedal_right_on;
+  } else {
+    right = pedal_right_off;
+  }
+
+  let lscale = scale * 1.2;
+  ctx.drawImage(
+    pedal_base,
+    pbx * lscale,
+    pby * lscale,
+    pedal_base.width * lscale,
+    pedal_base.height * lscale
+  );
+
+  ctx.drawImage(
+    left,
+    (pbx + pedal_base.width/2 - poffx - left.width/2) * lscale,
+    (pby + poffy) * lscale,
+    left.width * lscale,
+    left.height * lscale
+  );
+
+  ctx.drawImage(
+    right,
+    (pbx + pedal_base.width/2 + poffx - right.width/2) * lscale,
+    (pby + poffy) * lscale,
+    right.width * lscale,
+    right.height * lscale
+  );
 }
 
 export async function preloadImages() {
