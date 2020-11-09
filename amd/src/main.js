@@ -15,7 +15,10 @@ import Habitacion from "./habitacion";
 import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
-import { getCompresorPosY } from "./vista";
+import { 
+  getCompresorPosY,
+  drawPedal
+} from "./vista";
 import PanelResultados from "./panel-resultados";
 import { getError } from "./valor-errores";
 
@@ -53,13 +56,13 @@ class Main {
     this.pedalUp = new Pedal(() => {
       this.mamografo.subirCompresor();
       this.actualizar();
-    }, [230, 500]);
+    }, [220, 500]);
 
     // pedal izquierdo baja el compresor
     this.pedalDown = new Pedal(() => {
       this.mamografo.bajarCompresor();
       this.actualizar();
-    }, [140, 500]);
+    }, [130, 500]);
 
     // perilla derecha sube el compresor
     this.perrillaUp = new ClickeableObject(
@@ -119,8 +122,7 @@ class Main {
     //dibujar el mamografo
     // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
-    this.pedalUp.dibujar(this.ctx);
-    this.pedalDown.dibujar(this.ctx);
+    drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
 
