@@ -131,7 +131,7 @@ class Main {
 
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
-    console.log('dibujando resultados');
+    
     this.panelResultados.limpiarResultados();
     try {
       this.panelResultados.registrarResultado(this.mamografo.getHerramienta().getResultado());
@@ -143,7 +143,7 @@ class Main {
     } catch (error) {
       console.log(error);
     }
-    this.panelResultados.dibujarResultados();
+    this.panelResultados.escribirResultados();
   }
 
   getMamografo() {
