@@ -161,6 +161,14 @@ export async function preloadImages() {
   var images = [];
   //var image = new Image();
   //image.src = 'img/complete.svg';
+  var toalla = new Image();
+  toalla.src = "img/balanzatoalla.svg";
+  images.push(toalla);
+
+  var play = new Image();
+  play.src = "icons/play.png";
+  images.push(play);
+
   var balanza = new Image();
   balanza.src = "img/balanza.svg";
   images.push(balanza);
@@ -179,6 +187,7 @@ export async function preloadImages() {
 
   var visor = new Image();
   visor.src = "img/visor.svg";
+
   images.push(visor);
 
   await Promise.all(images.map((x) => preloadImage(x.src)));

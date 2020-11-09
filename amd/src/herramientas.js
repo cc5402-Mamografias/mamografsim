@@ -104,23 +104,25 @@ class Toalla extends AbstractTool {
     this.y = 265;
     this.description = "Poner la toalla encima de la balanza.";
 
-    //this.balanza = new Image();
-    //this.balanza.src = 'img/balanzatoalla.svg';
+    //this.toalla = new Image();
+    //this.toalla.src = 'img/balanzatoalla.svg';
 
   }
 
   action(maquina){
     if(maquina.herramienta.tipo == "Balanza"){
-      let balanza = maquina.herramienta.balanza
+      let balanza = maquina.herramienta
       if (!balanza.toalla){
-        balanza.src = 'img/balanzatoalla.svg';
+        balanza.balanza = new Image();
+        balanza.balanza.src = 'img/balanzatoalla.svg';
         balanza.toalla = true;
       }
       else{
-        balanza.src = 'img/balanza.svg';
+        balanza.balanza = new Image();
+        balanza.balanza.src = 'img/balanza.svg';
         balanza.toalla = false;
       }
-      balanza.actualizar();
+      
       maquina.actualizar();
       console.log("balanza: ",balanza);
     }
