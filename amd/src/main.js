@@ -271,27 +271,14 @@ function show_mesa() {
   x.style.display = "block";
   var receptor = new Image();
   receptor.src = "img/receptor.svg";
-  var cr = document.getElementById("canvas-receptor");
+  var cr = document.getElementById("canvasReceptor");
   cr.style.display = "block";
   var ctxr = cr.getContext("2d");
-
   ctxr.clearRect(0, 0, cr.width, cr.height);
-
-  // cr.style.display= "block";
   
-  var scale = 0.45;
+  var scale = 1.0;
   console.log("HOLA");
-
-  // ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
-  setInterval(() => {ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)}, 5000);
-
-  ctxr.beginPath();
-  ctxr.arc(300, 300, 20, 0, 2 * Math.PI);
-  ctxr.stroke();
-  ctxr.fillStyle = "yellow";
-  ctxr.fill();
-  ctxr.closePath();
-
+  ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
 
 }
 
