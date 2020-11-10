@@ -22,6 +22,8 @@ import {
 import PanelResultados from "./panel-resultados";
 import { getError } from "./valor-errores";
 
+import { drawReceptor } from "./vista";
+
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
@@ -45,9 +47,13 @@ class Main {
 
     this.ctx = this.c.getContext("2d");
 
+    this.cr = document.getElementById("canvas-receptor");
+    this.ctxr = this.cr.getContext("2d");
+
+    drawReceptor(this.ctxr);
     errors.errorf = getError("errorFuerzaMedida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
-    
+
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
@@ -202,7 +208,8 @@ export const init = (errors) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
-
+  document.getElementById("vista-desde-arriba").onclick = show_mesa;
+  document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -220,11 +227,23 @@ export const init = (errors) => {
     r.appendTo("#contenedor-button");
   }
 
-  $("#volver").on('click', () => {
+  $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
   })
   $("#loader").remove()
+
+  $("body").on("click","#volver",function(){
+            
+    $("#modal-volver").modal("show");
+  
+    //appending modal background inside the contenedor-main div
+    $('.modal-backdrop').appendTo('#contenedor-sim');   
+  
+    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+    $('body').removeClass("modal-open")
+    $('body').css("padding-right","");     
+  });
 
   console.log("Simulador inicializado");
 };
@@ -248,6 +267,29 @@ function hide_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "none";
 }
+
+function show_mesa() {
+  let x = document.getElementById("vista-arriba-receptor");
+  x.style.display = "block";
+  var receptor = new Image();
+  receptor.src = "img/receptor.svg";
+  var cr = document.getElementById("canvasReceptor");
+  cr.style.display = "block";
+  var ctxr = cr.getContext("2d");
+  ctxr.clearRect(0, 0, cr.width, cr.height);
+  
+  var scale = 1.0;
+  console.log("HOLA");
+  ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
+
+}
+
+function hide_mesa() {
+  let x = document.getElementById("vista-arriba-receptor");
+  x.style.display = "none";
+}
+
+
 
 
 function crearHerramButton(tool, onClickF) {
