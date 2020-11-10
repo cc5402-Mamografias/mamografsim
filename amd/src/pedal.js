@@ -1,10 +1,16 @@
 import { ClickeableObject } from "./utils";
 export class Pedal extends ClickeableObject{
-  constructor(callback, posicion = [200, 400]) {
+  constructor(callback, posicion = [190, 400]) {
     
-    super(callback, posicion, [30, 60], 200);
+    super(callback, posicion, [50, 55], 200);
     this.loop = null;
   }
+
+  getState() {
+    return this.clicked;
+  }
+
+  // funcion para depurar
   dibujar(ctx) {
     ctx.fillStyle = "blue";
 

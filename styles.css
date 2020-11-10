@@ -61,7 +61,7 @@
 .open-sim {
   min-width: 120px;
   border-radius: 8px;
-  text-transform:capitalize;
+  text-transform: capitalize;
   text-align: center;
   margin: 0 10px 0 10px;
 
@@ -361,29 +361,27 @@ input[type="radio"]:checked:after {
 }
 
 /* Interfaz resultados */
-.resultados {
+.panel-resultados {
   position: relative;
   bottom: 0;
-  /* top: 300px; */
-  /* left: 700px; */
   width: 100%;
   height: 50%;
   text-align: center;
   outline: 1px solid black;
 }
-
-.res-titulo {
+  
+.resultados-lista {
   width: 100%;
-  text-align: center;
+  height: 75%;
+  overflow-y: auto;
+  padding-left: 20px;
 }
 
-#canvRes {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  bottom:0px;
+.resultados-item {
+  text-align: left;
+  font-size: medium;
+  text-transform: capitalize;
 }
-
 
 /*Plantilla prueba rendimiento*/
 .plantilla input{
@@ -393,9 +391,6 @@ input[type="radio"]:checked:after {
   outline: none;
   text-align: center;
 }
-
-
-
 
 .custom-table {
   width: 100%;
