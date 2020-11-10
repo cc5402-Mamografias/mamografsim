@@ -627,3 +627,18 @@ body.modal-open {
   overflow-y: auto;
   text-align: center;
 }
+
+/* Drag and drop dropzone */
+.dropzone {
+  width: 64px;
+  height: 128px;
+  background: none;
+  border: 2px solid #C00;
+}
+/* Drag and drop draggable test */
+#draggable {
+  width: 62px;
+  height: 126px;
+  text-align: center;
+  background: white;
+}
