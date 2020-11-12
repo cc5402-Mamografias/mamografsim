@@ -1,5 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
+
+import { check_pos } from "./main";
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
@@ -122,6 +124,10 @@ export default class Maquina {
     if (herram.getTipo() === "camIonizacion"){
       //MOSTRAR BOTON
       document.getElementById("vista-desde-arriba").style.display = "block";
+      //CARGAR VISTA TOP DOWN
+      $("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`);
+      console.log("BOTON CONFIGURADO");
+      document.getElementById("Guardar-pos").onclick = check_pos;
     }
     else{
       document.getElementById("vista-desde-arriba").style.display = "none";
@@ -130,6 +136,7 @@ export default class Maquina {
       if(herram.getTipo() === "camIonizacion"){
         //OCULTAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "none";
+        
       }
       this.herramienta = new BaseNula();
     } else {

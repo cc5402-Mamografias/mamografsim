@@ -207,7 +207,7 @@ export const init = (errors) => {
     elems[i].onclick = hide_h;
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
-  document.getElementById("Guardar-pos").onclick = check_pos;
+  //document.getElementById("Guardar-pos").onclick = check_pos;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
@@ -293,6 +293,8 @@ function hide_mesa() {
 function check_pos(){
   console.log("HOLA");
 
+  console.log("HOLA");
+
 }
 
 
@@ -330,7 +332,7 @@ function crearHerramButton(tool, onClickF) {
 function cargarPrueba(prueba) {
   console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
-  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
+  //$("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();
 };
