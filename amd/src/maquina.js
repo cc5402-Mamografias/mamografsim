@@ -1,7 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
 
-import { check_pos } from "./main";
+import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} from "./main";
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
@@ -127,7 +127,10 @@ export default class Maquina {
       //CARGAR VISTA TOP DOWN
       $("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`);
       console.log("BOTON CONFIGURADO");
-      document.getElementById("Guardar-pos").onclick = check_pos;
+      //document.getElementById("Guardar-pos").onclick = check_pos;
+      //document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
+      //document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
+      //document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
     }
     else{
       document.getElementById("vista-desde-arriba").style.display = "none";
