@@ -327,6 +327,7 @@ export let disparo = () => {
 
 
 // ESTO DEBERIA ESTAR SOLO EN drag-drop-receptor
+
 document.addEventListener("drag", function (event) {
   console.log("pick");
 }, false);
