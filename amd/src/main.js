@@ -207,6 +207,7 @@ export const init = (errors) => {
     elems[i].onclick = hide_h;
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
+  document.getElementById("Guardar-pos").onclick = check_pos;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
@@ -215,7 +216,6 @@ export const init = (errors) => {
     elems[i].onclick = show_sim;
   }
 
-  //document.getElementById("Guardar-pos").onclick = check_pos;
 
 
   let pruebas = ['compresion', 'rendimiento'];
@@ -289,6 +289,12 @@ function hide_mesa() {
   let x = document.getElementById("vista-arriba-receptor");
   x.style.display = "none";
 }
+
+function check_pos(){
+  console.log("HOLA");
+
+}
+
 
 function check_pos_correct(){
   let her = m.mamografo.getHerramienta();
