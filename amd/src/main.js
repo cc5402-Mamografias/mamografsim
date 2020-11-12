@@ -208,6 +208,8 @@ export const init = (errors) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("Guardar-pos").onclick = check_pos;
+  document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
+  document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
@@ -290,9 +292,27 @@ function hide_mesa() {
   x.style.display = "none";
 }
 
+// POSICIONAR CAMARA DE IONIZACION
 function check_pos(){
-  console.log("HOLA");
+  $('#alerta_posicion_correcta').hide();
+  $('#alerta_posicion_incorrecta').hide();
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    if(her.estaColocada()){
+      $('#alerta_posicion_correcta').show();
+    }
+    else{
+      $('#alerta_posicion_incorrecta').show();
+    }
+  }
+}
 
+function hide_alerta_correcta(){
+  $('#alerta_posicion_correcta').hide();
+}
+
+function hide_alerta_incorrecta(){
+  $('#alerta_posicion_incorrecta').hide();
 }
 
 
@@ -309,7 +329,7 @@ function check_pos_incorrect(){
   }
 }
 
-
+// FIN VISTA CAMARA DE IONIZACION
 
 
 function crearHerramButton(tool, onClickF) {

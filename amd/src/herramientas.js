@@ -249,6 +249,10 @@ class CamaraIonizacion extends AbstractTool {
     }
 
   }
+
+  estaColocada(){
+    return this.colocada;
+  }
 }
 
 class Electrometro extends AbstractTool {
