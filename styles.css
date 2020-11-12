@@ -281,6 +281,9 @@ input[type="radio"]:checked:after {
   visibility: visible;
   border: 2px solid white;
 }
+.shoot-mode .shoot {
+  border-radius: 8px;
+}
 
 /* Interfaz mamografo */
 .mamografo {
