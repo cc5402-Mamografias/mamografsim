@@ -47,10 +47,10 @@ class Main {
 
     this.ctx = this.c.getContext("2d");
 
-    this.cr = document.getElementById("canvas-receptor");
-    this.ctxr = this.cr.getContext("2d");
+    //this.cr = document.getElementById("canvas-receptor");
+    //this.ctxr = this.cr.getContext("2d");
 
-    drawReceptor(this.ctxr);
+
     errors.errorf = getError("errorFuerzaMedida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
 
@@ -277,10 +277,9 @@ function show_mesa() {
   cr.style.display = "block";
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
-  
   var scale = 1.0;
   console.log("HOLA");
-  ctxr.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
+  ctxr.drawImage(receptor,155,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
 
 }
 

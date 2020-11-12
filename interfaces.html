@@ -14,28 +14,6 @@
 
   <div id="contenedor-main" class="contenedor-main">
 
-    <!-- MODAL VISTA DESDE ARRIBA -->
-    <div id="modal-vista-arriba" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Receptor Mamógrafo</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-mesa modal-body">
-            <canvas id="canvas-receptor" class="receptor"></canvas>
-            <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
     <!-- MODAL VOLVER -->
     <div id="modal-volver" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -238,6 +216,13 @@
           <canvas id="canvasReceptor" class="receptor" width="800" height="480">
           </canvas>
           <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
+          <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:381px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:253px;">
+            <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" src="img/cam.svg" width=30>
+          </div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:221px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:317px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:586px; top:317px;"></div>
         </div>
       </div>
       <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
