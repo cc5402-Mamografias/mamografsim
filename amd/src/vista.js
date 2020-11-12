@@ -168,9 +168,9 @@ export async function preloadImages() {
   var images = [];
   //var image = new Image();
   //image.src = 'img/complete.svg';
-  var toalla = new Image();
-  toalla.src = "img/balanzatoalla.svg";
-  images.push(toalla);
+  //var toalla = new Image();
+  //toalla.src = "img/balanzatoalla.svg";
+  //images.push(toalla);
 
   var play = new Image();
   play.src = "icons/play.png";

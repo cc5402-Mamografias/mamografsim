@@ -67,9 +67,13 @@ class Balanza extends AbstractTool {
     this.x = 152;
     this.y = 265;
     this.description = "Esta es una balanza.";
+    this.notoalla = new Image();
+    this.notoalla.src = 'img/balanza.svg';
+    this.sitoalla = new Image();
+    this.sitoalla.src = 'img/balanzatoalla.svg';
 
-    this.balanza = new Image();
-    this.balanza.src = 'img/balanza.svg';
+    this.balanza = this.notoalla
+
 
   }
 
@@ -113,13 +117,15 @@ class Toalla extends AbstractTool {
     if(maquina.herramienta.tipo == "Balanza"){
       let balanza = maquina.herramienta
       if (!balanza.toalla){
-        balanza.balanza = new Image();
-        balanza.balanza.src = 'img/balanzatoalla.svg';
+        //balanza.balanza = new Image();
+        //balanza.balanza.src = 'img/balanzatoalla.svg';
+        balanza.balanza = balanza.sitoalla;
         balanza.toalla = true;
       }
       else{
-        balanza.balanza = new Image();
-        balanza.balanza.src = 'img/balanza.svg';
+        //balanza.balanza = new Image();
+        //balanza.balanza.src = 'img/balanza.svg';
+        balanza.balanza = balanza.notoalla;
         balanza.toalla = false;
       }
       
@@ -148,7 +154,7 @@ class Slab_20mm extends AbstractTool {
 
     this.scale = 0.5;
     this.x = 152;
-    this.y = 250;
+    this.y = 260;
 
     this.slabs = new Image();
     this.slabs.src = 'img/slab20.svg';
@@ -241,8 +247,6 @@ class CamaraIonizacion extends AbstractTool {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    //flag para saber si esat bien posicionada la camara
-    this.colocada = false;
   }
 
   actualizar(estado) {
@@ -268,17 +272,15 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fill();
   }
   getResultado() {
-    if (this.colocada == false){
-      return {
-        camara: [
-          "Camara de Ionización",
-          "\t\t\tKV: " + this.kilovolt,
-          "\t\t\tmAs: " + this.miliamperios,
-          "\t\t\tmodo: " + this.modo,
-          "\t\t\tfiltro: " + this.filtro,
-          "\t\t\tanodo: " + this.anodo,
-        ]
-      }
+    return {
+      camara: [
+        "Camara de Ionización",
+        "\t\t\tKV: " + this.kilovolt,
+        "\t\t\tmAs: " + this.miliamperios,
+        "\t\t\tmodo: " + this.modo,
+        "\t\t\tfiltro: " + this.filtro,
+        "\t\t\tanodo: " + this.anodo,
+      ]
     }
   }
 }
