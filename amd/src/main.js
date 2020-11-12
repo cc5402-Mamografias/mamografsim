@@ -209,6 +209,10 @@ export const init = (errors) => {
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
+  document.getElementById("Guardar-pos").onclick = check_pos;
+  document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
+  document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
+  document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;

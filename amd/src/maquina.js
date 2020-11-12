@@ -125,12 +125,8 @@ export default class Maquina {
       //MOSTRAR BOTON
       document.getElementById("vista-desde-arriba").style.display = "block";
       //CARGAR VISTA TOP DOWN
-      $("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`);
+      //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
       console.log("BOTON CONFIGURADO");
-      //document.getElementById("Guardar-pos").onclick = check_pos;
-      //document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
-      //document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
-      //document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
     }
     else{
       document.getElementById("vista-desde-arriba").style.display = "none";
@@ -199,3 +195,5 @@ export default class Maquina {
 
 
 }
+
+
