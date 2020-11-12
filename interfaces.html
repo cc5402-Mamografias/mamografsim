@@ -14,32 +14,8 @@
 
   <div id="contenedor-main" class="contenedor-main">
 
-    <!-- MODAL VISTA DESDE ARRIBA -->
-    <div id="modal-vista-arriba" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-lg">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Receptor Mamógrafo</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-mesa modal-body">
-            <canvas id="canvas-receptor" class="receptor"></canvas>
-            <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    
-
-    
-
+  
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
       <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
@@ -53,6 +29,7 @@
     <!-- INTERFAZ MENU INICIO -->
 
     <div id="contenedor-sim" class="contenedor-sim">
+
 
       <!-- MODAL VOLVER -->
       <div id="modal-volver" class="modal fade" role="dialog">
@@ -76,6 +53,7 @@
 
         </div>
       </div>
+
 
 
 
@@ -162,6 +140,7 @@
           <div class="container">
             <div class="shoot-mode">
               <button class="btn btn-danger shoot" id="shoot-b">Shoot</button>
+
             </div>
           </div>
         </div>
@@ -240,13 +219,13 @@
           <canvas id="canvasReceptor" class="receptor" width="800" height="480">
           </canvas>
           <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:298px; top:401px;"></div>
-          <div id="posicion_buena" class="dropzone" style="position:absolute; left:800px; top:273px;">
+          <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:381px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:253px;">
             <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" src="img/cam.svg" width=30>
           </div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:298px; top:241px;"></div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:170px; top:337px;"></div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:426px; top:337px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:221px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:317px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:586px; top:317px;"></div>
         </div>
       </div>
       <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
