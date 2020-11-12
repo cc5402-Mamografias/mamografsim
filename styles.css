@@ -571,10 +571,12 @@ input[type="radio"]:checked:after {
 
 }
 
-.modal-backdrop {
+#contenedor-sim .modal-backdrop {
   position: absolute !important;
-  width:50%;
-  height:50%;
+  top: -2.5%;
+  left: -2.5%;
+  width: 105%;
+  height: 105%;
 
 }
 
