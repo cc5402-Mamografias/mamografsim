@@ -293,11 +293,9 @@ function hide_mesa() {
 function check_pos(){
   let her = m.mamografo.getHerramienta();
   if (her.getTipo() == "camIonizacion"){
+    console.log("GUARDADO");
     her.colocar(true);
-
   }
-
-  
 }
 
 
@@ -394,6 +392,8 @@ document.addEventListener("drop", function (event) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
+      //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
+      check_pos()
   }
 
 }, false);
