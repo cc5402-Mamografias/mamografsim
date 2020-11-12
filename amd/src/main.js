@@ -215,6 +215,8 @@ export const init = (errors) => {
     elems[i].onclick = show_sim;
   }
 
+  document.getElementById("Guardar-pos").onclick = check_pos;
+
 
   let pruebas = ['compresion', 'rendimiento'];
 
@@ -288,6 +290,16 @@ function hide_mesa() {
   x.style.display = "none";
 }
 
+function check_pos(){
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    her.colocar(true);
+
+  }
+
+  
+}
+
 
 
 
@@ -319,10 +331,14 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
 };
 
+//disparo mamografo apretando boton shoot
 export let disparo = () => {
   console.log("Shoot2");
   m.getMamografo().activar();
   m.actualizar();
+};
+function disparoMamografo() {
+
 };
 
 
