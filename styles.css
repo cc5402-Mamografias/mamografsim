@@ -101,6 +101,7 @@
   overflow-y: auto;
   outline: solid 1px black;
   text-align: justify;
+  background-color: #f5f5f5;
 }
 
 .pasos-lista {
@@ -280,6 +281,9 @@ input[type="radio"]:checked:after {
   visibility: visible;
   border: 2px solid white;
 }
+.shoot-mode .shoot {
+  border-radius: 8px;
+}
 
 /* Interfaz mamografo */
 .mamografo {
@@ -299,6 +303,7 @@ input[type="radio"]:checked:after {
   height: 50%;
   outline: 1px solid black;
   text-align: center;
+  background-color: #f5f5f5;
 }
 
 .herrams-titulo {
@@ -345,13 +350,13 @@ input[type="radio"]:checked:after {
 /* Interfaz herramientas pop over */
 .herramientas-pop {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -5;
+  left: -5;
   display: none;
   z-index: 100;
-  background-color: #ccc;
-  width: 1002px;
-  height: 602px;
+  background-color: #f5f5f5;
+  width: 105%;
+  height: 105%;
   overflow-y: auto;
   text-align: center;
 }
@@ -448,13 +453,13 @@ input[type="radio"]:checked:after {
 /* Interfaz plantilla pop over */
 .plantilla-pop {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -5px;
+  left: -5px;
   display: none;
   z-index: 100;
   background-color: white;
-  width: 100%;
-  height: 100%;
+  width: 105%;
+  height: 105%;
   overflow-y: auto;
   text-align: center;
   outline: solid 1px black;
@@ -566,10 +571,12 @@ input[type="radio"]:checked:after {
 
 }
 
-.modal-backdrop {
+#contenedor-sim .modal-backdrop {
   position: absolute !important;
-  width:50%;
-  height:50%;
+  top: -2.5%;
+  left: -2.5%;
+  width: 105%;
+  height: 105%;
 
 }
 
@@ -617,13 +624,13 @@ body.modal-open {
 
 .vista-arriba-receptor{
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -5px;
+  left: -5px;
   display: none;
   z-index: 100;
   background-color: #ccc;
-  width: 1002px;
-  height: 602px;
+  width: 105%;
+  height: 105%;
   overflow-y: auto;
   text-align: center;
 }
