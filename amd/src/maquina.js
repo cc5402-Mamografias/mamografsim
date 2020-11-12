@@ -9,7 +9,7 @@ const margenmA = 10;
 const margenAlt = 2;
 
 function rand(lowest, highest){
-  var adjustedHigh = (highest - lowest) + 1;       
+  var adjustedHigh = (highest - lowest) + 1;
   return Math.floor(Math.random()*adjustedHigh) + parseFloat(lowest);
 }
 
@@ -40,7 +40,6 @@ export default class Maquina {
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
     //setearParamsMamografo();
-    
   }
 
   mError(x) {
@@ -54,7 +53,7 @@ export default class Maquina {
       altura: (this.alturaCompresor),
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion) 
+          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
           : 0,
       kilovolt: this.kilovolt + this.errorKilovolt,
       miliamperios: this.miliamperios + this.errorMiliamperios,
@@ -117,23 +116,35 @@ export default class Maquina {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
-    if (!addon){
+    if (addon){
      
-      if (this.herramienta.getTipo() == herram.getTipo()) {
-        this.herramienta = new BaseNula();
-      } else {
-        this.herramienta = herram;
-      }
+      herram.action(this);
       
     }
     else{
 
-      herram.action(this);
+      
+    //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
+    if (herram.getTipo() === "camIonizacion"){
+      //MOSTRAR BOTON
+      document.getElementById("vista-desde-arriba").style.display = "block";
     }
-    this.actualizar();
+    else{
+      document.getElementById("vista-desde-arriba").style.display = "none";
+    }
+    if (this.herramienta.getTipo() == herram.getTipo()) {
+      if(herram.getTipo() === "camIonizacion"){
+        //OCULTAR BOTON
+        document.getElementById("vista-desde-arriba").style.display = "none";
+      }
+      this.herramienta = new BaseNula();
+    } else {
+      this.herramienta = herram;
+    }
+    
     
     }
-    
+  }
 
   getHerramienta() {
     return this.herramienta;

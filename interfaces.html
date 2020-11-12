@@ -15,6 +15,9 @@
     <img src="icons/play.png" />
 </div>
   <div id="contenedor-main" class="contenedor-main">
+
+
+  
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
       <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
@@ -28,6 +31,34 @@
     <!-- INTERFAZ MENU INICIO -->
 
     <div id="contenedor-sim" class="contenedor-sim">
+
+
+      <!-- MODAL VOLVER -->
+      <div id="modal-volver" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">¿Deseas volver al menú principal?</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modal-volver">
+              <p>Todo el progreso que has hecho dentro de esta prueba será borrado si regresas al menú principal.</p>
+              <br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="volver-menu"class="btn btn-danger" data-dismiss="modal">Volver</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
         <!-- INTERFAZ BOTONES -->
@@ -110,7 +141,8 @@
 
           <div class="container">
             <div class="shoot-mode">
-              <button class="shoot" id="shoot-b">Shoot</button>
+              <button class="btn btn-danger shoot" id="shoot-b">Shoot</button>
+
             </div>
           </div>
         </div>
@@ -124,6 +156,7 @@
       <div id="panel-central">
         <!-- CANVAS MAMOGRAFO -->
         <canvas id="canvas" class="mamografo" width="400" height="600"></canvas>
+        <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%; display: None;"><img src="icons/grid.png" width=30><br>Ver mesa</button>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->
@@ -137,7 +170,7 @@
           <h3 class="titulo-panel">Herramientas</h3>
           <div id="herramientas-express" class="herrams-lista"></div>
 
-          <button id="herrams-mas" class="boton-ver-mas">Ver mas</button>
+          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver mas</button>
         </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
 
@@ -147,8 +180,7 @@
           <div id="resultados-lista" class="resultados-lista"></div>
 
           <!-- INTERFAZ BOTON PLANTILLA -->
-          <button id="plantilla-abrir" class="boton-ver-mas">Hoja de Resultados</button>
-      
+          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados</button>
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
@@ -159,7 +191,7 @@
       <!-- MENU OCULTO HERRAMIENTAS -->
       <div id="herrams" class="herramientas-pop">
         <div id="herrams-menos" class="herrams-salir">
-          <button type="button"><img src="icons/curve-arrow.png" width=30><br>Volver</button>
+          <button type="button" class="btn btn-danger">&lt; Volver al simulador</button>
         </div>
 
         <div class="container">
@@ -174,11 +206,31 @@
       <!-- PLANTILLA OCULTA RESULTADOS -->
       <div id="plantilla" class="plantilla-pop">
         <div class="plantilla-salir">
-          <button id="plantilla-cerrar" type="button"><img src="icons/curve-arrow.png" width=30><br>Volver </button>
+          <button id="plantilla-cerrar" class="btn btn-danger" type="button">&lt; Volver al simulador</button>
         </div>
         <div id="container-plantilla" class="container plantilla"></div>
       </div>
       <!-- /PLANTILLA OCULTA RESULTADOS -->
+
+      <!-- VISTA DESDE ARRIBA DEL RECEPTOR OCULTA-->
+      <div id="vista-arriba-receptor" class="vista-arriba-receptor">
+        <div class="plantilla-salir">
+          <button id="cerrar-vista-desde-arriba" class="btn btn-danger" type="button">&lt; Volver al simulador</button>
+        </div>
+        <div id="container-vista-arriba" class="container plantilla">
+          <canvas id="canvasReceptor" class="receptor" width="800" height="480">
+          </canvas>
+          <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
+          <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:381px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:253px;">
+            <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" src="img/cam.svg" width=30>
+          </div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:221px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:317px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:586px; top:317px;"></div>
+        </div>
+      </div>
+      <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
     </div>
   </div>
 
