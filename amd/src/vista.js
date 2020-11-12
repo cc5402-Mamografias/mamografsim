@@ -1,4 +1,5 @@
 var scale = 0.45;
+var scalereceptor = 0.4;
 var x = 280;
 var y = 0;
 
@@ -26,8 +27,12 @@ var compresor = new Image();
 compresor.src = "img/compresor.svg";
 var visor = new Image();
 visor.src = "img/visor.svg";
+
+
 var receptor = new Image();
 receptor.src = "img/receptor.svg";
+
+
 var pedal_base = new Image();
 pedal_base.src = "img/pedals/pedal-base.svg"
 var pedal_left_off = new Image();
@@ -187,5 +192,5 @@ export async function preloadImages() {
 }
 
 export function drawReceptor(ctx) {
-  ctx.drawImage(receptor,-5,-30,receptor.width*scale*0.8,receptor.height*scale*0.8);
+  ctx.drawImage(receptor,-5,-30,receptor.width*scalereceptor,receptor.height*scalereceptor);
 }
