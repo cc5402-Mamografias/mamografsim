@@ -202,7 +202,7 @@ export const init = (errors) => {
 
 
   // botones de herramientas en popup
-  elems = document.getElementsByClassName("herrams-boton");
+  elems = document.getElementsByClassName("herrams-btn");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = hide_h;
   }
