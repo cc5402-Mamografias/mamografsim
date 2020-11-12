@@ -139,6 +139,7 @@ button.btnadd {
 }
 button.btnsub {
   border-radius: 8px;
+  margin-bottom: 7px;
 }
 button.btnmode {
   border-radius: 8px;
@@ -176,10 +177,13 @@ button.anodemode {
 }
 .mas_label {
   margin-left: 5px;
+  margin-top: 3px;
 }
 .kv_label {
   margin-left: 5px;
   margin-right: 12px;
+  margin-top: 3px;
+  margin-bottom: 7px;
 }
 
 .modes {
