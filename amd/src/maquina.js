@@ -4,8 +4,8 @@ import { preloadImages, drawMam } from "./vista";
 
 const alturaMax = 80;
 const margenF = 0.5;
-const margenKV = 1;
-const margenmA = 10;
+const rangemargenKV = 1;
+const rangemargenmA = 10;
 const margenAlt = 2;
 
 function rand(lowest, highest){
@@ -48,6 +48,8 @@ export default class Maquina {
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
+    let margenKV = this.mError(rangemargenKV)
+    let margenmA = this.mError(rangemargenmA)
     console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
@@ -55,8 +57,8 @@ export default class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt,
-      miliamperios: this.miliamperios + this.errorMiliamperios,
+      kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
+      miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,

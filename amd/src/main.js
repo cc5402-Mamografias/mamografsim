@@ -290,11 +290,16 @@ function hide_mesa() {
   x.style.display = "none";
 }
 
-function check_pos(){
+function check_pos_correct(){
   let her = m.mamografo.getHerramienta();
   if (her.getTipo() == "camIonizacion"){
-    console.log("GUARDADO");
     her.colocar(true);
+  }
+}
+function check_pos_incorrect(){
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    her.colocar(false);
   }
 }
 
@@ -394,9 +399,12 @@ document.addEventListener("drop", function (event) {
       event.target.appendChild(this.dragged);
       //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
       if (event.target.id == "posicion_buena"){
-        check_pos()
-
+        check_pos_correct()
       }
+      else{
+        check_pos_incorrect()
+      }
+
       
   }
 

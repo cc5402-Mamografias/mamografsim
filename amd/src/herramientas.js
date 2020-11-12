@@ -208,8 +208,8 @@ class CamaraIonizacion extends AbstractTool {
     console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
     if (estado.activo == true) {
-      this.kilovolt = estado.kilovolt;
-      this.miliamperios = estado.miliamperios;
+      this.kilovolt = estado.kilovolt.toFixed(2);
+      this.miliamperios = estado.miliamperios.toFixed(2);
       this.modo = estado.modo;
       this.filtro = estado.filtro;
       this.anodo = estado.anodo;
