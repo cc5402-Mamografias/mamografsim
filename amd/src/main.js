@@ -215,7 +215,7 @@ export const init = (errors) => {
     elems[i].onclick = show_sim;
   }
 
-  document.getElementById("Guardar-pos").onclick = check_pos;
+  //document.getElementById("Guardar-pos").onclick = check_pos;
 
 
   let pruebas = ['compresion', 'rendimiento'];
@@ -393,7 +393,11 @@ document.addEventListener("drop", function (event) {
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
       //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
-      check_pos()
+      if (event.target.id == "posicion_buena"){
+        check_pos()
+
+      }
+      
   }
 
 }, false);
