@@ -12,11 +12,11 @@ export default class MesaTopDown {
     }
 
     check_pos(){
-        console.log(this.test);
+        //console.log(this.incorrectAlert);
         this.incorrectAlert.hide();
         this.correctAlert.hide();
         let her = this.mamo.getHerramienta();
-        if (her.getTipo() == "camIonizacion"){
+        if (her.getTipo() == "Detector de Radiación"){
             if(her.estaColocada()){
                 this.correctAlert.show();
             }
@@ -36,13 +36,13 @@ export default class MesaTopDown {
     }
     check_pos_correct() {
         let her = this.mamo.getHerramienta();
-        if (her.getTipo() == "camIonizacion") {
+        if (her.getTipo() == "Detector de Radiación") {
             her.colocar(true);
         }
     }
     check_pos_incorrect() {
         let her = this.mamo.getHerramienta();
-        if (her.getTipo() == "camIonizacion") {
+        if (her.getTipo() == "Detector de Radiación") {
             her.colocar(false);
         }
     }
