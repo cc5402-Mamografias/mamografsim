@@ -53,7 +53,8 @@ class Main {
     //this.ctxr = this.cr.getContext("2d");
 
 
-    errors.errorf = getError("errorFuerzaMedida", errors.errorf);
+    errors.errorfmed = getError("errorFuerzaMedida", errors.errorf);
+    errors.errorfeje = getError("errorFuerzaEjercida", 0); // TODO: reemplazar valor por uno cargado de la DB
     errors.erroralt = getError("errorAltura", errors.erroralt);
 
     this.mamografo = new Maquina(errors, this.ctx);
