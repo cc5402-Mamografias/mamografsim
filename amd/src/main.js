@@ -210,18 +210,22 @@ export const init = (errors) => {
 
 
   // botones de herramientas en popup
-  elems = document.getElementsByClassName("herrams-boton");
+  elems = document.getElementsByClassName("herrams-btn");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = hide_h;
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
+  document.getElementById("Guardar-pos").onclick = check_pos;
+  document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
+  document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
   document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
   }
+
 
 
   let pruebas = ['compresion', 'rendimiento'];
@@ -296,7 +300,44 @@ function hide_mesa() {
   x.style.display = "none";
 }
 
+// POSICIONAR CAMARA DE IONIZACION
+function check_pos(){
+  $('#alerta_posicion_correcta').hide();
+  $('#alerta_posicion_incorrecta').hide();
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    if(her.estaColocada()){
+      $('#alerta_posicion_correcta').show();
+    }
+    else{
+      $('#alerta_posicion_incorrecta').show();
+    }
+  }
+}
 
+function hide_alerta_correcta(){
+  $('#alerta_posicion_correcta').hide();
+}
+
+function hide_alerta_incorrecta(){
+  $('#alerta_posicion_incorrecta').hide();
+}
+
+
+function check_pos_correct(){
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    her.colocar(true);
+  }
+}
+function check_pos_incorrect(){
+  let her = m.mamografo.getHerramienta();
+  if (her.getTipo() == "camIonizacion"){
+    her.colocar(false);
+  }
+}
+
+// FIN VISTA CAMARA DE IONIZACION
 
 
 function crearHerramButton(tool, onClickF) {
@@ -327,10 +368,14 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
   m.getMamografo().setearParams(kv, ma, md, fltr, anod);
 };
 
+//disparo mamografo apretando boton shoot
 export let disparo = () => {
   console.log("Shoot2");
   m.getMamografo().activar();
   m.actualizar();
+};
+function disparoMamografo() {
+
 };
 
 
@@ -386,6 +431,15 @@ document.addEventListener("drop", function (event) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);
+      //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
+      if (event.target.id == "posicion_buena"){
+        check_pos_correct()
+      }
+      else{
+        check_pos_incorrect()
+      }
+
+      
   }
 
 }, false);

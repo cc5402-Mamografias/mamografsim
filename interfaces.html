@@ -31,8 +31,6 @@
     <!-- INTERFAZ MENU INICIO -->
 
     <div id="contenedor-sim" class="contenedor-sim">
-
-
       <!-- MODAL VOLVER -->
       <div id="modal-volver" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -55,9 +53,6 @@
 
         </div>
       </div>
-
-
-
 
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
@@ -214,20 +209,32 @@
 
       <!-- VISTA DESDE ARRIBA DEL RECEPTOR OCULTA-->
       <div id="vista-arriba-receptor" class="vista-arriba-receptor">
-        <div class="plantilla-salir">
-          <button id="cerrar-vista-desde-arriba" class="btn btn-danger" type="button">&lt; Volver al simulador</button>
-        </div>
         <div id="container-vista-arriba" class="container plantilla">
+          <div class="mt-4">
+            <h4>Vista Superior Receptor de Mama</h4>
+          </div>
           <canvas id="canvasReceptor" class="receptor" width="800" height="480">
           </canvas>
-          <button type="button" id="Guardar-pos" class="btn btn-success" data-dismiss="modal">Guardar Nueva Posición</button>
-          <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:381px;"></div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:253px;">
+          
+          <div id="alerta_posicion_correcta" class="alert-success mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_correcta" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Posición correcta
+          </div>
+          <div id="alerta_posicion_incorrecta" class="alert-danger mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_incorrecta"href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Posición incorrecta
+          </div>
+          <div style="margin-top: 1rem;">
+            <button type="button" id="Guardar-pos" class="btn btn-primary px-3 mx-2" data-dismiss="modal">Verificar Posición</button>
+            <button id="cerrar-vista-desde-arriba" class="btn btn-success px-3 mx-2" type="button">Guardar y Salir</button>
+          </div>
+          <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:403px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:276px;">
             <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" src="img/cam.svg" width=30>
           </div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:221px;"></div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:317px;"></div>
-          <div id="posicion_mala" class="dropzone" style="position:absolute; left:586px; top:317px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:244px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:340px;"></div>
+          <div id="posicion_mala" class="dropzone" style="position:absolute; left:586px; top:340px;"></div>
         </div>
       </div>
       <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->

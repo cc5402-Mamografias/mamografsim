@@ -139,6 +139,7 @@ button.btnadd {
 }
 button.btnsub {
   border-radius: 8px;
+  margin-bottom: 7px;
 }
 button.btnmode {
   border-radius: 8px;
@@ -168,18 +169,30 @@ button.anodemode {
   top: 50px;
 }
 .mas_input {
+  border: 3px;
   width: 50px;
+  margin-bottom: 7px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  padding: 0 7px;
 }
 .kv_input {
   width: 35px;
   margin-left: 15px;
+  margin-bottom: 7px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  padding: 0 7px;
 }
 .mas_label {
   margin-left: 5px;
+  margin-top: 3px;
 }
 .kv_label {
   margin-left: 5px;
   margin-right: 12px;
+  margin-top: 3px;
+  margin-bottom: 7px;
 }
 
 .modes {
@@ -323,11 +336,13 @@ input[type="radio"]:checked:after {
 }
 
 .her-b-s {
-  width: 40%;
+  width: 35%;
+  margin:2.5%;
 }
 
 .her-b-l {
   width: 100%;
+  margin-bottom: 5%;
 }
 
 .her-b-s {
@@ -648,4 +663,29 @@ body.modal-open {
   height: 124px;
   text-align: center;
   background: white;
+}
+
+/* Alertas de feedback sobre posición de la cámara de ionización */
+.alert-danger {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  display: none;
+}
+
+.alert-success {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  display: none;
 }
