@@ -1,13 +1,69 @@
 
   <div class="titulo-panel">Pasos Prueba Rendimiento</div>
-    <ol id="lista-pasos" class="pasos-lista">
-      <li> Seleccionar el detector de radiación en la sección de herramientas. </li>
-      <li> Posicionar el detector centrado en el eje horizontal, y a 4 cm de la pared torácica. De esta forma, el volumen sensible del detector queda dentro del campo de radiación. </li>
-      <li> Medir y anotar la distancia foco-cámara. </li>
-      <li> Seleccionar el modo manual, y una combinación ánodo/filtro para una tensión de 28 kV. </li> 
-      <li> Seleccionar tres valores de mAs entre los comúnmente utilizados (40, 80, 120) en la práctica clínica para la tensión de 28 kV. </li>   
-      <li> Seleccionar el primer valor de mAs elegido, y realizar una exposicion presionando el botón Shoot en el Panel de Control, registrando en la planilla los resultados</li>
-      <li> Para cada valor de mAs, realizar 5 veces el paso anterior </li>
-      <li> Si existen otras combinaciones ánodo/filtro, medir el rendimiento para esas combinaciones, seleccionando la tensión más habitual en la práctica clínica. </li>   
-      <li> Registrar la realización de la prueba en la planilla</li>
-    </ol>
+    <div class="pasos-lista" style="display: none;">
+      <p> Seleccionar el detector de radiación en la sección de herramientas. </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Posicionar el detector centrado en el eje horizontal, y a 4 cm de la pared torácica. De esta forma, el volumen sensible del detector queda dentro del campo de radiación. </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Medir y anotar la distancia foco-cámara. </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Seleccionar el modo manual, y una combinación ánodo/filtro para una tensión de 28 kV. </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Seleccionar tres valores de mAs entre los comúnmente utilizados (40, 80, 120) en la práctica clínica para la tensión de 28 kV. </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Seleccionar el primer valor de mAs elegido, y realizar una exposicion presionando el botón Shoot en el Panel de Control, registrando en la planilla los resultados </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Para cada valor de mAs, realizar 5 veces el paso anterior </p>
+    </div>
+    <div class="pasos-lista" style="display: none;">
+      <p> Si existen otras combinaciones ánodo/filtro, medir el rendimiento para esas combinaciones, seleccionando la tensión más habitual en la práctica clínica.  </p>
+    </div>
+    <div class="pasos-lista" style="display: none;"> 
+      <p>Registrar la realización de la prueba en la planilla </p>
+    </div>
+
+    <div style="overflow:auto;">
+      <div style="position:fixed;">
+        <button type="button" id="prevBtn" onclick="nextPrev(-1)" style="bottom:0; left: 0;">Previous</button>
+        <button type="button" id="nextBtn" onclick="nextPrev(1)" style="bottom:0; right: 0;">Next</button>
+      </div>
+    </div>
+
+    <script>
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+      showTab(currentTab); // Display the current tab
+
+      function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("pasos-lista");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        } else {
+          document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+          document.getElementById("nextBtn").style.display = "none";
+        } else {
+          document.getElementById("nextBtn").style.display = "inline";
+        }
+      }
+
+      function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("pasos-lista");
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        showTab(currentTab);
+      }
+    </script>
