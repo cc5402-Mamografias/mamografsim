@@ -254,6 +254,12 @@ class DetectRad extends AbstractTool {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+
+    this.scale = 0.5;
+    this.x = 130;
+    this.y = 230;
+    this.sprite = new Image();
+    this.sprite.src = 'img/detector.svg';
   }
   colocar(bool){
     this.colocada = bool;
@@ -274,13 +280,7 @@ class DetectRad extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    //ctx.beginPath();
-    //ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    //ctx.stroke();
-    //ctx.fillStyle = "yellow";
-    //ctx.fill();
+    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
   }
   getResultado() {
 
