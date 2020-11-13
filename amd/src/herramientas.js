@@ -57,6 +57,7 @@ class Balanza extends AbstractTool {
 
   constructor() {
     super();
+    this.toalla = false;
     this.tipo = "Balanza";
     this.icon = "balanza.png";
     this.altura = 5;
@@ -66,9 +67,13 @@ class Balanza extends AbstractTool {
     this.x = 152;
     this.y = 265;
     this.description = "Esta es una balanza.";
+    this.notoalla = new Image();
+    this.notoalla.src = 'img/balanza.svg';
+    this.sitoalla = new Image();
+    this.sitoalla.src = 'img/balanzatoalla.svg';
 
-    this.balanza = new Image();
-    this.balanza.src = 'img/balanza.svg';
+    this.balanza = this.notoalla
+
 
   }
 
@@ -89,6 +94,52 @@ class Balanza extends AbstractTool {
   getResultado() {
     return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
   }
+}
+class Toalla extends AbstractTool {
+
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Toalla";
+    this.icon = "balanza.png";
+    this.altura = 5;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Poner la toalla encima de la balanza.";
+
+    //this.toalla = new Image();
+    //this.toalla.src = 'img/balanzatoalla.svg';
+
+  }
+
+  action(maquina){
+    if(maquina.herramienta.tipo == "Balanza"){
+      let balanza = maquina.herramienta
+      if (!balanza.toalla){
+        //balanza.balanza = new Image();
+        //balanza.balanza.src = 'img/balanzatoalla.svg';
+        balanza.balanza = balanza.sitoalla;
+        balanza.toalla = true;
+      }
+      else{
+        //balanza.balanza = new Image();
+        //balanza.balanza.src = 'img/balanza.svg';
+        balanza.balanza = balanza.notoalla;
+        balanza.toalla = false;
+      }
+      
+      maquina.actualizar();
+      console.log("balanza: ",balanza);
+    }
+  }
+  actualizar(ctx){
+    //nada
+  }
+  dibujar(ctx) {
+   //nada
+  }
+
 }
 
 class Slab_20mm extends AbstractTool {
@@ -196,8 +247,6 @@ class CamaraIonizacion extends AbstractTool {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
-    //flag para saber si esat bien posicionada la camara
-    this.colocada = false;
   }
   colocar(bool){
     this.colocada = bool;
@@ -227,6 +276,7 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fill();
   }
   getResultado() {
+
     if (this.colocada == true){
       return {
         camara: [
@@ -352,6 +402,7 @@ class CintaMetrica extends AbstractTool {
 export {
   BaseNula,
   Balanza,
+  Toalla,
   Barometro,
   CamaraIonizacion,
   CintaMetrica,

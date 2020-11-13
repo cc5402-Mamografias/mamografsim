@@ -115,11 +115,19 @@ export default class Maquina {
   }
 
   // Selecciona una nueva herramienta o deselecciona la antigua
-  setHerramienta(herram) {
-    if (this.alturaCompresor + 1 < herram.altura) {
+  setHerramienta(herram, addon = false) {
+    if (this.alturaCompresor + 5 < herram.altura) {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
+    if (addon){
+     
+      herram.action(this);
+      
+    }
+    else{
+
+      
     //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
     if (herram.getTipo() === "camIonizacion"){
       //MOSTRAR BOTON
@@ -141,7 +149,9 @@ export default class Maquina {
     } else {
       this.herramienta = herram;
     }
-    this.actualizar();
+    
+    
+    }
   }
 
   getHerramienta() {
