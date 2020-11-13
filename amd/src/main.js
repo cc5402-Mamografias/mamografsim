@@ -18,8 +18,12 @@ import {
   getCompresorPosY,
   drawPedal
 } from "./vista";
+
 import PanelResultados from "./panel-resultados";
+import MesaTopDown from "./vista-top-down";
+
 import { getError } from "./valor-errores";
+
 
 import { drawReceptor } from "./vista";
 
@@ -55,6 +59,7 @@ class Main {
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
+    this.mesaTopDown = new MesaTopDown(this.mamografo);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -135,7 +140,7 @@ class Main {
 
     //dibujar resultados
     //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
-    
+
     this.panelResultados.limpiarResultados();
     try {
       this.panelResultados.registrarResultado(this.mamografo.getHerramienta().getResultado());
@@ -162,7 +167,7 @@ class Main {
     else{
       herramientaHolder.setHerramienta(tool);
     }
-    
+
     this.actualizar();
   }
 
@@ -213,10 +218,10 @@ export const init = (errors) => {
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
-  document.getElementById("Guardar-pos").onclick = check_pos;
-  document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = hide_alerta_incorrecta;
-  document.getElementById("cerrar_alerta_posicion_correcta").onclick = hide_alerta_correcta;
-  document.getElementById("cerrar-vista-desde-arriba").onclick = hide_mesa;
+  document.getElementById("Guardar-pos").onclick = () => m.mesaTopDown.check_pos();
+  document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = () => m.mesaTopDown.hide_alerta_incorrecta();
+  document.getElementById("cerrar_alerta_posicion_correcta").onclick = () => m.mesaTopDown.hide_alerta_correcta();
+  document.getElementById("cerrar-vista-desde-arriba").onclick = () => m.mesaTopDown.hide_mesa();
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -242,15 +247,15 @@ export const init = (errors) => {
   $("#loader").remove()
 
   $("body").on("click","#volver",function(){
-            
+
     $("#modal-volver").modal("show");
-  
+
     //appending modal background inside the contenedor-main div
-    $('.modal-backdrop').appendTo('#contenedor-sim');   
-  
+    $('.modal-backdrop').appendTo('#contenedor-sim');
+
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
     $('body').removeClass("modal-open")
-    $('body').css("padding-right","");     
+    $('body').css("padding-right","");
   });
 
   console.log("Simulador inicializado");
@@ -291,47 +296,6 @@ function show_mesa() {
 
 }
 
-function hide_mesa() {
-  let x = document.getElementById("vista-arriba-receptor");
-  x.style.display = "none";
-}
-
-// POSICIONAR CAMARA DE IONIZACION
-function check_pos(){
-  $('#alerta_posicion_correcta').hide();
-  $('#alerta_posicion_incorrecta').hide();
-  let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Detector de Radiación"){
-    if(her.estaColocada()){
-      $('#alerta_posicion_correcta').show();
-    }
-    else{
-      $('#alerta_posicion_incorrecta').show();
-    }
-  }
-}
-
-function hide_alerta_correcta(){
-  $('#alerta_posicion_correcta').hide();
-}
-
-function hide_alerta_incorrecta(){
-  $('#alerta_posicion_incorrecta').hide();
-}
-
-
-function check_pos_correct(){
-  let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Detector de Radiación"){
-    her.colocar(true);
-  }
-}
-function check_pos_incorrect(){
-  let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Detector de Radiación"){
-    her.colocar(false);
-  }
-}
 
 // FIN VISTA CAMARA DE IONIZACION
 
@@ -429,13 +393,11 @@ document.addEventListener("drop", function (event) {
       event.target.appendChild(this.dragged);
       //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
       if (event.target.id == "posicion_buena"){
-        check_pos_correct()
+        m.mesaTopDown.check_pos_correct()
       }
       else{
-        check_pos_incorrect()
+        m.mesaTopDown.check_pos_incorrect()
       }
-
-      
   }
 
 }, false);
