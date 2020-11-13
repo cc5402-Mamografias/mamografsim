@@ -92,7 +92,14 @@ class Balanza extends AbstractTool {
   }
 
   getResultado() {
-    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
+    if (this.toalla == false && this.fuerza != 0) {
+      return { balanza: ["ADVERTENCIA: ¡Se esta comprimiendo balanza sin toalla!"] };
+
+    }
+    else {
+      return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
+    }
+
   }
 }
 class Toalla extends AbstractTool {
@@ -101,7 +108,7 @@ class Toalla extends AbstractTool {
     super();
     this.addon = true;
     this.tipo = "Toalla";
-    this.icon = "balanza.png";
+    this.icon = "towel.png";
     this.altura = 5;
     this.scale = 0.5;
     this.x = 152;
