@@ -1,11 +1,13 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
+
+import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} from "./main";
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
 const margenF = 0.5;
-const margenKV = 1;
-const margenmA = 10;
+const rangemargenKV = 1;
+const rangemargenmA = 10;
 const margenAlt = 2;
 
 function rand(lowest, highest){
@@ -48,6 +50,8 @@ export default class Maquina {
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
+    let margenKV = this.mError(rangemargenKV)
+    let margenmA = this.mError(rangemargenmA)
     console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
@@ -55,8 +59,8 @@ export default class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt,
-      miliamperios: this.miliamperios + this.errorMiliamperios,
+      kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
+      miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -120,6 +124,9 @@ export default class Maquina {
     if (herram.getTipo() === "camIonizacion"){
       //MOSTRAR BOTON
       document.getElementById("vista-desde-arriba").style.display = "block";
+      //CARGAR VISTA TOP DOWN
+      //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
+      console.log("BOTON CONFIGURADO");
     }
     else{
       document.getElementById("vista-desde-arriba").style.display = "none";
@@ -128,6 +135,7 @@ export default class Maquina {
       if(herram.getTipo() === "camIonizacion"){
         //OCULTAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "none";
+        
       }
       this.herramienta = new BaseNula();
     } else {
@@ -187,3 +195,5 @@ export default class Maquina {
 
 
 }
+
+

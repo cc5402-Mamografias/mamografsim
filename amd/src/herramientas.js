@@ -199,13 +199,17 @@ class CamaraIonizacion extends AbstractTool {
     //flag para saber si esat bien posicionada la camara
     this.colocada = false;
   }
+  colocar(bool){
+    this.colocada = bool;
+  }
+
 
   actualizar(estado) {
     console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
     if (estado.activo == true) {
-      this.kilovolt = estado.kilovolt;
-      this.miliamperios = estado.miliamperios;
+      this.kilovolt = estado.kilovolt.toFixed(2);
+      this.miliamperios = estado.miliamperios.toFixed(2);
       this.modo = estado.modo;
       this.filtro = estado.filtro;
       this.anodo = estado.anodo;
@@ -223,7 +227,7 @@ class CamaraIonizacion extends AbstractTool {
     //ctx.fill();
   }
   getResultado() {
-    if (this.colocada == false){
+    if (this.colocada == true){
       return {
         camara: [
           "Camara de Ionización",
@@ -235,6 +239,19 @@ class CamaraIonizacion extends AbstractTool {
         ]
       }
     }
+    else {
+      return {
+        camara: [
+          "Camara de Ionización",
+          "NADA"
+        ]
+      }
+    }
+
+  }
+
+  estaColocada(){
+    return this.colocada;
   }
 }
 
