@@ -105,8 +105,20 @@
 }
 
 .pasos-lista {
-  margin: 0;
-  padding: 8px;
+  height: 70%;
+  display: none;
+  text-align: justify;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+#prevBtn {
+  position: absolute;
+}
+
+#nextBtn {
+  position: relative; 
+  left: 210px;
 }
 
 table {
