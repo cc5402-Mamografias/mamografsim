@@ -73,8 +73,6 @@ class Balanza extends AbstractTool {
     this.sitoalla.src = 'img/balanzatoalla.svg';
 
     this.balanza = this.notoalla
-
-
   }
 
   actualizar(estado) {
@@ -103,7 +101,6 @@ class Balanza extends AbstractTool {
   }
 }
 class Toalla extends AbstractTool {
-
   constructor() {
     super();
     this.addon = true;
@@ -254,6 +251,10 @@ class DetectRad extends AbstractTool {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+    this.result = [
+      "Detector de Radiación",
+      "NADA"
+    ];
 
     this.scale = 0.5;
     this.x = 130;
@@ -277,6 +278,17 @@ class DetectRad extends AbstractTool {
       this.anodo = estado.anodo;
       console.log("haha Camara de Ionizacion go brrrr");
     }
+    if (estado.activo == true){
+      this.estado = "activo";
+    
+
+    }
+
+    else {
+      this.estado = "inactivo";
+    }
+
+
   }
   actualizar_default() {
     this.kilovolt = 0;
@@ -291,26 +303,34 @@ class DetectRad extends AbstractTool {
   }
   getResultado() {
 
-    if (this.colocada == true) {
+    if (this.colocada == true && this.estado == "activo") {
+      this.result = [
+        "Detector de Radiación",
+        "\t\t\tKV: " + this.kilovolt,
+        "\t\t\tmAs: " + this.miliamperios,
+        "\t\t\tmodo: " + this.modo,
+        "\t\t\tfiltro: " + this.filtro,
+        "\t\t\tanodo: " + this.anodo,
+      ];
       return {
-        camara: [
-          "Detector de Radiación",
-          "\t\t\tKV: " + this.kilovolt,
-          "\t\t\tmAs: " + this.miliamperios,
-          "\t\t\tmodo: " + this.modo,
-          "\t\t\tfiltro: " + this.filtro,
-          "\t\t\tanodo: " + this.anodo,
-        ]
+        camara: this.result
+      }
+    }
+    else if (this.colocada == false && this.estado == "activo") {
+      this.result = [
+        "Detector de Radiación",
+        "NADA"
+      ];
+      return {
+        camara: this.result
       }
     }
     else {
       this.actualizar_default();
       return {
-        camara: [
-          "Detector de Radiación",
-          "NADA"
-        ]
+        camara: this.result
       }
+      
     }
 
   }
