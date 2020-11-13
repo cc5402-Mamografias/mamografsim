@@ -2,9 +2,7 @@ import jQuery from "jquery";
 import {
   Balanza,
   Barometro,
-  CamaraIonizacion,
-  CintaMetrica,
-  Electrometro,
+  DetectRad,
   Termometro,
   Slab_20mm,
   Slab_45mm,
@@ -42,9 +40,7 @@ class Main {
       new Slab_20mm(),
       new Slab_45mm(),
       new Slab_70mm(),
-      new CintaMetrica(),
-      new CamaraIonizacion(),
-      new Electrometro(),
+      new DetectRad(),
     ];
 
     this.c = document.getElementById("canvas");
@@ -299,6 +295,7 @@ function show_mesa() {
   ctxr.drawImage(receptor,155,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
 
 }
+
 
 // FIN VISTA CAMARA DE IONIZACION
 
