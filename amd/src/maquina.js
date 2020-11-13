@@ -37,7 +37,8 @@ export default class Maquina {
     console.log(errors);
     this.errorKilovolt = parseInt(errors["errorkv"]);
     this.errorMiliamperios = parseInt(errors["errorma"]);
-    this.errorFuerza = errors["errorf"];
+    this.errorFuerzaMedida = errors["errorfmed"];
+    this.errorFuerzaEjercida = errors["errorfeje"];
     this.errorAltura = errors["erroralt"];
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
@@ -49,15 +50,14 @@ export default class Maquina {
   }
 
   construirEstado(isActivo) {
-    //let errorF = rand(-this.errorFuerza,this.errorFuerza)
-    let margenKV = this.mError(rangemargenKV)
-    let margenmA = this.mError(rangemargenmA)
+    let margenKV = this.mError(rangemargenKV);
+    let margenmA = this.mError(rangemargenmA);
     console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
+          ? ((this.fuerza + this.errorFuerzaEjercida) * this.factorCompresion)
           : 0,
       kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
       miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
@@ -76,7 +76,7 @@ export default class Maquina {
           ? (this.alturaCompresor) *10
           : 0,
       fuerza: this.alturaCompresor == this.alturaMinima()
-        ? (this.fuerza + this.margenF) * this.factorCompresion
+        ? (this.fuerza + this.errorFuerzaMedida) * this.factorCompresion
         : 0
     };
   }
