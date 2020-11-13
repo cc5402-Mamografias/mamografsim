@@ -120,31 +120,31 @@ class Toalla extends AbstractTool {
 
   }
 
-  action(maquina){
-    if(maquina.herramienta.tipo == "Balanza"){
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Balanza") {
       let balanza = maquina.herramienta
-      if (!balanza.toalla){
+      if (!balanza.toalla) {
         //balanza.balanza = new Image();
         //balanza.balanza.src = 'img/balanzatoalla.svg';
         balanza.balanza = balanza.sitoalla;
         balanza.toalla = true;
       }
-      else{
+      else {
         //balanza.balanza = new Image();
         //balanza.balanza.src = 'img/balanza.svg';
         balanza.balanza = balanza.notoalla;
         balanza.toalla = false;
       }
-      
+
       maquina.actualizar();
-      console.log("balanza: ",balanza);
+      console.log("balanza: ", balanza);
     }
   }
-  actualizar(ctx){
+  actualizar(ctx) {
     //nada
   }
   dibujar(ctx) {
-   //nada
+    //nada
   }
 
 }
@@ -261,7 +261,7 @@ class DetectRad extends AbstractTool {
     this.sprite = new Image();
     this.sprite.src = 'img/detector.svg';
   }
-  colocar(bool){
+  colocar(bool) {
     this.colocada = bool;
   }
 
@@ -269,7 +269,7 @@ class DetectRad extends AbstractTool {
   actualizar(estado) {
     console.log(estado);
     console.log("haha Camara de Ionizacion go brrrr");
-    if (estado.activo == true) {
+    if (estado.activo == true && this.colocada == true) {
       this.kilovolt = estado.kilovolt.toFixed(2);
       this.miliamperios = estado.miliamperios.toFixed(2);
       this.modo = estado.modo;
@@ -278,13 +278,20 @@ class DetectRad extends AbstractTool {
       console.log("haha Camara de Ionizacion go brrrr");
     }
   }
+  actualizar_default() {
+    this.kilovolt = 0;
+    this.miliamperios = 0;
+    this.modo = null;
+    this.filtro = null;
+    this.anodo = null;
+  }
 
   dibujar(ctx) {
     ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
   }
   getResultado() {
 
-    if (this.colocada == true){
+    if (this.colocada == true) {
       return {
         camara: [
           "Detector de Radiación",
@@ -297,6 +304,7 @@ class DetectRad extends AbstractTool {
       }
     }
     else {
+      this.actualizar_default();
       return {
         camara: [
           "Detector de Radiación",
@@ -307,7 +315,7 @@ class DetectRad extends AbstractTool {
 
   }
 
-  estaColocada(){
+  estaColocada() {
     return this.colocada;
   }
 }

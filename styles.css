@@ -581,7 +581,7 @@ input[type="radio"]:checked:after {
 
 /* MODAL */
 
-.modal{
+#contenedor-sim .modal{
   position: absolute !important;
 
 }
@@ -595,19 +595,19 @@ input[type="radio"]:checked:after {
 
 }
 
-.modal-dialog{
+#contenedor-sim .modal-dialog{
   overflow-y: initial !important
 }
 
-.modal-body{
+#contenedor-sim .modal-body{
   overflow-y: auto;
 }
 
-.modal-volver{
+#contenedor-sim .modal-volver{
   height: 20vh;
 }
 
-.modal-mesa{
+#contenedor-sim .modal-mesa{
   height:70vh;
   padding:0px;
 }
