@@ -350,7 +350,7 @@ function crearHerramButton(tool, onClickF) {
 function cargarPrueba(prueba) {
   console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
-  //$("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
+  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();
 };
