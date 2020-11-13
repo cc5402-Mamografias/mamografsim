@@ -2,35 +2,35 @@
   <div class="titulo-panel">Pasos Prueba Rendimiento</div>
     
   <div class="pasos-lista">
-    <p> Seleccione el Detector de Radiación en la sección de herramientas. </p>
+    <p> 1) Seleccione el Detector de Radiación en la sección de herramientas. </p>
   </div>
   
   <div class="pasos-lista">
-    <p> Ahora, el detector debe quedar centrado en el eje horizontal, y a 4 cm de la pared torácica. En el siguiente paso se indica como realizar esta operación.</p>
+    <p> 2) Ahora, el detector debe quedar centrado en el eje horizontal, y a 4 cm de la pared torácica. En el siguiente paso se indica como realizar esta operación.</p>
   </div>
   
   <div class="pasos-lista">
-    <p> A la derecha del mamógrafo se mostrará un botón "Ver Mesa" que le permitirá posicionar el detector. Haga click en "Ver Mesa" y posicione correctamente el detector entre las posiciones marcadas en el plato receptor.</p>
+    <p> 3) A la derecha del mamógrafo se mostrará un botón "Ver Mesa" que le permitirá posicionar el detector. Haga click en "Ver Mesa" y posicione correctamente el detector entre las posiciones marcadas en el plato receptor.</p>
   </div>
   
   <div class="pasos-lista">
-    <p> Seleccione el modo manual, y una combinación ánodo/filtro para una tensión de 28 kV. </p>
+    <p> 4) Seleccione el modo manual, y una combinación ánodo/filtro para una tensión de 28 kV. </p>
   </div>
   
   <div class="pasos-lista">
-    <p> Escoga tres valores de mAs entre los comúnmente utilizados (40, 80, 120) en la práctica clínica para la tensión de 28 kV. </p>
+    <p> 5) Escoga tres valores de mAs entre los comúnmente utilizados (40, 80, 120) en la práctica clínica para la tensión de 28 kV. </p>
   </div>
   
   <div class="pasos-lista">
-    <p> Seleccione el primer valor de mAs elegido, realice una exposición presionando el botón "Shoot" en el Panel de Control, y registre el resultado en la Hoja de Resultados. </p>
+    <p> 6) Seleccione el primer valor de mAs elegido, realice una exposición presionando el botón "Shoot" en el Panel de Control, y registre el resultado en la Hoja de Resultados. </p>
   </div>
   
   <div class="pasos-lista">
-    <p> Para cada valor de mAs, realizar 5 exposiciones y registrar los resultados. </p>
+    <p> 7) Para cada valor de mAs, realizar 5 exposiciones y registrar los resultados. </p>
   </div>
   
   <div class="pasos-lista">
-    <p> Si existen otras combinaciones ánodo/filtro, repetir los pasos anteriores seleccionando la tensión más habitual en la práctica clínica para esta nueva combinación. </p>
+    <p> 8) Si existen otras combinaciones ánodo/filtro, repetir los pasos anteriores seleccionando la tensión más habitual en la práctica clínica para esta nueva combinación. </p>
   </div>
   
   <div style="overflow:auto;">
@@ -40,37 +40,37 @@
     </div>
   </div>
 
-    <script>
-      var currentTab = 0; // Current tab is set to be the first tab (0)
-      showTab(currentTab); // Display the current tab
-      
-      function showTab(n) {
-          // This function will display the specified tab of the form...
-          var x = document.getElementsByClassName("pasos-lista");
-          x[n].style.display = "block";
-          //... and fix the Previous/Next buttons:
-          if (n == 0) {
-              document.getElementById("prevBtn").style.display = "none";
-          } else {
-              document.getElementById("prevBtn").style.display = "inline";
-          }
-          if (n == (x.length - 1)) {
-              document.getElementById("nextBtn").style.display = "none";
-              document.getElementById("prevBtn").style.position = "relative";
-          } else {
-              document.getElementById("nextBtn").style.display = "inline";
-              document.getElementById("prevBtn").style.position = "absolute";
-          }
-      }
+  <script>
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+    
+    function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("pasos-lista");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("prevBtn").style.position = "relative";
+        } else {
+            document.getElementById("nextBtn").style.display = "inline";
+            document.getElementById("prevBtn").style.position = "absolute";
+        }
+    }
 
-      function nextPrev(n) {
-          // This function will figure out which tab to display
-          var x = document.getElementsByClassName("pasos-lista");
-          // Hide the current tab:
-          x[currentTab].style.display = "none";
-          // Increase or decrease the current tab by 1:
-          currentTab = currentTab + n;
-          // if you have reached the end of the form...
-          showTab(currentTab);
-      }
-    </script>
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("pasos-lista");
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        showTab(currentTab);
+    }
+  </script>
