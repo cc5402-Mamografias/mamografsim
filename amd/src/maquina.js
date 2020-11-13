@@ -7,7 +7,7 @@ import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} fro
 const alturaMax = 80;
 const margenF = 0.5;
 const rangemargenKV = 1;
-const rangemargenmA = 10;
+const rangemargenmA = 1;
 const margenAlt = 2;
 
 function rand(lowest, highest){
@@ -129,7 +129,7 @@ export default class Maquina {
 
       
     //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
-    if (herram.getTipo() === "camIonizacion"){
+    if (herram.getTipo() === "Detector de Radiación"){
       //MOSTRAR BOTON
       document.getElementById("vista-desde-arriba").style.display = "block";
       //CARGAR VISTA TOP DOWN
@@ -140,7 +140,7 @@ export default class Maquina {
       document.getElementById("vista-desde-arriba").style.display = "none";
     }
     if (this.herramienta.getTipo() == herram.getTipo()) {
-      if(herram.getTipo() === "camIonizacion"){
+      if(herram.getTipo() === "Detector de Radiación"){
         //OCULTAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "none";
         
