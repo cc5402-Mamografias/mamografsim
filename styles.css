@@ -689,3 +689,8 @@ body.modal-open {
   border-color: #c3e6cb;
   display: none;
 }
+
+/* Quitar borde de botones seleccionados */
+.button-without-border:focus {
+  outline: none;
+}
