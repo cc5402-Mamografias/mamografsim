@@ -2,9 +2,7 @@ import jQuery from "jquery";
 import {
   Balanza,
   Barometro,
-  CamaraIonizacion,
-  CintaMetrica,
-  Electrometro,
+  DetectRad,
   Termometro,
   Slab_20mm,
   Slab_45mm,
@@ -38,9 +36,7 @@ class Main {
       new Slab_20mm(),
       new Slab_45mm(),
       new Slab_70mm(),
-      new CintaMetrica(),
-      new CamaraIonizacion(),
-      new Electrometro(),
+      new DetectRad(),
     ];
 
     this.c = document.getElementById("canvas");
@@ -305,7 +301,7 @@ function check_pos(){
   $('#alerta_posicion_correcta').hide();
   $('#alerta_posicion_incorrecta').hide();
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Cámara de Ionización"){
+  if (her.getTipo() == "Detector de Radiación"){
     if(her.estaColocada()){
       $('#alerta_posicion_correcta').show();
     }
@@ -326,13 +322,13 @@ function hide_alerta_incorrecta(){
 
 function check_pos_correct(){
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Cámara de Ionización"){
+  if (her.getTipo() == "Detector de Radiación"){
     her.colocar(true);
   }
 }
 function check_pos_incorrect(){
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "Cámara de Ionización"){
+  if (her.getTipo() == "Detector de Radiación"){
     her.colocar(false);
   }
 }

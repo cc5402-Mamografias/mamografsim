@@ -129,7 +129,7 @@ export default class Maquina {
 
       
     //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
-    if (herram.getTipo() === "Cámara de Ionización"){
+    if (herram.getTipo() === "Detector de Radiación"){
       //MOSTRAR BOTON
       document.getElementById("vista-desde-arriba").style.display = "block";
       //CARGAR VISTA TOP DOWN
@@ -140,7 +140,7 @@ export default class Maquina {
       document.getElementById("vista-desde-arriba").style.display = "none";
     }
     if (this.herramienta.getTipo() == herram.getTipo()) {
-      if(herram.getTipo() === "Cámara de Ionización"){
+      if(herram.getTipo() === "Detector de Radiación"){
         //OCULTAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "none";
         
