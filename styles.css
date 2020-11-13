@@ -336,11 +336,13 @@ input[type="radio"]:checked:after {
 }
 
 .her-b-s {
-  width: 40%;
+  width: 35%;
+  margin:2.5%;
 }
 
 .her-b-l {
   width: 100%;
+  margin-bottom: 5%;
 }
 
 .her-b-s {
