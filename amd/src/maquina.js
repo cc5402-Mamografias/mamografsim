@@ -76,7 +76,7 @@ export default class Maquina {
           ? (this.alturaCompresor) *10
           : 0,
       fuerza: this.alturaCompresor == this.alturaMinima()
-        ? (this.fuerza + this.errorFuerzaMedida) * this.factorCompresion
+        ? (this.fuerza + this.errorFuerzaMedida + this.errorFuerzaEjercida) * this.factorCompresion
         : 0
     };
   }
