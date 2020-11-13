@@ -305,7 +305,7 @@ function check_pos(){
   $('#alerta_posicion_correcta').hide();
   $('#alerta_posicion_incorrecta').hide();
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "camIonizacion"){
+  if (her.getTipo() == "Cámara de Ionización"){
     if(her.estaColocada()){
       $('#alerta_posicion_correcta').show();
     }
@@ -326,13 +326,13 @@ function hide_alerta_incorrecta(){
 
 function check_pos_correct(){
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "camIonizacion"){
+  if (her.getTipo() == "Cámara de Ionización"){
     her.colocar(true);
   }
 }
 function check_pos_incorrect(){
   let her = m.mamografo.getHerramienta();
-  if (her.getTipo() == "camIonizacion"){
+  if (her.getTipo() == "Cámara de Ionización"){
     her.colocar(false);
   }
 }

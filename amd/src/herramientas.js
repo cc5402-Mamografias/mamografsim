@@ -93,7 +93,7 @@ class Balanza extends AbstractTool {
 
   getResultado() {
     if (this.toalla == false && this.fuerza != 0) {
-      return { balanza: ["ADVERTENCIA: ¡Se esta comprimiendo balanza sin toalla!"] };
+      return { balanza: ["ADVERTENCIA: ¡Se está comprimiendo balanza sin toalla!"] };
 
     }
     else {
@@ -152,7 +152,7 @@ class Toalla extends AbstractTool {
 class Slab_20mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab20";
+    this.tipo = "Slab(20 mm)";
     this.icon = "slabs.png";
     this.estado = "inactivo";
     this.fuerza = 0;
@@ -183,7 +183,7 @@ class Slab_20mm extends AbstractTool {
 class Slab_45mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab45";
+    this.tipo = "Slab(45 mm)";
     this.icon = "slabs.png";
     this.altura = 4.5;
 
@@ -214,7 +214,7 @@ class Slab_45mm extends AbstractTool {
 class Slab_70mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab70";
+    this.tipo = "Slab(70 mm)";
     this.icon = "slabs.png";
     this.altura = 7.0;
 
@@ -245,7 +245,7 @@ class Slab_70mm extends AbstractTool {
 class CamaraIonizacion extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "camIonizacion";
+    this.tipo = "Cámara de Ionización";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
@@ -287,7 +287,7 @@ class CamaraIonizacion extends AbstractTool {
     if (this.colocada == true){
       return {
         camara: [
-          "Camara de Ionización",
+          "Cámara de Ionización",
           "\t\t\tKV: " + this.kilovolt,
           "\t\t\tmAs: " + this.miliamperios,
           "\t\t\tmodo: " + this.modo,
@@ -299,7 +299,7 @@ class CamaraIonizacion extends AbstractTool {
     else {
       return {
         camara: [
-          "Camara de Ionización",
+          "Cámara de Ionización",
           "NADA"
         ]
       }
@@ -334,7 +334,7 @@ class Electrometro extends AbstractTool {
 class Termometro extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "termometro";
+    this.tipo = "Termómetro";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
@@ -363,7 +363,7 @@ class Termometro extends AbstractTool {
 class Barometro extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "barometro";
+    this.tipo = "Barómetro";
     this.icon = "barometer.png";
     this.estado = "inactivo";
     this.description = "Este es un barometro.";
@@ -391,7 +391,7 @@ class Barometro extends AbstractTool {
 class CintaMetrica extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "cinta";
+    this.tipo = "Cinta";
     this.icon = "tape.png";
     this.estado = "inactivo";
     this.description = "Esta es una cinta.";
