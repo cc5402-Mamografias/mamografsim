@@ -13,11 +13,11 @@
 
   <div style="width:1px; height:1px; visibility:hidden; overflow:hidden">
     <img src="icons/play.png" />
-</div>
+  </div>
   <div id="contenedor-main" class="contenedor-main">
 
 
-  
+
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
       <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
@@ -46,7 +46,7 @@
               <br>
             </div>
             <div class="modal-footer">
-              <button type="button" id="volver-menu"class="btn btn-danger" data-dismiss="modal">Volver</button>
+              <button type="button" id="volver-menu" class="btn btn-danger" data-dismiss="modal">Volver</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
@@ -151,7 +151,8 @@
       <div id="panel-central">
         <!-- CANVAS MAMOGRAFO -->
         <canvas id="canvas" class="mamografo" width="400" height="600"></canvas>
-        <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%; display: None;"><img src="icons/grid.png" width=30><br>Ver mesa</button>
+        <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%; display: None;"><img
+            src="icons/grid.png" width=30><br>Ver mesa</button>
         <!-- /CANVAS MAMOGRAFO -->
       </div>
       <!-- /CENTRO -->
@@ -179,7 +180,7 @@
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
-      
+
       </div>
       <!-- /DERECHO -->
 
@@ -215,22 +216,27 @@
           </div>
           <canvas id="canvasReceptor" class="receptor" width="800" height="480">
           </canvas>
-          
-          <div id="alerta_posicion_correcta" class="alert-success mt-1" role="alert">
-            <a id="cerrar_alerta_posicion_correcta" href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+          <div id="alerta-posicion-correcta" class="alert-success mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_correcta" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
             Posición correcta
           </div>
-          <div id="alerta_posicion_incorrecta" class="alert-danger mt-1" role="alert">
-            <a id="cerrar_alerta_posicion_incorrecta"href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <div id="alerta-posicion-incorrecta" class="alert-danger mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_incorrecta" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
             Posición incorrecta
           </div>
           <div style="margin-top: 1rem;">
-            <button type="button" id="Guardar-pos" class="btn btn-primary px-3 mx-2" data-dismiss="modal">Verificar Posición</button>
-            <button id="cerrar-vista-desde-arriba" class="btn btn-success px-3 mx-2" type="button">Guardar y Salir</button>
+            <button type="button" id="Guardar-pos" class="btn btn-primary button-without-border px-3 mx-2" data-dismiss="modal">Verificar
+              Posición</button>
+            <button id="cerrar-vista-desde-arriba" class="btn btn-success px-3 mx-2" type="button">Guardar y
+              Salir</button>
           </div>
           <div id="posicion_buena" class="dropzone" style="position:absolute; left:458px; top:403px;"></div>
           <div id="posicion_mala" class="dropzone" style="position:absolute; left:800px; top:276px;">
-            <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)" src="img/cam.svg" width=30>
+            <img id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"
+              src="img/cam.svg" width=30>
           </div>
           <div id="posicion_mala" class="dropzone" style="position:absolute; left:458px; top:244px;"></div>
           <div id="posicion_mala" class="dropzone" style="position:absolute; left:330px; top:340px;"></div>

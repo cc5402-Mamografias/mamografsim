@@ -92,7 +92,14 @@ class Balanza extends AbstractTool {
   }
 
   getResultado() {
-    return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
+    if (this.toalla == false && this.fuerza != 0) {
+      return { balanza: ["ADVERTENCIA: ¡Se está comprimiendo balanza sin toalla!"] };
+
+    }
+    else {
+      return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
+    }
+
   }
 }
 class Toalla extends AbstractTool {
@@ -101,7 +108,7 @@ class Toalla extends AbstractTool {
     super();
     this.addon = true;
     this.tipo = "Toalla";
-    this.icon = "balanza.png";
+    this.icon = "towel.png";
     this.altura = 5;
     this.scale = 0.5;
     this.x = 152;
@@ -145,7 +152,7 @@ class Toalla extends AbstractTool {
 class Slab_20mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab20";
+    this.tipo = "Slab(20 mm)";
     this.icon = "slabs.png";
     this.estado = "inactivo";
     this.fuerza = 0;
@@ -176,7 +183,7 @@ class Slab_20mm extends AbstractTool {
 class Slab_45mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab45";
+    this.tipo = "Slab(45 mm)";
     this.icon = "slabs.png";
     this.altura = 4.5;
 
@@ -207,7 +214,7 @@ class Slab_45mm extends AbstractTool {
 class Slab_70mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab70";
+    this.tipo = "Slab(70 mm)";
     this.icon = "slabs.png";
     this.altura = 7.0;
 
@@ -235,10 +242,10 @@ class Slab_70mm extends AbstractTool {
   }
 }
 
-class CamaraIonizacion extends AbstractTool {
+class DetectRad extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "camIonizacion";
+    this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
@@ -247,6 +254,12 @@ class CamaraIonizacion extends AbstractTool {
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+
+    this.scale = 0.5;
+    this.x = 130;
+    this.y = 230;
+    this.sprite = new Image();
+    this.sprite.src = 'img/detector.svg';
   }
   colocar(bool){
     this.colocada = bool;
@@ -267,20 +280,14 @@ class CamaraIonizacion extends AbstractTool {
   }
 
   dibujar(ctx) {
-    // var img = obtener imagen de la herramienta
-    // ctx.drawImage(img, 10, 10);
-    //ctx.beginPath();
-    //ctx.arc(95, 50, 20, 0, 2 * Math.PI);
-    //ctx.stroke();
-    //ctx.fillStyle = "yellow";
-    //ctx.fill();
+    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
   }
   getResultado() {
 
     if (this.colocada == true){
       return {
         camara: [
-          "Camara de Ionización",
+          "Detector de Radiación",
           "\t\t\tKV: " + this.kilovolt,
           "\t\t\tmAs: " + this.miliamperios,
           "\t\t\tmodo: " + this.modo,
@@ -292,7 +299,7 @@ class CamaraIonizacion extends AbstractTool {
     else {
       return {
         camara: [
-          "Camara de Ionización",
+          "Detector de Radiación",
           "NADA"
         ]
       }
@@ -305,29 +312,10 @@ class CamaraIonizacion extends AbstractTool {
   }
 }
 
-class Electrometro extends AbstractTool {
-  constructor() {
-    super();
-    this.tipo = "electrometro";
-    this.icon = "box.png";
-    this.estado = "inactivo";
-    this.description = "Este es un electrometro.";
-  }
-
-  actualizar(estado) {
-    // TODO
-    console.log("haha Electrometro go brrrr");
-  }
-
-  dibujar(ctx) {
-
-  }
-}
-
 class Termometro extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "termometro";
+    this.tipo = "Termómetro";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
@@ -356,7 +344,7 @@ class Termometro extends AbstractTool {
 class Barometro extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "barometro";
+    this.tipo = "Barómetro";
     this.icon = "barometer.png";
     this.estado = "inactivo";
     this.description = "Este es un barometro.";
@@ -381,32 +369,12 @@ class Barometro extends AbstractTool {
   }
 }
 
-class CintaMetrica extends AbstractTool {
-  constructor() {
-    super();
-    this.tipo = "cinta";
-    this.icon = "tape.png";
-    this.estado = "inactivo";
-    this.description = "Esta es una cinta.";
-  }
-
-  actualizar(estado) {
-    // TODO
-    console.log("haha CintaMetrica go brrrr");
-  }
-
-  dibujar(ctx) {
-  }
-}
-
 export {
   BaseNula,
   Balanza,
   Toalla,
   Barometro,
-  CamaraIonizacion,
-  CintaMetrica,
-  Electrometro,
+  DetectRad,
   Termometro,
   Slab_20mm,
   Slab_45mm,
