@@ -154,7 +154,7 @@ class Slab_20mm extends AbstractTool {
 
     this.scale = 0.5;
     this.x = 152;
-    this.y = 260;
+    this.y = 250;
 
     this.slabs = new Image();
     this.slabs.src = 'img/slab20.svg';
