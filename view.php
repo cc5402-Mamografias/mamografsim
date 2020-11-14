@@ -62,17 +62,21 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
-
+/*
 foreach ($moduleinstance as $key=>$value){
     echo("key:" . $key . " value:" . $value . "\n");
 
 }
 unset($value);
+*/
 $errorkv = $moduleinstance->errorkv;
 $errorma = $moduleinstance->errorma;
 $errorf = $moduleinstance->errorf;
 $erroralt = $moduleinstance->erroralt;
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorkv',$errorkv),array('errorma',$errorma),array('errorf',$errorf),array('erroralt',$erroralt))));
+$compresion = $moduleinstance->compresion;
+$rendimiento = $moduleinstance->rendimiento;
+
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorkv',$errorkv),array('errorma',$errorma),array('errorf',$errorf),array('erroralt',$erroralt)),array($compresion,$rendimiento)) );
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 

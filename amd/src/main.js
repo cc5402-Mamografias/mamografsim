@@ -196,7 +196,7 @@ class Main {
   }
 }
 
-export const init = (errors) => {
+export const init = (errors,pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -230,11 +230,24 @@ export const init = (errors) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
+ 
+  console.log(pruebas2.length);
+  console.log(pruebas2[0]);
+  pruebas = [];
+  pruebas2.forEach((prueba)=>{
+   if(prueba !== ""){
+     pruebas.push(prueba);
+   }
+  });
+  //pruebas = [pruebas2[0],pruebas2[1]];
+  
+
 
   $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
 
   let r;
   for (let x of pruebas) {
+    console.log(x);
     r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${x}</button>`);
     r.on("click", () => cargarPrueba(x));
     r.appendTo("#contenedor-button");
