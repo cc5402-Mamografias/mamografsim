@@ -58,7 +58,7 @@ class Main {
     errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
     errors.errorma = getError("errorMiliampere", errors.errorma);
     errors.errorkv = getError("errorKilovolt", errors.errorkv);
-
+    console.log(errors);
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
@@ -234,8 +234,6 @@ export const init = (errors,pruebas2) => {
 
   let pruebas = ['compresion', 'rendimiento'];
  
-  console.log(pruebas2.length);
-  console.log(pruebas2[0]);
   pruebas = [];
   pruebas2.forEach((prueba)=>{
    if(prueba !== ""){

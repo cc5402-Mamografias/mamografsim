@@ -5,7 +5,7 @@ import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} fro
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
-const margenF = 0.5;
+const margenF = 0;
 const rangemargenKV = 1;
 const rangemargenmA = 1;
 const margenAlt = 2;
@@ -18,10 +18,15 @@ function rand(lowest, highest){
 export default class Maquina {
   constructor(errors, ctx) {
     this.herramienta = new BaseNula();
+    this.errorKilovolt = parseInt(errors["errorkv"]);
+    this.errorMiliamperios = parseInt(errors["errorma"]);
+    this.errorFuerza = errors["errorf"];
+    this.errorAltura = errors["erroralt"];
+    this.errorVisor = errors["errorvis"];
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
-    this.fuerza = 8;
+    this.fuerza = 8; 
     this.factorCompresion = 0.0;
     this.factorCompMax = 1.0;
     this.factorCompManual = 1.5;
@@ -34,12 +39,9 @@ export default class Maquina {
     this.filtro = null;
     this.anodo = null;
 
-    console.log(errors);
-    this.errorKilovolt = parseInt(errors["errorkv"]);
-    this.errorMiliamperios = parseInt(errors["errorma"]);
-    this.errorFuerza = errors["errorf"];
-    this.errorAltura = errors["erroralt"];
-    this.errorVisor = errors["errorvis"];
+    
+    
+    
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
     //setearParamsMamografo();
@@ -53,12 +55,12 @@ export default class Maquina {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
     let margenKV = this.mError(rangemargenKV)
     let margenmA = this.mError(rangemargenmA)
-    console.log(this.errorFuerza);
+    //console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
+          ? ((this.fuerza + this.errorFuerza) * this.factorCompresion)
           : 0,
       kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
       miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
@@ -77,7 +79,7 @@ export default class Maquina {
           ? (this.alturaCompresor) *10
           : 0,
       fuerza: this.alturaCompresor == this.alturaMinima()
-        ? (this.fuerza + this.margenF) * this.factorCompresion
+        ? (this.fuerza+ this.errorVisor+this.errorFuerza) * this.factorCompresion
         : 0
     };
   }

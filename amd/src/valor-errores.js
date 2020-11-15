@@ -13,8 +13,8 @@ var valores = {
         "factor_random": 0.2
     },
     "errorMiliampere": {
-        "valores_base": [0.0, 0.3, 0.7, 1.1],
-        "factor_random": 0.2
+        "valores_base": [0.0, 0.5, 0.8, 1.1],
+        "factor_random": 0.05
     },
     "errorKilovolt": {
         "valores_base": [0.0, 0.3, 0.7, 1.1],
@@ -31,9 +31,7 @@ const INTENSIDADES = [
 
 function indiceIntensidad(intensidad) {
     let i = INTENSIDADES.findIndex((e) => e == intensidad);
-    console.log("||||||");
-    console.log(i);
-    console.log("||||||");
+    
     if (i < 0) {
         i = Math.floor(Math.random() * 4); // Entero entre 0 y 3 inclusives;
     }
@@ -42,7 +40,6 @@ function indiceIntensidad(intensidad) {
 
 export function getError(tipo, intensidad) {
     let ind = indiceIntensidad(intensidad);
-    console.log("getError"+tipo+toString(ind));
     if (ind == 0){
         return 0;
     }
