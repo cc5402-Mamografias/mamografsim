@@ -53,8 +53,11 @@ class Main {
     //this.ctxr = this.cr.getContext("2d");
 
 
-    errors.errorf = getError("errorFuerzaMedida", errors.errorf);
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorma = getError("errorMiliampere", errors.errorma);
+    errors.errorkv = getError("errorKilovolt", errors.errorkv);
 
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();

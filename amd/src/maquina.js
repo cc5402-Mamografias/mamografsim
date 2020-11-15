@@ -21,7 +21,7 @@ export default class Maquina {
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
-    this.fuerza = 17;
+    this.fuerza = 8;
     this.factorCompresion = 0.0;
     this.factorCompMax = 1.0;
     this.factorCompManual = 1.5;
@@ -39,6 +39,7 @@ export default class Maquina {
     this.errorMiliamperios = parseInt(errors["errorma"]);
     this.errorFuerza = errors["errorf"];
     this.errorAltura = errors["erroralt"];
+    this.errorVisor = errors["errorvis"];
 
     preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
     //setearParamsMamografo();
