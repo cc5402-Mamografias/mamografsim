@@ -53,9 +53,12 @@ class Main {
     //this.ctxr = this.cr.getContext("2d");
 
 
-    errors.errorf = getError("errorFuerzaMedida", errors.errorf);
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
-
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorma = getError("errorMiliampere", errors.errorma);
+    errors.errorkv = getError("errorKilovolt", errors.errorkv);
+    console.log(errors);
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
@@ -196,7 +199,7 @@ class Main {
   }
 }
 
-export const init = (errors) => {
+export const init = (errors,pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -230,11 +233,22 @@ export const init = (errors) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
+ 
+  pruebas = [];
+  pruebas2.forEach((prueba)=>{
+   if(prueba !== ""){
+     pruebas.push(prueba);
+   }
+  });
+  //pruebas = [pruebas2[0],pruebas2[1]];
+  
+
 
   $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
 
   let r;
   for (let x of pruebas) {
+    console.log(x);
     r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${x}</button>`);
     r.on("click", () => cargarPrueba(x));
     r.appendTo("#contenedor-button");
