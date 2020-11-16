@@ -105,8 +105,30 @@
 }
 
 .pasos-lista {
-  margin: 0;
-  padding: 8px;
+  height: 70%;
+  display: none;
+  text-align: justify;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+#prevBtn {
+  position: absolute;
+}
+
+#prevBtn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+#nextBtn {
+  position: relative; 
+  left: 61%;
+}
+
+#nextBtn:active {
+  outline: none !important;
+  box-shadow: none;
 }
 
 table {
@@ -296,6 +318,8 @@ input[type="radio"]:checked:after {
 }
 .shoot-mode .shoot {
   border-radius: 8px;
+  outline: none !important;
+  box-shadow: none;
 }
 
 /* Interfaz mamografo */
