@@ -1,5 +1,5 @@
 import { BaseNula } from "./herramientas";
-import { preloadImages, drawMam } from "./vista";
+import { preloadImages, drawMam, drawPedal } from "./vista";
 
 import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} from "./main";
 //import { setearParamsMamografo } from "./control-panel";
@@ -40,7 +40,10 @@ export default class Maquina {
     this.errorFuerza = errors["errorf"];
     this.errorAltura = errors["erroralt"];
 
-    preloadImages().then(() => drawMam(ctx, this.alturaDesplegada()));
+    preloadImages().then(() => {
+      drawMam(ctx, this.alturaDesplegada());
+      drawPedal(ctx, false, false)});
+
     //setearParamsMamografo();
   }
 
