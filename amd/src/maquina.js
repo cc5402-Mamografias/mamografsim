@@ -59,8 +59,8 @@ export default class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
-      miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
+      kilovolt: this.kilovolt,//+ this.errorKilovolt + margenKV,
+      miliamperios: this.miliamperios, //+ this.errorMiliamperios + margenmA,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -91,7 +91,36 @@ export default class Maquina {
 
 
   actualizar(activo = false) {
-    this.herramienta.actualizar(this.construirEstado(activo));
+
+    if(!activo){
+      this.herramienta.actualizar(this.construirEstado(activo));
+    } else{
+
+      let estado = this.construirEstado(activo);
+
+      let request = {
+        "kvp" : estado.kilovolt,
+        "mas" : estado.miliamperios,
+        "anodo" : estado.filtro,
+        "filtro" : estado.anodo,
+      };
+  
+      $.ajax({
+        url     : "http://localhost:5000/kerma",
+        type    : "get",
+        data    : request,
+        async: false,
+        success : (data) => {
+          // console.log('success');
+          // console.log(data);
+          // console.log(estado);
+          // console.log(this.herramienta);
+          estado.kerma = data.kerma;
+          this.herramienta.actualizar(estado);
+          }
+        });
+      }
+
   }
 
   dibujar(ctx) {

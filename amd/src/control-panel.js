@@ -33,7 +33,7 @@ function mas1(elemento) {
 function getValorActivoRadioButtons(valores) {
   for (var i = 0; i < valores.length; i++) {
     if (document.getElementById(valores[i]).checked == true) {
-      return i;
+      return document.getElementById(valores[i]).value;
     }
   }
   return -1;
@@ -61,9 +61,9 @@ function disparoMamografo() {
 function setearParamsMamografo() {
   let kv = parseFloat(document.getElementById("kv").value);
   let ma = parseFloat(document.getElementById("mas").value);
-  let modo = valores_modo[getValorActivoRadioButtons(valores_modo)];
-  let filtro = valores_filtro[getValorActivoRadioButtons(valores_filtro)];
-  let anodo = valores_anodo[getValorActivoRadioButtons(valores_anodo)];
+  let modo = getValorActivoRadioButtons(valores_modo);
+  let filtro = getValorActivoRadioButtons(valores_filtro);
+  let anodo = getValorActivoRadioButtons(valores_anodo);
 
 
   setear_params(kv,ma,modo,filtro,anodo);
