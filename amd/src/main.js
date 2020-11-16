@@ -244,7 +244,7 @@ export const init = (errors) => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
   })
-  $("#loader").remove()
+  $("#loader").remove();
 
   $("body").on("click","#volver",function(){
 
@@ -254,7 +254,7 @@ export const init = (errors) => {
     $('.modal-backdrop').appendTo('#contenedor-sim');
 
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
-    $('body').removeClass("modal-open")
+    $('body').removeClass("modal-open");
     $('body').css("padding-right","");
   });
 
