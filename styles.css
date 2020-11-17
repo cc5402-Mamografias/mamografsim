@@ -60,6 +60,7 @@
 
 .open-sim {
   min-width: 120px;
+  max-width: 200px;
   border-radius: 8px;
   text-transform: capitalize;
   text-align: center;

@@ -233,6 +233,7 @@ export const init = (errors,pruebas2) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
+  
  
   pruebas = [];
   pruebas2.forEach((prueba)=>{
@@ -242,14 +243,16 @@ export const init = (errors,pruebas2) => {
   });
   //pruebas = [pruebas2[0],pruebas2[1]];
   
-
+  var label_prueba = {};
+  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
+  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
 
   $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
 
   let r;
   for (let x of pruebas) {
     console.log(x);
-    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${x}</button>`);
+    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${label_prueba[x]}</button>`);
     r.on("click", () => cargarPrueba(x));
     r.appendTo("#contenedor-button");
   }

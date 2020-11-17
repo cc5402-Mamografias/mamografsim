@@ -75,8 +75,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
         $mform->addElement('header', 'mamografsimact', get_string('mamografsimact', 'mod_mamografsim'));
         $pruebas2 = array(
-            'compresion' => 'Compresión',
-            'rendimiento' => 'Rendimiento'
+            'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
+            'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad'
         );
         
         $pruebasitem = array();
