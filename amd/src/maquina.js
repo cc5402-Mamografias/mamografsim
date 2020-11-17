@@ -5,10 +5,6 @@ import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} fro
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
-const margenF = 0;
-const rangemargenKV = 1;
-const rangemargenmA = 1;
-const margenAlt = 2;
 
 function rand(lowest, highest){
   var adjustedHigh = (highest - lowest) + 1;
@@ -26,12 +22,16 @@ export default class Maquina {
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
-    this.fuerza = 8; 
-    this.factorCompresion = 0.0;
-    this.factorCompMax = 1.0;
+    this.fuerza = 0.0;
+    this.fuerzamax = 15; 
+    //Formula de compresión
+    this.factorCompresiónini = 1;
+    this.factorCompresion = this.factorCompresiónini;
+    this.velocCompresion = 0.1;
+    this.factorCompresion  = 0.8;
+    this.sumaCompresion = 10;
     this.factorCompManual = 1.5;
 
-    this.margenF = this.mError(margenF);
     //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
     this.kilovolt = null;
     this.miliamperios = null;
@@ -50,23 +50,24 @@ export default class Maquina {
     //setearParamsMamografo();
   }
 
-  mError(x) {
-    return Math.random() * x - (x / 2);
-  }
+
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
-    let margenKV = this.mError(rangemargenKV)
-    let margenmA = this.mError(rangemargenmA)
     //console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
+      /*
       fuerza:
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza) * this.factorCompresion)
           : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt + margenKV,
-      miliamperios: this.miliamperios + this.errorMiliamperios + margenmA,
+          */
+         fuerza: this.factorCompresion > this.factorCompresiónini
+         ? (this.fuerza+this.errorFuerza)
+         : 0,
+      kilovolt: this.kilovolt + this.errorKilovolt,
+      miliamperios: this.miliamperios + this.errorMiliamperios,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -81,9 +82,9 @@ export default class Maquina {
         : this.alturaCompresor < this.alturaEspesor
           ? (this.alturaCompresor) *10
           : 0,
-      fuerza: this.alturaCompresor == this.alturaMinima()
-        ? (this.fuerza+ this.errorVisor+this.errorFuerza) * this.factorCompresion
-        : 0
+          fuerza: this.factorCompresion > this.factorCompresiónini
+          ? (this.fuerza+this.errorFuerza)
+          : 0
     };
   }
 
@@ -174,16 +175,21 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    this.alturaCompresor += 5;
-    this.factorCompresion = 0.0
+    this.alturaCompresor += 0.5;
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 5,this.factorCompresiónini);
+    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,0);
     this.actualizar();
   }
 
   bajarCompresor() {
+    console.log("factorCompresión",this.factorCompresion);
+    console.log("fuerza",this.fuerza);
     if (this.alturaCompresor <= this.herramienta.altura) {
-      this.factorCompresion = (this.factorCompresion + this.factorCompMax) / 2;
+      //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
+      this.factorCompresion = this.factorCompresion + this.velocCompresion;
+      this.fuerza = Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,this.fuerzamax);
     } else {
-      this.alturaCompresor = Math.max(this.alturaCompresor - 5, this.alturaMinima());
+      this.alturaCompresor = Math.max(this.alturaCompresor - 0.8, this.alturaMinima());
     }
     this.actualizar();
   }
@@ -197,6 +203,7 @@ export default class Maquina {
     }
     this.alturaCompresor += 3;
     this.factorCompresion = 0.0
+    this.fuerza = 0;
     this.actualizar();
   }
 
@@ -204,7 +211,7 @@ export default class Maquina {
     if (this.alturaCompresor <= this.herramienta.altura) {
       this.factorCompresion = (this.factorCompresion + this.factorCompManual) / 2;
     } else {
-      this.alturaCompresor = Math.max(this.alturaCompresor - 3, this.alturaMinima());
+      this.alturaCompresor = Math.max(this.alturaCompresor - 0.4, this.alturaMinima());
     }
     this.actualizar();
   }
