@@ -73,7 +73,7 @@ function setearParamsMamografo() {
 
 function setearOnClick(id, fun) {
   let e = document.getElementById(id);
-  e.onclick = () => { fun(e); };
+  e.onclick = () => { fun(e); e.blur(); }
 }
 
 export const init = () => {

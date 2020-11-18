@@ -97,7 +97,7 @@ export function drawMam(
   ctx.font = "bold 12px Arial";
   ctx.fillStyle = "#FF6363";
   ctx.fillText(
-    fuerza.toString() + " Kg.",
+    Number.parseFloat(fuerza).toFixed(2).toString() + " Kg.",
     (visorX + x) * scale + 20,
     (visorY + y) * scale - 80
   );

@@ -73,43 +73,60 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // Adding the rest of mod_mamografsim settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
         // $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
+        $mform->addElement('header', 'mamografsimact', get_string('mamografsimact', 'mod_mamografsim'));
+        $pruebas2 = array(
+            'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
+            'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad'
+        );
         
-        $mform->addElement('header', 'mamografsimrend', get_string('mamografsimcomp', 'mod_mamografsim'));
+        $pruebasitem = array();
+        foreach ($pruebas2 as $key => $value) {
+         $pruebasitem[] = &$mform->createElement('advcheckbox',$key, '', $value, array('name' => $key,'group'=>1), $key);
+         $mform->setDefault($key, true);
+        }
+        $mform->addGroup($pruebasitem, 'pruebas',"Pruebas disponibles",' ',false);
+        
+        
+        $mform->addRule('pruebas', get_string('required'), 'required', null, 'client');
+        //$this->add_checkbox_controller(1);
+        
+        $mform->addElement('header', 'mamografsimcomp', get_string('mamografsimcomp', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorf', "Error Fuerza", array('Aleatorio'=>'Aleatorio','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorvis', "Error Visor", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
+        $mform->setType('errorvis', PARAM_TEXT);
+        //$mform->addRule('errorf', null, 'required', null, 'client');
+        $mform->addRule('errorvis', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+
+        $mform->addElement('select', 'errorf', "Error Fuerza", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
         //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('errorf', PARAM_TEXT);
         //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('errorf', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         
-
-
-        $radioarray=array();
-        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Aleatorio', 'Aleatorio');
-        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Bajo', 'Bajo');
-        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Medio', 'Medio');
-        $radioarray[] = $mform->createElement('radio', 'erroralt', '', 'Alto', 'Alto');
-        $mform->addGroup($radioarray, 'erroralt', 'Error Altura', array(' '), false);
-        $mform->setDefault('erroralt', 'Aleatorio');
-
-        //$mform->addElement('text', 'erroralt', "Error Altura (mm)", array('size' => '64'));
+        $mform->addElement('select', 'erroralt', "Error Altura", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('erroralt', PARAM_TEXT);
-        //$mform->addRule('errorAlt', null, 'required', null, 'client');
+        //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('erroralt', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        $mform->addElement('header', 'mamografsimcomp', get_string('mamografsimrend', 'mod_mamografsim'));
 
-        $mform->addElement('text', 'errorkv', "Error Kilovoltios", array('size' => '64'));
+
+        $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorkv', "Error Kilovoltios", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('errorkv', PARAM_TEXT);
-        //$mform->addRule('errorkv', null, 'required', null, 'client');
+        //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('errorkv', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-
-        $mform->addElement('text', 'errorma', "Error Miliamperes", array('size' => '64'));
+        
+        $mform->addElement('select', 'errorma', "Error Miliamperes", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
         $mform->setType('errorma', PARAM_TEXT);
         //$mform->addRule('errorma', null, 'required', null, 'client');
         $mform->addRule('errorma', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-
+        
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();
 

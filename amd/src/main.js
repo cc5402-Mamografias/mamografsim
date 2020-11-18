@@ -53,9 +53,12 @@ class Main {
     //this.ctxr = this.cr.getContext("2d");
 
 
-    errors.errorf = getError("errorFuerzaMedida", errors.errorf);
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
-
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorma = getError("errorMiliampere", errors.errorma);
+    errors.errorkv = getError("errorKilovolt", errors.errorkv);
+    console.log(errors);
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
@@ -195,7 +198,7 @@ class Main {
   }
 }
 
-export const init = (errors) => {
+export const init = (errors,pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -229,12 +232,26 @@ export const init = (errors) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
+  
+ 
+  pruebas = [];
+  pruebas2.forEach((prueba)=>{
+   if(prueba !== ""){
+     pruebas.push(prueba);
+   }
+  });
+  //pruebas = [pruebas2[0],pruebas2[1]];
+  
+  var label_prueba = {};
+  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
+  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
 
   $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
 
   let r;
   for (let x of pruebas) {
-    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${x}</button>`);
+    console.log(x);
+    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${label_prueba[x]}</button>`);
     r.on("click", () => cargarPrueba(x));
     r.appendTo("#contenedor-button");
   }
@@ -243,7 +260,7 @@ export const init = (errors) => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
   })
-  $("#loader").remove()
+  $("#loader").remove();
 
   $("body").on("click","#volver",function(){
 
@@ -253,7 +270,7 @@ export const init = (errors) => {
     $('.modal-backdrop').appendTo('#contenedor-sim');
 
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
-    $('body').removeClass("modal-open")
+    $('body').removeClass("modal-open");
     $('body').css("padding-right","");
   });
 
