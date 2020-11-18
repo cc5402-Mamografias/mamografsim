@@ -14,6 +14,7 @@ function rand(lowest, highest){
 export default class Maquina {
   constructor(errors, ctx) {
     this.herramienta = new BaseNula();
+    //Errores
     this.errorKilovolt = parseInt(errors["errorkv"]);
     this.errorMiliamperios = parseInt(errors["errorma"]);
     this.errorFuerza = errors["errorf"];
@@ -24,13 +25,18 @@ export default class Maquina {
     this.alturaEspesor = 25;
     this.fuerza = 0.0;
     this.fuerzamax = 15; 
+    this.fuerzamaxManual = 30;
+    //Movimiento compresor
+    this.velocY = 0.8;
+    this.velocYManual = 0.5;
+
     //Formula de compresión
     this.factorCompresiónini = 1;
     this.factorCompresion = this.factorCompresiónini;
     this.velocCompresion = 0.1;
-    this.factorCompresion  = 0.8;
+    this.multCompresion  = 0.8;
     this.sumaCompresion = 10;
-    this.factorCompManual = 1.5;
+    this.sumaCompresionManual = 10;
 
     //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
     this.kilovolt = null;
@@ -175,21 +181,20 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    this.alturaCompresor += 0.5;
+    this.alturaCompresor += this.velocY;
     this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 5,this.factorCompresiónini);
-    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,0);
+    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresion,0);
     this.actualizar();
   }
 
   bajarCompresor() {
-    console.log("factorCompresión",this.factorCompresion);
-    console.log("fuerza",this.fuerza);
+    
     if (this.alturaCompresor <= this.herramienta.altura) {
       //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
       this.factorCompresion = this.factorCompresion + this.velocCompresion;
-      this.fuerza = Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,this.fuerzamax);
+      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,this.fuerzamax),this.fuerza);
     } else {
-      this.alturaCompresor = Math.max(this.alturaCompresor - 0.8, this.alturaMinima());
+      this.alturaCompresor = Math.max(this.alturaCompresor - this.velocY, this.alturaMinima());
     }
     this.actualizar();
   }
@@ -201,17 +206,20 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    this.alturaCompresor += 3;
-    this.factorCompresion = 0.0
-    this.fuerza = 0;
+    this.alturaCompresor += this.velocYManual;
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 5,this.factorCompresiónini);
+    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresionManual,0);
     this.actualizar();
   }
 
   bajarCompresorPerilla() {
+    
     if (this.alturaCompresor <= this.herramienta.altura) {
-      this.factorCompresion = (this.factorCompresion + this.factorCompManual) / 2;
+      //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
+      this.factorCompresion = this.factorCompresion + this.velocCompresion;
+      this.fuerza = Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresionManual,this.fuerzamaxManual);
     } else {
-      this.alturaCompresor = Math.max(this.alturaCompresor - 0.4, this.alturaMinima());
+      this.alturaCompresor = Math.max(this.alturaCompresor - this.velocYManual, this.alturaMinima());
     }
     this.actualizar();
   }

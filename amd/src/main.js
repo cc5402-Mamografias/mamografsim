@@ -84,7 +84,7 @@ class Main {
       },
       [230, getCompresorPosY()],
       [50, 50],
-      200
+      20
     );
 
     // perilla izqueirda baja el compresor
@@ -96,7 +96,7 @@ class Main {
       },
       [140, getCompresorPosY()],
       [50, 50],
-      200
+      20
     );
 
     this.herramientas_mam.forEach((tool) => {
