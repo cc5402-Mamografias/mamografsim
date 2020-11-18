@@ -311,7 +311,7 @@ class DetectRad extends AbstractTool {
       return {
         camara: [
           "Detector de Radiación",
-          "\t\t\tKerma: " + this.kerma + " mGy"
+          "\t\t\tKerma: " + this.kerma.toFixed(2) + " mGy"
           // "\t\t\tmAs: " + this.miliamperios,
           // "\t\t\tmodo: " + this.modo,
           // "\t\t\tfiltro: " + this.filtro,

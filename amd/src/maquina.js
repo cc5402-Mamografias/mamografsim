@@ -112,7 +112,7 @@ export default class Maquina {
       };
 
       $.ajax({
-        url: "http://localhost:5000/kerma",
+        url: "http://moodle2.cimt.cl/api/kerma",
         type: "get",
         data: request,
         async: false,
