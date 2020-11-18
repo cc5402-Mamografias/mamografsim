@@ -11,12 +11,11 @@ export default class PanelResultados {
     this.resultados = { ...this.resultados, ...res };
   }
 
-  escribirResultados(){
+  escribirResultados() {
     this.res.empty();
 
-    console.log('escribiendo resultados');
     for (const res in this.resultados) {
-      for(const line of this.resultados[res]){
+      for (const line of this.resultados[res]) {
         $(`<div class="resultados-item"> ${line} </div>`).appendTo(this.res);
       }
     }
@@ -26,4 +25,3 @@ export default class PanelResultados {
     this.resultados = {};
   }
 }
-
