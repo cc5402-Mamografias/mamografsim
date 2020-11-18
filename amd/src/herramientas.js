@@ -100,6 +100,7 @@ class Balanza extends AbstractTool {
 
   }
 }
+
 class Toalla extends AbstractTool {
   constructor() {
     super();
@@ -283,7 +284,7 @@ class DetectRad extends AbstractTool {
     }
 
 
-    if (estado.activo == true){
+    if (estado.activo == true) {
       this.estado = "activo";
     }
 
@@ -321,17 +322,17 @@ class DetectRad extends AbstractTool {
     else if (this.colocada == false && this.estado == "activo") {
       return {
         camara: ["Detector de Radiación",
-        "NADA"
+          "NADA"
         ]
       }
     }
-    
+
     else {
       this.actualizar_default();
       return {
         camara: this.result
       }
-      
+
     }
 
   }

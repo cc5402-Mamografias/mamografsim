@@ -1,7 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam } from "./vista";
 
-import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa} from "./main";
+import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa } from "./main";
 //import { setearParamsMamografo } from "./control-panel";
 
 const alturaMax = 80;
@@ -10,9 +10,9 @@ const rangemargenKV = 1;
 const rangemargenmA = 1;
 const margenAlt = 2;
 
-function rand(lowest, highest){
+function rand(lowest, highest) {
   var adjustedHigh = (highest - lowest) + 1;
-  return Math.floor(Math.random()*adjustedHigh) + parseFloat(lowest);
+  return Math.floor(Math.random() * adjustedHigh) + parseFloat(lowest);
 }
 
 export default class Maquina {
@@ -57,7 +57,7 @@ export default class Maquina {
       altura: (this.alturaCompresor),
       fuerza:
         this.alturaCompresor == this.alturaMinima()
-          ? ((this.fuerza + this.errorFuerza +this.margenF) * this.factorCompresion)
+          ? ((this.fuerza + this.errorFuerza + this.margenF) * this.factorCompresion)
           : 0,
       kilovolt: this.kilovolt,//+ this.errorKilovolt + margenKV,
       miliamperios: this.miliamperios, //+ this.errorMiliamperios + margenmA,
@@ -71,9 +71,9 @@ export default class Maquina {
   valoresMedidos() {
     return {
       altura: this.alturaCompresor == this.alturaMinima()
-        ? (this.alturaCompresor + this.errorAltura)* 10
+        ? (this.alturaCompresor + this.errorAltura) * 10
         : this.alturaCompresor < this.alturaEspesor
-          ? (this.alturaCompresor) *10
+          ? (this.alturaCompresor) * 10
           : 0,
       fuerza: this.alturaCompresor == this.alturaMinima()
         ? (this.fuerza + this.margenF) * this.factorCompresion
@@ -85,41 +85,37 @@ export default class Maquina {
     return this.herramienta.getAltura();
   }
 
-  alturaDesplegada(){
-    return this.alturaCompresor*2
+  alturaDesplegada() {
+    return this.alturaCompresor * 2
   }
 
 
   actualizar(activo = false) {
 
-    if(!activo){
+    if (!activo) {
       this.herramienta.actualizar(this.construirEstado(activo));
-    } else{
+    } else {
 
       let estado = this.construirEstado(activo);
 
       let request = {
-        "kvp" : estado.kilovolt,
-        "mas" : estado.miliamperios,
-        "anodo" : estado.filtro,
-        "filtro" : estado.anodo,
+        "kvp": estado.kilovolt,
+        "mas": estado.miliamperios,
+        "anodo": estado.anodo,
+        "filtro": estado.filtro,
       };
-  
+
       $.ajax({
-        url     : "http://localhost:5000/kerma",
-        type    : "get",
-        data    : request,
+        url: "http://localhost:5000/kerma",
+        type: "get",
+        data: request,
         async: false,
-        success : (data) => {
-          // console.log('success');
-          // console.log(data);
-          // console.log(estado);
-          // console.log(this.herramienta);
+        success: (data) => {
           estado.kerma = data.kerma;
           this.herramienta.actualizar(estado);
-          }
-        });
-      }
+        }
+      });
+    }
 
   }
 
@@ -149,37 +145,37 @@ export default class Maquina {
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
-    if (addon){
-     
-      herram.action(this);
-      
-    }
-    else{
+    if (addon) {
 
-      
-    //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
-    if (herram.getTipo() === "Detector de Radiación"){
-      //MOSTRAR BOTON
-      document.getElementById("vista-desde-arriba").style.display = "block";
-      //CARGAR VISTA TOP DOWN
-      //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
-      console.log("BOTON CONFIGURADO");
+      herram.action(this);
+
     }
-    else{
-      document.getElementById("vista-desde-arriba").style.display = "none";
-    }
-    if (this.herramienta.getTipo() == herram.getTipo()) {
-      if(herram.getTipo() === "Detector de Radiación"){
-        //OCULTAR BOTON
-        document.getElementById("vista-desde-arriba").style.display = "none";
-        
+    else {
+
+
+      //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
+      if (herram.getTipo() === "Detector de Radiación") {
+        //MOSTRAR BOTON
+        document.getElementById("vista-desde-arriba").style.display = "block";
+        //CARGAR VISTA TOP DOWN
+        //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
+        console.log("BOTON CONFIGURADO");
       }
-      this.herramienta = new BaseNula();
-    } else {
-      this.herramienta = herram;
-    }
-    
-    
+      else {
+        document.getElementById("vista-desde-arriba").style.display = "none";
+      }
+      if (this.herramienta.getTipo() == herram.getTipo()) {
+        if (herram.getTipo() === "Detector de Radiación") {
+          //OCULTAR BOTON
+          document.getElementById("vista-desde-arriba").style.display = "none";
+
+        }
+        this.herramienta = new BaseNula();
+      } else {
+        this.herramienta = herram;
+      }
+
+
     }
   }
 
