@@ -181,8 +181,10 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    this.alturaCompresor += this.velocY;
-    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 5,this.factorCompresiónini);
+    if(this.factorCompresion == this.factorCompresiónini){
+      this.alturaCompresor += this.velocY;
+    }
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10,this.factorCompresiónini);
     this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresion,0);
     this.actualizar();
   }
@@ -206,8 +208,11 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    this.alturaCompresor += this.velocYManual;
-    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 5,this.factorCompresiónini);
+    if(this.factorCompresion == this.factorCompresiónini){
+      this.alturaCompresor += this.velocYManual;
+    }
+    
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10,this.factorCompresiónini);
     this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresionManual,0);
     this.actualizar();
   }
