@@ -6,7 +6,7 @@ import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa } fr
 
 const alturaMax = 80;
 const margenF = 0;
-const rangemargenKV = 1;
+const rangemargenKV = 0;
 const rangemargenmA = 1;
 const margenAlt = 2;
 
@@ -53,11 +53,17 @@ export default class Maquina {
   mError(x) {
     return Math.random() * x - (x / 2);
   }
+  //para margen de error aleatorio involuntario, devuelve un numero entero entre min y max
+  mErrorInt(min, max) {
+    return (Math.floor(Math.random() * ((max+1) - min + 1) ) + min);
+  
+  }
+
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
-    let margenKV = this.mError(rangemargenKV)
-    let margenmA = this.mError(rangemargenmA)
+    let margenKV = this.mErrorInt(-rangemargenKV,rangemargenKV)
+    let margenmA = this.mErrorInt(-rangemargenmA,rangemargenmA)
     //console.log(this.errorFuerza);
     return {
       altura: (this.alturaCompresor),
@@ -65,8 +71,8 @@ export default class Maquina {
         this.alturaCompresor == this.alturaMinima()
           ? ((this.fuerza + this.errorFuerza) * this.factorCompresion)
           : 0,
-      kilovolt: this.kilovolt,//+ this.errorKilovolt + margenKV,
-      miliamperios: this.miliamperios, //+ this.errorMiliamperios + margenmA,
+      kilovolt: this.kilovolt+ margenKV,//+ this.errorKilovolt,
+      miliamperios: this.miliamperios+ margenmA, //+ this.errorMiliamperios,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
