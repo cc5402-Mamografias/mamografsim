@@ -97,6 +97,10 @@ function rendimiento_normalizado(r1, r2, r3){
         return "";
     }
     var avg = average([r1, r2, r3]);
+    //multiplicamos para pasar de u a m (micro a mili)
+    var normavg = avg * 1000;
+    console.log("promedio")
+    console.log(normavg);
     //asumiento que la distancia del mamografo es de 60 cm
-    return (avg/0.6).toFixed(2);
+    return (normavg/0.6).toFixed(2);
 }

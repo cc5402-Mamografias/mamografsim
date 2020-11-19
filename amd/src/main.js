@@ -92,7 +92,6 @@ class Main {
       () => {
         this.mamografo.bajarCompresorPerilla();
         this.actualizar();
-        console.log("se clickeo la perilla Abajo");
       },
       [140, getCompresorPosY()],
       [50, 50],
