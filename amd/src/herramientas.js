@@ -100,6 +100,7 @@ class Balanza extends AbstractTool {
 
   }
 }
+
 class Toalla extends AbstractTool {
   constructor() {
     super();
@@ -246,11 +247,13 @@ class DetectRad extends AbstractTool {
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
-    this.kilovolt = 0;
-    this.miliamperios = 0;
-    this.modo = null;
-    this.filtro = null;
-    this.anodo = null;
+    // this.kilovolt = 0;
+    // this.miliamperios = 0;
+    // this.modo = null;
+    // this.filtro = null;
+    // this.anodo = null;
+
+    this.kerma = null;
     this.result = [
       "Detector de Radiación",
       "NADA"
@@ -269,33 +272,34 @@ class DetectRad extends AbstractTool {
 
   actualizar(estado) {
     console.log(estado);
-    console.log("haha Camara de Ionizacion go brrrr");
-    if (estado.activo == true && this.colocada == true) {
-      this.kilovolt = estado.kilovolt.toFixed(2);
-      this.miliamperios = estado.miliamperios.toFixed(2);
-      this.modo = estado.modo;
-      this.filtro = estado.filtro;
-      this.anodo = estado.anodo;
-      console.log("haha Camara de Ionizacion go brrrr");
-    }
-    if (estado.activo == true){
-      this.estado = "activo";
-    
 
+    if (estado.activo == true && this.colocada == true) {
+      // this.kilovolt = estado.kilovolt.toFixed(2);
+      // this.miliamperios = estado.miliamperios.toFixed(2);
+      // this.modo = estado.modo;
+      // this.filtro = estado.filtro;
+      // this.anodo = estado.anodo;
+      this.kerma = estado.kerma;
+
+    }
+
+
+    if (estado.activo == true) {
+      this.estado = "activo";
     }
 
     else {
       this.estado = "inactivo";
     }
-
-
   }
+
   actualizar_default() {
-    this.kilovolt = 0;
-    this.miliamperios = 0;
-    this.modo = null;
-    this.filtro = null;
-    this.anodo = null;
+    // this.kilovolt = 0;
+    // this.miliamperios = 0;
+    // this.modo = null;
+    // this.filtro = null;
+    // this.anodo = null;
+    this.kerma = null;
   }
 
   dibujar(ctx) {
@@ -304,33 +308,31 @@ class DetectRad extends AbstractTool {
   getResultado() {
 
     if (this.colocada == true && this.estado == "activo") {
-      this.result = [
-        "Detector de Radiación",
-        "\t\t\tKV: " + this.kilovolt,
-        "\t\t\tmAs: " + this.miliamperios,
-        "\t\t\tmodo: " + this.modo,
-        "\t\t\tfiltro: " + this.filtro,
-        "\t\t\tanodo: " + this.anodo,
-      ];
       return {
-        camara: this.result
+        camara: [
+          "Detector de Radiación",
+          "\t\t\tKerma: " + this.kerma.toFixed(2) + " mGy"
+          // "\t\t\tmAs: " + this.miliamperios,
+          // "\t\t\tmodo: " + this.modo,
+          // "\t\t\tfiltro: " + this.filtro,
+          // "\t\t\tanodo: " + this.anodo,
+        ]
       }
     }
     else if (this.colocada == false && this.estado == "activo") {
-      this.result = [
-        "Detector de Radiación",
-        "NADA"
-      ];
       return {
-        camara: this.result
+        camara: ["Detector de Radiación",
+          "NADA"
+        ]
       }
     }
+
     else {
       this.actualizar_default();
       return {
         camara: this.result
       }
-      
+
     }
 
   }

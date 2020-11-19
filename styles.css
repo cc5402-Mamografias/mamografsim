@@ -75,15 +75,15 @@
   width: 100%;
   height: 7%;
   overflow-y: auto;
+  background-color: #f5f5f5;
   outline: solid 1px black;
   text-align: center;
 }
 
 .botones button{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
+  width: 49%;
+  height: 100%;
+  margin: 0px;
 }
 
 .espacio-boton{
@@ -412,6 +412,7 @@ input[type="radio"]:checked:after {
   width: 100%;
   height: 50%;
   text-align: center;
+  background-color: #f5f5f5;
   outline: 1px solid black;
 }
   
@@ -425,7 +426,6 @@ input[type="radio"]:checked:after {
 .resultados-item {
   text-align: left;
   font-size: medium;
-  text-transform: capitalize;
 }
 
 /*Plantilla prueba rendimiento*/
@@ -668,7 +668,7 @@ body.modal-open {
   left: -5px;
   display: none;
   z-index: 100;
-  background-color: #ccc;
+  background-color: #f5f5f5;
   width: 105%;
   height: 105%;
   overflow-y: auto;
@@ -716,6 +716,7 @@ body.modal-open {
 }
 
 /* Quitar borde de botones seleccionados */
-.button-without-border:focus {
-  outline: none;
+.button-without-border {
+  outline: none !important;
+  box-shadow: none;
 }
