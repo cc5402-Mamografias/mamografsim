@@ -57,7 +57,8 @@ function cambiarModo(modos) {
 
 function disparoMamografo() {
   console.log("Shoot");
-  disparo()
+  setearParamsMamografo();
+  disparo();
 }
 
 

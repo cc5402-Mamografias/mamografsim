@@ -62,7 +62,7 @@ export default class Maquina {
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
-    let margenKV = this.mErrorInt(-rangemargenKV,rangemargenKV)
+    let margenKV = 0;
     let margenmA = this.mErrorInt(-rangemargenmA,rangemargenmA)
     //console.log(this.errorFuerza);
     return {
