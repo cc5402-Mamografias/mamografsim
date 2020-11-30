@@ -2,7 +2,7 @@ import { ClickeableObject } from "./utils";
 export class Pedal extends ClickeableObject{
   constructor(callback, posicion = [190, 400]) {
     
-    super(callback, posicion, [50, 55], 200);
+    super(callback, posicion, [50, 55], 20);
     this.loop = null;
   }
 

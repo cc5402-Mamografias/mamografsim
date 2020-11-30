@@ -59,10 +59,11 @@
 }
 
 .open-sim {
-  min-width: 120px;
-  max-width: 200px;
+  min-width: 400px;
+  /*max-width: 200px;*/
   border-radius: 8px;
-  text-transform: capitalize;
+  font-weight: bold;
+  /*text-transform: capitalize;*/
   text-align: center;
   margin: 0 10px 0 10px;
 
