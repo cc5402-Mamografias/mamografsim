@@ -174,7 +174,10 @@ export default class Maquina {
 
   // Selecciona una nueva herramienta o deselecciona la antigua
   setHerramienta(herram, addon = false) {
-    if (this.alturaCompresor + 5 < herram.altura) {
+    if (this.factorCompresion != this.factorCompresiónini || this.alturaCompresor - 5 < herram.altura) {
+      console.log(this.factorCompresion);
+      console.log(this.factorCompresiónini);
+      console.log(this.factorCompresion != this.factorCompresiónini);
       throw 'No se puede posicionar la herramienta con el compresor tan bajo';
       // return;
     }
@@ -184,7 +187,6 @@ export default class Maquina {
 
     }
     else {
-
 
       //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
       if (herram.getTipo() === "Detector de Radiación") {
@@ -208,7 +210,7 @@ export default class Maquina {
         this.herramienta = herram;
       }
 
-
+      this.actualizar();
     }
   }
 
