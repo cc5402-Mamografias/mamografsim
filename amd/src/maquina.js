@@ -185,7 +185,6 @@ export default class Maquina {
     }
     else {
 
-
       //La idea es que se compare con un arreglo de herramientas que permiten la vista desde arriba
       if (herram.getTipo() === "Detector de Radiación") {
         //MOSTRAR BOTON
@@ -208,7 +207,7 @@ export default class Maquina {
         this.herramienta = herram;
       }
 
-
+      this.actualizar();
     }
   }
 
