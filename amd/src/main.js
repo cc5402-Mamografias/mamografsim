@@ -14,7 +14,7 @@ import Habitacion from "./habitacion";
 import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
-import { 
+import {
   getCompresorPosY,
   drawPedal
 } from "./vista";
@@ -24,6 +24,7 @@ import MesaTopDown from "./vista-top-down";
 
 import { getError } from "./valor-errores";
 
+import VisorImagen from "./visor-imagen";
 
 import { drawReceptor } from "./vista";
 
@@ -63,6 +64,8 @@ class Main {
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
+
+    this.visor = new VisorImagen(this.mamografo);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -163,10 +166,10 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
-    if (tool.addon){
-      herramientaHolder.setHerramienta(tool,true);
+    if (tool.addon) {
+      herramientaHolder.setHerramienta(tool, true);
     }
-    else{
+    else {
       herramientaHolder.setHerramienta(tool);
     }
 
@@ -198,7 +201,7 @@ class Main {
   }
 }
 
-export const init = (errors,pruebas2) => {
+export const init = (errors, pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -232,16 +235,16 @@ export const init = (errors,pruebas2) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
-  
- 
+
+
   pruebas = [];
-  pruebas2.forEach((prueba)=>{
-   if(prueba !== ""){
-     pruebas.push(prueba);
-   }
+  pruebas2.forEach((prueba) => {
+    if (prueba !== "") {
+      pruebas.push(prueba);
+    }
   });
   //pruebas = [pruebas2[0],pruebas2[1]];
-  
+
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
@@ -262,7 +265,7 @@ export const init = (errors,pruebas2) => {
   })
   $("#loader").remove();
 
-  $("body").on("click","#volver",function(){
+  $("body").on("click", "#volver", function () {
 
     $("#modal-volver").modal("show");
 
@@ -271,7 +274,7 @@ export const init = (errors,pruebas2) => {
 
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
     $('body').removeClass("modal-open");
-    $('body').css("padding-right","");
+    $('body').css("padding-right", "");
   });
 
   console.log("Simulador inicializado");
@@ -307,8 +310,8 @@ function show_mesa() {
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
-  
-  ctxr.drawImage(receptor,155,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
+
+  ctxr.drawImage(receptor, 155, -30, receptor.width * scale * 0.8, receptor.height * scale * 0.8)
 
 }
 
@@ -385,7 +388,7 @@ document.addEventListener("dragenter", function (event) {
   console.log("Estoy dentro de un dropzone")
   // highlight potential drop target when the draggable element enters it
   if (event.target.className == "dropzone") {
-      event.target.style.background = "red";
+    event.target.style.background = "red";
   }
 
 }, false);
@@ -394,7 +397,7 @@ document.addEventListener("dragleave", function (event) {
   console.log("salgo de mi posicion original");
   // reset background of potential drop target when the draggable element leaves it
   if (event.target.className == "dropzone") {
-      event.target.style.background = "";
+    event.target.style.background = "";
   }
 
 }, false);
@@ -404,16 +407,16 @@ document.addEventListener("drop", function (event) {
   event.preventDefault();
   // move dragged elem to the selected drop target
   if (event.target.className == "dropzone") {
-      event.target.style.background = "";
-      this.dragged.parentNode.removeChild(this.dragged);
-      event.target.appendChild(this.dragged);
-      //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
-      if (event.target.id == "posicion_buena"){
-        m.mesaTopDown.check_pos_correct()
-      }
-      else{
-        m.mesaTopDown.check_pos_incorrect()
-      }
+    event.target.style.background = "";
+    this.dragged.parentNode.removeChild(this.dragged);
+    event.target.appendChild(this.dragged);
+    //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
+    if (event.target.id == "posicion_buena") {
+      m.mesaTopDown.check_pos_correct()
+    }
+    else {
+      m.mesaTopDown.check_pos_incorrect()
+    }
   }
 
 }, false);
