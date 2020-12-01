@@ -4,7 +4,7 @@ El *Simulador de Control de Calidad en Mamógrafos* es una herramienta que permi
 
 Esta herramienta es un plugin diseñado para ser integrado en la plataforma de aprendizaje e-learning Moodle, en el módulo correspondiente al Diplomado de Mamografía del Departamento de Tecnología Médica de la Universidad de Chile.
 
-Está escrito mayormente en código Javascript, y para du desarrollo se utilizaron tecnologías como Docker y Node para facilitar el trabajo.
+Está escrito mayormente en código Javascript, y para su desarrollo se utilizaron tecnologías como Docker y Node para facilitar el trabajo.
 
 A continuación se describen los pasos para instalar todo lo necesario para su puesta en marcha, y las condiciones que deben seguirse en la continuación del desarrollo de este plugin.
 
@@ -32,7 +32,7 @@ Primero se debe obtener el código fuente de la última versión estable de Mood
 
 - Clonar o descargar el repositorio desde: https://github.com/moodle/moodle
 
-Luego se debe clonar el repositorio del plugin __Mamografsim__ en la ruta `moodle/mod/` (mod es un módulo que se encuentra en el código base de moodle). Una vez clonado, en el código fuente de moodle debería existir la ruta `moodle/mod/mamografsim/`. El repositorio se encuentra disponible en: https://github.com/cc5402-Mamografias/mamografsim
+Luego se debe clonar el repositorio del plugin __Mamografsim__ en la ruta `moodle/mod/` (mod es un módulo que se encuentra en el código base de moodle). El repositorio se encuentra disponible en: https://github.com/cc5402-Mamografias/mamografsim. Una vez clonado, en el código fuente de moodle debería existir la ruta `moodle/mod/mamografsim/`.
 
 
 ### __Instalación de docker__
@@ -57,12 +57,12 @@ sudo usermod -aG docker $USER
 
 ### __Clonar repositorio moodle-docker__
 
-Una vez que ya se ha instalado Docker, se debe clonar el repositorio que permite desplegar Moodle a través de docker. De preferencia, este respositorio debe ser clonado en la misma ruta del repositorio anterior: https://github.com/cc5402-Mamografias/moodle-docker
+Una vez que ya se ha instalado Docker, se debe clonar el repositorio que permite desplegar Moodle a través de docker: https://github.com/cc5402-Mamografias/moodle-docker. De preferencia, este respositorio debe ser clonado en la misma ruta del repositorio de moodle.
 
 ### __Desplegar Moodle por medio de Docker__
 
 
-Ahora se deben ejecutar los comandos indicados en el respositorio de docker (`moodle-docker/`), se listan a continuación:
+Ahora se deben ejecutar los comandos indicados en el README de docker (`moodle-docker`), son los que se listan a continuación:
 ```
 export MOODLE_DOCKER_WWWROOT=<path_to_moodle_code>
 
@@ -82,7 +82,7 @@ Luego del comando anterior, deberían quedarn cinco contenedores inicializados.
 
 ### __Instalar Node Version Manager (NVM), Node y grunt__
 
-Dado que el plugin está desarrollado mayormente en Javascript, es necesario instalar la herramienta `grunt` que permite compilar el código contenido en el módulo `/amd`. Como esta herramienta corre en el ambiente de Node, también es necesario instalarlo.
+Dado que el plugin está desarrollado mayormente en Javascript, es necesario instalar la herramienta `grunt` que permite compilar el código contenido en el módulo `moodle/mod/mamografsim/amd`. Como esta herramienta corre en el ambiente de Node, también es necesario instalar este último.
 
 Los pasos para instalar `nvm`, `Node` y `grunt` se describen en el link: https://docs.moodle.org/dev/Javascript_Modules#Install_NVM_and_Node. También se listan a continuación:
 
@@ -157,11 +157,11 @@ En el navegador, dirigirse a `localhost:8000`. Allí, apretar `log in` en la esq
 
 En la sección *Site Home*, clickear *Add a new course*. Luego, completar los campos necesarios y guardar (*Save and Display*). Posterior a esto, aparecerá un menú lateral con la información del curso.
 
-Para agregar el plugin al curso se debe seleccionar la primera sección, aquella que contiene el nombre del curso y luego clickear *Turn editing on* (un botón que se encuentra en la esquina superior derecha). Esto permitirá editar los tópicos y otras secciones del curso. Ahora se debe elegir un tópico (por ejemplo *Topic 1*) y clickear *Add an activity or resource*, en él se agregará el simulador. A continuación, aparecerá un modal con los diferentes plugins disponibles, seleccionar *Mamografsim*. Finalmente, se debe ingresar el nombre de la actividad y guardar (*Save and Display*).
+Para agregar el plugin al curso se debe seleccionar la primera sección, aquella que contiene el nombre del curso y luego clickear *Turn editing on* (un botón que se encuentra en la esquina superior derecha). Esto permitirá editar los tópicos y otras secciones del curso. Ahora, se debe elegir un tópico (por ejemplo *Topic 1*) y clickear *Add an activity or resource*, en él se agregará el simulador. A continuación, aparecerá un modal con los diferentes plugins disponibles, seleccionar *Mamografsim*. Finalmente, se debe ingresar el nombre de la actividad y guardar (*Save and Display*).
 
 Una vez hecho todo lo anterior, aparecerá la interfaz de inicio del simulador. Desde aquí se puede interactuar con él.
 
-Puede ser que la palabra *Cargando* aparezca por un tiempo prolongado. Una de las posibles causas es COMPLETAR ESTA PARTE Para corregir ello se deben eliminar los archivos `botones-pasos.min.js.map` y `botones-pasos.min.jsbotones-pasos.min.js` de la carpeta `moodle/mod/mamografsim/amd/build/`.
+Puede ser que la frase *Cargando...* aparezca por un tiempo prolongado. Una de las posibles causas es COMPLETAR ESTA PARTE Para corregir ello se deben eliminar los archivos `botones-pasos.min.js.map` y `botones-pasos.min.jsbotones-pasos.min.js` de la carpeta `moodle/mod/mamografsim/amd/build/`.
 
 
 ## __Desarrollo__
@@ -170,7 +170,7 @@ Durante el desarrollo es necesario seguir ciertos pasos con el fin de observar l
 
 ### __Declarar variables de entorno__
 
-Se deben declarar las variables de entorno cada vez que se quiera desplegar localmente Moodle. Para ello debe ejecutar nuevamente los comandos:
+Se deben declarar las variables de entorno cada vez que se quiera desplegar localmente Moodle. Para ello deben ejecutarse nuevamente los comandos:
 
 ```
 export MOODLE_DOCKER_WWWROOT=<path_to_moodle_code>
