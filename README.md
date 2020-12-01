@@ -151,7 +151,7 @@ Si la base de datos se elimina por alguna razón, se debe volver a correr el com
 
 Ya se han clonado los repositorios y se han instalado las tecnologías necesarias. Ahora se debe instalar el plugin Mamografsim en Moodle de modo que quede disponible para ser agregado a un curso en esta plataforma.
 
-En el navegador, dirigirse a `localhost:8000`. Allí, apretar `log in` en la esquina superior derecha e ingresar con el usuario recién creado. En el menú lateral izquierdo se debe clickear la sección *Site Administration* ... COMPLETAR ESTA PARTE
+En el navegador, dirigirse a `localhost:8000`. Allí, apretar `log in` en la esquina superior derecha e ingresar con el usuario recién creado. En el menú lateral izquierdo se debe clickear la sección *Site Administration* > *Plugins* > *Install plugins*. Allí debería aparecer automáticamente la opción de instalar el nuevo plugin detectado.
 
 ### __Añadir plugin a un curso__
 
@@ -161,7 +161,7 @@ Para agregar el plugin al curso se debe seleccionar la primera sección, aquella
 
 Una vez hecho todo lo anterior, aparecerá la interfaz de inicio del simulador. Desde aquí se puede interactuar con él.
 
-Puede ser que la frase *Cargando...* aparezca por un tiempo prolongado. Una de las posibles causas es COMPLETAR ESTA PARTE Para corregir ello se deben eliminar los archivos `botones-pasos.min.js.map` y `botones-pasos.min.jsbotones-pasos.min.js` de la carpeta `moodle/mod/mamografsim/amd/build/`.
+Puede ser que la frase *Cargando...* aparezca por un tiempo prolongado. Una de las posibles causas es un error en la compilación. Para corregir ello se deben eliminar los archivos `botones-pasos.min.js.map` y `botones-pasos.min.jsbotones-pasos.min.js` de la carpeta `moodle/mod/mamografsim/amd/build/`.
 
 
 ## __Desarrollo__
