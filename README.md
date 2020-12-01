@@ -50,6 +50,11 @@ __Docker Compose__:
 
 - Ubuntu: https://docs.docker.com/compose/install/
 
+Es importante agregar al usuario que corresponde al grupo de Docker para poder ejecutar comandos sin `sudo`:
+```
+sudo usermod -aG docker $USER
+```
+
 ## Desplegar Moodle por medio de docker
 
 
