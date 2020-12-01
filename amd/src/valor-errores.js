@@ -1,63 +1,114 @@
 var valores = {
     "errorFuerzaEjercida": {
-        "valores_base": [0.0, 1.0, 2.5, 3.5],
-        "factor_random": 0.5,
-        "puede_ser_negativo": true
+        "valores_base": {
+            "Ninguno": {
+                valor: [15.3, 20.4],
+                direccion: "Adentro"
+            },
+            "Alto": {
+                valor: [15.3, 20.4],
+                direccion: "Afuera",
+                limite: [10, 30]
+            }
+        },
+
     },
     "errorFuerzaMedida": {
-        "valores_base": [0.0, 1.0, 2.0, 3.0],
-        "factor_random": 0.2,
-        "puede_ser_negativo": true
+        "valores_base": {
+            "Ninguno": { valor: 0.0 },
+            "Bajo": {
+                valor: [-2.04, 2.04],
+                direccion: "Adentro"
+            },
+            "Alto": {
+                valor: [-2.04, 2.04],
+                direccion: "Afuera",
+                limite: [-5, 5]
+            }
+        },
+
+
 
     },
     "errorAltura": {
-        "valores_base": [0.0, 0.3, 0.7, 1.1],
-        "factor_random": 0.2,
-        "puede_ser_negativo": true
+        "valores_base": {
+            "Ninguno": { valor: 0 },
+            "Bajo": {
+                valor: [-0.5, 0.5],
+                direccion : "Adentro"
+            },
+            "Medio": {
+                valor: [-0.5, 0.5],
+                direccion: "Afuera",
+                limite: [-0.8, 0.8]
+            },
+            "Alto": {
+                valor: [-0.8, 0.8],
+                direccion:"Afuera",
+                limite :[-1.5, 1.5]
+            }
+        },
+
+
     },
     "errorMiliampere": {
-        "valores_base": [0.0, 0.5, 0.8, 1.1],
-        "factor_random": 0.05,
-        "puede_ser_negativo": true
+        "valores_base": {
+            "Ninguno": { valor: 0.0 },
+            "Bajo": { valor: 0.5 },
+            "Medio": { valor: 0.8 },
+            "Alto": { valor: 1.1 }
+        },
+
     },
     "errorKilovolt": {
-        "valores_base": [0.0, 0.3, 0.7, 1.1],
-        "factor_random": 0.2,
-        "puede_ser_negativo": true
+        "valores_base": {
+            "Ninguno": { valor: 0.0 },
+            "Bajo": { valor: 0.3 },
+            "Medio": { valor: 0.7 },
+            "Alto": { valor: 1.1 }
+        },
     }
 }
 
-const INTENSIDADES = [
-    "Ninguno",
-    "Bajo",
-    "Medio",
-    "Alto"
-];
-
-function indiceIntensidad(intensidad) {
-    let i = INTENSIDADES.findIndex((e) => e == intensidad);
-    
-    if (i < 0) {
-        i = Math.floor(Math.random() * 4); // Entero entre 0 y 3 inclusives;
-    }
-    return i;
+function getRandomRange(min, max) {
+    return Math.random() * (max - min) + min;
 }
-
 export function getError(tipo, intensidad) {
-    let ind = indiceIntensidad(intensidad);
-    if (ind == 0){
-        return 0;
-    }
-    else{
 
-        let error = valores[tipo]
-        let variacion = Math.random() *
-            error.factor_random * 2 - error.factor_random; //+- factor
-        let signo = 1;
-        if (error.puede_ser_negativo && Math.random() < 0.5) {
-            signo = -1;
-        }
-        return signo * (error.valores_base[ind] + variacion);
+
+    if (intensidad === "Aleatorio") {
+        let keyArray = Object.keys(valores[tipo]["valores_base"]);
+
+        intensidad = keyArray[Math.floor(Math.random() * keyArray.length)];
     }
-    
+
+
+    let valor_base = valores[tipo]["valores_base"][intensidad];
+    let error = valor_base["valor"];
+    if (Array.isArray(error)) {
+        let direccion = valor_base["direccion"];
+        if (direccion == "Adentro") {
+            let error_val = getRandomRange(error[0], error[1]);
+            return error_val;
+        }
+        else if (direccion == "Afuera") {
+            let limite = valor_base["limite"];
+            //Determina si el error será mayor al valor máximo o menor al minimo.
+            let supinf = getRandomRange(0, 1);
+            let error_val = 0;
+            if (supinf > 0.5) {
+                error_val = getRandomRange(error[1], limite[1]);
+            }
+            else {
+                error_val = getRandomRange(error[0], limite[0]);
+            }
+            return error_val;
+        }
+    }
+    else {
+        return error;
+    }
+
+
+
 }

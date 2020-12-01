@@ -58,9 +58,6 @@ export function drawMam(
   altura = 0
 ) {
   addcompresorY = offsetCompresor - alturaCompresorY;
-  console.log(herramientas);
-
-  console.log("Draw mamografo");
 
   ctx.drawImage(
     fondo,

@@ -92,20 +92,20 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         
         $mform->addElement('header', 'mamografsimcomp', get_string('mamografsimcomp', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorvis', "Error Visor", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorvis', "Error indicador fuerza compresión", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (El visor muestra la misma fuerza que la balanza)','Bajo'=>'Bajo (El visor presenta un error dentro de valores de tolerancia)','Alto'=>'Alto (El visor presenta un error mayor a los valores de tolerancia)'));
         //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('errorvis', PARAM_TEXT);
         //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('errorvis', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
 
-        $mform->addElement('select', 'errorf', "Error Fuerza", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorf', "Fuerza máxima", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Dentro de los valores de tolerancia','Alto'=>'Fuera de los valores de tolerancia'));
         //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('errorf', PARAM_TEXT);
         //$mform->addRule('errorf', null, 'required', null, 'client');
         $mform->addRule('errorf', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         
-        $mform->addElement('select', 'erroralt', "Error Altura", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'erroralt', "Error espesor de compresión", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (El mamógrafo mide el espesor exacto de los objetos)','Bajo'=>'Bajo (El mamógrafo presenta un error dentro del rango deseable)','Medio'=>'Medio (El mamógrafo presenta un error dentro del rango aceptable)','Alto'=>'Alto (El mamógrafo presenta un error mayor al rango aceptable)'));
         //$mform->addElement('text', 'errorf', "Error Fuerza (Kg)", array('size' => '64'));
         $mform->setType('erroralt', PARAM_TEXT);
         //$mform->addRule('errorf', null, 'required', null, 'client');
