@@ -58,6 +58,9 @@ class Main {
     errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
     errors.errorma = getError("errorMiliampere", errors.errorma);
     errors.errorkv = getError("errorKilovolt", errors.errorkv);
+    errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
+    errors.errorlin = getError("errorLinealidad", errors.errorlin);
+    errors.errorrend = getError("errorRendimiento", errors.errorrend);
     console.log(errors);
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
@@ -205,6 +208,7 @@ export const init = (errors,pruebas2) => {
     errordict[pair[0]] = pair[1];
 
   });
+  console.log(errors);
   console.log(errordict);
   m = new Main(errordict);
   let elems;

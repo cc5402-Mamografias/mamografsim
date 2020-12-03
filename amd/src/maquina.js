@@ -6,18 +6,20 @@ import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa } fr
 
 const alturaMax = 80;
 const margenF = 0;
-const rangemargenKV = 0;
-const rangemargenmA = 1;
 const margenAlt = 2;
 
 
-function rand(lowest, highest) {
-  var adjustedHigh = (highest - lowest) + 1;
-  return Math.floor(Math.random() * adjustedHigh) + parseFloat(lowest);
+//operacion Math.random con seed fijo
+var seed = 1;
+function random() {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
 }
+
 
 export default class Maquina {
   constructor(errors, ctx) {
+    console.log(errors)
     this.herramienta = new BaseNula();
     //Errores
     this.errorKilovolt = parseInt(errors["errorkv"]);
@@ -25,6 +27,18 @@ export default class Maquina {
     this.errorFuerza = errors["errorf"];
     this.errorAltura = errors["erroralt"];
     this.errorVisor = errors["errorvis"];
+
+    //dedicadas a los errores de rendimiento
+    this.rangemargenmA = errors["errorrep"];
+    this.pondLinealidad = errors["errorlin"];
+    this.pondRendimiento = errors["errorrend"];
+    console.log("rendimiento")
+
+    console.log(this.pondRendimiento)
+
+
+
+//const ponderacionmA = 1;
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
@@ -61,14 +75,15 @@ export default class Maquina {
     //setearParamsMamografo();
   }
 
-
-  mError(x) {
-    return Math.random() * x - (x / 2);
-  }
-  //para margen de error aleatorio involuntario, devuelve un numero entero entre min y max
+  //operaciones con resultado entero
   mErrorInt(min, max) {
-    return (Math.floor(Math.random() * ((max+1) - min + 1) ) + min);
-  
+    return (Math.floor(random() * ((max+1) - min + 1) ) + min)
+  }
+  elevar (base, exp){
+    return(Math.floor(Math.pow(base, exp)))
+  }
+  multiplicar (x1,x2){
+    return(Math.floor(x1*x2))
   }
 
 
@@ -76,9 +91,12 @@ export default class Maquina {
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
     let margenKV = 0;
-    let margenmA = this.mErrorInt(-rangemargenmA,rangemargenmA)
-
+    let margenmA = 0;
+    if (isActivo == true) {
+      margenmA = this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)
+    }
     //console.log(this.errorFuerza);
+    //console.log(margenmA);
     return {
       altura: (this.alturaCompresor),
       /*
@@ -91,9 +109,8 @@ export default class Maquina {
          fuerza: this.factorCompresion > this.factorCompresiónini
          ? (this.fuerza+this.errorFuerza)
          : 0,
-      kilovolt: this.kilovolt + this.errorKilovolt,
-      miliamperios: this.miliamperios + this.errorMiliamperios,
-
+      kilovolt: (this.kilovolt),
+      miliamperios: this.multiplicar((this.elevar((this.miliamperios),this.pondLinealidad)+ margenmA),this.pondRendimiento),
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -164,6 +181,7 @@ export default class Maquina {
 
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
+
     console.log("seteo nuevos parametros");
     this.kilovolt = kv;
     this.miliamperios = ma;

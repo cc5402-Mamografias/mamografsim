@@ -126,6 +126,21 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         //$mform->addRule('errorma', null, 'required', null, 'client');
         $mform->addRule('errorma', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
+        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->setType('errorrep', PARAM_TEXT);
+        //$mform->addRule('errorma', null, 'required', null, 'client');
+        $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorlin', "Error Linealidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->setType('errorlin', PARAM_TEXT);
+        //$mform->addRule('errorma', null, 'required', null, 'client');
+        $mform->addRule('errorlin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorrend', "Error Rendimiento", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->setType('errorrend', PARAM_TEXT);
+        //$mform->addRule('errorma', null, 'required', null, 'client');
+        $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
         
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();

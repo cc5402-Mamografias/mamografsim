@@ -24,6 +24,21 @@ var valores = {
         "valores_base": [0.0, 0.3, 0.7, 1.1],
         "factor_random": 0.2,
         "puede_ser_negativo": true
+    },
+    "errorRepetibilidad": {
+        "valores_base": [0.0, 1.0, 8.0, 15.0],
+        "factor_random": 0.2,
+        "puede_ser_negativo": true
+    },
+    "errorLinealidad": {
+        "valores_base": [1.0, 1.2, 1.6, 1.8],
+        "factor_random": 0.2,
+        "puede_ser_negativo": true
+    },
+    "errorRendimiento": {
+        "valores_base": [1.0, 0.1, 0.05, 0.02],
+        "factor_random": 0.2,
+        "puede_ser_negativo": true
     }
 }
 
