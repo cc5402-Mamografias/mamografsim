@@ -247,6 +247,7 @@ class DetectRad extends AbstractTool {
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
+    this.colocada = false;
     // this.kilovolt = 0;
     // this.miliamperios = 0;
     // this.modo = null;
@@ -399,6 +400,115 @@ class Barometro extends AbstractTool {
   }
 }
 
+class Fantoma extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Fantoma";
+    this.icon = "slabs.png";
+    this.estado = "inactivo";
+    this.description = "Este es un fantoma.";
+    this.parametros = null;
+    this.colocada = false;
+    this.altura = 4.5;
+    this.result = [
+      "Ver Imagen",
+      "Error de Posición",
+      "Error de Parámetros",
+      "Imagen no disponible",
+      "Error de Posición y Parámetros"
+    ];
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 250;
+    this.sprite = new Image();
+    this.sprite.src = 'img/fantoma45_contraste.svg'; 
+  }
+  colocar(bool) {
+    this.colocada = bool;
+  }
+
+
+  actualizar(estado) {
+    console.log(estado);
+    //Para chequear los parametros del mamografo
+    //estado.kilovolt.toFixed(2) == LO QUE DIGAMOS;
+    //estado.miliamperios.toFixed(2) == LO QUE DIGAMOS;
+    //estado.modo == LO QUE DIGAMOS;
+    //estado.filtro == LO QUE DIGAMOS;
+    //estado.anodo == LO QUE DIGAMOS;
+    //Si esta todo bien entonces this.parametros==true, si no this.parametros==false
+
+    if (estado.activo == true) {
+      this.estado = "activo";
+      console.log("ESTADO ACTIVO")
+    }
+
+    else {
+      this.estado = "inactivo";
+    }
+  }
+
+
+  dibujar(ctx) {
+    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
+  }
+  getResultado() {
+
+    if (this.colocada == true && this.estado == "activo") {
+      if(this.parametros == true){
+        return{
+          camara: [
+            "Fantoma",
+            "Ver Imagen"
+          ]
+        }
+      }
+      else{
+        return{
+          camara: [
+            "Fantoma",
+            "Error de Parámetros"
+          ]
+        }
+      }
+    }
+    else if (this.colocada == false && this.estado == "activo") {
+      if (this.parametros == true){
+        return{
+          camara: [
+            "Fantoma",
+            "Error de Posición"
+          ]
+        }
+      }
+      else{
+        console.log("SI")
+        return{
+          camara: [
+            "Fantoma",
+            "Error de Posición y Parámetros"
+          ]
+        }
+      }
+    }
+    else {
+      console.log("NO")
+      return {
+        camara: [
+          "Fantoma",
+          "Imagen no disponible"
+      ]
+      }
+
+    }
+
+  }
+
+  estaColocada() {
+    return this.colocada;
+  }
+}
+
 export {
   BaseNula,
   Balanza,
@@ -408,5 +518,6 @@ export {
   Termometro,
   Slab_20mm,
   Slab_45mm,
-  Slab_70mm
+  Slab_70mm,
+  Fantoma
 };
