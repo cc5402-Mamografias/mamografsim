@@ -7,7 +7,8 @@ import {
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,
-  Toalla
+  Toalla,
+  Fantoma
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
@@ -42,6 +43,7 @@ class Main {
       new Slab_45mm(),
       new Slab_70mm(),
       new DetectRad(),
+      new Fantoma(),
     ];
 
     this.c = document.getElementById("canvas");
