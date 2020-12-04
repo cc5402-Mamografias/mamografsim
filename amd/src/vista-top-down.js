@@ -10,6 +10,24 @@ export default class MesaTopDown {
         this.vistaArribaReceptor = $("#vista-arriba-receptor");
         this.mamo = mamografo;
     }
+    change_divs(){
+        let her = this.mamo.getHerramienta();
+        if (her.getTipo() == "Detector de Radiación"){
+            this.incorrectAlert = $("#alerta-posicion-incorrecta");
+            this.correctAlert = $("#alerta-posicion-correcta");
+            this.vistaArribaReceptor = $("#vista-arriba-receptor");
+        }
+        else if (her.getTipo() == "Fantoma"){
+            console.log("TENEMOS FANTOMA")
+            this.incorrectAlert = $("#alerta-posicion-incorrecta-2");
+            this.correctAlert = $("#alerta-posicion-correcta-2");
+            this.vistaArribaReceptor = $("#vista-arriba-receptor-2");
+        
+        }
+
+    }
+
+
 
     check_pos(){
         //console.log(this.incorrectAlert);

@@ -51,5 +51,4 @@ document.addEventListener("drop", function (event) {
         this.dragged.parentNode.removeChild(this.dragged);
         event.target.appendChild(this.dragged);
     }
-
 }, false);

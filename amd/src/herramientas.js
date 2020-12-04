@@ -409,13 +409,18 @@ class Fantoma extends AbstractTool {
     this.description = "Este es un fantoma.";
     this.parametros = null;
     this.colocada = false;
+    this.presionado = false;
     this.altura = 4.5;
     this.result = [
       "Ver Imagen",
       "Error de Posición",
       "Error de Parámetros",
+      "Error de Presión",
       "Imagen no disponible",
-      "Error de Posición y Parámetros"
+      "Error de Posición y Parámetros",
+      "Error de Posición y Presión",
+      "Error de Parámetros y Presión",
+      "Error de Posición, Parámetros y Presión"
     ];
     this.scale = 0.5;
     this.x = 152;
