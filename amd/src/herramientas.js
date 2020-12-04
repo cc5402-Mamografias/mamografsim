@@ -428,19 +428,17 @@ class Fantoma extends AbstractTool {
     //Se esta presionando al fantoma con una fuerza apropiada
 
     console.log(estado.fuerza)
-    if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13){
-      console.log("AHORA ESTA PRESIONADO")
+    if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13) {
       this.presionado = true;
     }
-    else{
+    else {
       this.presionado = false;
     }
     //La configuracion en el panel de control es la adecuada
-    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100){
-      console.log("PARAMETROS BUENOS")
+    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100) {
       this.parametros = true;
     }
-    else{
+    else {
       this.parametros = false;
     }
     //Se ha disparado en el panel de control
@@ -480,10 +478,10 @@ class Fantoma extends AbstractTool {
     ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
   }
   getResultado() {
+    var result = null;
 
     if (this.estado == "activo") {
-
-      if(this.parametros && this.presionado && this.colocada){
+      if (this.parametros && this.presionado && this.colocada) {
 
         if (this.image !== null) {
           var im = new Image(120, 160);
@@ -491,87 +489,43 @@ class Fantoma extends AbstractTool {
           im.style.display = "block";
           im.style.margin = "auto";
           im.onclick = () => { this.visor.show() };
-
           result = im;
-
-          return {
-            camara: [
-              "Fantoma:",
-              im
-            ]
-          }
         }
-        else{
+        else {
           throw "No se obtuvo la imagen";
         }
       }
-      
-      if(this.parametros && this.presionado && !this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Posición"
-          ]
-        }
+
+      else if (this.parametros && this.presionado && !this.colocada) {
+        result = "Error de Posición";
       }
-      if(this.parametros && !this.presionado && this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Presión"
-          ]
-        }
+      else if (this.parametros && !this.presionado && this.colocada) {
+        result = "Error de Presión";
       }
-      if(this.parametros && !this.presionado && !this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Posición y Presión"
-          ]
-        }
+      else if (this.parametros && !this.presionado && !this.colocada) {
+        result = "Error de Posición y Presión";
       }
-      if(!this.parametros && this.presionado && this.colocada){
-        return {
-          camara: [
-            "Fantoma:",
-            "Error de Parámetros"
-          ]
-        }
+      else if (!this.parametros && this.presionado && this.colocada) {
+        result = "Error de Parámetros";
       }
-      if(!this.parametros && !this.presionado && this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Parámetros y Presión"
-          ]
-        }
+      else if (!this.parametros && !this.presionado && this.colocada) {
+        result = "Error de Parámetros y Presión";
       }
-      if(!this.parametros && this.presionado && !this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Parámetros y Posición"
-          ]
-        }
+      else if (!this.parametros && this.presionado && !this.colocada) {
+        result = "Error de Parámetros y Posición";
       }
-      if(!this.parametros && !this.presionado && !this.colocada){
-        return {
-          camara: [
-            "Fantoma",
-            "Error de Posición, Parámetros y Presión"
-          ]
-        }
+      else if (!this.parametros && !this.presionado && !this.colocada) {
+        result = "Error de Posición, Parámetros y Presión";
+      }
+      else {
+        result = "Imagen no disponible";
       }
     }
     else {
-      console.log("NO")
-      return {
-        camara: [
-          "Fantoma:",
-          "Imagen no disponible"
-        ]
-      }
+      result = "Imagen no disponible";
     }
+
+    return { fantoma: ["Fantoma: ", result] };
   }
 
   estaColocada() {
