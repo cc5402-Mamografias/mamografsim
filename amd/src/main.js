@@ -58,7 +58,6 @@ class Main {
     errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
     errors.errorma = getError("errorMiliampere", errors.errorma);
     errors.errorkv = getError("errorKilovolt", errors.errorkv);
-    console.log(errors);
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();

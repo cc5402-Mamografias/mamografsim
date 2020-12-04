@@ -30,7 +30,7 @@ export default class Maquina {
     this.alturaEspesor = 25;
     this.fuerza = 0.0;
     this.fuerzamax = this.errorFuerza; 
-    this.fuerzamaxManual = this.errorFuerza;
+    this.fuerzamaxManual = this.errorFuerza+10;
     //Movimiento compresor
     this.velocY = 0.8;
     this.velocYManual = 0.5;
@@ -74,9 +74,7 @@ export default class Maquina {
 
 
   construirEstado(isActivo) {
-    //let errorF = rand(-this.errorFuerza,this.errorFuerza)
-    let margenKV = 0;
-    let margenmA = this.mErrorInt(-rangemargenmA,rangemargenmA)
+  
 
     //console.log(this.errorFuerza);
     return {

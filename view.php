@@ -74,7 +74,6 @@ $errorkv = $moduleinstance->errorkv;
 $errorma = $moduleinstance->errorma;
 $errorf = $moduleinstance->errorf;
 $erroralt = $moduleinstance->erroralt;
-
 $compresion = $moduleinstance->compresion;
 $rendimiento = $moduleinstance->rendimiento;
 
