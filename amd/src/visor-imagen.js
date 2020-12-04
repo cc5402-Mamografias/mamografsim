@@ -22,7 +22,7 @@ export default class VisorImagen {
     this.panel.hide();
   }
 
-  load_image(img){  
+  load_image(img) {
     this.img = img;
   }
 
@@ -31,7 +31,7 @@ export default class VisorImagen {
     var stage = new Konva.Stage({
       container: 'container-visor',
       width: this.panel.width(),
-      height: this.panel.height() - 100,
+      height: this.panel.height() - 50
     });
 
     var layer = new Konva.Layer();
@@ -46,9 +46,7 @@ export default class VisorImagen {
     mamImage.onload = () => {
 
       // var originalWidth = mamImage.width;
-
-      var ratio = Math.min((this.panel.width() - 50) / mamImage.width, (this.panel.height() - 200) / mamImage.height);
-      
+      var ratio = Math.min((this.panel.width() - 50) / mamImage.width, (this.panel.height() - 50) / mamImage.height);
       mamImage.width = mamImage.width * ratio;
       mamImage.height = mamImage.height * ratio;
 
@@ -61,7 +59,7 @@ export default class VisorImagen {
         listening: false
       });
 
-      
+
       group.add(yoda);
       layer.batchDraw();
       yoda.moveToBottom();
@@ -81,7 +79,7 @@ export default class VisorImagen {
       strokeWidth: 4,
       draggable: true,
     });
-    
+
     var circ2 = new Konva.Circle({
       x: 200,
       y: 100,

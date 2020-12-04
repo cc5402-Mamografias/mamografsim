@@ -432,10 +432,10 @@ class Fantoma extends AbstractTool {
 
       let request = { // hay que ver la manera de que estos parametros cambien!
         "imagen": "objeto_contraste",
-        "mancha": "1",
-        "lineas": "1",
+        "mancha": "2",
+        "lineas": "4",
         "l_sentido": "ver",
-        "ruido": "1"
+        "ruido": "4"
       };
 
       $.ajax({
@@ -469,7 +469,7 @@ class Fantoma extends AbstractTool {
 
       if (this.image !== null) {
         var im = new Image(120, 160);
-  
+
         im.src = this.img;
         im.style.display = "block";
         im.style.margin = "auto";
