@@ -248,12 +248,6 @@ class DetectRad extends AbstractTool {
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
     this.colocada = false;
-    // this.kilovolt = 0;
-    // this.miliamperios = 0;
-    // this.modo = null;
-    // this.filtro = null;
-    // this.anodo = null;
-
     this.kerma = null;
     this.result = [
       "Detector de Radiación",
@@ -272,34 +266,31 @@ class DetectRad extends AbstractTool {
 
 
   actualizar(estado) {
-    console.log(estado);
 
-    if (estado.activo == true && this.colocada == true) {
-      // this.kilovolt = estado.kilovolt.toFixed(2);
-      // this.miliamperios = estado.miliamperios.toFixed(2);
-      // this.modo = estado.modo;
-      // this.filtro = estado.filtro;
-      // this.anodo = estado.anodo;
-      this.kerma = estado.kerma;
+    if (estado.activo && this.colocada) {
 
+      let request = {
+        "kvp": estado.kilovolt,
+        "mas": estado.miliamperios,
+        "anodo": estado.anodo,
+        "filtro": estado.filtro,
+      };
+
+      $.ajax({
+        url: "http://moodle2.cimt.cl/api/kerma",
+        type: "get",
+        data: request,
+        async: false,
+        success: (data) => {
+          this.kerma = data.kerma;
+        }
+      });
     }
 
-
-    if (estado.activo == true) {
-      this.estado = "activo";
-    }
-
-    else {
-      this.estado = "inactivo";
-    }
+    this.estado = estado.activo ? "activo" : "inactivo";
   }
 
   actualizar_default() {
-    // this.kilovolt = 0;
-    // this.miliamperios = 0;
-    // this.modo = null;
-    // this.filtro = null;
-    // this.anodo = null;
     this.kerma = null;
   }
 
@@ -310,17 +301,13 @@ class DetectRad extends AbstractTool {
 
     if (this.colocada == true && this.estado == "activo") {
       return {
-        camara: [
+        detector: [
           "Detector de Radiación",
           "\t\t\tKerma: " + this.kerma.toFixed(2) + " mGy"
-          // "\t\t\tmAs: " + this.miliamperios,
-          // "\t\t\tmodo: " + this.modo,
-          // "\t\t\tfiltro: " + this.filtro,
-          // "\t\t\tanodo: " + this.anodo,
         ]
       }
     }
-    else if (this.colocada == false && this.estado == "activo") {
+    else if (!this.colocada && this.estado) {
       return {
         camara: ["Detector de Radiación",
           "NADA"
@@ -333,9 +320,7 @@ class DetectRad extends AbstractTool {
       return {
         camara: this.result
       }
-
     }
-
   }
 
   estaColocada() {
@@ -421,7 +406,7 @@ class Fantoma extends AbstractTool {
     this.x = 152;
     this.y = 250;
     this.sprite = new Image();
-    this.sprite.src = 'img/fantoma45_contraste.svg'; 
+    this.sprite.src = 'img/fantoma45_contraste.svg';
   }
   colocar(bool) {
     this.colocada = bool;
@@ -455,16 +440,16 @@ class Fantoma extends AbstractTool {
   getResultado() {
 
     if (this.colocada == true && this.estado == "activo") {
-      if(this.parametros == true){
-        return{
+      if (this.parametros == true) {
+        return {
           camara: [
             "Fantoma",
             "Ver Imagen"
           ]
         }
       }
-      else{
-        return{
+      else {
+        return {
           camara: [
             "Fantoma",
             "Error de Parámetros"
@@ -473,17 +458,17 @@ class Fantoma extends AbstractTool {
       }
     }
     else if (this.colocada == false && this.estado == "activo") {
-      if (this.parametros == true){
-        return{
+      if (this.parametros == true) {
+        return {
           camara: [
             "Fantoma",
             "Error de Posición"
           ]
         }
       }
-      else{
+      else {
         console.log("SI")
-        return{
+        return {
           camara: [
             "Fantoma",
             "Error de Posición y Parámetros"
@@ -497,7 +482,7 @@ class Fantoma extends AbstractTool {
         camara: [
           "Fantoma",
           "Imagen no disponible"
-      ]
+        ]
       }
 
     }

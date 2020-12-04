@@ -29,7 +29,7 @@ export default class Maquina {
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
     this.fuerza = 0.0;
-    this.fuerzamax = 15; 
+    this.fuerzamax = 15;
     this.fuerzamaxManual = 30;
     //Movimiento compresor
     this.velocY = 0.8;
@@ -39,7 +39,7 @@ export default class Maquina {
     this.factorCompresiónini = 1;
     this.factorCompresion = this.factorCompresiónini;
     this.velocCompresion = 0.1;
-    this.multCompresion  = 0.8;
+    this.multCompresion = 0.8;
     this.sumaCompresion = 10;
     this.sumaCompresionManual = 10;
 
@@ -50,13 +50,11 @@ export default class Maquina {
     this.filtro = null;
     this.anodo = null;
 
-    
-    
-    
 
     preloadImages().then(() => {
       drawMam(ctx, this.alturaDesplegada());
-      drawPedal(ctx, false, false)});
+      drawPedal(ctx, false, false)
+    });
 
     //setearParamsMamografo();
   }
@@ -67,16 +65,15 @@ export default class Maquina {
   }
   //para margen de error aleatorio involuntario, devuelve un numero entero entre min y max
   mErrorInt(min, max) {
-    return (Math.floor(Math.random() * ((max+1) - min + 1) ) + min);
-  
-  }
+    return (Math.floor(Math.random() * ((max + 1) - min + 1)) + min);
 
+  }
 
 
   construirEstado(isActivo) {
     //let errorF = rand(-this.errorFuerza,this.errorFuerza)
     let margenKV = 0;
-    let margenmA = this.mErrorInt(-rangemargenmA,rangemargenmA)
+    let margenmA = this.mErrorInt(-rangemargenmA, rangemargenmA)
 
     //console.log(this.errorFuerza);
     return {
@@ -88,9 +85,9 @@ export default class Maquina {
           : 0,
 
           */
-         fuerza: this.factorCompresion > this.factorCompresiónini
-         ? (this.fuerza+this.errorFuerza)
-         : 0,
+      fuerza: this.factorCompresion > this.factorCompresiónini
+        ? (this.fuerza + this.errorFuerza)
+        : 0,
       kilovolt: this.kilovolt + this.errorKilovolt,
       miliamperios: this.miliamperios + this.errorMiliamperios,
 
@@ -108,9 +105,9 @@ export default class Maquina {
         : this.alturaCompresor < this.alturaEspesor
           ? (this.alturaCompresor) * 10
           : 0,
-          fuerza: this.factorCompresion > this.factorCompresiónini
-          ? (this.fuerza+this.errorFuerza)
-          : 0
+      fuerza: this.factorCompresion > this.factorCompresiónini
+        ? (this.fuerza + this.errorFuerza)
+        : 0
     };
   }
 
@@ -124,32 +121,7 @@ export default class Maquina {
 
 
   actualizar(activo = false) {
-
-    if (!activo) {
-      this.herramienta.actualizar(this.construirEstado(activo));
-    } else {
-
-      let estado = this.construirEstado(activo);
-
-      let request = {
-        "kvp": estado.kilovolt,
-        "mas": estado.miliamperios,
-        "anodo": estado.anodo,
-        "filtro": estado.filtro,
-      };
-
-      $.ajax({
-        url: "http://moodle2.cimt.cl/api/kerma",
-        type: "get",
-        data: request,
-        async: false,
-        success: (data) => {
-          estado.kerma = data.kerma;
-          this.herramienta.actualizar(estado);
-        }
-      });
-    }
-
+    this.herramienta.actualizar(this.construirEstado(activo));
   }
 
   dibujar(ctx) {
@@ -228,20 +200,20 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    if(this.factorCompresion == this.factorCompresiónini){
+    if (this.factorCompresion == this.factorCompresiónini) {
       this.alturaCompresor += this.velocY;
     }
-    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10,this.factorCompresiónini);
-    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresion,0);
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10, this.factorCompresiónini);
+    this.fuerza = Math.max(Math.log2(this.factorCompresion) * this.multCompresion + this.sumaCompresion, 0);
     this.actualizar();
   }
 
   bajarCompresor() {
-    
+
     if (this.alturaCompresor <= this.herramienta.altura) {
       //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
       this.factorCompresion = this.factorCompresion + this.velocCompresion;
-      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,this.fuerzamax),this.fuerza);
+      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion) * this.factorCompresion + this.sumaCompresion, this.fuerzamax), this.fuerza);
     } else {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocY, this.alturaMinima());
     }
@@ -255,21 +227,21 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    if(this.factorCompresion == this.factorCompresiónini){
+    if (this.factorCompresion == this.factorCompresiónini) {
       this.alturaCompresor += this.velocYManual;
     }
-    
-    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10,this.factorCompresiónini);
-    this.fuerza = Math.max(Math.log2(this.factorCompresion)*this.multCompresion + this.sumaCompresionManual,0);
+
+    this.factorCompresion = Math.max(this.factorCompresion - this.velocCompresion * 10, this.factorCompresiónini);
+    this.fuerza = Math.max(Math.log2(this.factorCompresion) * this.multCompresion + this.sumaCompresionManual, 0);
     this.actualizar();
   }
 
   bajarCompresorPerilla() {
-    
+
     if (this.alturaCompresor <= this.herramienta.altura) {
       //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
       this.factorCompresion = this.factorCompresion + this.velocCompresion;
-      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresionManual,this.fuerzamaxManual),this.fuerza);
+      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion) * this.factorCompresion + this.sumaCompresionManual, this.fuerzamaxManual), this.fuerza);
     } else {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocYManual, this.alturaMinima());
     }
