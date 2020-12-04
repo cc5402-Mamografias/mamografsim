@@ -35,6 +35,23 @@ var m = null;
 
 class Main {
   constructor(errors) {
+
+    // Errores - parametros del simulador
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
+    errors.erroralt = getError("errorAltura", errors.erroralt);
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorma = getError("errorMiliampere", errors.errorma);
+    errors.errorkv = getError("errorKilovolt", errors.errorkv);
+    console.log(errors);
+
+    // Instanciar componentes de la simulación
+    this.mamografo = new Maquina(errors, this.ctx);
+    this.habitacion = new Habitacion();
+    this.panelResultados = new PanelResultados();
+    this.mesaTopDown = new MesaTopDown(this.mamografo);
+    this.visor = new VisorImagen(this.mamografo);
+
+    // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
     this.herramientas_mam = [
       new Balanza(),
@@ -43,31 +60,16 @@ class Main {
       new Slab_45mm(),
       new Slab_70mm(),
       new DetectRad(),
-      new Fantoma(),
+      new Fantoma(this.visor),
     ];
 
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-
     this.ctx = this.c.getContext("2d");
 
     //this.cr = document.getElementById("canvas-receptor");
     //this.ctxr = this.cr.getContext("2d");
-
-
-    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
-    errors.erroralt = getError("errorAltura", errors.erroralt);
-    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
-    errors.errorma = getError("errorMiliampere", errors.errorma);
-    errors.errorkv = getError("errorKilovolt", errors.errorkv);
-    console.log(errors);
-    this.mamografo = new Maquina(errors, this.ctx);
-    this.habitacion = new Habitacion();
-    this.panelResultados = new PanelResultados();
-    this.mesaTopDown = new MesaTopDown(this.mamografo);
-
-    this.visor = new VisorImagen(this.mamografo);
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {

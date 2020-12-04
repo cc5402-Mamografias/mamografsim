@@ -9,6 +9,8 @@ export default class VisorImagen {
     this.contenedor = $('#container-visor');
     $('#ayuda').on('click', () => this.show());
     $('#visor-cerrar').on('click', () => this.hide());
+    this.img = null;
+
   }
 
   show() {
@@ -18,6 +20,10 @@ export default class VisorImagen {
 
   hide() {
     this.panel.hide();
+  }
+
+  load_image(img){  
+    this.img = img;
   }
 
   init() {
@@ -62,7 +68,8 @@ export default class VisorImagen {
 
     };
 
-    mamImage.src = 'img/test/campo_plano_mancha.png'
+    // mamImage.src = 'img/test/campo_plano_mancha.png'
+    mamImage.src = this.img;
 
     var circ1 = new Konva.Circle({
       x: 100,

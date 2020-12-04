@@ -1,5 +1,6 @@
 // Abstract Herramienta
 "use strict";
+
 class AbstractTool {
   constructor() {
     if (this.constructor === AbstractTool) {
@@ -386,8 +387,12 @@ class Barometro extends AbstractTool {
 }
 
 class Fantoma extends AbstractTool {
-  constructor() {
+  constructor(visor) {
+
+
     super();
+
+
     this.tipo = "Fantoma";
     this.icon = "slabs.png";
     this.estado = "inactivo";
@@ -407,6 +412,7 @@ class Fantoma extends AbstractTool {
     this.y = 250;
     this.sprite = new Image();
     this.sprite.src = 'img/fantoma45_contraste.svg';
+    this.visor = visor;
   }
   colocar(bool) {
     this.colocada = bool;
@@ -423,9 +429,30 @@ class Fantoma extends AbstractTool {
     //estado.anodo == LO QUE DIGAMOS;
     //Si esta todo bien entonces this.parametros==true, si no this.parametros==false
 
-    if (estado.activo == true) {
+    if (estado.activo) {
       this.estado = "activo";
-      console.log("ESTADO ACTIVO")
+
+      let request = {
+        "imagen": "objeto_contraste",
+        "mancha": "1",
+        "lineas": "1",
+        "l_sentido": "ver",
+        "ruido": "1"
+      };
+
+      $.ajax({
+        url: "http://localhost:5000/prueba_imagen",
+        type: "get",
+        data: request,
+        async: false,
+        success: (data) => {
+          this.img = data;
+          console.log("obtenida la imagen!")
+          this.visor.load_image(data);
+        },
+        error: (e) => { console.log(e) }
+      });
+
     }
 
     else {
@@ -484,9 +511,7 @@ class Fantoma extends AbstractTool {
           "Imagen no disponible"
         ]
       }
-
     }
-
   }
 
   estaColocada() {
