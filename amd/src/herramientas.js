@@ -387,18 +387,15 @@ class Barometro extends AbstractTool {
 }
 
 class Fantoma extends AbstractTool {
+
   constructor(visor) {
-
-
     super();
-
-
     this.tipo = "Fantoma";
     this.icon = "slabs.png";
     this.estado = "inactivo";
     this.description = "Este es un fantoma.";
-    this.parametros = null;
-    this.colocada = false;
+    this.parametros = true;
+    this.colocada = true;
     this.altura = 4.5;
     this.result = [
       "Ver Imagen",
@@ -414,6 +411,7 @@ class Fantoma extends AbstractTool {
     this.sprite.src = 'img/fantoma45_contraste.svg';
     this.visor = visor;
   }
+
   colocar(bool) {
     this.colocada = bool;
   }
@@ -432,7 +430,7 @@ class Fantoma extends AbstractTool {
     if (estado.activo) {
       this.estado = "activo";
 
-      let request = {
+      let request = { // hay que ver la manera de que estos parametros cambien!
         "imagen": "objeto_contraste",
         "mancha": "1",
         "lineas": "1",
@@ -447,12 +445,12 @@ class Fantoma extends AbstractTool {
         async: false,
         success: (data) => {
           this.img = data;
-          console.log("obtenida la imagen!")
           this.visor.load_image(data);
         },
-        error: (e) => { console.log(e) }
+        error: (e) => {
+          console.log(e)
+        }
       });
-
     }
 
     else {
@@ -466,29 +464,39 @@ class Fantoma extends AbstractTool {
   }
   getResultado() {
 
-    if (this.colocada == true && this.estado == "activo") {
-      if (this.parametros == true) {
+
+    if (this.colocada && this.estado == "activo") {
+
+      if (this.image !== null) {
+        var im = new Image(120, 160);
+  
+        im.src = this.img;
+        im.style.display = "block";
+        im.style.margin = "auto";
+        im.onclick = () => { this.visor.show() };
+
         return {
           camara: [
-            "Fantoma",
-            "Ver Imagen"
+            "Fantoma:",
+            im
           ]
         }
       }
       else {
         return {
           camara: [
-            "Fantoma",
+            "Fantoma:",
             "Error de Parámetros"
           ]
         }
       }
     }
-    else if (this.colocada == false && this.estado == "activo") {
+
+    else if (!this.colocada && this.estado == "activo") {
       if (this.parametros == true) {
         return {
           camara: [
-            "Fantoma",
+            "Fantoma:",
             "Error de Posición"
           ]
         }
@@ -497,7 +505,7 @@ class Fantoma extends AbstractTool {
         console.log("SI")
         return {
           camara: [
-            "Fantoma",
+            "Fantoma:",
             "Error de Posición y Parámetros"
           ]
         }
@@ -507,7 +515,7 @@ class Fantoma extends AbstractTool {
       console.log("NO")
       return {
         camara: [
-          "Fantoma",
+          "Fantoma:",
           "Imagen no disponible"
         ]
       }
