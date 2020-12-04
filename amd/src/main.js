@@ -70,6 +70,11 @@ class Main {
 
     //this.cr = document.getElementById("canvas-receptor");
     //this.ctxr = this.cr.getContext("2d");
+    this.receptor = new Image();
+    this.receptor.src = "img/receptor.svg";
+
+    this.receptor2 = new Image();
+    this.receptor2.src = "img/receptor_con_fantoma.svg";
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -162,6 +167,10 @@ class Main {
       console.log(error);
     }
     this.panelResultados.escribirResultados();
+    //actualizamos parametros de mesa top-down aca
+    this.mesaTopDown.change_divs();
+
+
   }
 
   getMamografo() {
@@ -228,9 +237,13 @@ export const init = (errors, pruebas2) => {
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("Guardar-pos").onclick = () => m.mesaTopDown.check_pos();
+  document.getElementById("Guardar-pos-2").onclick = () => m.mesaTopDown.check_pos();
   document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = () => m.mesaTopDown.hide_alerta_incorrecta();
+  document.getElementById("cerrar_alerta_posicion_incorrecta-2").onclick = () => m.mesaTopDown.hide_alerta_incorrecta();
   document.getElementById("cerrar_alerta_posicion_correcta").onclick = () => m.mesaTopDown.hide_alerta_correcta();
+  document.getElementById("cerrar_alerta_posicion_correcta-2").onclick = () => m.mesaTopDown.hide_alerta_correcta();
   document.getElementById("cerrar-vista-desde-arriba").onclick = () => m.mesaTopDown.hide_mesa();
+  document.getElementById("cerrar-vista-desde-arriba-2").onclick = () => m.mesaTopDown.hide_mesa();
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -305,17 +318,38 @@ function hide_p() {
 }
 
 function show_mesa() {
+  if (m.mamografo.getHerramienta().getTipo() === "Detector de Radiación"){
+    show_mesa_camara()
+  }
+  else if (m.mamografo.getHerramienta().getTipo() === "Fantoma"){
+    show_mesa_fantoma()
+  }
+}
+
+
+function show_mesa_camara() {
   let x = document.getElementById("vista-arriba-receptor");
   x.style.display = "block";
-  var receptor = new Image();
-  receptor.src = "img/receptor.svg";
   var cr = document.getElementById("canvasReceptor");
   cr.style.display = "block";
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
+  
+  ctxr.drawImage(m.receptor,155,-30,m.receptor.width*scale*0.8,m.receptor.height*scale*0.8)
 
-  ctxr.drawImage(receptor, 155, -30, receptor.width * scale * 0.8, receptor.height * scale * 0.8)
+}
+function show_mesa_fantoma() {
+  console.log("muestrateimagen")
+  let x = document.getElementById("vista-arriba-receptor-2");
+  x.style.display = "block";
+  var cr = document.getElementById("canvasReceptor-2");
+  cr.style.display = "block";
+  var ctxr = cr.getContext("2d");
+  ctxr.clearRect(0, 0, cr.width, cr.height);
+  var scale = 1.0;
+  
+  ctxr.drawImage(m.receptor2,155,-30,m.receptor2.width*scale*0.8,m.receptor2.height*scale*0.8)
 
 }
 
@@ -391,8 +425,8 @@ document.addEventListener("dragover", function (event) {
 document.addEventListener("dragenter", function (event) {
   console.log("Estoy dentro de un dropzone")
   // highlight potential drop target when the draggable element enters it
-  if (event.target.className == "dropzone") {
-    event.target.style.background = "red";
+  if (event.target.classList.contains("dropzone")) {
+      event.target.style.background = "red";
   }
 
 }, false);
@@ -400,8 +434,8 @@ document.addEventListener("dragenter", function (event) {
 document.addEventListener("dragleave", function (event) {
   console.log("salgo de mi posicion original");
   // reset background of potential drop target when the draggable element leaves it
-  if (event.target.className == "dropzone") {
-    event.target.style.background = "";
+  if (event.target.classList.contains("dropzone")) {
+      event.target.style.background = "";
   }
 
 }, false);
@@ -410,17 +444,17 @@ document.addEventListener("drop", function (event) {
   // prevent default action (open as link for some elements)
   event.preventDefault();
   // move dragged elem to the selected drop target
-  if (event.target.className == "dropzone") {
-    event.target.style.background = "";
-    this.dragged.parentNode.removeChild(this.dragged);
-    event.target.appendChild(this.dragged);
-    //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
-    if (event.target.id == "posicion_buena") {
-      m.mesaTopDown.check_pos_correct()
-    }
-    else {
-      m.mesaTopDown.check_pos_incorrect()
-    }
+  if (event.target.classList.contains("dropzone")) {
+      event.target.style.background = "";
+      this.dragged.parentNode.removeChild(this.dragged);
+      event.target.appendChild(this.dragged);
+      //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
+      if (event.target.id == "posicion_buena"){
+        m.mesaTopDown.check_pos_correct()
+      }
+      else{
+        m.mesaTopDown.check_pos_incorrect()
+      }
   }
 
 }, false);

@@ -394,15 +394,21 @@ class Fantoma extends AbstractTool {
     this.icon = "fantoma.png";
     this.estado = "inactivo";
     this.description = "Este es un fantoma.";
-    this.parametros = true;
-    this.colocada = true;
+    this.parametros = false;
+    this.colocada = false;
+    this.presionado = false;
+
     this.altura = 4.5;
     this.result = [
       "Ver Imagen",
       "Error de Posición",
       "Error de Parámetros",
+      "Error de Presión",
       "Imagen no disponible",
-      "Error de Posición y Parámetros"
+      "Error de Posición y Parámetros",
+      "Error de Posición y Presión",
+      "Error de Parámetros y Presión",
+      "Error de Posición, Parámetros y Presión"
     ];
     this.scale = 0.5;
     this.x = 152;
@@ -419,15 +425,26 @@ class Fantoma extends AbstractTool {
 
   actualizar(estado) {
     console.log(estado);
-    //Para chequear los parametros del mamografo
-    //estado.kilovolt.toFixed(2) == LO QUE DIGAMOS;
-    //estado.miliamperios.toFixed(2) == LO QUE DIGAMOS;
-    //estado.modo == LO QUE DIGAMOS;
-    //estado.filtro == LO QUE DIGAMOS;
-    //estado.anodo == LO QUE DIGAMOS;
-    //Si esta todo bien entonces this.parametros==true, si no this.parametros==false
+    //Se esta presionando al fantoma con una fuerza apropiada
 
-    if (estado.activo) {
+    console.log(estado.fuerza)
+    if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13){
+      console.log("AHORA ESTA PRESIONADO")
+      this.presionado = true;
+    }
+    else{
+      this.presionado = false;
+    }
+    //La configuracion en el panel de control es la adecuada
+    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100){
+      console.log("PARAMETROS BUENOS")
+      this.parametros = true;
+    }
+    else{
+      this.parametros = false;
+    }
+    //Se ha disparado en el panel de control
+    if (estado.activo == true) {
       this.estado = "activo";
 
       let request = { // hay que ver la manera de que estos parametros cambien!
@@ -464,25 +481,56 @@ class Fantoma extends AbstractTool {
   }
   getResultado() {
 
+    if (this.estado == "activo") {
 
-    if (this.colocada && this.estado == "activo") {
+      if(this.parametros && this.presionado && this.colocada){
 
-      if (this.image !== null) {
-        var im = new Image(120, 160);
+        if (this.image !== null) {
+          var im = new Image(120, 160);
+          im.src = this.img;
+          im.style.display = "block";
+          im.style.margin = "auto";
+          im.onclick = () => { this.visor.show() };
 
-        im.src = this.img;
-        im.style.display = "block";
-        im.style.margin = "auto";
-        im.onclick = () => { this.visor.show() };
+          result = im;
 
+          return {
+            camara: [
+              "Fantoma:",
+              im
+            ]
+          }
+        }
+        else{
+          throw "No se obtuvo la imagen";
+        }
+      }
+      
+      if(this.parametros && this.presionado && !this.colocada){
         return {
           camara: [
-            "Fantoma:",
-            im
+            "Fantoma",
+            "Error de Posición"
           ]
         }
       }
-      else {
+      if(this.parametros && !this.presionado && this.colocada){
+        return {
+          camara: [
+            "Fantoma",
+            "Error de Presión"
+          ]
+        }
+      }
+      if(this.parametros && !this.presionado && !this.colocada){
+        return {
+          camara: [
+            "Fantoma",
+            "Error de Posición y Presión"
+          ]
+        }
+      }
+      if(!this.parametros && this.presionado && this.colocada){
         return {
           camara: [
             "Fantoma:",
@@ -490,23 +538,27 @@ class Fantoma extends AbstractTool {
           ]
         }
       }
-    }
-
-    else if (!this.colocada && this.estado == "activo") {
-      if (this.parametros == true) {
+      if(!this.parametros && !this.presionado && this.colocada){
         return {
           camara: [
-            "Fantoma:",
-            "Error de Posición"
+            "Fantoma",
+            "Error de Parámetros y Presión"
           ]
         }
       }
-      else {
-        console.log("SI")
+      if(!this.parametros && this.presionado && !this.colocada){
         return {
           camara: [
-            "Fantoma:",
-            "Error de Posición y Parámetros"
+            "Fantoma",
+            "Error de Parámetros y Posición"
+          ]
+        }
+      }
+      if(!this.parametros && !this.presionado && !this.colocada){
+        return {
+          camara: [
+            "Fantoma",
+            "Error de Posición, Parámetros y Presión"
           ]
         }
       }

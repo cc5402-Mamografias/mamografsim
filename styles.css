@@ -676,20 +676,40 @@ body.modal-open {
   text-align: center;
 }
 
+
 /* Drag and drop dropzone */
-.dropzone {
+.dropzone-detector {
   width: 64px;
   height: 128px;
   background: none;
-  border: 2px solid #C00;
+  border: 2px solid rgb(255, 251, 0);
 }
 /* Drag and drop draggable test */
-#draggable {
+#draggable-detector {
   width: 60px;
   height: 124px;
   text-align: center;
   background: white;
 }
+
+/* Drag and drop dropzone */
+.dropzone-disco{
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid rgb(9, 255, 0);
+}
+/* Drag and drop draggable test */
+#draggable-disco {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  background: rgb(9, 177, 168);
+}
+
+
 
 /* Alertas de feedback sobre posición de la cámara de ionización */
 .alert-danger {
