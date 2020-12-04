@@ -7,7 +7,6 @@ export default class VisorImagen {
     this.mamografo = mamografo;
     this.panel = $('#visor-imagen');
     this.contenedor = $('#container-visor');
-    $('#ayuda').on('click', () => this.show());
     $('#visor-cerrar').on('click', () => this.hide());
     this.img = null;
 
@@ -31,7 +30,8 @@ export default class VisorImagen {
     var stage = new Konva.Stage({
       container: 'container-visor',
       width: this.panel.width(),
-      height: this.panel.height() - 50
+      height: this.panel.height() - 50,
+      draggable: true
     });
 
     var layer = new Konva.Layer();
@@ -100,5 +100,30 @@ export default class VisorImagen {
     circ1.moveToTop();
 
     layer.draw();
+
+    var scaleBy = 1.05;
+    stage.on('wheel', (e) => {
+      e.evt.preventDefault();
+      var oldScale = stage.scaleX();
+
+      var pointer = stage.getPointerPosition();
+
+      var mousePointTo = {
+        x: (pointer.x - stage.x()) / oldScale,
+        y: (pointer.y - stage.y()) / oldScale,
+      };
+
+      var newScale =
+        e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+
+      stage.scale({ x: newScale, y: newScale });
+
+      var newPos = {
+        x: pointer.x - mousePointTo.x * newScale,
+        y: pointer.y - mousePointTo.y * newScale,
+      };
+      stage.position(newPos);
+      stage.batchDraw();
+    });
   }
 }
