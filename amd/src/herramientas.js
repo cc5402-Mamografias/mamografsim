@@ -404,7 +404,7 @@ class Fantoma extends AbstractTool {
   constructor() {
     super();
     this.tipo = "Fantoma";
-    this.icon = "slabs.png";
+    this.icon = "fantoma.png";
     this.estado = "inactivo";
     this.description = "Este es un fantoma.";
     this.parametros = null;
