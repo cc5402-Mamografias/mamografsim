@@ -32,12 +32,6 @@ export default class Maquina {
     this.rangemargenmA = errors["errorrep"];
     this.errorLinealidad = errors["errorlin"];
     this.errorRendimiento = errors["errorrend"];
-    console.log("errores rescatados")
-    console.log(this.rangemargenmA)
-    console.log(this.errorLinealidad)
-    console.log(this.errorRendimiento)
-
-
 
 //const ponderacionmA = 1;
 
