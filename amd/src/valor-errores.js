@@ -27,18 +27,20 @@ var valores = {
     },
     "errorRepetibilidad": {
         "valores_base": [0.0, 1.0, 8.0, 15.0],
-        "factor_random": 0.2,
-        "puede_ser_negativo": true
+        "factor_random": 0.5,
+        "puede_ser_negativo": false
     },
     "errorLinealidad": {
-        "valores_base": [1.0, 1.2, 1.6, 1.8],
+        //se suma por un factor que originalmente es 1
+        "valores_base": [0.0, 0.2, 0.6, 0.8],
         "factor_random": 0.2,
-        "puede_ser_negativo": true
+        "puede_ser_negativo": false
     },
     "errorRendimiento": {
-        "valores_base": [1.0, 0.1, 0.05, 0.02],
-        "factor_random": 0.2,
-        "puede_ser_negativo": true
+        //para restar un factor que originalmente es 1
+        "valores_base": [0.0, 0.9, 0.95, 0.98],
+        "factor_random": 0,
+        "puede_ser_negativo": false
     }
 }
 
@@ -76,3 +78,4 @@ export function getError(tipo, intensidad) {
     }
     
 }
+

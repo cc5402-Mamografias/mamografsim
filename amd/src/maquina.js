@@ -30,11 +30,12 @@ export default class Maquina {
 
     //dedicadas a los errores de rendimiento
     this.rangemargenmA = errors["errorrep"];
-    this.pondLinealidad = errors["errorlin"];
-    this.pondRendimiento = errors["errorrend"];
-    console.log("rendimiento")
-
-    console.log(this.pondRendimiento)
+    this.errorLinealidad = errors["errorlin"];
+    this.errorRendimiento = errors["errorrend"];
+    console.log("errores rescatados")
+    console.log(this.rangemargenmA)
+    console.log(this.errorLinealidad)
+    console.log(this.errorRendimiento)
 
 
 
@@ -110,7 +111,7 @@ export default class Maquina {
          ? (this.fuerza+this.errorFuerza)
          : 0,
       kilovolt: (this.kilovolt),
-      miliamperios: this.multiplicar((this.elevar((this.miliamperios),this.pondLinealidad)+ margenmA),this.pondRendimiento),
+      miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ margenmA),(1-this.errorRendimiento)),
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -119,6 +120,7 @@ export default class Maquina {
   }
 
   valoresMedidos() {
+
     return {
       altura: this.alturaCompresor == this.alturaMinima()
         ? (this.alturaCompresor + this.errorAltura) * 10
