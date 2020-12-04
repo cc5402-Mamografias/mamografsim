@@ -98,6 +98,8 @@ export default class Maquina {
       anodo: this.anodo,
       modo: this.modo,
       activo: isActivo,
+      //para herramienta de fantoma
+      
     };
   }
 
