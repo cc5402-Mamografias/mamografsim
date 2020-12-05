@@ -238,9 +238,6 @@ export default class Maquina {
   }
 
   bajarCompresor() {
-    console.log(this.fuerza);
-    console.log(this.fuerzamax);
-    console.log(this.factorCompresion);
     if (this.alturaCompresor <= this.herramienta.altura) {
       if(this.fuerza < this.fuerzamax){
        
