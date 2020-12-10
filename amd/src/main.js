@@ -15,7 +15,7 @@ import Habitacion from "./habitacion";
 import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
-import { 
+import {
   getCompresorPosY,
   drawPedal
 } from "./vista";
@@ -25,6 +25,7 @@ import MesaTopDown from "./vista-top-down";
 
 import { getError } from "./valor-errores";
 
+import VisorImagen from "./visor-imagen";
 
 import { drawReceptor } from "./vista";
 
@@ -34,6 +35,23 @@ var m = null;
 
 class Main {
   constructor(errors) {
+
+    // Errores - parametros del simulador
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
+    errors.erroralt = getError("errorAltura", errors.erroralt);
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorma = getError("errorMiliampere", errors.errorma);
+    errors.errorkv = getError("errorKilovolt", errors.errorkv);
+    console.log(errors);
+
+    // Instanciar componentes de la simulación
+    this.mamografo = new Maquina(errors, this.ctx);
+    this.habitacion = new Habitacion();
+    this.panelResultados = new PanelResultados();
+    this.mesaTopDown = new MesaTopDown(this.mamografo);
+    this.visor = new VisorImagen(this.mamografo);
+
+    // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
     this.herramientas_mam = [
       new Balanza(),
@@ -42,13 +60,12 @@ class Main {
       new Slab_45mm(),
       new Slab_70mm(),
       new DetectRad(),
-      new Fantoma(),
+      new Fantoma(this.visor),
     ];
 
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-
     this.ctx = this.c.getContext("2d");
 
     //this.cr = document.getElementById("canvas-receptor");
@@ -58,21 +75,6 @@ class Main {
 
     this.receptor2 = new Image();
     this.receptor2.src = "img/receptor_con_fantoma.svg";
-
-
-    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
-    errors.erroralt = getError("errorAltura", errors.erroralt);
-    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
-    errors.errorma = getError("errorMiliampere", errors.errorma);
-    errors.errorkv = getError("errorKilovolt", errors.errorkv);
-    console.log(errors);
-    this.mamografo = new Maquina(errors, this.ctx);
-    this.habitacion = new Habitacion();
-    this.panelResultados = new PanelResultados();
-    this.mesaTopDown = new MesaTopDown(this.mamografo);
-    
-    //precargamos las imagenes de receptores
-
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -177,10 +179,10 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
-    if (tool.addon){
-      herramientaHolder.setHerramienta(tool,true);
+    if (tool.addon) {
+      herramientaHolder.setHerramienta(tool, true);
     }
-    else{
+    else {
       herramientaHolder.setHerramienta(tool);
     }
 
@@ -212,7 +214,7 @@ class Main {
   }
 }
 
-export const init = (errors,pruebas2) => {
+export const init = (errors, pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -250,16 +252,16 @@ export const init = (errors,pruebas2) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
-  
- 
+
+
   pruebas = [];
-  pruebas2.forEach((prueba)=>{
-   if(prueba !== ""){
-     pruebas.push(prueba);
-   }
+  pruebas2.forEach((prueba) => {
+    if (prueba !== "") {
+      pruebas.push(prueba);
+    }
   });
   //pruebas = [pruebas2[0],pruebas2[1]];
-  
+
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
@@ -280,7 +282,7 @@ export const init = (errors,pruebas2) => {
   })
   $("#loader").remove();
 
-  $("body").on("click","#volver",function(){
+  $("body").on("click", "#volver", function () {
 
     $("#modal-volver").modal("show");
 
@@ -289,7 +291,7 @@ export const init = (errors,pruebas2) => {
 
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
     $('body').removeClass("modal-open");
-    $('body').css("padding-right","");
+    $('body').css("padding-right", "");
   });
 
   console.log("Simulador inicializado");
