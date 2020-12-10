@@ -51,23 +51,6 @@ var valores = {
 
 
     },
-    "errorMiliampere": {
-        "valores_base": {
-            "Ninguno": { valor: 0.0 },
-            "Bajo": { valor: 0.5 },
-            "Medio": { valor: 0.8 },
-            "Alto": { valor: 1.1 }
-        }
-
-    },
-    "errorKilovolt": {
-        "valores_base": {
-            "Ninguno": { valor: 0.0 },
-            "Bajo": { valor: 0.3 },
-            "Medio": { valor: 0.7 },
-            "Alto": { valor: 1.1 }
-        }
-    },
     "errorRepetibilidad": {
         "valores_base": {
             "Ninguno": { valor: 0.0 },

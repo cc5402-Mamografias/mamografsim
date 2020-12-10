@@ -188,7 +188,7 @@ class Main {
 
     this.actualizar();
   }
-
+ 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
   onCanvasClick(e) {
@@ -252,10 +252,10 @@ export const init = (errors, pruebas2) => {
 
 
 
-  let pruebas = ['compresion', 'rendimiento'];
 
 
-  pruebas = [];
+
+  let pruebas = [];
   pruebas2.forEach((prueba) => {
     if (prueba !== "") {
       pruebas.push(prueba);
@@ -266,7 +266,8 @@ export const init = (errors, pruebas2) => {
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
-
+  label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
+  
   $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
 
   let r;
@@ -296,6 +297,9 @@ export const init = (errors, pruebas2) => {
   });
 
   console.log("Simulador inicializado");
+  
+  
+ 
 };
 
 function show_h() {
@@ -392,9 +396,7 @@ export let disparo = () => {
   m.getMamografo().activar();
   m.actualizar();
 };
-function disparoMamografo() {
 
-};
 
 
 // ESTO DEBERIA ESTAR SOLO EN drag-drop-receptor
