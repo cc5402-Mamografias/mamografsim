@@ -38,7 +38,8 @@ export default class Maquina {
     this.alturaEspesor = 25;
     this.fuerza = 0.0;
 
-    this.fuerzamax = 15;
+    this.fuerzamax = this.errorFuerza; 
+    this.fuerzamaxManual = this.errorFuerza+10;
 
     //Movimiento compresor
     this.velocY = 0.8;
@@ -108,7 +109,7 @@ export default class Maquina {
   valoresMedidos() {
 
     return {
-      altura: this.alturaCompresor == this.alturaMinima()
+      altura: this.alturaCompresor === this.alturaMinima()
         ? (this.alturaCompresor + this.errorAltura) * 10
         : this.alturaCompresor < this.alturaEspesor
           ? (this.alturaCompresor) * 10
@@ -219,9 +220,11 @@ export default class Maquina {
 
 
     if (this.alturaCompresor <= this.herramienta.altura) {
-      //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
-      this.factorCompresion = this.factorCompresion + this.velocCompresion;
-      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion) * this.factorCompresion + this.sumaCompresion, this.fuerzamax), this.fuerza);
+      if(this.fuerza < this.fuerzamax){
+
+        this.factorCompresion = this.factorCompresion + this.velocCompresion;
+        this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresion,this.fuerzamax),this.fuerza);
+      }
     } else {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocY, this.alturaMinima());
     }
@@ -235,7 +238,7 @@ export default class Maquina {
     ) {
       throw "compresor tope arriba";
     }
-    if (this.factorCompresion == this.factorCompresiónini) {
+    if (this.factorCompresion === this.factorCompresiónini) {
       this.alturaCompresor += this.velocYManual;
     }
 
@@ -248,9 +251,10 @@ export default class Maquina {
 
     if (this.alturaCompresor <= this.herramienta.altura) {
 
-      //this.factorCompresion = Math.min(Math.log2(this.factorCompresion+1.05),this.factorCompMax);
-      this.factorCompresion = this.factorCompresion + this.velocCompresion;
-      this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion) * this.factorCompresion + this.sumaCompresionManual, this.fuerzamaxManual), this.fuerza);
+      if(this.fuerza  < this.fuerzamaxManual){
+        this.factorCompresion = this.factorCompresion + this.velocCompresion;
+        this.fuerza = Math.max(Math.min(Math.log2(this.factorCompresion)*this.factorCompresion + this.sumaCompresionManual,this.fuerzamaxManual),this.fuerza);
+      }
     } else {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocYManual, this.alturaMinima());
     }
