@@ -73,16 +73,13 @@ export default class Maquina {
   //operaciones con resultado entero
   mErrorInt(min, max) {
 
-    return (Math.floor(random() * ((max+1) - min + 1) ) + min)
+    return (Math.floor(random() * ((max+1) - min + 1) ) + min);
   }
   elevar (base, exp){
-    return(Math.floor(Math.pow(base, exp)))
+    return(Math.floor(Math.pow(base, exp)));
   }
   multiplicar (x1,x2){
-    return(Math.floor(x1*x2))
-  }
-
-
+    return(Math.floor(x1*x2));
   }
 
 
