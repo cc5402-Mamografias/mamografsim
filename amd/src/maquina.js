@@ -93,7 +93,7 @@ export default class Maquina {
          ? (this.fuerza)
          : 0,
       kilovolt: (this.kilovolt),
-      miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.rangemargenmA),(1-this.errorRendimiento)),
+      miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
