@@ -7,14 +7,15 @@ import {
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,
-  Toalla
+  Toalla,
+  Fantoma
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
 import Maquina from "./maquina";
 import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
-import { 
+import {
   getCompresorPosY,
   drawPedal
 } from "./vista";
@@ -24,6 +25,7 @@ import MesaTopDown from "./vista-top-down";
 
 import { getError } from "./valor-errores";
 
+import VisorImagen from "./visor-imagen";
 
 import { drawReceptor } from "./vista";
 
@@ -33,6 +35,23 @@ var m = null;
 
 class Main {
   constructor(errors) {
+
+    // Errores - parametros del simulador
+    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
+    errors.erroralt = getError("errorAltura", errors.erroralt);
+    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
+    errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
+    errors.errorlin = getError("errorLinealidad", errors.errorlin);
+    errors.errorrend = getError("errorRendimiento", errors.errorrend);
+
+    // Instanciar componentes de la simulación
+    this.mamografo = new Maquina(errors, this.ctx);
+    this.habitacion = new Habitacion();
+    this.panelResultados = new PanelResultados();
+    this.mesaTopDown = new MesaTopDown(this.mamografo);
+    this.visor = new VisorImagen(this.mamografo);
+
+    // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
     this.herramientas_mam = [
       new Balanza(),
@@ -41,29 +60,21 @@ class Main {
       new Slab_45mm(),
       new Slab_70mm(),
       new DetectRad(),
+      new Fantoma(this.visor),
     ];
 
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-
     this.ctx = this.c.getContext("2d");
 
     //this.cr = document.getElementById("canvas-receptor");
     //this.ctxr = this.cr.getContext("2d");
+    this.receptor = new Image();
+    this.receptor.src = "img/receptor.svg";
 
-
-    errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
-    errors.erroralt = getError("errorAltura", errors.erroralt);
-    errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
-    errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
-    errors.errorlin = getError("errorLinealidad", errors.errorlin);
-    errors.errorrend = getError("errorRendimiento", errors.errorrend);
-    console.log(errors);
-    this.mamografo = new Maquina(errors, this.ctx);
-    this.habitacion = new Habitacion();
-    this.panelResultados = new PanelResultados();
-    this.mesaTopDown = new MesaTopDown(this.mamografo);
+    this.receptor2 = new Image();
+    this.receptor2.src = "img/receptor_con_fantoma.svg";
 
     // pedal derecho sube el compresor
     this.pedalUp = new Pedal(() => {
@@ -156,6 +167,10 @@ class Main {
       console.log(error);
     }
     this.panelResultados.escribirResultados();
+    //actualizamos parametros de mesa top-down aca
+    this.mesaTopDown.change_divs();
+
+
   }
 
   getMamografo() {
@@ -164,10 +179,10 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
-    if (tool.addon){
-      herramientaHolder.setHerramienta(tool,true);
+    if (tool.addon) {
+      herramientaHolder.setHerramienta(tool, true);
     }
-    else{
+    else {
       herramientaHolder.setHerramienta(tool);
     }
 
@@ -199,7 +214,7 @@ class Main {
   }
 }
 
-export const init = (errors,pruebas2) => {
+export const init = (errors, pruebas2) => {
   //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
@@ -223,9 +238,13 @@ export const init = (errors,pruebas2) => {
   document.getElementById("plantilla-cerrar").onclick = hide_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("Guardar-pos").onclick = () => m.mesaTopDown.check_pos();
+  document.getElementById("Guardar-pos-2").onclick = () => m.mesaTopDown.check_pos();
   document.getElementById("cerrar_alerta_posicion_incorrecta").onclick = () => m.mesaTopDown.hide_alerta_incorrecta();
+  document.getElementById("cerrar_alerta_posicion_incorrecta-2").onclick = () => m.mesaTopDown.hide_alerta_incorrecta();
   document.getElementById("cerrar_alerta_posicion_correcta").onclick = () => m.mesaTopDown.hide_alerta_correcta();
+  document.getElementById("cerrar_alerta_posicion_correcta-2").onclick = () => m.mesaTopDown.hide_alerta_correcta();
   document.getElementById("cerrar-vista-desde-arriba").onclick = () => m.mesaTopDown.hide_mesa();
+  document.getElementById("cerrar-vista-desde-arriba-2").onclick = () => m.mesaTopDown.hide_mesa();
   elems = document.getElementsByClassName("open-sim");
   for (let i = 0; i < elems.length; i++) {
     elems[i].onclick = show_sim;
@@ -234,16 +253,16 @@ export const init = (errors,pruebas2) => {
 
 
   let pruebas = ['compresion', 'rendimiento'];
-  
- 
+
+
   pruebas = [];
-  pruebas2.forEach((prueba)=>{
-   if(prueba !== ""){
-     pruebas.push(prueba);
-   }
+  pruebas2.forEach((prueba) => {
+    if (prueba !== "") {
+      pruebas.push(prueba);
+    }
   });
   //pruebas = [pruebas2[0],pruebas2[1]];
-  
+
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
@@ -264,7 +283,7 @@ export const init = (errors,pruebas2) => {
   })
   $("#loader").remove();
 
-  $("body").on("click","#volver",function(){
+  $("body").on("click", "#volver", function () {
 
     $("#modal-volver").modal("show");
 
@@ -273,7 +292,7 @@ export const init = (errors,pruebas2) => {
 
     //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
     $('body').removeClass("modal-open");
-    $('body').css("padding-right","");
+    $('body').css("padding-right", "");
   });
 
   console.log("Simulador inicializado");
@@ -300,17 +319,38 @@ function hide_p() {
 }
 
 function show_mesa() {
+  if (m.mamografo.getHerramienta().getTipo() === "Detector de Radiación"){
+    show_mesa_camara()
+  }
+  else if (m.mamografo.getHerramienta().getTipo() === "Fantoma"){
+    show_mesa_fantoma()
+  }
+}
+
+
+function show_mesa_camara() {
   let x = document.getElementById("vista-arriba-receptor");
   x.style.display = "block";
-  var receptor = new Image();
-  receptor.src = "img/receptor.svg";
   var cr = document.getElementById("canvasReceptor");
   cr.style.display = "block";
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
   
-  ctxr.drawImage(receptor,155,-30,receptor.width*scale*0.8,receptor.height*scale*0.8)
+  ctxr.drawImage(m.receptor,155,-30,m.receptor.width*scale*0.8,m.receptor.height*scale*0.8)
+
+}
+function show_mesa_fantoma() {
+  console.log("muestrateimagen")
+  let x = document.getElementById("vista-arriba-receptor-2");
+  x.style.display = "block";
+  var cr = document.getElementById("canvasReceptor-2");
+  cr.style.display = "block";
+  var ctxr = cr.getContext("2d");
+  ctxr.clearRect(0, 0, cr.width, cr.height);
+  var scale = 1.0;
+  
+  ctxr.drawImage(m.receptor2,155,-30,m.receptor2.width*scale*0.8,m.receptor2.height*scale*0.8)
 
 }
 
@@ -386,7 +426,7 @@ document.addEventListener("dragover", function (event) {
 document.addEventListener("dragenter", function (event) {
   console.log("Estoy dentro de un dropzone")
   // highlight potential drop target when the draggable element enters it
-  if (event.target.className == "dropzone") {
+  if (event.target.classList.contains("dropzone")) {
       event.target.style.background = "red";
   }
 
@@ -395,7 +435,7 @@ document.addEventListener("dragenter", function (event) {
 document.addEventListener("dragleave", function (event) {
   console.log("salgo de mi posicion original");
   // reset background of potential drop target when the draggable element leaves it
-  if (event.target.className == "dropzone") {
+  if (event.target.classList.contains("dropzone")) {
       event.target.style.background = "";
   }
 
@@ -405,7 +445,7 @@ document.addEventListener("drop", function (event) {
   // prevent default action (open as link for some elements)
   event.preventDefault();
   // move dragged elem to the selected drop target
-  if (event.target.className == "dropzone") {
+  if (event.target.classList.contains("dropzone")) {
       event.target.style.background = "";
       this.dragged.parentNode.removeChild(this.dragged);
       event.target.appendChild(this.dragged);

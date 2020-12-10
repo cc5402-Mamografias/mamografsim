@@ -17,7 +17,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="receptor.svg">
+   sodipodi:docname="receptor_con_fantoma.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -405,6 +405,13 @@
        id="path6827-3-6-7-5-3-5-6-2-9-1-2-7-0-9-3-6-9-2-2-8-9-7-3-6-1-2-9"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
+    <rect
+       id="rect97"
+       width="74.002625"
+       height="52.999477"
+       x="68.828789"
+       y="200.0394"
+       style="opacity:1;fill:#d35f5f;fill-opacity:1;stroke-width:0.27165028" />
     <path
        transform="translate(0,1.2548172e-6)"
        style="fill:none;stroke:#ffffff;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4.80000001, 0.20000000000000001;stroke-dashoffset:2;stroke-opacity:1"

@@ -1,5 +1,6 @@
 // Abstract Herramienta
 "use strict";
+
 class AbstractTool {
   constructor() {
     if (this.constructor === AbstractTool) {
@@ -247,12 +248,7 @@ class DetectRad extends AbstractTool {
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
-    // this.kilovolt = 0;
-    // this.miliamperios = 0;
-    // this.modo = null;
-    // this.filtro = null;
-    // this.anodo = null;
-
+    this.colocada = false;
     this.kerma = null;
     this.result = [
       "Detector de Radiación",
@@ -271,34 +267,31 @@ class DetectRad extends AbstractTool {
 
 
   actualizar(estado) {
-    console.log(estado);
 
-    if (estado.activo == true && this.colocada == true) {
-      // this.kilovolt = estado.kilovolt.toFixed(2);
-      // this.miliamperios = estado.miliamperios.toFixed(2);
-      // this.modo = estado.modo;
-      // this.filtro = estado.filtro;
-      // this.anodo = estado.anodo;
-      this.kerma = estado.kerma;
+    if (estado.activo && this.colocada) {
 
+      let request = {
+        "kvp": estado.kilovolt,
+        "mas": estado.miliamperios,
+        "anodo": estado.anodo,
+        "filtro": estado.filtro,
+      };
+
+      $.ajax({
+        url: "http://moodle2.cimt.cl/api/kerma",
+        type: "get",
+        data: request,
+        async: false,
+        success: (data) => {
+          this.kerma = data.kerma;
+        }
+      });
     }
 
-
-    if (estado.activo == true) {
-      this.estado = "activo";
-    }
-
-    else {
-      this.estado = "inactivo";
-    }
+    this.estado = estado.activo ? "activo" : "inactivo";
   }
 
   actualizar_default() {
-    // this.kilovolt = 0;
-    // this.miliamperios = 0;
-    // this.modo = null;
-    // this.filtro = null;
-    // this.anodo = null;
     this.kerma = null;
   }
 
@@ -309,17 +302,13 @@ class DetectRad extends AbstractTool {
 
     if (this.colocada == true && this.estado == "activo") {
       return {
-        camara: [
+        detector: [
           "Detector de Radiación",
           "\t\t\tKerma: " + this.kerma.toFixed(2) + " mGy"
-          // "\t\t\tmAs: " + this.miliamperios,
-          // "\t\t\tmodo: " + this.modo,
-          // "\t\t\tfiltro: " + this.filtro,
-          // "\t\t\tanodo: " + this.anodo,
         ]
       }
     }
-    else if (this.colocada == false && this.estado == "activo") {
+    else if (!this.colocada && this.estado) {
       return {
         camara: ["Detector de Radiación",
           "NADA"
@@ -332,9 +321,7 @@ class DetectRad extends AbstractTool {
       return {
         camara: this.result
       }
-
     }
-
   }
 
   estaColocada() {
@@ -399,6 +386,153 @@ class Barometro extends AbstractTool {
   }
 }
 
+class Fantoma extends AbstractTool {
+
+  constructor(visor) {
+    super();
+    this.tipo = "Fantoma";
+    this.icon = "fantoma.png";
+    this.estado = "inactivo";
+    this.description = "Este es un fantoma.";
+    this.parametros = false;
+    this.colocada = false;
+    this.presionado = false;
+
+    this.altura = 4.5;
+    this.result = [
+      "Ver Imagen",
+      "Error de Posición",
+      "Error de Parámetros",
+      "Error de Presión",
+      "Imagen no disponible",
+      "Error de Posición y Parámetros",
+      "Error de Posición y Presión",
+      "Error de Parámetros y Presión",
+      "Error de Posición, Parámetros y Presión"
+    ];
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 250;
+    this.sprite = new Image();
+    this.sprite.src = 'img/fantoma45_contraste.svg';
+    this.visor = visor;
+  }
+
+  colocar(bool) {
+    this.colocada = bool;
+  }
+
+
+  actualizar(estado) {
+    console.log(estado);
+    //Se esta presionando al fantoma con una fuerza apropiada
+
+    console.log(estado.fuerza)
+    if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13) {
+      this.presionado = true;
+    }
+    else {
+      this.presionado = false;
+    }
+    //La configuracion en el panel de control es la adecuada
+    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100) {
+      this.parametros = true;
+    }
+    else {
+      this.parametros = false;
+    }
+    //Se ha disparado en el panel de control
+    if (estado.activo == true) {
+      this.estado = "activo";
+
+      let request = { // hay que ver la manera de que estos parametros cambien!
+        "imagen": "objeto_contraste",
+        "mancha": "2",
+        "lineas": "4",
+        "l_sentido": "ver",
+        "ruido": "4"
+      };
+
+      $.ajax({
+        url: "http://localhost:5000/prueba_imagen",
+        type: "get",
+        data: request,
+        async: false,
+        success: (data) => {
+          this.img = data;
+          this.visor.load_image(data);
+        },
+        error: (e) => {
+          console.log(e)
+        }
+      });
+    }
+
+    else {
+      this.estado = "inactivo";
+    }
+  }
+
+
+  dibujar(ctx) {
+    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
+  }
+  getResultado() {
+    var result = null;
+
+    if (this.estado == "activo") {
+      if (this.parametros && this.presionado && this.colocada) {
+
+        if (this.image !== null) {
+          var im = new Image(120, 160);
+          im.src = this.img;
+          im.style.display = "block";
+          im.style.margin = "auto";
+          im.onclick = () => { this.visor.show() };
+          result = im;
+        }
+        else {
+          throw "No se obtuvo la imagen";
+        }
+      }
+
+      else if (this.parametros && this.presionado && !this.colocada) {
+        result = "Error de Posición";
+      }
+      else if (this.parametros && !this.presionado && this.colocada) {
+        result = "Error de Presión";
+      }
+      else if (this.parametros && !this.presionado && !this.colocada) {
+        result = "Error de Posición y Presión";
+      }
+      else if (!this.parametros && this.presionado && this.colocada) {
+        result = "Error de Parámetros";
+      }
+      else if (!this.parametros && !this.presionado && this.colocada) {
+        result = "Error de Parámetros y Presión";
+      }
+      else if (!this.parametros && this.presionado && !this.colocada) {
+        result = "Error de Parámetros y Posición";
+      }
+      else if (!this.parametros && !this.presionado && !this.colocada) {
+        result = "Error de Posición, Parámetros y Presión";
+      }
+      else {
+        result = "Imagen no disponible";
+      }
+    }
+    else {
+      result = "Imagen no disponible";
+    }
+
+    return { fantoma: ["Fantoma: ", result] };
+  }
+
+  estaColocada() {
+    return this.colocada;
+  }
+}
+
 export {
   BaseNula,
   Balanza,
@@ -408,5 +542,6 @@ export {
   Termometro,
   Slab_20mm,
   Slab_45mm,
-  Slab_70mm
+  Slab_70mm,
+  Fantoma
 };
