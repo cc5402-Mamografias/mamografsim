@@ -114,7 +114,7 @@ export default class Maquina {
           ? (this.alturaCompresor) * 10
           : 0,
       fuerza: this.factorCompresion > this.factorCompresiónini
-        ? (this.fuerza + this.errorFuerza)
+        ? (this.fuerza + this.errorVisor)
         : 0
     };
   }
