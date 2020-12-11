@@ -490,15 +490,19 @@ class Fantoma extends AbstractTool {
       result = { fantoma: ["Fantoma: ", this.last_result] }
 
       if (p[0] !== null) {
-        result = { ...result, circ1: ["circulo 1: ", `VPM: ${p[0][0]} - std ${p[0][1]}`] }
+        var circ1 = $(`<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`);
+        circ1.on("click", () => { this.visor.show() })
+        result = { ...result, circ1: circ1 }
       }
 
       if (p[1] !== null) {
-        result = { ...result, circ2: ["circulo 2: ", `VPM: ${p[1][0]} - std ${p[1][1]}`] }
+        var circ2 = $(`<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`);
+        circ2.on("click", () => { this.visor.show() })
+        result = { ...result, circ2: circ2 }
       }
       return result;
     }
-    
+
     if (this.estado == "activo") {
       if (this.parametros && this.presionado && this.colocada) {
 
