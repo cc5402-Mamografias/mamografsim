@@ -268,22 +268,43 @@ export const init = (errors, pruebas2) => {
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
   
-  $('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
-
-  let r;
-  for (let x of pruebas) {
-    console.log(x);
-    r = $(`<button id = "inicio-${x}" class="open-sim"><img src="icons/play.png" width=64><br>${label_prueba[x]}</button>`);
-    r.on("click", () => cargarPrueba(x));
-    r.appendTo("#contenedor-button");
-  }
+  //$('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
+  
+  
+  let prueba_index = 0;
+  let max_pruebas = pruebas.length-1;
+  $("#left").on('click', () => {
+    if(prueba_index>0){
+      prueba_index--;
+    }
+    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2"><img src="icons/play.png"  width = 64 ><br>${label_prueba[pruebas[prueba_index]]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    $("#prueba-button").html(r);
+  });
+  $("#right").on('click', () => {
+    if(prueba_index<max_pruebas){
+      prueba_index++;
+    }
+    
+    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2"><img src="icons/play.png" width = 64><br>${label_prueba[pruebas[prueba_index]]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    $("#prueba-button").html(r);
+  });
+  
+  
+    let r;
+    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2"><img src="icons/play.png"  width = 64 ><br>${label_prueba[pruebas[0]]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[0]));
+    $("#prueba-button").html(r);
+  
 
   $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
-  })
+  });
+  
   $("#loader").remove();
-
+  $("#selector").show();
   $("body").on("click", "#volver", function () {
 
     $("#modal-volver").modal("show");
