@@ -392,7 +392,7 @@ class Fantoma extends AbstractTool {
     super();
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
-    this.estado = "inactivo";
+    this.estado = "activo";
     this.description = "Este es un fantoma.";
     this.parametros = false;
     this.colocada = false;
@@ -435,7 +435,9 @@ class Fantoma extends AbstractTool {
     }
 
     //La configuracion en el panel de control es la adecuada
-    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100) {
+    console.log(estado.miliamperios)
+    console.log(estado.kilovolt)
+    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios_nom) === 100) {
       this.parametros = true;
     }
     else {
