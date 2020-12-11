@@ -2,27 +2,41 @@ Konva = window.Konva;
 $ = window.$;
 
 export default class VisorImagen {
-  constructor(mamografo) {
+  constructor(mamografo, actualizar) {
 
     this.mamografo = mamografo;
+    this.actualizar = actualizar;
     this.panel = $('#visor-imagen');
     this.contenedor = $('#container-visor');
     $('#visor-cerrar').on('click', () => this.hide());
     this.img = null;
     this.ctx = null;
+    this.reset();
   }
 
   show() {
+    this.opened = true;
     this.panel.show();
     this.init();
   }
 
   hide() {
+    this.actualizar();
     this.panel.hide();
   }
 
   load_image(img) {
     this.img = img;
+  }
+
+  reset(){
+    this.res1 = null;
+    this.res2 = null;
+    this.img = null;
+  }
+
+  get_results() {
+    return [this.res1, this.res2];
   }
 
   get_mean_std(x, y) {
@@ -34,14 +48,19 @@ export default class VisorImagen {
     for (let i = 0; i < components; i += 4) {
       // A single pixel (R, G, B, A) will take 4 positions in the array:
       p += data[i] + data[i + 1] + data[i + 2];
-      s += ((data[i] + data[i + 1] + data[i + 2])/3)**2;
+      s += ((data[i] + data[i + 1] + data[i + 2]) / 3) ** 2;
     }
     p = p / (3 * 20 * 20);
     s = s / (20 * 20);
-    return [p.toFixed(2), Math.sqrt(s - p*p).toFixed(2)];
+    return [p.toFixed(2), Math.sqrt(s - p * p).toFixed(2)];
   }
 
   init() {
+
+    if(this.img === null){
+      return;
+    }
+
     var stage = new Konva.Stage({
       container: 'container-visor',
       width: this.panel.width(),
@@ -52,9 +71,7 @@ export default class VisorImagen {
     var layer = new Konva.Layer();
     stage.add(layer);
 
-    console.log(layer.getCanvas());
     this.ctx = layer.getCanvas().getContext("2d");
-
     const group = new Konva.Group();
     layer.add(group);
 
@@ -62,7 +79,6 @@ export default class VisorImagen {
 
     mamImage.onload = () => {
 
-      // var originalWidth = mamImage.width;
       var ratio = Math.min((this.panel.width() - 50) / mamImage.width, (this.panel.height() - 50) / mamImage.height);
       mamImage.width = mamImage.width * ratio;
       mamImage.height = mamImage.height * ratio;
@@ -129,7 +145,6 @@ export default class VisorImagen {
         draggable: true,
       });
 
-      // add the shape to the layer
       group.add(circ1);
       group.add(circ2);
 
@@ -139,20 +154,21 @@ export default class VisorImagen {
       circ1.on('dragend', () => {
         let pos = circ1.absolutePosition();
         let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        this.res1 = p;
         textCirc1.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
-      }
-      )
+      })
 
       circ2.on('dragend', () => {
         let pos = circ2.absolutePosition();
         let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        this.res2 = p;
         textCirc2.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
-      }
-      )
+      })
 
       layer.batchDraw();
     };
 
+  
     mamImage.src = this.img;
     layer.draw();
 
