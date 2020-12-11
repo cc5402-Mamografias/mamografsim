@@ -748,3 +748,6 @@ body.modal-open {
   outline: none !important;
   box-shadow: none;
 }
+button:disabled {
+  opacity:0.6;
+}

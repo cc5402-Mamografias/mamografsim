@@ -252,7 +252,7 @@ export const init = (errors, pruebas2) => {
 
 
 
-
+// Selector de pruebas
 
 
   let pruebas = [];
@@ -261,22 +261,31 @@ export const init = (errors, pruebas2) => {
       pruebas.push(prueba);
     }
   });
-  //pruebas = [pruebas2[0],pruebas2[1]];
 
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
   
-  //$('<h2> Seleccionar una prueba: </h2> <br>').appendTo("#contenedor-button")
-  
-  
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {
     if(prueba_index>0){
       prueba_index--;
+      if(prueba_index===0){
+        $("#left").prop('disabled',true);
+      }
+      else{
+        $("#left").prop('disabled',false);
+      }
+      if(prueba_index===max_pruebas){
+        $("#right").prop('disabled',true);
+      }
+      else{
+        $("#right").prop('disabled',false);
+      }
     }
+    
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
     r.on("click", () => cargarPrueba(pruebas[prueba_index]));
     $("#prueba-button").html(r);
@@ -284,6 +293,20 @@ export const init = (errors, pruebas2) => {
   $("#right").on('click', () => {
     if(prueba_index<max_pruebas){
       prueba_index++;
+      
+      if(prueba_index===0){
+        $("#left").prop('disabled',true);
+      }
+      else{
+        $("#left").prop('disabled',false);
+      }
+      if(prueba_index===max_pruebas){
+        $("#right").prop('disabled',true);
+      }
+      else{
+        $("#right").prop('disabled',false);
+      }
+      
     }
     
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
@@ -297,7 +320,19 @@ export const init = (errors, pruebas2) => {
     r.on("click", () => cargarPrueba(pruebas[0]));
     $("#prueba-button").html(r);
   
-
+    if(prueba_index===0){
+      $("#left").prop('disabled',true);
+    }
+    else{
+      $("#left").prop('disabled',false);
+    }
+    if(prueba_index===max_pruebas){
+      $("#right").prop('disabled',true);
+    }
+    else{
+      $("#right").prop('disabled',false);
+    }
+    
   $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
