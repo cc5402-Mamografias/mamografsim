@@ -392,7 +392,7 @@ class Fantoma extends AbstractTool {
     super();
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
-    this.estado = "inactivo";
+    this.estado = "activo";
     this.description = "Este es un fantoma.";
     this.parametros = false;
     this.colocada = false;
