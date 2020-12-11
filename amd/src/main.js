@@ -277,7 +277,7 @@ export const init = (errors, pruebas2) => {
     if(prueba_index>0){
       prueba_index--;
     }
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2"><img src="icons/play.png"  width = 64 ><br>${label_prueba[pruebas[prueba_index]]}</button>`);
+    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
     r.on("click", () => cargarPrueba(pruebas[prueba_index]));
     $("#prueba-button").html(r);
   });
@@ -286,14 +286,14 @@ export const init = (errors, pruebas2) => {
       prueba_index++;
     }
     
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2"><img src="icons/play.png" width = 64><br>${label_prueba[pruebas[prueba_index]]}</button>`);
+    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
     r.on("click", () => cargarPrueba(pruebas[prueba_index]));
     $("#prueba-button").html(r);
   });
   
   
     let r;
-    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2"><img src="icons/play.png"  width = 64 ><br>${label_prueba[pruebas[0]]}</button>`);
+    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
     r.on("click", () => cargarPrueba(pruebas[0]));
     $("#prueba-button").html(r);
   
