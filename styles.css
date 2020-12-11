@@ -150,6 +150,7 @@ table {
 th,
 td {
   border: 1px solid black;
+  vertical-align: center;
 }
 
 /* Interfaz panel de control */

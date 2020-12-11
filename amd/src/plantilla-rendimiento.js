@@ -11,6 +11,7 @@ function hide_pr() {
        
 function actualizar_funciones(SelectedObject){
     var mas = SelectedObject.id;
+    console.log("ACTUALIZAR")
     (document.getElementById('promedio_' + mas + "_conf1").innerHTML === '-') ? {} : calcular_funciones(document.getElementById("r1_" + mas + "_conf1")) ;
     (document.getElementById('promedio_' + mas + "_conf2").innerHTML === '-') ? {} : calcular_funciones(document.getElementById("r1_" + mas + "_conf2")) ;
     (document.getElementById('promedio_' + mas + "_conf3").innerHTML === '-') ? {} : calcular_funciones(document.getElementById("r1_" + mas + "_conf3")) ;
