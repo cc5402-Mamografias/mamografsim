@@ -1,179 +1,87 @@
 
   <div style="height: 100px;">
     <div class="row h-100">
-      <h3 style="margin-left: 110px; margin-top: 30px">CONTROL DE CALIDAD DE UN OBJETO DE PRUEBA Y ARTEFACTOS EN EL RECEPTOR DE IMAGEN</h3>
+      <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
     </div>
   </div>
 
   
-  <div style="height:300px">
+  <div style="height: 100px;">
     
-    <table style="float: left; width: 45%;">
+    <table>
       <tr>
-        <th colspan="2">Condiciones base de fantoma de uniformidad</th>
-        
+        <th ></th>
+        <th>Motorizada(N)</th>
+        <th>Manual(N)</th>
       </tr>
       
       <tr>
-        <th>Filtro</th>
-        <th><input type="text" class="text-center" id="filtro_planilla" readonly>Mo</th>
+        <th>Fuerza de compresión máxima</th>
+        <th><input type="number" id="comp_max_moto"></th>
+        <th><input type="number" id="comp_max_manual"></th>
       </tr>
       
       <tr>
-        <th>kV</th>
-        <th><input type="number" class="text-center" id="kV_planilla" readonly>28</th>
-      </tr>
-
-
-      <tr>
-        <th>Espesor De Compresion (mm)</th>
-        <th><input type="number" class="text-center" id="espesor_planilla" readonly>45</th>
+        <th>Fuerza de compresión mostrada</th>
+        <th><input type="number" id="comp_mostrada_moto"></th>
+        <th><input type="number" id="comp_mostrada_manual"></th>
       </tr>
 
       <tr>
-        <th>Fuerza De Compresion (N)</th>
-        <th><input type="number" class="text-center" id="fuerza_planilla" readonly>80</th>
-      </tr>
-    </table>
-  
-    <table style="float:right;  width: 45%;">
-      <tr>
-        <th colspan="2">Condiciones base de mAs</th>
-        
-      </tr>
-      
-      <tr>
-        <th>mAs Promedio</th>
-        <th><input type="number" id="mAs_planilla" readonly>100</th>
-      </tr>
-      
-      <tr>
-        <th>Límite superior = mAs + 10%</th>
-        <th><input type="number" id="mas_superior_planilla" readonly>110</th>
+        <th>Cumple Si/No</th>
+        <th><select name="cumple" id="cumple_moto">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></th>
+        <th><select name="cumple" id="cumple_manual">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></th>
       </tr>
 
 
-      <tr>
-        <th>Límite inferior = mAs -10%</th>
-        <th><input type="number" id="mas_inferior_planilla" readonly>90</th>
-      </tr>
-
-      
     </table>
   </div>
-
 
     
 <!--          division de tablas                   -->
 
-
-  <div style="height: 500px;">
-
-    <table style="float: left; width: 30%; top:50%">
+    <div style="height: 100px;">
+    <table>
       <tr>
-        <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
-        </th>
+        <th> </th>
+        <th>Espesor Indicado</th>
+        <th>Fuerza de Compresion</th> 
+        <th>S/N</th>
       </tr>
+      <tr>
+        <td>20mm</td>
+        <td><input type="number" id="esp_20"></td>
+        <td><input type="number" id="fuer_20"></td>
+        <td><select name="cumple" id="cumple_20">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>45mm</td>
+        <td><input type="number" id="esp_45"></td>
+        <td><input type="number" id="fuer_45"></td>
+        <td><select name="cumple" id="cumple_45">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>70mm</td>
+        <td><input type="number" id="esp_75"></td>
+        <td><input type="number" id="fuer_75"></td>
+        <td><select name="cumple" id="cumple_75">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></td>
+      </tr>
+
+
     </table>
-
-  
-  <div style="height: 230px;">
-  <table style="float: right; width: 45%;">
-    <tr>
-      <th colspan="2">Condiciones base del Valor Pixel Medio (VPM)</th>
-      
-    </tr>
-    
-    <tr>
-      <th>VPM del Disco (A)</th>
-      <th><input type="number" class="text-center" id="VPM_planilla" ></th>
-    </tr>
-    
-    <tr>
-      <th>Límite de acción superior = VPM + 10%</th>
-      <th><input type="number" class="text-center" id="VPM_superior_planilla" ></th>
-    </tr>
-
-
-    <tr>
-      <th>Límite de acción inferior = VPM - 10%</th>
-      <th><input type="number" class="text-center" id="VPM_inferior_planilla" ></th>
-    </tr>
-
-  </table>
- </div>
-
-  <table style="float: right; width: 45%;">
-    <tr>
-      <th colspan="2">Condiciones base de SDNR</th>
-      
-    </tr>
-    
-    <tr>
-      <th>valor promedio de SDNR</th>
-      <th><input type="number" id="SDNR_planilla" ></th>
-    </tr>
-    
-    <tr>
-      <th>Límite de acción superior = SDNR + 10%</th>
-      <th><input type="number" id="SDNR_superior_planilla" ></th>
-    </tr>
-
-
-    <tr>
-      <th>Límite de acción inferior = SDNR - 10%</th>
-      <th><input type="number" id="SDNR_inferior_planilla"></th>
-    </tr>
-
-    
-  </table>
-  
-</div>
-<div>
-  <table>
-    <tr>
-      <th></th>
-      <th>Mediciones Anteriores</th>
-      <th>Mediciones Actuales</th>
-    </tr>
-
-    <tr>
-      <th>Iniciales del realizador</th>
-      <th><input type="text" id="realizador_falso" readonly>JM</th>
-      <th><input type="text" id="realizador_real"></th>
-    </tr>
-
-    <tr>
-      <th>A</th>
-      <th><input type="number" id="a_falso_planilla" readonly>0</th>
-      <th><input type="number" id="a_real_planilla"></th>
-    </tr>
-
-    <tr>
-      <th>B</th>
-      <th><input type="number" id="b_falso_planilla" readonly>0</th>
-      <th><input type="number" id="b_real_planilla"></th>
-    </tr>
-
-    <tr>
-      <th >C</th>
-      <th><input type="number" id="c_falso_planilla" readonly>0</th>
-      <th><input type="number" id="c_real_planilla"></th>
-    </tr>
-
-    <tr>
-      <th >SDNR</th>
-      <th><input type="number" id="SDNR_falso_planilla" readonly>0</th>
-      <th><input type="number" id="SDNR_real_planilla"></th>
-    </tr>
-
-    <tr>
-      <th>Artefactos aceptables de imagen del monitor</th>
-      <th><input type="number" id="SDNR_falso_planilla" readonly>0</th>
-      <th><input type="number" id="SDNR_real_planilla"></th>
-    </tr>
-
-  </table>
-</div>
-
-    
+    </div>
