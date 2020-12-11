@@ -4,13 +4,13 @@ var valores = {
             "Ninguno": {
                 valor: [15.3, 20.4],
                 direccion: "Adentro",
-                correcto: "True"
+                correcto: true
             },
             "Alto": {
                 valor: [15.3, 20.4],
                 direccion: "Afuera",
                 limite: [10, 30],
-                correcto: "False"
+                correcto: false
             }
         },
 
@@ -19,18 +19,18 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: "True"
+                correcto: true
             },
             "Bajo": {
                 valor: [-2.04, 2.04],
                 direccion: "Adentro",
-                correcto: "True"
+                correcto: true
             },
             "Alto": {
                 valor: [-2.04, 2.04],
                 direccion: "Afuera",
                 limite: [-5, 5],
-                correcto: "False"
+                correcto: false
             }
         },
 
@@ -41,24 +41,24 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: "False"
+                correcto: false
             },
             "Bajo": {
                 valor: [-0.5, 0.5],
                 direccion: "Adentro",
-                correcto: "True"
+                correcto: true
             },
             "Medio": {
                 valor: [-0.5, 0.5],
                 direccion: "Afuera",
                 limite: [-0.8, 0.8],
-                correcto: "True"
+                correcto: true
             },
             "Alto": {
                 valor: [-0.8, 0.8],
                 direccion: "Afuera",
                 limite: [-1.5, 1.5],
-                correcto: "False"
+                correcto: false
             }
         },
 
@@ -68,19 +68,19 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: "True"
+                correcto: true
             },
             "Bajo": {
                 valor: 1.0,
-                correcto: "True"
+                correcto: true
             },
             "Medio": {
                 valor: 8.0,
-                correcto: "False"
+                correcto: false
             },
             "Alto": {
                 valor: 15.0,
-                correcto: "False"
+                correcto: false
             }
         }
 
@@ -90,19 +90,19 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: "True"
+                correcto: true
             },
             "Bajo": {
                 valor: 0.2,
-                correcto: "True"
+                correcto: true
             },
             "Medio": {
                 valor: 0.6,
-                correcto: "False"
+                correcto: false
             },
             "Alto": {
                 valor: 0.8,
-                correcto: "False"
+                correcto: false
             }
         }
 
@@ -112,19 +112,19 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: "True"
+                correcto: true
             },
             "Bajo": {
                 valor: 0.9,
-                correcto: "True"
+                correcto: true
             },
             "Medio": {
                 valor: 0.95,
-                correcto: "False"
+                correcto: true
             },
             "Alto": {
                 valor: 0.98,
-                correcto: "False"
+                correcto: true
             }
         }
 
