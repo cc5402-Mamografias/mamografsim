@@ -221,8 +221,6 @@ export const init = (errors, pruebas2) => {
     errordict[pair[0]] = pair[1];
 
   });
-  console.log(errors);
-  console.log(errordict);
   m = new Main(errordict);
   let elems;
   document.getElementById("herrams-mas").onclick = show_h;
