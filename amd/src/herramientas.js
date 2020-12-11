@@ -392,7 +392,7 @@ class Fantoma extends AbstractTool {
     super();
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
-    this.estado = "activo";
+    this.estado = "inactivo";
     this.description = "Este es un fantoma.";
     this.parametros = false;
     this.colocada = false;
@@ -435,8 +435,6 @@ class Fantoma extends AbstractTool {
     }
 
     //La configuracion en el panel de control es la adecuada
-    console.log(estado.miliamperios)
-    console.log(estado.kilovolt)
     if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios_nom) === 100) {
       this.parametros = true;
     }
@@ -446,8 +444,9 @@ class Fantoma extends AbstractTool {
 
     //Se ha disparado en el panel de control
     if (estado.activo) {
-      this.img = null;
       this.visor.reset();
+      this.img = null;
+      this.last_result = null;
       this.estado = "activo";
 
       if (this.parametros && this.presionado && this.colocada) {
