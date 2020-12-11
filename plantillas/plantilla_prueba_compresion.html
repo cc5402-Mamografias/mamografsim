@@ -1,128 +1,138 @@
-
-  <div style="height: 100px;">
-    <div class="row h-100">
-      <h3 style="margin-left: 110px; margin-top: 30px">FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR</h3>
-    </div>
+<div style="height: 100px">
+  <div class="row h-100">
+    <h3 style="margin-left: 110px; margin-top: 30px">
+      FUERZA DE COMPRESIÓN Y LA PRECISIÓN DEL ESPESOR
+    </h3>
   </div>
+</div>
 
-  
-  <div style="height: 100px;">
-    
-    <table>
-      <tr>
-        <th ></th>
-        <th>Motorizada(N)</th>
-        <th>Manual(N)</th>
-      </tr>
-      
-      <tr>
-        <th>Fuerza de compresión máxima</th>
-        <th><input type="number" id="comp_max_moto"></th>
-        <th><input type="number" id="comp_max_manual"></th>
-      </tr>
-      
-      <tr>
-        <th>Fuerza de compresión mostrada</th>
-        <th><input type="number" id="comp_mostrada_moto"></th>
-        <th><input type="number" id="comp_mostrada_manual"></th>
-      </tr>
+<div style="height: 100px">
+  <table>
+    <tr>
+      <th></th>
+      <th>Motorizada(N)</th>
+      <th>Manual(N)</th>
+    </tr>
 
-      <tr>
-        <th>Cumple Si/No</th>
-        <th><select name="cumple" id="cumple_moto">
-          <option disabled selected value> ... </option>
+    <tr>
+      <th>Fuerza de compresión máxima</th>
+      <th><input type="number" id="comp_max_moto" /></th>
+      <th><input type="number" id="comp_max_manual" /></th>
+    </tr>
+
+    <tr>
+      <th>Fuerza de compresión mostrada</th>
+      <th><input type="number" id="comp_mostrada_moto" /></th>
+      <th><input type="number" id="comp_mostrada_manual" /></th>
+    </tr>
+
+    <tr>
+      <th>Cumple Si/No</th>
+      <th>
+        <select name="cumple" id="cumple_moto">
+          <option disabled selected value>...</option>
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select></th>
-        <th><select name="cumple" id="cumple_manual">
-          <option disabled selected value> ... </option>
+        </select>
+      </th>
+      <th>
+        <select name="cumple" id="cumple_manual">
+          <option disabled selected value>...</option>
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select></th>
-      </tr>
+        </select>
+      </th>
+    </tr>
+  </table>
+</div>
 
-
-    </table>
-  </div>
-
-    
 <!--          division de tablas                   -->
 
-    <div style="height: 100px;">
-    <table>
-      <tr>
-        <th> </th>
-        <th>Espesor Indicado</th>
-        <th>Fuerza de Compresion</th> 
-        <th>S/N</th>
-      </tr>
-      <tr>
-        <td>20mm</td>
-        <td><input type="number" id="esp_20"></td>
-        <td><input type="number" id="fuer_20"></td>
-        <td><select name="cumple" id="cumple_20">
-          <option disabled selected value> ... </option>
+<div style="height: 100px">
+  <table>
+    <tr>
+      <th></th>
+      <th>Espesor Indicado</th>
+      <th>Fuerza de Compresion</th>
+      <th>S/N</th>
+    </tr>
+    <tr>
+      <td>20mm</td>
+      <td><input type="number" id="esp_20" /></td>
+      <td><input type="number" id="fuer_20" /></td>
+      <td>
+        <select name="cumple" id="cumple_20">
+          <option disabled selected value>...</option>
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>45mm</td>
-        <td><input type="number" id="esp_45"></td>
-        <td><input type="number" id="fuer_45"></td>
-        <td><select name="cumple" id="cumple_45">
-          <option disabled selected value> ... </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>45mm</td>
+      <td><input type="number" id="esp_45" /></td>
+      <td><input type="number" id="fuer_45" /></td>
+      <td>
+        <select name="cumple" id="cumple_45">
+          <option disabled selected value>...</option>
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select></td>
-      </tr>
-      <tr>
-        <td>70mm</td>
-        <td><input type="number" id="esp_75"></td>
-        <td><input type="number" id="fuer_75"></td>
-        <td><select name="cumple" id="cumple_75">
-          <option disabled selected value> ... </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>70mm</td>
+      <td><input type="number" id="esp_75" /></td>
+      <td><input type="number" id="fuer_75" /></td>
+      <td>
+        <select name="cumple" id="cumple_75">
+          <option disabled selected value>...</option>
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select></td>
-      </tr>
+        </select>
+      </td>
+    </tr>
+  </table>
 
-
-    </table>
-
-    
-    <button class="btn-primary button-without-border btn-result" id="volver" >Terminar Prueba</button>
-  
-
-    </div>
+  <button class="btn-primary button-without-border btn-result" id="finalizar_compresion">
+    Terminar Prueba
+  </button>
+</div>
 
 <!--          MODAL PARA TERMINAR PRUEBA                  -->
-    <div id="modal-compresion" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Retroalimentación de Respuestas Ingresadas</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body modal-volver" id="retroalimentacion_compresion">
-            <p>Tolerancia de compresión motorizada:</p>
-            <br>
-            <p>Tolerancia de compresión manual:</p>
-            <br>
-            <p>Tolerancia de espesor 20:</p>
-            <br>
-            <p>Tolerancia de espesor 45:</p>
-            <br>
-            <p>Tolerancia de espesor 70:</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="volver-menu" class="btn btn-danger" data-dismiss="modal">Finalizar Prueba</button>
-          </div>
-        </div>
-
+<div id="modal-compresion" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Retroalimentación de Respuestas Ingresadas</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body modal-volver" id="retroalimentacion_compresion">
+        <p>Tolerancia de compresión motorizada:</p>
+        <br />
+        <p>Tolerancia de compresión manual:</p>
+        <br />
+        <p>Tolerancia de espesor 20:</p>
+        <br />
+        <p>Tolerancia de espesor 45:</p>
+        <br />
+        <p>Tolerancia de espesor 70:</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="volver-menu-desde-prueba-compresion"
+          class="btn btn-danger"
+          data-dismiss="modal"
+        >
+          Finalizar Prueba
+        </button>
       </div>
     </div>
+  </div>
+</div>
 
-    <script type="text/javascript" src="amd/src/plantilla-compresion.js"></script>
+<script type="text/javascript" src="amd/src/plantilla-compresion.js"></script>
