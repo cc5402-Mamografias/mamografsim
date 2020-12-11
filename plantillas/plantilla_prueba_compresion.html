@@ -5,24 +5,34 @@
     </div>
   </div>
 
+  <div style="height: 100px;">
+    <ul>
+      <li>Máxima fuerza compresión motorizada: <b>150 [N] < F < 200 [N]</b></li>
+      <li>Máxima fuerza compresión manual: <b>F < 300 [N]</b></li>
+      <li>Precisión del indicador de fuerza de compresión:<b> +/- 20 [N]</b></li>
+      <li>Precisión aceptable indicador de espesor:<b> +/- 8 [mm]</b></li>
+      <li>Precisión deseable indicador de espesor: <b>+/- 5 [mm]</b></li>
+    </ul>
+  </div>
+
   
   <div style="height: 100px;">
     
     <table>
       <tr>
         <th ></th>
-        <th>Motorizada(N)</th>
-        <th>Manual(N)</th>
+        <th>Motorizada [N]</th>
+        <th>Manual [N]</th>
       </tr>
       
       <tr>
-        <th>Fuerza de compresión máxima</th>
+        <th>Fuerza de compresión real</th>
         <th><input type="number" id="comp_max_moto"></th>
         <th><input type="number" id="comp_max_manual"></th>
       </tr>
       
       <tr>
-        <th>Fuerza de compresión mostrada</th>
+        <th>Fuerza de compresión nominal</th>
         <th><input type="number" id="comp_mostrada_moto"></th>
         <th><input type="number" id="comp_mostrada_manual"></th>
       </tr>
@@ -49,13 +59,13 @@
     <div style="height: 100px;">
     <table>
       <tr>
-        <th> </th>
+        <th>Espesor Real</th>
         <th>Espesor Indicado</th>
         <th>Fuerza de Compresion</th> 
         <th>S/N</th>
       </tr>
       <tr>
-        <td>20mm</td>
+        <td>20 [mm]</td>
         <td><input type="number" id="esp_20"></td>
         <td><input type="number" id="fuer_20"></td>
         <td><select name="cumple" id="cumple_20">
@@ -64,7 +74,7 @@
         </select></td>
       </tr>
       <tr>
-        <td>45mm</td>
+        <td>45 [mm]</td>
         <td><input type="number" id="esp_45"></td>
         <td><input type="number" id="fuer_45"></td>
         <td><select name="cumple" id="cumple_45">
@@ -73,7 +83,7 @@
         </select></td>
       </tr>
       <tr>
-        <td>70mm</td>
+        <td>70 [mm]</td>
         <td><input type="number" id="esp_75"></td>
         <td><input type="number" id="fuer_75"></td>
         <td><select name="cumple" id="cumple_75">
