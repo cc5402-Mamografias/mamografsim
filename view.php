@@ -77,8 +77,8 @@ $errorf = $moduleinstance->errorf;
 $erroralt = $moduleinstance->erroralt;
 $compresion = $moduleinstance->compresion;
 $rendimiento = $moduleinstance->rendimiento;
-
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorrep',$errorrep),array('errorlin',$errorlin),array('errorrend',$errorrend),array('errorf',$errorf),array('erroralt',$erroralt),array('errorvis',$errorvis)),array($compresion,$rendimiento)) );
+$imagen = $moduleinstance->imagen;
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorrep',$errorrep),array('errorlin',$errorlin),array('errorrend',$errorrend),array('errorf',$errorf),array('erroralt',$erroralt),array('errorvis',$errorvis)),array($compresion,$rendimiento,$imagen)) );
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 

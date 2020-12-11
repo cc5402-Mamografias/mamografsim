@@ -60,12 +60,19 @@
 
 .open-sim {
   min-width: 400px;
-  /*max-width: 200px;*/
+  min-height: 106.5px;
+  border-radius: 8px;
+  font-weight: bold;
+ 
+  text-align: center;
+
+}
+.direction-button{
   border-radius: 8px;
   font-weight: bold;
   /*text-transform: capitalize;*/
   text-align: center;
-  margin: 0 10px 0 10px;
+ 
 
 }
 /* Interfaz Botones */
@@ -741,4 +748,7 @@ body.modal-open {
 .button-without-border {
   outline: none !important;
   box-shadow: none;
+}
+button:disabled {
+  opacity:0.6;
 }
