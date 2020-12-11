@@ -3,27 +3,34 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: [15.3, 20.4],
-                direccion: "Adentro"
+                direccion: "Adentro",
+                correcto: "True"
             },
             "Alto": {
                 valor: [15.3, 20.4],
                 direccion: "Afuera",
-                limite: [10, 30]
+                limite: [10, 30],
+                correcto: "False"
             }
         },
 
     },
     "errorFuerzaMedida": {
         "valores_base": {
-            "Ninguno": { valor: 0.0 },
+            "Ninguno": {
+                valor: 0.0,
+                correcto: "True"
+            },
             "Bajo": {
                 valor: [-2.04, 2.04],
-                direccion: "Adentro"
+                direccion: "Adentro",
+                correcto: "True"
             },
             "Alto": {
                 valor: [-2.04, 2.04],
                 direccion: "Afuera",
-                limite: [-5, 5]
+                limite: [-5, 5],
+                correcto: "False"
             }
         },
 
@@ -32,20 +39,26 @@ var valores = {
     },
     "errorAltura": {
         "valores_base": {
-            "Ninguno": { valor: 0 },
+            "Ninguno": {
+                valor: 0.0,
+                correcto: "False"
+            },
             "Bajo": {
                 valor: [-0.5, 0.5],
-                direccion : "Adentro"
+                direccion: "Adentro",
+                correcto: "True"
             },
             "Medio": {
                 valor: [-0.5, 0.5],
                 direccion: "Afuera",
-                limite: [-0.8, 0.8]
+                limite: [-0.8, 0.8],
+                correcto: "True"
             },
             "Alto": {
                 valor: [-0.8, 0.8],
-                direccion:"Afuera",
-                limite :[-1.5, 1.5]
+                direccion: "Afuera",
+                limite: [-1.5, 1.5],
+                correcto: "False"
             }
         },
 
@@ -53,33 +66,69 @@ var valores = {
     },
     "errorRepetibilidad": {
         "valores_base": {
-            "Ninguno": { valor: 0.0 },
-            "Bajo": { valor: 1.0 },
-            "Medio": { valor: 8.0 },
-            "Alto": { valor: 15.0 }
+            "Ninguno": {
+                valor: 0.0,
+                correcto: "True"
+            },
+            "Bajo": {
+                valor: 1.0,
+                correcto: "True"
+            },
+            "Medio": {
+                valor: 8.0,
+                correcto: "False"
+            },
+            "Alto": {
+                valor: 15.0,
+                correcto: "False"
+            }
         }
-        
+
     },
     "errorLinealidad": {
         //se suma por un factor que originalmente es 1
         "valores_base": {
-            "Ninguno": { valor: 0.0 },
-            "Bajo": { valor: 0.2},
-            "Medio": { valor: 0.6 },
-            "Alto": { valor: 0.8 }
+            "Ninguno": {
+                valor: 0.0,
+                correcto: "True"
+            },
+            "Bajo": {
+                valor: 0.2,
+                correcto: "True"
+            },
+            "Medio": {
+                valor: 0.6,
+                correcto: "False"
+            },
+            "Alto": {
+                valor: 0.8,
+                correcto: "False"
+            }
         }
-        
+
     },
     "errorRendimiento": {
         //para restar un factor que originalmente es 1
         "valores_base": {
-            "Ninguno": { valor: 0.0 },
-            "Bajo": { valor: 0.9},
-            "Medio": { valor: 0.95 },
-            "Alto": { valor: 0.98 }
+            "Ninguno": {
+                valor: 0.0,
+                correcto: "True"
+            },
+            "Bajo": {
+                valor: 0.9,
+                correcto: "True"
+            },
+            "Medio": {
+                valor: 0.95,
+                correcto: "False"
+            },
+            "Alto": {
+                valor: 0.98,
+                correcto: "False"
+            }
         }
-        
-}
+
+    }
 
 }
 
@@ -102,7 +151,8 @@ export function getError(tipo, intensidad) {
         let direccion = valor_base["direccion"];
         if (direccion == "Adentro") {
             let error_val = getRandomRange(error[0], error[1]);
-            return error_val;
+            let ret = [error_val, valor_base["correcto"]]
+            return ret;
         }
         else if (direccion == "Afuera") {
             let limite = valor_base["limite"];
@@ -115,11 +165,15 @@ export function getError(tipo, intensidad) {
             else {
                 error_val = getRandomRange(error[0], limite[0]);
             }
-            return error_val;
+            let ret = [error_val, valor_base["correcto"]];
+            
+            return ret;
         }
     }
     else {
-        return error;
+        let ret = [error, valor_base["correcto"]];
+        
+        return ret;
     }
 
 
