@@ -94,6 +94,8 @@ export default class Maquina {
          ? (this.fuerza)
          : 0,
       kilovolt: (this.kilovolt),
+      //para herramienta de fantoma
+      miliamperios_nom : (this.miliamperios),
       miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
 
 
@@ -101,7 +103,6 @@ export default class Maquina {
       anodo: this.anodo,
       modo: this.modo,
       activo: isActivo,
-      //para herramienta de fantoma
       
     };
   }
