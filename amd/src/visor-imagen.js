@@ -9,7 +9,7 @@ export default class VisorImagen {
     this.contenedor = $('#container-visor');
     $('#visor-cerrar').on('click', () => this.hide());
     this.img = null;
-
+    this.ctx = null;
   }
 
   show() {
@@ -25,8 +25,23 @@ export default class VisorImagen {
     this.img = img;
   }
 
-  init() {
+  get_mean_std(x, y) {
+    const data = this.ctx.getImageData(Math.round(x), Math.round(y), 20, 20).data;
+    const components = data.length;
 
+    var p = 0;
+    var s = 0;
+    for (let i = 0; i < components; i += 4) {
+      // A single pixel (R, G, B, A) will take 4 positions in the array:
+      p += data[i] + data[i + 1] + data[i + 2];
+      s += ((data[i] + data[i + 1] + data[i + 2])/3)**2;
+    }
+    p = p / (3 * 20 * 20);
+    s = s / (20 * 20);
+    return [p.toFixed(2), Math.sqrt(s - p*p).toFixed(2)];
+  }
+
+  init() {
     var stage = new Konva.Stage({
       container: 'container-visor',
       width: this.panel.width(),
@@ -37,8 +52,10 @@ export default class VisorImagen {
     var layer = new Konva.Layer();
     stage.add(layer);
 
-    const group = new Konva.Group();
+    console.log(layer.getCanvas());
+    this.ctx = layer.getCanvas().getContext("2d");
 
+    const group = new Konva.Group();
     layer.add(group);
 
     var mamImage = new Image();
@@ -61,44 +78,82 @@ export default class VisorImagen {
 
 
       group.add(yoda);
-      layer.batchDraw();
       yoda.moveToBottom();
 
+      var textCirc1 = new Konva.Text({
+        x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
+        y: 100,
+        text:
+          "Avg: x \nStd: y",
+        fontSize: 18,
+        fontFamily: 'Calibri',
+        fill: 'red',
+        width: 200,
+        padding: 20,
+        align: 'left',
+      });
+
+      var textCirc2 = new Konva.Text({
+        x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
+        y: 200,
+        text:
+          "Avg: x \nStd: y",
+        fontSize: 18,
+        fontFamily: 'Calibri',
+        fill: 'blue',
+        width: 200,
+        padding: 20,
+        align: 'left',
+      });
+
+      group.add(textCirc1);
+      group.add(textCirc2);
+
+      var circ1 = new Konva.Circle({
+        x: 100,
+        y: 100,
+        width: 30,
+        fill: 'rgba(0,0,0,0)',
+        stroke: 'red',
+        strokeWidth: 4,
+        draggable: true,
+      });
+
+      var circ2 = new Konva.Circle({
+        x: 200,
+        y: 100,
+        width: 30,
+        fill: 'rgba(0,0,0,0)',
+        stroke: 'blue',
+        strokeWidth: 4,
+        draggable: true,
+      });
+
+      // add the shape to the layer
+      group.add(circ1);
+      group.add(circ2);
+
+      circ2.moveToTop();
+      circ1.moveToTop();
+
+      circ1.on('dragend', () => {
+        let pos = circ1.absolutePosition();
+        let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        textCirc1.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
+      }
+      )
+
+      circ2.on('dragend', () => {
+        let pos = circ2.absolutePosition();
+        let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        textCirc2.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
+      }
+      )
+
+      layer.batchDraw();
     };
 
-    // mamImage.src = 'img/test/campo_plano_mancha.png'
     mamImage.src = this.img;
-
-    var circ1 = new Konva.Circle({
-      x: 100,
-      y: 100,
-      width: 100,
-      height: 50,
-      fill: 'rgba(0,0,0,0)',
-      stroke: 'red',
-      strokeWidth: 4,
-      draggable: true,
-    });
-
-    var circ2 = new Konva.Circle({
-      x: 200,
-      y: 100,
-      width: 100,
-      height: 50,
-      fill: 'rgba(0,0,0,0)',
-      stroke: 'blue',
-      strokeWidth: 4,
-      draggable: true,
-    });
-
-    // circ1.zIndex(0);
-    // add the shape to the layer
-    group.add(circ1);
-    group.add(circ2);
-
-    circ2.moveToTop();
-    circ1.moveToTop();
-
     layer.draw();
 
     var scaleBy = 1.05;
