@@ -169,10 +169,7 @@ export async function preloadImages() {
   //toalla.src = "img/balanzatoalla.svg";
   //images.push(toalla);
 
-  var play = new Image();
-  play.src = "icons/play.png";
-  images.push(play);
-
+  
   var balanza = new Image();
   balanza.src = "img/balanza.svg";
   images.push(balanza);

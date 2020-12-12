@@ -435,7 +435,9 @@ class Fantoma extends AbstractTool {
       this.presionado = false;
     }
     //La configuracion en el panel de control es la adecuada
-    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios) === 100) {
+    console.log(estado.miliamperios)
+    console.log(estado.kilovolt)
+    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios_nom) === 100) {
       this.parametros = true;
     }
     else {

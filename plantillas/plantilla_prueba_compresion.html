@@ -14,23 +14,41 @@
       <th>Manual(N)</th>
     </tr>
 
-    <tr>
-      <th>Fuerza de compresión máxima</th>
-      <th><input type="number" id="comp_max_moto" /></th>
-      <th><input type="number" id="comp_max_manual" /></th>
-    </tr>
+  <div style="height: 70px;">
+    <ul>
+      <li>Máxima fuerza compresión motorizada: <b>15 [kg] < F < 20 [kg]</b></li>
+      <li>Máxima fuerza compresión manual: <b>F < 30 [kg]</b></li>
+      <li>Precisión del indicador de fuerza de compresión:<b> +/- 2 [kg]</b></li>
+      <li>Precisión aceptable indicador de espesor:<b> +/- 8 [mm]</b></li>
+      <li>Precisión deseable indicador de espesor: <b>+/- 5 [mm]</b></li>
+    </ul>
+  </div>
 
-    <tr>
-      <th>Fuerza de compresión mostrada</th>
-      <th><input type="number" id="comp_mostrada_moto" /></th>
-      <th><input type="number" id="comp_mostrada_manual" /></th>
-    </tr>
+  
+  <div style="height: 80px;">
+    
+    <table>
+      <tr>
+        <th ></th>
+        <th>Motorizada [kg]</th>
+        <th>Manual [kg]</th>
+      </tr>
+      
+      <tr>
+        <th>Fuerza de compresión real</th>
+        <th><input type="number" id="comp_max_moto"></th>
+        <th><input type="number" id="comp_max_manual"></th>
+      </tr>
+      
+      <tr>
+        <th>Fuerza de compresión nominal</th>
+        <th><input type="number" id="comp_mostrada_moto"></th>
+        <th><input type="number" id="comp_mostrada_manual"></th>
+      </tr>
 
-    <tr>
-      <th>Cumple Si/No</th>
-      <th>
-        <select name="cumple" id="cumple_moto">
-          <option disabled selected value>...</option>
+      <tr>
+        <th>¿Se encuentra dentro de los rangos de precisión fuerza de compresión?</th>
+        <th><select name="cumple" id="cumple_moto">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -48,45 +66,37 @@
 
 <!--          division de tablas                   -->
 
-<div style="height: 100px">
-  <table>
-    <tr>
-      <th></th>
-      <th>Espesor Indicado</th>
-      <th>Fuerza de Compresion</th>
-      <th>S/N</th>
-    </tr>
-    <tr>
-      <td>20mm</td>
-      <td><input type="number" id="esp_20" /></td>
-      <td><input type="number" id="fuer_20" /></td>
-      <td>
-        <select name="cumple" id="cumple_20">
-          <option disabled selected value>...</option>
+    <div style="height: 100px;">
+    <table>
+      <tr>
+        <th>Espesor Real</th>
+        <th>Espesor Indicado [mm]</th>
+        <th>Fuerza de Compresion [kg]</th>
+        <th>¿Se encuentra dentro de los rangos de precisión aceptable?</th>
+      </tr>
+      <tr>
+        <td>20 [mm]</td>
+        <td><input type="number" id="esp_20"></td>
+        <td><input type="number" id="fuer_20"></td>
+        <td><select name="cumple" id="cumple_20">
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>45mm</td>
-      <td><input type="number" id="esp_45" /></td>
-      <td><input type="number" id="fuer_45" /></td>
-      <td>
-        <select name="cumple" id="cumple_45">
-          <option disabled selected value>...</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>45 [mm]</td>
+        <td><input type="number" id="esp_45"></td>
+        <td><input type="number" id="fuer_45"></td>
+        <td><select name="cumple" id="cumple_45">
           <option value="Si">Si</option>
           <option value="No">No</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>70mm</td>
-      <td><input type="number" id="esp_75" /></td>
-      <td><input type="number" id="fuer_75" /></td>
-      <td>
-        <select name="cumple" id="cumple_75">
-          <option disabled selected value>...</option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>70 [mm]</td>
+        <td><input type="number" id="esp_75"></td>
+        <td><input type="number" id="fuer_75"></td>
+        <td><select name="cumple" id="cumple_75">
           <option value="Si">Si</option>
           <option value="No">No</option>
         </select>
@@ -135,4 +145,24 @@
   </div>
 </div>
 
-<script type="text/javascript" src="amd/src/plantilla-compresion.js"></script>
+</table>
+</div>
+
+<div style="height: 15px;"></div>
+<table >
+  <tr>
+          <th colspan="7">Tolerancia</th>
+        </tr>
+        
+        <tr>
+          <th colspan="6">¿Se encuentra la fuerza ejercida dentro de los rangos de fuerza de compresión motorizada y manual?</th>
+          <td><select name="cumple_cual_conf" id="cumple_rep_conf1">
+            <option value="Si">Si</option>
+              <option value="No">No</option>
+            </select></td>
+          </tr>
+          
+    </table>
+  </div>
+
+  <script type="text/javascript" src="amd/src/plantilla-compresion.js"></script>

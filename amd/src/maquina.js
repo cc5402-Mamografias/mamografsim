@@ -19,17 +19,18 @@ function random() {
 
 export default class Maquina {
   constructor(errors, ctx) {
-    console.log(errors)
+    
     this.herramienta = new BaseNula();
     //Errores
-    this.errorFuerza = errors["errorf"];
-    this.errorAltura = errors["erroralt"];
-    this.errorVisor = errors["errorvis"];
+    
+    this.errorFuerza = errors["errorf"][0];
+    this.errorAltura = errors["erroralt"][0];
+    this.errorVisor = errors["errorvis"][0];
 
     //dedicadas a los errores de rendimiento
-    this.rangemargenmA = errors["errorrep"];
-    this.errorLinealidad = errors["errorlin"];
-    this.errorRendimiento = errors["errorrend"];
+    this.rangemargenmA = errors["errorrep"][0];
+    this.errorLinealidad = errors["errorlin"][0];
+    this.errorRendimiento = errors["errorrend"][0];
 
 
 //const ponderacionmA = 1;
@@ -94,6 +95,8 @@ export default class Maquina {
          ? (this.fuerza)
          : 0,
       kilovolt: (this.kilovolt),
+      //para herramienta de fantoma
+      miliamperios_nom : (this.miliamperios),
       miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
 
 
@@ -101,7 +104,6 @@ export default class Maquina {
       anodo: this.anodo,
       modo: this.modo,
       activo: isActivo,
-      //para herramienta de fantoma
       
     };
   }

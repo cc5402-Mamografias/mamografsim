@@ -13,7 +13,8 @@
 <body>
 
   <div style="width:1px; height:1px; visibility:hidden; overflow:hidden">
-    <img src="icons/play.png" />
+    <img src="icons/left.png" />
+    <img src="icons/right.png" />
   </div>
   <div id="contenedor-main" class="contenedor-main">
 
@@ -21,13 +22,36 @@
 
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
-      <!-- <button id = "open-sim-button" class="open-sim"><img src="icons/play.png" width=64><br>Compresion</button>
-      <button id = "open-sim-button-2" class="open-sim"><img src="icons/play.png" width=64><br>Rendimiento</button> -->
+      
       <div id="loader">
         <div class="loader">
+          
         </div>
         <h2>Cargando...</h2>
+        
+        
       </div>
+      <div id = "selector" style="display: none;">
+        <div class ="row justify-content-center">
+          <h2> Seleccionar una prueba: </h2>
+        </div>
+        <div class ="row justify-content-center ">
+          <div class="col-md-2">
+            <button id = "left" class="direction-button p-2"><img src="icons/left.png" width="64" height="64">Anterior</button>
+          </div>
+          <div class="col-md-8">
+            <!--<div class ="row justify-content-center ">-->
+            <div id="prueba-button"> 
+
+            </div>
+          <!-- </div>-->
+          </div>
+          <div class="col-md-2">
+            <button id ="right" class="direction-button p-2" height="64"><img src="icons/right.png"  width="64">Siguiente</button>
+          </div>
+        </div>
+      </div>
+      
     </div>
     <!-- INTERFAZ MENU INICIO -->
 

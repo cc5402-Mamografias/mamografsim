@@ -76,7 +76,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->addElement('header', 'mamografsimact', get_string('mamografsimact', 'mod_mamografsim'));
         $pruebas2 = array(
             'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
-            'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad'
+            'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad',
+            'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen'
         );
         
         $pruebasitem = array();
@@ -111,7 +112,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
 
         $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Medio','Alto'=>'Alto'));
         $mform->setType('errorrep', PARAM_TEXT);
         //$mform->addRule('errorma', null, 'required', null, 'client');
         $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
