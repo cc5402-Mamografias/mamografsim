@@ -20,6 +20,8 @@ import {
   drawPedal
 } from "./vista";
 
+import { PlantillaCompresion } from "./plantilla-compresion";
+
 import PanelResultados from "./panel-resultados";
 import MesaTopDown from "./vista-top-down";
 
@@ -35,7 +37,8 @@ var m = null;
 
 class Main {
   constructor(errors) {
-
+    console.log("errors viejo");
+    console.log(errors);
     // Errores - parametros del simulador
     errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
@@ -43,7 +46,8 @@ class Main {
     errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
     errors.errorlin = getError("errorLinealidad", errors.errorlin);
     errors.errorrend = getError("errorRendimiento", errors.errorrend);
-    
+    console.log("errors nuevo");
+    console.log(errors);
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
