@@ -392,7 +392,7 @@ class Fantoma extends AbstractTool {
     super();
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
-    this.estado = "activo";
+    this.estado = "inactivo";
     this.description = "Este es un fantoma.";
     this.parametros = false;
     this.colocada = false;
@@ -416,58 +416,62 @@ class Fantoma extends AbstractTool {
     this.sprite = new Image();
     this.sprite.src = 'img/fantoma45_contraste.svg';
     this.visor = visor;
+    this.last_result = null;
   }
 
   colocar(bool) {
     this.colocada = bool;
   }
 
-
   actualizar(estado) {
     console.log(estado);
-    //Se esta presionando al fantoma con una fuerza apropiada
 
-    console.log(estado.fuerza)
+    //Se esta presionando al fantoma con una fuerza apropiada
     if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13) {
       this.presionado = true;
     }
     else {
       this.presionado = false;
     }
+
     //La configuracion en el panel de control es la adecuada
-    console.log(estado.miliamperios)
-    console.log(estado.kilovolt)
     if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios_nom) === 100) {
       this.parametros = true;
     }
     else {
       this.parametros = false;
     }
+
     //Se ha disparado en el panel de control
-    if (estado.activo == true) {
+    if (estado.activo) {
+      this.visor.reset();
+      this.img = null;
+      this.last_result = null;
       this.estado = "activo";
 
-      let request = { // hay que ver la manera de que estos parametros cambien!
-        "imagen": "objeto_contraste",
-        "mancha": "2",
-        "lineas": "4",
-        "l_sentido": "ver",
-        "ruido": "4"
-      };
+      if (this.parametros && this.presionado && this.colocada) {
+        let request = { // hay que ver la manera de que estos parametros cambien!
+          "imagen": "objeto_contraste",
+          "mancha": "2",
+          "lineas": "4",
+          "l_sentido": "ver",
+          "ruido": "4"
+        };
 
-      $.ajax({
-        url: "http://localhost:5000/prueba_imagen",
-        type: "get",
-        data: request,
-        async: false,
-        success: (data) => {
-          this.img = data;
-          this.visor.load_image(data);
-        },
-        error: (e) => {
-          console.log(e)
-        }
-      });
+        $.ajax({
+          url: "http://localhost:5000/prueba_imagen",
+          type: "get",
+          data: request,
+          async: false,
+          success: (data) => {
+            this.img = data;
+            this.visor.load_image(data);
+          },
+          error: (e) => {
+            console.log(e)
+          }
+        });
+      }
     }
 
     else {
@@ -475,52 +479,72 @@ class Fantoma extends AbstractTool {
     }
   }
 
-
   dibujar(ctx) {
     ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
   }
+
   getResultado() {
     var result = null;
+
+    if (this.last_result !== null) {
+      var p = this.visor.get_results();
+      result = { fantoma: ["Fantoma: ", this.last_result] }
+
+      if (p[0] !== null) {
+        var circ1 = $(`<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`);
+        circ1.on("click", () => { this.visor.show() })
+        result = { ...result, circ1: circ1 }
+      }
+
+      if (p[1] !== null) {
+        var circ2 = $(`<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`);
+        circ2.on("click", () => { this.visor.show() })
+        result = { ...result, circ2: circ2 }
+      }
+      return result;
+    }
 
     if (this.estado == "activo") {
       if (this.parametros && this.presionado && this.colocada) {
 
-        if (this.image !== null) {
+        if (this.img !== null) {
           var im = new Image(120, 160);
           im.src = this.img;
           im.style.display = "block";
           im.style.margin = "auto";
           im.onclick = () => { this.visor.show() };
           result = im;
+          this.last_result = result;
         }
         else {
+          this.last_result = null;
           throw "No se obtuvo la imagen";
         }
       }
-
-      else if (this.parametros && this.presionado && !this.colocada) {
-        result = "Error de Posición";
-      }
-      else if (this.parametros && !this.presionado && this.colocada) {
-        result = "Error de Presión";
-      }
-      else if (this.parametros && !this.presionado && !this.colocada) {
-        result = "Error de Posición y Presión";
-      }
-      else if (!this.parametros && this.presionado && this.colocada) {
-        result = "Error de Parámetros";
-      }
-      else if (!this.parametros && !this.presionado && this.colocada) {
-        result = "Error de Parámetros y Presión";
-      }
-      else if (!this.parametros && this.presionado && !this.colocada) {
-        result = "Error de Parámetros y Posición";
-      }
-      else if (!this.parametros && !this.presionado && !this.colocada) {
-        result = "Error de Posición, Parámetros y Presión";
-      }
       else {
-        result = "Imagen no disponible";
+        this.last_result = null;
+
+        if (this.parametros && this.presionado && !this.colocada) {
+          result = "Error de Posición";
+        }
+        else if (this.parametros && !this.presionado && this.colocada) {
+          result = "Error de Presión";
+        }
+        else if (this.parametros && !this.presionado && !this.colocada) {
+          result = "Error de Posición y Presión";
+        }
+        else if (!this.parametros && this.presionado && this.colocada) {
+          result = "Error de Parámetros";
+        }
+        else if (!this.parametros && !this.presionado && this.colocada) {
+          result = "Error de Parámetros y Presión";
+        }
+        else if (!this.parametros && this.presionado && !this.colocada) {
+          result = "Error de Parámetros y Posición";
+        }
+        else if (!this.parametros && !this.presionado && !this.colocada) {
+          result = "Error de Posición, Parámetros y Presión";
+        }
       }
     }
     else {

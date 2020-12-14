@@ -49,7 +49,7 @@ class Main {
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
-    this.visor = new VisorImagen(this.mamografo);
+    this.visor = new VisorImagen(this.mamografo, ()=> {this.actualizar()});
 
     // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
