@@ -419,7 +419,7 @@ function show_mesa_fantoma() {
 function crearHerramButton(tool, onClickF) {
 
   let r = $(
-    `<button title= "${tool.description}" class="herrams-btn btn btn-light her-b-s"> </button>`
+    `<button title= "${tool.description}" class="herrams-btn btn btn-outline-secondary button-without-border her-b-s"> </button>`
   ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
   r.on("click", onClickF);
   r.appendTo("#herramientas-express");
