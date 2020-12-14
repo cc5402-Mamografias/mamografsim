@@ -452,10 +452,11 @@ class Fantoma extends AbstractTool {
 
       let request = {
         "imagen": "objeto_contraste",
-        "mancha": "2",
-        "lineas": "4",
+        "mancha": "1",
+        "lineas": "3",
         "l_sentido": estado.errores.errorimglin,
-        "ruido": "4"
+        "ruido": estado.errores.errorimgsp,
+        "contraste": estado.errores.errorvmp
       };
       console.log(request);
 

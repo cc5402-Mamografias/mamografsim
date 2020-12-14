@@ -91,7 +91,7 @@ var valores = {
         "valores_base": {
             "Ninguno": { valor: 0 },
             "Bajo": { valor: 1 },
-            "Alto": { valor: 3 }
+            "Alto": { valor: 4 }
         }
     },
     "errorContraste": {
