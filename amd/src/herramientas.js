@@ -453,13 +453,16 @@ class Fantoma extends AbstractTool {
       this.estado = "activo";
       
       if (this.parametros && this.presionado && this.colocada) {
+
+        let lineas = estado.errores.errorimlin == ""? 0 : 3;
+
         let request = {
           "imagen": "objeto_contraste",
           "mancha": "1",
-          "lineas": "3",
-          "l_sentido": estado.errores.errorimglin,
-          "ruido": estado.errores.errorimgsp,
-          "contraste": estado.errores.errorvmp
+          "lineas": lineas,
+          "l_sentido": estado.errores.errorimglin[0],
+          "ruido": estado.errores.errorimgsp[0],
+          "contraste": estado.errores.errorvmp[0]
         };
 
         $.ajax({
