@@ -20,7 +20,7 @@ import {
   drawPedal
 } from "./vista";
 
-import { PlantillaCompresion } from "./plantilla-compresion";
+import PlantillaCompresion from "./plantilla-compresion";
 
 import PanelResultados from "./panel-resultados";
 import MesaTopDown from "./vista-top-down";
@@ -268,7 +268,16 @@ export const init = (errors, pruebas2) => {
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-  
+
+  var plantilla_prueba = {};
+  console.log("eclipse");
+
+  var a = new PlantillaCompresion(errordict);
+
+//  plantilla_prueba["compresion"] = new PlantillaCompresion(errordict);
+ // plantilla_prueba["rendimiento"] = new PlantillaCompresion(errordict);
+  //plantilla_prueba["imagen"] = new PlantillaCompresion(errordict);
+
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {
@@ -289,7 +298,8 @@ export const init = (errors, pruebas2) => {
     }
     
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    r.on("click", () => 
+      cargarPrueba(pruebas[prueba_index]));
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -308,20 +318,23 @@ export const init = (errors, pruebas2) => {
       else{
         $("#right").prop('disabled',false);
       }
-      
     }
-    
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
     r.on("click", () => cargarPrueba(pruebas[prueba_index]));
     $("#prueba-button").html(r);
   });
-  
-  
+
+
     let r;
     r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[0]));
+    r.on("click", () => {
+      cargarPrueba(pruebas[0]);
+      console.log("hooooliiiii");
+      a.setModal();
+    }
+    );
     $("#prueba-button").html(r);
-  
+
     if(prueba_index===0){
       $("#left").prop('disabled',true);
     }
@@ -334,12 +347,12 @@ export const init = (errors, pruebas2) => {
     else{
       $("#right").prop('disabled',false);
     }
-    
+
   $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
   });
-  
+
   $("#loader").remove();
   $("#selector").show();
   $("body").on("click", "#volver", function () {
@@ -355,9 +368,6 @@ export const init = (errors, pruebas2) => {
   });
 
   console.log("Simulador inicializado");
-  
-  
- 
 };
 
 function show_h() {
