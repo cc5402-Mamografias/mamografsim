@@ -43,14 +43,10 @@ class Main {
     errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
     errors.errorlin = getError("errorLinealidad", errors.errorlin);
     errors.errorrend = getError("errorRendimiento", errors.errorrend);
-<<<<<<< HEAD
     errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
     errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
 
-=======
-    
->>>>>>> develop
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
