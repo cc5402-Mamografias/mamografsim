@@ -43,9 +43,9 @@ class Main {
     errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
     errors.errorlin = getError("errorLinealidad", errors.errorlin);
     errors.errorrend = getError("errorRendimiento", errors.errorrend);
-    errors.errorrend = getError("errorImagenLineas", errors.errorimglin);
-    errors.errorrend = getError("errorImagenRuido", errors.errorimgsp);
-    errors.errorrend = getError("errorContraste", errors.errorvmp);
+    errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
+    errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
+    errors.errorvmp = getError("errorContraste", errors.errorvmp);
 
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);

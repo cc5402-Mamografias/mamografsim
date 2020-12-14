@@ -79,8 +79,28 @@ var valores = {
             "Alto": { valor: 0.98 }
         }
         
-}
-
+    },
+    "errorImagenLineas": {
+        "valores_base": {
+            "Ninguno": { valor: "" },
+            "Vertical": { valor: "ver" },
+            "Horizontal": { valor: "hor" }
+        }
+    },
+    "errorImagenRuido": {
+        "valores_base": {
+            "Ninguno": { valor: 0 },
+            "Bajo": { valor: 1 },
+            "Alto": { valor: 3 }
+        }
+    },
+    "errorContraste": {
+        "valores_base": {
+            "Ninguno": { valor: 0 },
+            "Bajo": { valor: 1 },
+            "Alto": { valor: 4 }
+        }
+    }
 }
 
 function getRandomRange(min, max) {

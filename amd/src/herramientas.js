@@ -1,6 +1,9 @@
 // Abstract Herramienta
 "use strict";
 
+var pyKerma_server = "http://localhost:5000";
+//var pyKerma_server = "http://moodle2.cimt.cl/api";
+
 class AbstractTool {
   constructor() {
     if (this.constructor === AbstractTool) {
@@ -278,7 +281,7 @@ class DetectRad extends AbstractTool {
       };
 
       $.ajax({
-        url: "http://moodle2.cimt.cl/api/kerma",
+        url: pyKerma_server + "/kerma",
         type: "get",
         data: request,
         async: false,
@@ -447,16 +450,17 @@ class Fantoma extends AbstractTool {
     if (estado.activo == true) {
       this.estado = "activo";
 
-      let request = { // hay que ver la manera de que estos parametros cambien!
+      let request = {
         "imagen": "objeto_contraste",
         "mancha": "2",
         "lineas": "4",
-        "l_sentido": "ver",
+        "l_sentido": estado.errores.errorimglin,
         "ruido": "4"
       };
+      console.log(request);
 
       $.ajax({
-        url: "http://localhost:5000/prueba_imagen",
+        url: pyKerma_server + "/prueba_imagen",
         type: "get",
         data: request,
         async: false,
