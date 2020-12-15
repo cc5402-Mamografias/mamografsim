@@ -19,6 +19,9 @@
         <FIELD NAME="errorf" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de fuerza mamografo."/>
         <FIELD NAME="erroralt" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de Altura mamografo."/>
         <FIELD NAME="errorvis" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de Visor mamografo."/>
+        <FIELD NAME="errorimglin" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de lineas en imagen."/>
+        <FIELD NAME="errorimgsp" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de puntos en imagen."/>
+        <FIELD NAME="errorvmp" TYPE="text" LENGTH="30" NOTNULL="false" SEQUENCE="false" COMMENT="Error de contraste."/>
         <FIELD NAME="compresion" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Disponibilidad prueba de compresion"/>
         <FIELD NAME="rendimiento" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Disponibilidad prueba de rendimiento"/>
         <FIELD NAME="imagen" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Disponibilidad prueba de imagen"/>

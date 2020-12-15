@@ -19,7 +19,7 @@ function random() {
 
 export default class Maquina {
   constructor(errors, ctx) {
-    
+    this.errors = errors;
     this.herramienta = new BaseNula();
     //Errores
     
@@ -104,6 +104,7 @@ export default class Maquina {
       anodo: this.anodo,
       modo: this.modo,
       activo: isActivo,
+      errores: this.errors
       
     };
   }

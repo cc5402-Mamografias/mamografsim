@@ -75,10 +75,28 @@ $errorlin = $moduleinstance->errorlin;
 $errorrend = $moduleinstance->errorrend;
 $errorf = $moduleinstance->errorf;
 $erroralt = $moduleinstance->erroralt;
+$errorimglin = $moduleinstance->errorimglin;
+$errorimgsp = $moduleinstance->errorimgsp;
+$errorvmp = $moduleinstance->errorvmp;
 $compresion = $moduleinstance->compresion;
 $rendimiento = $moduleinstance->rendimiento;
 $imagen = $moduleinstance->imagen;
-$PAGE->requires->js_call_amd('mod_mamografsim/main','init',array(array(array('errorrep',$errorrep),array('errorlin',$errorlin),array('errorrend',$errorrend),array('errorf',$errorf),array('erroralt',$erroralt),array('errorvis',$errorvis)),array($compresion,$rendimiento,$imagen)) );
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',
+    array(
+        array(
+            array('errorrep',$errorrep),
+            array('errorlin',$errorlin),
+            array('errorrend',$errorrend),
+            array('errorf',$errorf),
+            array('erroralt',$erroralt),
+            array('errorvis',$errorvis),
+            array('errorimglin',$errorimglin),
+            array('errorimgsp',$errorimgsp),
+            array('errorvmp',$errorvmp)
+        ),
+        array($compresion,$rendimiento,$imagen)
+    )
+);
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
