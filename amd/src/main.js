@@ -20,7 +20,21 @@ import {
   drawPedal
 } from "./vista";
 
-import PlantillaCompresion from "./plantilla-compresion";
+import {
+  PlantillaCompresion,
+  PlantillaRendimiento,
+  PlantillaImagen
+}
+from "./plantillas";
+
+// import
+//  PlantillaRendimiento
+// from "./plantillas";
+
+// import
+//  PlantillaImagen
+// from "./plantillas";
+
 
 import PanelResultados from "./panel-resultados";
 import MesaTopDown from "./vista-top-down";
@@ -270,13 +284,9 @@ export const init = (errors, pruebas2) => {
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
 
   var plantilla_prueba = {};
-  console.log("eclipse");
-
-  var a = new PlantillaCompresion(errordict);
-
-//  plantilla_prueba["compresion"] = new PlantillaCompresion(errordict);
- // plantilla_prueba["rendimiento"] = new PlantillaCompresion(errordict);
-  //plantilla_prueba["imagen"] = new PlantillaCompresion(errordict);
+  plantilla_prueba["compresion"] = new PlantillaCompresion(errordict);
+  plantilla_prueba["rendimiento"] = new PlantillaRendimiento(errordict);
+  plantilla_prueba["imagen"] = new PlantillaImagen(errordict);
 
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
@@ -298,8 +308,10 @@ export const init = (errors, pruebas2) => {
     }
     
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => 
-      cargarPrueba(pruebas[prueba_index]));
+    r.on("click", () => {
+      cargarPrueba(pruebas[prueba_index]);
+      plantilla_prueba[pruebas[prueba_index]].setFeedback();
+    });
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -320,7 +332,10 @@ export const init = (errors, pruebas2) => {
       }
     }
     let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    r.on("click", () => {
+      cargarPrueba(pruebas[prueba_index]);
+      plantilla_prueba[pruebas[prueba_index]].setFeedback();
+    });
     $("#prueba-button").html(r);
   });
 
@@ -329,8 +344,8 @@ export const init = (errors, pruebas2) => {
     r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
     r.on("click", () => {
       cargarPrueba(pruebas[0]);
-      console.log("hooooliiiii");
-      a.setModal();
+      plantilla_prueba[pruebas[0]].setFeedback();
+      
     }
     );
     $("#prueba-button").html(r);
