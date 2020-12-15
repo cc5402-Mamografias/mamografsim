@@ -363,10 +363,8 @@ input[type="radio"]:checked:after {
   overflow-y: auto;
 }
 
-.herrams-boton {
-  margin: 5px;
-  width: 40%;
-  padding: 5px;
+.herrams-btn {
+  height: 105px;
 }
 
 .her-b-s {
