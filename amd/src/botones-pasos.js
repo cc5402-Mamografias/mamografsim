@@ -1,6 +1,21 @@
 let $ = window.$;
 
-function prevPaso() {
+export function inicializarPasos() {
+
+  $('<button class="btn btn-info" type="button" id="prevBtn"></button>')
+    .text('Anterior')
+    .on('click', prevPaso)
+    .appendTo('.pasos-botones')
+    .hide();
+
+  $('<button class="btn btn-info" type="button" id="nextBtn"></button>')
+    .text('Siguiente')
+    .on('click', nextPaso)
+    .appendTo('.pasos-botones');
+}
+
+
+export function prevPaso() {
   let x = $('.paso-activo');
   let y = x.prev();
 
@@ -18,7 +33,7 @@ function prevPaso() {
   $('#nextBtn').show();
 }
 
-function nextPaso() {
+export function nextPaso() {
 
   let x = $('.paso-activo');
   let y = x.next();
