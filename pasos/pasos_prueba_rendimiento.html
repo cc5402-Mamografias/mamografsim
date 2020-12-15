@@ -1,89 +1,63 @@
 <div class="titulo-panel">Pasos Prueba Rendimiento</div>
-<div id="lista-pasos">
-  <div class="paso-activo">
-    <p>
-      1) Seleccione el Detector de Radiación en la sección de herramientas
-      utilizando el click izquierdo.
-    </p>
-  </div>
 
-  <div class="paso">
-    <p>
-      2) Ahora, el detector debe quedar centrado en el eje horizontal, y a 4 cm
-      de la pared torácica. En el siguiente paso se indica como realizar esta
-      operación.
-    </p>
-  </div>
+<ul class="pasos-lista">
+  <il class="paso-activo">
+    1) Seleccione el Detector de Radiación en la sección de herramientas
+    utilizando el click izquierdo.
+  </il>
 
-  <div class="paso">
-    <p>
-      3) A la derecha del mamógrafo se encuentra el botón "Ver Mesa" que le
-      permitirá posicionar el detector. Haga click en "Ver Mesa" y posicione
-      correctamente el detector entre las posiciones marcadas en el plato
-      receptor.
-    </p>
-  </div>
+  <il class="paso">
+    2) Ahora, el detector debe quedar centrado en el eje horizontal, y a 4 cm de
+    la pared torácica. En el siguiente paso se indica como realizar esta
+    operación.
+  </il>
 
-  <div class="paso">
-    <p>
-      4) Seleccione el modo manual, y una combinación ánodo/filtro para una
-      tensión de 28 kV.
-    </p>
-  </div>
+  <il class="paso">
+    3) A la derecha del mamógrafo se encuentra el botón "Ver Mesa" que le
+    permitirá posicionar el detector. Haga click en "Ver Mesa" y posicione
+    correctamente el detector entre las posiciones marcadas en el plato
+    receptor.
+  </il>
 
-  <div class="paso">
-    <p>
-      5) Deberá realizar 5 mediciones de kerma para cada uno de los tres valores
-      de mAs comúnmente utilizados en la práctica clínica, con una tensión de 28
-      [kV]. Los valores corresponden a 40, 80, y 120 [mAs].
-    </p>
-  </div>
+  <il class="paso">
+    4) Seleccione el modo manual, y una combinación ánodo/filtro para una
+    tensión de 28 kV.
+  </il>
 
-  <div class="paso">
-    <p>
-      6) Seleccione el primer valor de mAs, y realice una exposición presionando
-      el botón "Shoot" en el Panel de Control, luego registre el resultado en la
-      Hoja de Resultados, y continue con el resto de las mediciones.
-    </p>
-  </div>
+  <il class="paso">
+    5) Deberá realizar 5 mediciones de kerma para cada uno de los tres valores
+    de mAs comúnmente utilizados en la práctica clínica, con una tensión de 28
+    [kV]. Los valores corresponden a 40, 80, y 120 [mAs].
+  </il>
 
-  <div class="paso">
-    <p>
-      7) Al final de la Hoja de Resultados encontrará el resultado del cálculo
-      de la Linealidad y el Rendimiento Normalizado en base a los valores que ha
-      ingresado. Comparelos con las tolerancias especificadas y verifique si el
-      equipo pasa o no la prueba.
-    </p>
-  </div>
+  <il class="paso">
+    6) Seleccione el primer valor de mAs, y realice una exposición presionando
+    el botón "Shoot" en el Panel de Control, luego registre el resultado en la
+    Hoja de Resultados, y continue con el resto de las mediciones.
+  </il>
 
-  <div class="paso">
-    <p>
-      8) (Opcional) Si existen otras combinaciones ánodo/filtro, repetir los
-      pasos anteriores seleccionando la tensión más habitual en la práctica
-      clínica para esta nueva combinación.
-    </p>
-  </div>
-</div>
+  <il class="paso">
+    7) Al final de la Hoja de Resultados encontrará el resultado del cálculo de
+    la Linealidad y el Rendimiento Normalizado en base a los valores que ha
+    ingresado. Comparelos con las tolerancias especificadas y verifique si el
+    equipo pasa o no la prueba.
+  </il>
 
-<div style="overflow: auto">
-  <div style="position: relative">
-    <button
-      class="btn btn-info"
-      type="button"
-      id="prevBtn"
-      onclick="prevPaso()"
-    >
-      Anterior
-    </button>
-    <button
-      class="btn btn-info"
-      type="button"
-      id="nextBtn"
-      onclick="nextPaso()"
-    >
-      Siguiente
-    </button>
-  </div>
+  <il class="paso">
+    8) (Opcional) Si existen otras combinaciones ánodo/filtro, repetir los pasos
+    anteriores seleccionando la tensión más habitual en la práctica clínica para
+    esta nueva combinación.
+  </il>
+</ul>
+
+<div class="pasos-botones">
+  <button class="btn btn-info" type="button" id="prevBtn" onclick="prevPaso()">
+    Anterior
+  </button>
+
+  <button class="btn btn-info" type="button" id="nextBtn" onclick="nextPaso()">
+    Siguiente
+  </button>
 </div>
 
 <script type="text/javascript" src="amd/src/botones-pasos.js"></script>
