@@ -127,6 +127,21 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         //$mform->addRule('errorma', null, 'required', null, 'client');
         $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
+        // prueba imagen
+        $mform->addElement('header', 'mamografsimimg', get_string('mamografsimimg', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorimglin', "Error Cualitativo - Lineas", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Imagen limpia','Vertical'=>'Imagen con lineas verticales','Horizontal'=>'Imagen con lineas horizontales'));
+        $mform->setType('errorimglin', PARAM_TEXT);
+        $mform->addRule('errorimglin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorimgsp', "Error Cualitativo - Puntos blancos y negros", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Imagen limpia','Bajo'=>'Pocos puntos','Alto'=>'Muchos puntos'));
+        $mform->setType('errorimgsp', PARAM_TEXT);
+        $mform->addRule('errorimgsp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorvmp', "Error de Contraste", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->setType('errorvmp', PARAM_TEXT);
+        $mform->addRule('errorvmp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
         
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();
