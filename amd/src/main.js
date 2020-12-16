@@ -265,7 +265,7 @@ function selector(pruebas2){
   let pruebas = [];
   pruebas2.forEach((prueba) => {
     if (prueba[0] !== "") {
-      pruebas.push(prueba[0]);
+      pruebas.push([prueba[0],prueba[1]]);
     }
   });
 
@@ -292,9 +292,9 @@ function selector(pruebas2){
         $("#right").prop('disabled',false);
       }
     }
-    
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -316,15 +316,15 @@ function selector(pruebas2){
       
     }
     
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   });
   
   
     let r;
-    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[0]));
+    r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   
     if(prueba_index===0){
