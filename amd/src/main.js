@@ -255,7 +255,12 @@ export const init = (errors, pruebas2) => {
 
 // Selector de pruebas
 
-
+selector(pruebas2);
+  
+  
+ 
+};
+function selector(pruebas2){
   let pruebas = [];
   pruebas2.forEach((prueba) => {
     if (prueba !== "") {
@@ -355,10 +360,7 @@ export const init = (errors, pruebas2) => {
 
   console.log("Simulador inicializado");
   
-  
- 
-};
-
+}
 function show_h() {
   let x = document.getElementById("herrams");
   x.style.display = "block";

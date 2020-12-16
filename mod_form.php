@@ -40,7 +40,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
      */
     public function definition() {
         global $CFG;
-
+        global $DB;
         $mform = $this->_form;
 
         // Adding the "general" fieldset, where all the common settings are shown.
@@ -54,7 +54,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         } else {
             $mform->setType('name', PARAM_CLEANHTML);
         }
-
+        
         
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
@@ -84,6 +84,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         foreach ($pruebas2 as $key => $value) {
          $pruebasitem[] = &$mform->createElement('advcheckbox',$key, '', $value, array('name' => $key,'group'=>1), $key);
          $mform->setDefault($key, true);
+         $DB->set_field_select('mamografsim', "{$key}_label", $value,  null);
         }
         $mform->addGroup($pruebasitem, 'pruebas',"Pruebas disponibles",' ',false);
         
@@ -114,17 +115,17 @@ class mod_mamografsim_mod_form extends moodleform_mod {
 
         $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Medio','Alto'=>'Alto'));
         $mform->setType('errorrep', PARAM_TEXT);
-        //$mform->addRule('errorma', null, 'required', null, 'client');
+        
         $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
         $mform->addElement('select', 'errorlin', "Error Linealidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
         $mform->setType('errorlin', PARAM_TEXT);
-        //$mform->addRule('errorma', null, 'required', null, 'client');
+        
         $mform->addRule('errorlin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
         $mform->addElement('select', 'errorrend', "Error Rendimiento", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
         $mform->setType('errorrend', PARAM_TEXT);
-        //$mform->addRule('errorma', null, 'required', null, 'client');
+        
         $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
         // prueba imagen
@@ -142,9 +143,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->setType('errorvmp', PARAM_TEXT);
         $mform->addRule('errorvmp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        
         // Add standard grading elements.
-        $this->standard_grading_coursemodule_elements();
+        //$this->standard_grading_coursemodule_elements();
 
         // Add standard elements.
         $this->standard_coursemodule_elements();
