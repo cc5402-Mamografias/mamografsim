@@ -261,18 +261,19 @@ selector(pruebas2);
  
 };
 function selector(pruebas2){
+  console.log(pruebas2);
   let pruebas = [];
   pruebas2.forEach((prueba) => {
-    if (prueba !== "") {
-      pruebas.push(prueba);
+    if (prueba[0] !== "") {
+      pruebas.push(prueba[0]);
     }
   });
 
-  var label_prueba = {};
+  /*var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-  
+  */
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {
