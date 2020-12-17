@@ -34,12 +34,17 @@ export class PlantillaCompresion extends PlantillaAbstracta{
             $("#loader").remove();
 
         $("body").on("click", "#finalizar_compresion", function () {
+            
 
             $("#modal-compresion").modal("show");
+            $("#plantilla").scrollTop(0);
+            //$("#modal-compresion").scrollIntoView(true);
 
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
             $('.modal-backdrop').height("120%");
+            
+            
 
 
             //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
@@ -87,12 +92,15 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
 
 
         $("body").on("click", "#finalizar_rendimiento", function () {
-
+            //$("#modal-rendimiento").scrollIntoView(true);
             $("#modal-rendimiento").modal("show");
+            $("#plantilla").scrollTop(0);
+    
 
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
             $('.modal-backdrop').height("270%");
+            
 
 
             //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
@@ -127,6 +135,8 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
             $('#rend_conf2_ingresado').text(document.getElementById("cumple_rend_conf2").value);
             $('#rend_conf3_ingresado').text(document.getElementById("cumple_rend_conf3").value);
             $('#rend_conf4_ingresado').text(document.getElementById("cumple_rend_conf4").value);
+
+            //finalmente movemos la view
             
             
         });
@@ -147,8 +157,11 @@ export class PlantillaImagen extends PlantillaAbstracta{
     
             $("#loader").remove();
         $("body").on("click", "#finalizar_imagen", function () {
+            
 
             $("#modal-imagen").modal("show");
+            $("#plantilla").scrollTop(0);
+            //$("#modal-imagen").scrollIntoView(true);
 
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
