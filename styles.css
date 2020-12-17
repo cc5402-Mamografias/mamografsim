@@ -751,3 +751,11 @@ body.modal-open {
 button:disabled {
   opacity:0.6;
 }
+.mode-cursor {
+  cursor: pointer;
+}
+
+.mode:focus {
+  outline: 0;
+  box-shadow: none !important;
+}

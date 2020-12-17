@@ -84,8 +84,6 @@ export const init = () => {
   // botones miliAmperes
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
-  // boton modo mamografo
-  document.getElementById("mode-b").onclick = () => cambiarModo(valores_modo);
   // boton filtro
   document.getElementById("filter-b").onclick = () => cambiarModo(valores_filtro);
   // boton anodo

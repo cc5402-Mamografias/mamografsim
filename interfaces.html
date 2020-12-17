@@ -119,25 +119,26 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm">
-                  <button class="btnmode" id="mode-b">MODE</button>
+                  <!-- <button class="btnmode" id="mode-b">MODE</button> -->
+                  <h6>MODE</h6>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <label> AutoKV <input type="radio" name="mode" value="autokv" id="c01" checked disabled /> </label>
+                  <label class="mode-cursor"> AutoKV <input class="mode mode-cursor" type="radio" name="mode" value="autokv" id="c01" checked /> </label>
                 </div>
                 <div class="col-sm">
-                  <label> <input type="radio" name="mode" value="manual" id="c03" disabled /> Manual </label>
+                  <label class="mode-cursor"><input class="mode mode-cursor" type="radio" name="mode" value="manual" id="c03" /> Manual </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm">
-                  <label> Auto Time <input type="radio" name="mode" value="autotime" id="c02" disabled /> </label>
+                  <label class="mode-cursor"> Auto Time <input class="mode mode-cursor" type="radio" name="mode" value="autotime" id="c02" /> </label>
                 </div>
 
                 <div class="col-sm">
-                  <label> <input type="radio" name="mode" value="autofilter" id="c04" disabled /> Auto Filter </label>
+                  <label class="mode-cursor"><input class="mode mode-cursor" type="radio" name="mode" value="autofilter" id="c04" /> Auto Filter </label>
                 </div>
               </div>
             </div>
@@ -191,7 +192,7 @@
           <h3 class="titulo-panel">Herramientas</h3>
           <div id="herramientas-express" class="herrams-lista"></div>
 
-          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver mas</button>
+          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver más Herramientas <img class="espacio-boton" src="icons/plus-4-xxl.png" width=14></button>
         </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
 
@@ -201,7 +202,7 @@
           <div id="resultados-lista" class="resultados-lista"></div>
 
           <!-- INTERFAZ BOTON PLANTILLA -->
-          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados</button>
+          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados <img class="espacio-boton" src="icons/notepad-xxl.png" width=15></button>
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
