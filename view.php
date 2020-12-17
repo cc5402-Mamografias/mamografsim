@@ -116,7 +116,6 @@ $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 echo $OUTPUT->header();
 
-// Carga css para el archivo html
 readfile("interfaces.html");
 
 echo $OUTPUT->footer();

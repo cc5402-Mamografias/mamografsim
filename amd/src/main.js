@@ -27,8 +27,6 @@ import { getError } from "./valor-errores";
 
 import VisorImagen from "./visor-imagen";
 
-import { drawReceptor } from "./vista";
-
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
@@ -71,8 +69,6 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
     this.ctx = this.c.getContext("2d");
 
-    //this.cr = document.getElementById("canvas-receptor");
-    //this.ctxr = this.cr.getContext("2d");
     this.receptor = new Image();
     this.receptor.src = "img/receptor.svg";
 
@@ -146,17 +142,10 @@ class Main {
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     //dibujar el mamografo
-    // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
     drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
-
-    // dibujar en el canvas las herramientas nuevas
-    // this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-
-    //dibujar resultados
-    //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
 
     this.panelResultados.limpiarResultados();
     try {
@@ -218,7 +207,6 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
-  //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
@@ -269,11 +257,6 @@ function selector(pruebas2){
     }
   });
 
-  /*var label_prueba = {};
-  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
-  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
-  label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-  */
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {
