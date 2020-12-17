@@ -51,6 +51,15 @@ function cambiarModo(modos) {
     document.getElementById(modos[index]).checked = false;
     document.getElementById(modos[(index + 1) % modos.length]).checked = true;
   }
+  if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime"){
+    document.getElementById("mas").value = ""
+  }
+  else if (label_modo[getValorActivoRadioButtons(valores_modo)] == "manual"){
+    document.getElementById("mas").value = 100
+
+  }
+
+
 
   setearParamsMamografo();
 }
@@ -69,6 +78,7 @@ function setearParamsMamografo() {
   let filtro = label_filtro[getValorActivoRadioButtons(valores_filtro)];
   let anodo = label_anodo[getValorActivoRadioButtons(valores_anodo)];
 
+  
   setear_params(kv, ma, modo, filtro, anodo);
 }
 

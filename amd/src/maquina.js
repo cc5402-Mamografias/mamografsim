@@ -59,12 +59,15 @@ export default class Maquina {
     this.factorCompresiónini = Math.sqrt(this.compresionExp**(-this.sumaCompresion));
     this.factorCompresion = this.factorCompresiónini;
 
-    //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
+    
     this.kilovolt = null;
     this.miliamperios = null;
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
+
+    //PARA PRUEBA IMAGENES
+    this.miliamperios_auto = 100;
 
 
     preloadImages().then(() => {
@@ -101,8 +104,7 @@ export default class Maquina {
       //para herramienta de fantoma
       miliamperios_nom : (this.miliamperios),
       miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
-
-
+      miliamperios_auto : this.miliamperios_auto,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,

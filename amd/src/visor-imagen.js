@@ -32,11 +32,12 @@ export default class VisorImagen {
   reset(){
     this.res1 = null;
     this.res2 = null;
+    this.mas = 100;
     this.img = null;
   }
 
   get_results() {
-    return [this.res1, this.res2];
+    return [this.res1, this.res2, this.mas];
   }
 
   get_mean_std(x, y) {
