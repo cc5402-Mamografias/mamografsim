@@ -3,6 +3,7 @@ window.$ = window.jQuery = $ = jQuery;
 
 class PlantillaAbstracta {
     constructor(errors){
+        console.log(errors)
         this.errorFuerza = errors["errorf"][1] ? "Sí" : "No";
         this.errorAltura = errors["erroralt"][1] ? "Sí" : "No";
         this.errorVisor = errors["errorvis"][1] ? "Sí" : "No";

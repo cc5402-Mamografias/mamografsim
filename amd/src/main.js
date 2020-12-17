@@ -62,6 +62,8 @@ class Main {
     errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
 
+    this.errordict = errors;
+
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
@@ -224,7 +226,7 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
-  let errordict = {}
+  var errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
 
@@ -281,9 +283,11 @@ function selector(pruebas2){
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
 
   var plantilla_prueba = {};
-  plantilla_prueba["compresion"] = new PlantillaCompresion(errordict);
-  plantilla_prueba["rendimiento"] = new PlantillaRendimiento(errordict);
-  plantilla_prueba["imagen"] = new PlantillaImagen(errordict);
+  console.log("diccionario entregado")
+  console.log(m.errordict)
+  plantilla_prueba["compresion"] = new PlantillaCompresion(m.errordict);
+  plantilla_prueba["rendimiento"] = new PlantillaRendimiento(m.errordict);
+  plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
 
 
   let prueba_index = 0;
