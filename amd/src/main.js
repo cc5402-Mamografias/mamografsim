@@ -43,8 +43,6 @@ import { getError } from "./valor-errores";
 
 import VisorImagen from "./visor-imagen";
 
-import { drawReceptor } from "./vista";
-
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
@@ -60,14 +58,16 @@ class Main {
     errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
     errors.errorlin = getError("errorLinealidad", errors.errorlin);
     errors.errorrend = getError("errorRendimiento", errors.errorrend);
-    console.log("errors nuevo");
-    console.log(errors);
+    errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
+    errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
+    errors.errorvmp = getError("errorContraste", errors.errorvmp);
+
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
-    this.visor = new VisorImagen(this.mamografo);
+    this.visor = new VisorImagen(this.mamografo, ()=> {this.actualizar()});
 
     // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
@@ -86,8 +86,6 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
     this.ctx = this.c.getContext("2d");
 
-    //this.cr = document.getElementById("canvas-receptor");
-    //this.ctxr = this.cr.getContext("2d");
     this.receptor = new Image();
     this.receptor.src = "img/receptor.svg";
 
@@ -161,17 +159,10 @@ class Main {
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     //dibujar el mamografo
-    // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
     drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
-
-    // dibujar en el canvas las herramientas nuevas
-    // this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-
-    //dibujar resultados
-    //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
 
     this.panelResultados.limpiarResultados();
     try {
@@ -233,7 +224,6 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
-  //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
@@ -270,13 +260,20 @@ export const init = (errors, pruebas2) => {
 
 // Selector de pruebas
 
-
+selector(pruebas2);
+  
+  
+ 
+};
+function selector(pruebas2){
+  console.log(pruebas2);
   let pruebas = [];
   pruebas2.forEach((prueba) => {
-    if (prueba !== "") {
-      pruebas.push(prueba);
+    if (prueba[0] !== "") {
+      pruebas.push([prueba[0],prueba[1]]);
     }
   });
+
 
   var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
@@ -287,6 +284,7 @@ export const init = (errors, pruebas2) => {
   plantilla_prueba["compresion"] = new PlantillaCompresion(errordict);
   plantilla_prueba["rendimiento"] = new PlantillaRendimiento(errordict);
   plantilla_prueba["imagen"] = new PlantillaImagen(errordict);
+
 
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
@@ -306,12 +304,12 @@ export const init = (errors, pruebas2) => {
         $("#right").prop('disabled',false);
       }
     }
-    
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => {
-      cargarPrueba(pruebas[prueba_index]);
-      plantilla_prueba[pruebas[prueba_index]].setFeedback();
-    });
+
+
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -331,23 +329,22 @@ export const init = (errors, pruebas2) => {
         $("#right").prop('disabled',false);
       }
     }
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => {
-      cargarPrueba(pruebas[prueba_index]);
-      plantilla_prueba[pruebas[prueba_index]].setFeedback();
-    });
+
+    
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
   });
 
 
     let r;
-    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
-    r.on("click", () => {
-      cargarPrueba(pruebas[0]);
-      plantilla_prueba[pruebas[0]].setFeedback();
-      
-    }
-    );
+
+    r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
 
     if(prueba_index===0){
@@ -383,6 +380,7 @@ export const init = (errors, pruebas2) => {
   });
 
   console.log("Simulador inicializado");
+
 };
 
 function show_h() {
@@ -448,7 +446,7 @@ function show_mesa_fantoma() {
 function crearHerramButton(tool, onClickF) {
 
   let r = $(
-    `<button title= "${tool.description}" class="herrams-btn btn btn-light her-b-s"> </button>`
+    `<button title= "${tool.description}" class="herrams-btn btn btn-outline-secondary button-without-border her-b-s"> </button>`
   ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
   r.on("click", onClickF);
   r.appendTo("#herramientas-express");
