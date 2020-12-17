@@ -69,6 +69,7 @@ foreach ($moduleinstance as $key=>$value){
 }
 unset($value);
 */
+//Errores
 $errorvis = $moduleinstance->errorvis;
 $errorrep = $moduleinstance->errorrep;
 $errorlin = $moduleinstance->errorlin;
@@ -78,9 +79,16 @@ $erroralt = $moduleinstance->erroralt;
 $errorimglin = $moduleinstance->errorimglin;
 $errorimgsp = $moduleinstance->errorimgsp;
 $errorvmp = $moduleinstance->errorvmp;
+//Pruebas
 $compresion = $moduleinstance->compresion;
+$compresion_label = $moduleinstance->compresion_label;
+
 $rendimiento = $moduleinstance->rendimiento;
+$rendimiento_label = $moduleinstance->rendimiento_label;
+
 $imagen = $moduleinstance->imagen;
+$imagen_label = $moduleinstance->imagen_label;
+
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
     array(
         array(
@@ -94,9 +102,13 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
             array('errorimgsp',$errorimgsp),
             array('errorvmp',$errorvmp)
         ),
-        array($compresion,$rendimiento,$imagen)
+        array(
+            array($compresion,$compresion_label),
+            array($rendimiento,$rendimiento_label),
+            array($imagen,$imagen_label)
+
     )
-);
+));
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
@@ -105,21 +117,6 @@ $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 echo $OUTPUT->header();
 
 // Carga css para el archivo html
-// echo '<link href="styles.css" rel="stylesheet">';
-
 readfile("interfaces.html");
-
-/*echo
-'<div style="width:950px;height:600px;padding:50px;position:relative">'.
-    '<canvas id="canv" width="400" height="600" style="border:1px solid #000000;position:absolute;top:0;left:301px;"></canvas>'.
-    '<canvas id="canvRes" width="300" height="300" style="border:1px solid #000000;position:absolute;top:300px;left:0;"></canvas>'.
-
-    '<div style="position:absolute;top:0;left:700px;width:250px;height:600px;text-align:center;">'.
-        '<h2 style="width:100%;">Herramientas</h2>'.
-        '<div style="width:100%;height:100%;overflow-y:auto;">';
-for($i = 0; $i < 6; $i++) {
-    echo '<button class="herram_button" style="margin:20px;width:60%;"><img src="https://static.reol.cl/reol.png" width=64><br>Herramienta '.$i.'</button>';
-}
-echo '</div></div></div>';*/
 
 echo $OUTPUT->footer();
