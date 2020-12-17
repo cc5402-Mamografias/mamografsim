@@ -259,11 +259,6 @@ function selector(pruebas2){
     }
   });
 
-  /*var label_prueba = {};
-  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
-  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
-  label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-  */
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {

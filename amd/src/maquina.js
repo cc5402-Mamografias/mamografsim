@@ -26,9 +26,6 @@ export default class Maquina {
     this.errorLinealidad = errors["errorlin"][0];
     this.errorRendimiento = errors["errorrend"][0];
 
-
-//const ponderacionmA = 1;
-
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
     this.fuerza = 0.0;
