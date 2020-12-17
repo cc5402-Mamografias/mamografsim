@@ -245,19 +245,25 @@ export const init = (errors, pruebas2) => {
 
 // Selector de pruebas
 
-
+selector(pruebas2);
+  
+  
+ 
+};
+function selector(pruebas2){
+  console.log(pruebas2);
   let pruebas = [];
   pruebas2.forEach((prueba) => {
-    if (prueba !== "") {
-      pruebas.push(prueba);
+    if (prueba[0] !== "") {
+      pruebas.push([prueba[0],prueba[1]]);
     }
   });
 
-  var label_prueba = {};
+  /*var label_prueba = {};
   label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
   label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
   label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-  
+  */
   let prueba_index = 0;
   let max_pruebas = pruebas.length-1;
   $("#left").on('click', () => {
@@ -276,9 +282,9 @@ export const init = (errors, pruebas2) => {
         $("#right").prop('disabled',false);
       }
     }
-    
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -300,15 +306,15 @@ export const init = (errors, pruebas2) => {
       
     }
     
-    let r = $(`<button id = "inicio-${pruebas[prueba_index]}" class="open-sim  container-flex p-2">${label_prueba[pruebas[prueba_index]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index]));
+    let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   });
   
   
     let r;
-    r = $(`<button id = "inicio-${pruebas[0]}" class="open-sim container-flex p-2">${label_prueba[pruebas[0]]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[0]));
+    r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
     $("#prueba-button").html(r);
   
     if(prueba_index===0){
@@ -345,10 +351,7 @@ export const init = (errors, pruebas2) => {
 
   console.log("Simulador inicializado");
   
-  
- 
-};
-
+}
 function show_h() {
   let x = document.getElementById("herrams");
   x.style.display = "block";
