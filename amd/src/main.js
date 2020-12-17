@@ -71,8 +71,6 @@ class Main {
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
     this.ctx = this.c.getContext("2d");
 
-    //this.cr = document.getElementById("canvas-receptor");
-    //this.ctxr = this.cr.getContext("2d");
     this.receptor = new Image();
     this.receptor.src = "img/receptor.svg";
 
@@ -146,17 +144,10 @@ class Main {
     // actualizar significa que vamos a dibujar
     this.ctx.clearRect(0, 0, this.c.width, this.c.height);
     //dibujar el mamografo
-    // this.mamografo.actualizar(false, this.herr_activas);
     // dibujar en el canvas las herramientas nuevas
     drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
-
-    // dibujar en el canvas las herramientas nuevas
-    // this.herr_activas.forEach((t) => t.dibujar(this.ctx));
-
-    //dibujar resultados
-    //this.herr_activas.forEach((t) => t.dibujar_resultado(this.ctxres));
 
     this.panelResultados.limpiarResultados();
     try {
@@ -218,7 +209,6 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
-  //console.log(errors);
   let errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];

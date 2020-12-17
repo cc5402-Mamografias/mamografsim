@@ -1,7 +1,3 @@
-import Maquina from "./maquina";
-
-
-
 export default class MesaTopDown {
 
     constructor(mamografo) {

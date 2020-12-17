@@ -163,12 +163,6 @@ export async function preloadImages() {
       image.src = src;
     });
   var images = [];
-  //var image = new Image();
-  //image.src = 'img/complete.svg';
-  //var toalla = new Image();
-  //toalla.src = "img/balanzatoalla.svg";
-  //images.push(toalla);
-
   
   var balanza = new Image();
   balanza.src = "img/balanza.svg";

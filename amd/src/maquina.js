@@ -1,13 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam, drawPedal } from "./vista";
 
-import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa } from "./main";
-//import { setearParamsMamografo } from "./control-panel";
-
 const alturaMax = 80;
-const margenF = 0;
-const margenAlt = 2;
-
 
 //operacion Math.random con seed fijo
 var seed = 1;
@@ -68,8 +62,6 @@ export default class Maquina {
       drawMam(ctx, this.alturaDesplegada());
       drawPedal(ctx, false, false)
     });
-
-    //setearParamsMamografo();
   }
 
   //operaciones con resultado entero
@@ -87,8 +79,6 @@ export default class Maquina {
 
   construirEstado(isActivo) {
 
-    //console.log(this.errorFuerza);
-    //console.log(margenmA);
     return {
       altura: (this.alturaCompresor),
          fuerza: this.factorCompresion > this.factorCompresiónini
@@ -175,7 +165,6 @@ export default class Maquina {
         //MOSTRAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "block";
         //CARGAR VISTA TOP DOWN
-        //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
         console.log("BOTON CONFIGURADO");
       }
       else {
