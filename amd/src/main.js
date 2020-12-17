@@ -27,8 +27,6 @@ import { getError } from "./valor-errores";
 
 import VisorImagen from "./visor-imagen";
 
-import { drawReceptor } from "./vista";
-
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
