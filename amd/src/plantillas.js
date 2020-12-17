@@ -10,7 +10,15 @@ class PlantillaAbstracta {
         this.rangemargenmA = errors["errorrep"][1] ? "Sí" : "No";
         this.errorLinealidad = errors["errorlin"][1] ? "Sí" : "No";
         this.errorRendimiento = errors["errorrend"][1] ? "Sí" : "No";
-        //RECORDATORIO: falta agregar errores imagen    
+        //RECORDATORIO: falta agregar errores imagen  
+        console.log("ESTE ES UN CONSOLE LOG");
+        console.log(errors["errorimglin"]);
+        console.log(errors["errorimgsp"]);
+        console.log(errors["errorvmp"]);  
+        this.errorImagenLineas = errors["errorimglin"][1] ? "No se observan líneas en la imagen (aceptable).": "Se observan líneas en la imagen (no aceptable).";
+        this.errorImagenRuido = errors["errorimgsp"][1] ? "Se observan pocos pixeles blancos y negros, y espaciados entre sí (aceptable).": "Se observan muchos pixeles blancos y negros (no aceptable).";
+        this.errorContraste = errors["errorvmp"][1] ? "Existe un bajo nivel de contraste (aceptable).": "Existe un alto nivel de contraste (no aceptable)."; 
+        this.errorCualitativa = (errors["errorimglin"][1] || errors["errorimgsp"][1] || errors["errorvmp"][1]) ? "Sí" : "No";
     }
     setFeedback(){
 
@@ -31,11 +39,10 @@ export class PlantillaCompresion extends PlantillaAbstracta{
             $("#contenedor-button").show();
             $("#contenedor-sim").hide();
             });
-    
+
             $("#loader").remove();
 
         $("body").on("click", "#finalizar_compresion", function () {
-            
 
             $("#modal-compresion").modal("show");
             $("#plantilla").scrollTop(0);
@@ -44,15 +51,12 @@ export class PlantillaCompresion extends PlantillaAbstracta{
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
             $('.modal-backdrop').height("120%");
-            
-            
-
 
             //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
             $('body').removeClass("modal-open");
             $('body').css("padding-right", "");
 
-            // REsultados esperados
+            // Resultados esperados
             $('#resultado_fuerza_ejercida_real').text(errorFuerza);
             $('#resultado_diferencia_fuerza_moto_real').text(errorVisor);
             $('#resultado_diferencia_fuerza_manual_real').text(errorVisor);
@@ -82,34 +86,28 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
         let rangemargenmA  = this.rangemargenmA;
         let errorLinealidad = this.errorLinealidad;
         let errorRendimiento = this.errorRendimiento;
-        $("#volver-menu-desde-prueba-rendimiento").on('click', () => {
 
-            console.log("RENDIMIENTO")
+        $("#volver-menu-desde-prueba-rendimiento").on('click', () => {
             $("#contenedor-button").show();
             $("#contenedor-sim").hide();
-            });
-    
-            $("#loader").remove();
+        });
 
+        $("#loader").remove();
 
         $("body").on("click", "#finalizar_rendimiento", function () {
             //$("#modal-rendimiento").scrollIntoView(true);
             $("#modal-rendimiento").modal("show");
             $("#plantilla").scrollTop(0);
-    
 
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
             $('.modal-backdrop').height("270%");
-            
-
 
             //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
             $('body').removeClass("modal-open");
             $('body').css("padding-right", "");
-            
 
-            // REsultados esperados
+            // Resultados esperados
             $('#repet_conf1_real').text(rangemargenmA);
             $('#repet_conf2_real').text(rangemargenmA);
             $('#repet_conf3_real').text(rangemargenmA);
@@ -138,8 +136,7 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
             $('#rend_conf4_ingresado').text(document.getElementById("cumple_rend_conf4").value);
 
             //finalmente movemos la view
-            
-            
+
         });
     }
 }
@@ -150,19 +147,36 @@ export class PlantillaImagen extends PlantillaAbstracta{
     }
 
     setFeedback(){
+        let errorImagenLineas  = this.errorImagenLineas;
+        let errorImagenRuido = this.errorImagenRuido;
+        let errorContraste = this.errorContraste;
+        let errorCualitativa = this.errorCualitativa;
+
         $("#volver-menu-desde-prueba-imagen").on('click', () => {
-            console.log("IMAGEN")
             $("#contenedor-button").show();
             $("#contenedor-sim").hide();
-            });
-    
-            $("#loader").remove();
+        });
+
+        $("#loader").remove();
+
+        
+
         $("body").on("click", "#finalizar_imagen", function () {
-            
+            let masIngresado = document.getElementById("mas_actual_planilla").value === "" ? 0 : parseFloat(document.getElementById("mas_actual_planilla").value);
+            let masMin = document.getElementById("mas_inferior_planilla").value;
+            let masMax = document.getElementById("mas_superior_planilla").value;
+    
+            let sdnrIngresado = document.getElementById("SDNR_actual_planilla").value === "" ? 0 : parseFloat(document.getElementById("SDNR_actual_planilla").value);
+            let sdnrMin = document.getElementById("SDNR_inferior_planilla").value;
+            let sdnrMax = document.getElementById("SDNR_superior_planilla").value;
+    
+            let vpmIngresado = document.getElementById("a_actual_planilla").value === "" ? 0 : parseFloat(document.getElementById("a_actual_planilla").value);
+            let vpmMin = document.getElementById("VPM_inferior_planilla").value;
+            let vpmMax = document.getElementById("VPM_superior_planilla").value;
+
 
             $("#modal-imagen").modal("show");
             $("#plantilla").scrollTop(0);
-            //$("#modal-imagen").scrollIntoView(true);
 
             //appending modal background inside the contenedor-main div
             $('.modal-backdrop').appendTo('#plantilla');
@@ -173,20 +187,20 @@ export class PlantillaImagen extends PlantillaAbstracta{
             $('body').removeClass("modal-open");
             $('body').css("padding-right", "");
 
-            // REsultados esperados
-            //FALTA RELLENAR!!!!!!
-           // $('#cualitativa_real').text();
-           // $('#cuantitativa1_real').text();
-           // $('##cuantitativa2_real').text();
-           
+            // Resultados esperados
+            $('#cualitativa1_real').text(errorImagenLineas + " " + errorImagenRuido);
+            $('#cualitativa2_real').text(errorCualitativa);
+            $('#mas_real').text((masMin <= masIngresado && masIngresado <= masMax) ? "Sí" : "No");
+            $('#cuantitativa1_real').text((vpmMin <= vpmIngresado && vpmIngresado <= vpmMax) ? "Sí" : "No");
+            $('#cuantitativa2_real').text((sdnrMin <= sdnrIngresado && sdnrIngresado <= sdnrMax) ? "Sí" : "No");
 
             // Resultados ingresados por usuario
-
-            $('#cualitativa_ingresada').text(document.getElementById("cumple_cual").value);
+            $('#mas_ingresada').text(document.getElementById("cumple_mas").value);
+            $('#cualitativa1_ingresada').text(document.getElementById("cumple_cualuno").value);
+            $('#cualitativa2_ingresada').text(document.getElementById("cumple_cualdos").value);
             $('#cuantitativa1_ingresada').text(document.getElementById("cumple_cuantuno").value);
             $('#cuantitativa2_ingresada').text(document.getElementById("cumple_cuantdos").value);
 
-            
         });
     }
 }
