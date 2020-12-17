@@ -84,10 +84,6 @@ export const init = () => {
   // botones miliAmperes
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
-  // boton filtro
-  document.getElementById("filter-b").onclick = () => cambiarModo(valores_filtro);
-  // boton anodo
-  document.getElementById("anode-b").onclick = () => cambiarModo(valores_anodo);
   // para que se seteen sin tener que apretar algun boton antes de shoot
   setearParamsMamografo()
 

@@ -120,7 +120,7 @@
               <div class="row">
                 <div class="col-sm">
                   <!-- <button class="btnmode" id="mode-b">MODE</button> -->
-                  <h6>MODE</h6>
+                  <h6 class="mode-title">MODE</h6>
                 </div>
               </div>
               <div class="row">
@@ -144,19 +144,21 @@
             </div>
           </div>
           <div class="container">
-            <div class="filter-mode">
-              <button class="fltmode" id="filter-b">filter</button>
-              <label> Mo <input type="radio" name="filter" id="f01" checked disabled /> </label>
-              <label> Rh <input type="radio" name="filter" id="f02" disabled /> </label>
-              <label> Ag <input type="radio" name="filter" id="f03" disabled /> </label>
+            <div class="filter-mode row">
+              <!-- <button class="fltmode" id="filter-b">filter</button> -->
+              <p class="filter-title">FILTER</p>
+              <label class="filter-cursor"> Mo <input class="filter filter-cursor" type="radio" name="filter" id="f01" checked /> </label>
+              <label class="filter-cursor"> Rh <input class="filter filter-cursor" type="radio" name="filter" id="f02" /> </label>
+              <label class="filter-cursor"> Ag <input class="filter filter-cursor" type="radio" name="filter" id="f03" /> </label>
             </div>
           </div>
           <div class="container">
-            <div class="anode-mode">
-              <button class="anodemode" id="anode-b">anode</button>
-              <label> Mo <input type="radio" name="anode" id="a01" checked disabled /> </label>
-              <label> Rh <input type="radio" name="anode" id="a02" disabled /> </label>
-              <label> W <input type="radio" name="anode" id="a03" disabled /> </label>
+            <div class="anode-mode row">
+              <!-- <button class="anodemode" id="anode-b">anode</button> -->
+              <p class="anode-title">ANODE</p>
+              <label class="anode-cursor"> Mo <input class="anode anode-cursor" type="radio" name="anode" id="a01" checked /> </label>
+              <label class="anode-cursor"> Rh <input class="anode anode-cursor" type="radio" name="anode" id="a02" /> </label>
+              <label class="anode-cursor"> W <input class="anode anode-cursor" type="radio" name="anode" id="a03" /> </label>
             </div>
           </div>
 
