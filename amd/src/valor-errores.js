@@ -71,15 +71,15 @@ var valores = {
                 correcto: true
             },
             "Bajo": {
-                valor: 1.0,
+                valor: 0.05,
                 correcto: true
             },
             "Medio": {
-                valor: 8.0,
+                valor: 0.2,
                 correcto: false
             },
             "Alto": {
-                valor: 15.0,
+                valor: 1.4,
                 correcto: false
             }
         }
@@ -93,7 +93,7 @@ var valores = {
                 correcto: true
             },
             "Bajo": {
-                valor: 0.2,
+                valor: 0.3,
                 correcto: true
             },
             "Medio": {
@@ -115,15 +115,15 @@ var valores = {
                 correcto: true
             },
             "Bajo": {
-                valor: 0.9,
+                valor: 0.01,
                 correcto: true
             },
             "Medio": {
-                valor: 0.95,
+                valor: 0.92,
                 correcto: true
             },
             "Alto": {
-                valor: 0.98,
+                valor: 0.95,
                 correcto: true
             }
         }
