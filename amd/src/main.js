@@ -42,20 +42,24 @@ import MesaTopDown from "./vista-top-down";
 import { getError } from "./valor-errores";
 
 import VisorImagen from "./visor-imagen";
-
+import { inicializarPasos } from "./botones-pasos";
+import { drawReceptor } from "./vista";
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
-
 class Main {
   constructor(errors) {
-    console.log("errors viejo");
-    console.log(errors);
+
+
+    this.c = document.getElementById("canvas");
+    this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
+    this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
+    this.ctx = this.c.getContext("2d");
     // Errores - parametros del simulador
     errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
     errors.errorvis = getError("errorFuerzaMedida", errors.errorvis);
-    errors.errorrep= getError("errorRepetibilidad", errors.errorrep);
+    errors.errorrep = getError("errorRepetibilidad", errors.errorrep);
     errors.errorlin = getError("errorLinealidad", errors.errorlin);
     errors.errorrend = getError("errorRendimiento", errors.errorrend);
     errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
@@ -69,7 +73,7 @@ class Main {
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
-    this.visor = new VisorImagen(this.mamografo, ()=> {this.actualizar()});
+    this.visor = new VisorImagen(this.mamografo, () => { this.actualizar() });
 
     // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
@@ -83,10 +87,6 @@ class Main {
       new Fantoma(this.visor),
     ];
 
-    this.c = document.getElementById("canvas");
-    this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
-    this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-    this.ctx = this.c.getContext("2d");
 
     this.receptor = new Image();
     this.receptor.src = "img/receptor.svg";
@@ -199,7 +199,7 @@ class Main {
 
     this.actualizar();
   }
- 
+
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
   onCanvasClick(e) {
@@ -291,21 +291,21 @@ function selector(pruebas2){
 
 
   let prueba_index = 0;
-  let max_pruebas = pruebas.length-1;
+  let max_pruebas = pruebas.length - 1;
   $("#left").on('click', () => {
-    if(prueba_index>0){
+    if (prueba_index > 0) {
       prueba_index--;
-      if(prueba_index===0){
-        $("#left").prop('disabled',true);
+      if (prueba_index === 0) {
+        $("#left").prop('disabled', true);
       }
-      else{
-        $("#left").prop('disabled',false);
+      else {
+        $("#left").prop('disabled', false);
       }
-      if(prueba_index===max_pruebas){
-        $("#right").prop('disabled',true);
+      if (prueba_index === max_pruebas) {
+        $("#right").prop('disabled', true);
       }
-      else{
-        $("#right").prop('disabled',false);
+      else {
+        $("#right").prop('disabled', false);
       }
     }
 
@@ -317,20 +317,20 @@ function selector(pruebas2){
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
-    if(prueba_index<max_pruebas){
+    if (prueba_index < max_pruebas) {
       prueba_index++;
-      
-      if(prueba_index===0){
-        $("#left").prop('disabled',true);
+
+      if (prueba_index === 0) {
+        $("#left").prop('disabled', true);
       }
-      else{
-        $("#left").prop('disabled',false);
+      else {
+        $("#left").prop('disabled', false);
       }
-      if(prueba_index===max_pruebas){
-        $("#right").prop('disabled',true);
+      if (prueba_index === max_pruebas) {
+        $("#right").prop('disabled', true);
       }
-      else{
-        $("#right").prop('disabled',false);
+      else {
+        $("#right").prop('disabled', false);
       }
     }
 
@@ -385,7 +385,9 @@ function selector(pruebas2){
 
   console.log("Simulador inicializado");
 
+
 };
+
 
 function show_h() {
   let x = document.getElementById("herrams");
@@ -408,10 +410,10 @@ function hide_p() {
 }
 
 function show_mesa() {
-  if (m.mamografo.getHerramienta().getTipo() === "Detector de Radiación"){
+  if (m.mamografo.getHerramienta().getTipo() === "Detector de Radiación") {
     show_mesa_camara()
   }
-  else if (m.mamografo.getHerramienta().getTipo() === "Fantoma"){
+  else if (m.mamografo.getHerramienta().getTipo() === "Fantoma") {
     show_mesa_fantoma()
   }
 }
@@ -425,8 +427,8 @@ function show_mesa_camara() {
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
-  
-  ctxr.drawImage(m.receptor,155,-30,m.receptor.width*scale*0.8,m.receptor.height*scale*0.8)
+
+  ctxr.drawImage(m.receptor, 155, -30, m.receptor.width * scale * 0.8, m.receptor.height * scale * 0.8)
 
 }
 function show_mesa_fantoma() {
@@ -438,8 +440,8 @@ function show_mesa_fantoma() {
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
-  
-  ctxr.drawImage(m.receptor2,155,-30,m.receptor2.width*scale*0.8,m.receptor2.height*scale*0.8)
+
+  ctxr.drawImage(m.receptor2, 155, -30, m.receptor2.width * scale * 0.8, m.receptor2.height * scale * 0.8)
 
 }
 
@@ -465,7 +467,7 @@ function crearHerramButton(tool, onClickF) {
 function cargarPrueba(prueba) {
   console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
-  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`);
+  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => inicializarPasos());
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();
 };
@@ -514,7 +516,7 @@ document.addEventListener("dragenter", function (event) {
   console.log("Estoy dentro de un dropzone")
   // highlight potential drop target when the draggable element enters it
   if (event.target.classList.contains("dropzone")) {
-      event.target.style.background = "red";
+    event.target.style.background = "red";
   }
 
 }, false);
@@ -523,7 +525,7 @@ document.addEventListener("dragleave", function (event) {
   console.log("salgo de mi posicion original");
   // reset background of potential drop target when the draggable element leaves it
   if (event.target.classList.contains("dropzone")) {
-      event.target.style.background = "";
+    event.target.style.background = "";
   }
 
 }, false);
@@ -533,16 +535,16 @@ document.addEventListener("drop", function (event) {
   event.preventDefault();
   // move dragged elem to the selected drop target
   if (event.target.classList.contains("dropzone")) {
-      event.target.style.background = "";
-      this.dragged.parentNode.removeChild(this.dragged);
-      event.target.appendChild(this.dragged);
-      //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
-      if (event.target.id == "posicion_buena"){
-        m.mesaTopDown.check_pos_correct()
-      }
-      else{
-        m.mesaTopDown.check_pos_incorrect()
-      }
+    event.target.style.background = "";
+    this.dragged.parentNode.removeChild(this.dragged);
+    event.target.appendChild(this.dragged);
+    //PARA CHECKEAR SI ESTA EN POSICION CORRECTA
+    if (event.target.id == "posicion_buena") {
+      m.mesaTopDown.check_pos_correct()
+    }
+    else {
+      m.mesaTopDown.check_pos_incorrect()
+    }
   }
 
 }, false);

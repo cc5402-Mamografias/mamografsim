@@ -88,7 +88,6 @@ $rendimiento_label = $moduleinstance->rendimiento_label;
 
 $imagen = $moduleinstance->imagen;
 $imagen_label = $moduleinstance->imagen_label;
-
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
     array(
         array(
