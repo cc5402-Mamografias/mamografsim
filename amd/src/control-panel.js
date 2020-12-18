@@ -52,11 +52,14 @@ function cambiarModo(modos) {
     document.getElementById(modos[(index + 1) % modos.length]).checked = true;
   }
   if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime"){
-    document.getElementById("mas").value = ""
+    document.getElementById("mas").disabled =true;
+    document.getElementById("ma+").disabled =true;
+    document.getElementById("ma-").disabled =true;
   }
   else if (label_modo[getValorActivoRadioButtons(valores_modo)] == "manual"){
-    document.getElementById("mas").value = 100
-
+    document.getElementById("mas").disabled =false;
+    document.getElementById("ma+").disabled =false;
+    document.getElementById("ma-").disabled =false;
   }
 
 
