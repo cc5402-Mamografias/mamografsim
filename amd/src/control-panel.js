@@ -56,7 +56,7 @@ function cambiarModo(modos) {
     document.getElementById("ma+").disabled =true;
     document.getElementById("ma-").disabled =true;
   }
-  else if (label_modo[getValorActivoRadioButtons(valores_modo)] == "manual"){
+  else{
     document.getElementById("mas").disabled =false;
     document.getElementById("ma+").disabled =false;
     document.getElementById("ma-").disabled =false;

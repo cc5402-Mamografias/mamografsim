@@ -5,20 +5,20 @@
     </div>
   </div>
 
-  
-  <div style="height:300px">
-    
+
+  <div style="height:210px">
+
     <table style="float: left; width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de fantoma de uniformidad</th>
-        
+
       </tr>
-      
+
       <tr>
         <th>Filtro</th>
         <th><input type="text" class="text-center" id="filtro_planilla" value = "Mo" step="any" readonly></th>
       </tr>
-      
+
       <tr>
         <th>kV</th>
         <th><input type="number" class="text-center" id="kV_planilla" value = 28 step="any" readonly></th>
@@ -31,22 +31,53 @@
       </tr>
 
       <tr>
-        <th>Fuerza De Compresion (kg)</th>
-        <th><input type="number" class="text-center" id="fuerza_planilla" value = 8 step="any" readonly></th>
+        <th>Fuerza De Compresion (N)</th>
+        <th><input type="number" class="text-center" id="fuerza_planilla" value = 80 step="any" readonly></th>
       </tr>
     </table>
-  
+
     <table style="float:right;  width: 45%;">
       <tr>
-        <th colspan="2">Condiciones base de mAs</th>
-        
+        <th colspan="2">Condiciones base de SDNR</th>
+
       </tr>
-      
+
+      <tr>
+        <th>valor promedio de SDNR</th>
+        <th><input type="number" id="SDNR_planilla" step="any" value=0 readonly></th>
+      </tr>
+
+      <tr>
+        <th>Límite de acción superior = SDNR + 10%</th>
+        <th><input type="number" id="SDNR_superior_planilla" step="any" value=0 readonly ></th>
+      </tr>
+
+      <tr>
+        <th>Límite de acción inferior = SDNR - 10%</th>
+        <th><input type="number" id="SDNR_inferior_planilla" step="any" value=0 readonly></th>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+
+<!--          division de tablas                   -->
+
+
+  <div style="height: 190px;">
+
+    <table style="float:left;  width: 45%;">
+      <tr>
+        <th colspan="2">Condiciones base de mAs</th>
+      </tr>
+
       <tr>
         <th>mAs Promedio</th>
         <th><input type="number" id="mAs_planilla" value = 100 step="any" readonly> </th>
       </tr>
-      
+
       <tr>
         <th>Límite superior = mAs + 10%</th>
         <th><input type="number" id="mas_superior_planilla" value = 110 step="any" readonly></th>
@@ -58,77 +89,42 @@
         <th><input type="number" id="mas_inferior_planilla" value = 90 step="any" readonly></th>
       </tr>
 
-      
-    </table>
-  </div>
-
-
-    
-<!--          division de tablas                   -->
-
-
-  <div style="height: 500px;">
-
-    <table style="float: left; width: 30%; top:50%">
-      <tr>
-        <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
-        </th>
-      </tr>
     </table>
 
-  
-  <div style="height: 230px;">
   <table style="float: right; width: 45%;">
     <tr>
       <th colspan="2">Condiciones base del Valor Pixel Medio (VPM)</th>
-      
+
     </tr>
-    
+
     <tr>
       <th>VPM del Disco (A)</th>
-      <th><input type="number" class="text-center" id="VPM_planilla" step="any" ></th>
+      <th><input type="number" class="text-center" id="VPM_planilla" step="any"  value=0 readonly></th>
     </tr>
-    
+
     <tr>
       <th>Límite de acción superior = VPM + 10%</th>
-      <th><input type="number" class="text-center" id="VPM_superior_planilla" step="any" ></th>
+      <th><input type="number" class="text-center" id="VPM_superior_planilla" step="any" value=0 readonly></th>
     </tr>
 
 
     <tr>
       <th>Límite de acción inferior = VPM - 10%</th>
-      <th><input type="number" class="text-center" id="VPM_inferior_planilla" step="any" ></th>
+      <th><input type="number" class="text-center" id="VPM_inferior_planilla" step="any" value=0 readonly></th>
     </tr>
 
   </table>
- </div>
-
-  <table style="float: right; width: 45%;">
-    <tr>
-      <th colspan="2">Condiciones base de SDNR</th>
-      
-    </tr>
-    
-    <tr>
-      <th>valor promedio de SDNR</th>
-      <th><input type="number" id="SDNR_planilla" step="any" ></th>
-    </tr>
-    
-    <tr>
-      <th>Límite de acción superior = SDNR + 10%</th>
-      <th><input type="number" id="SDNR_superior_planilla" step="any" ></th>
-    </tr>
-
-
-    <tr>
-      <th>Límite de acción inferior = SDNR - 10%</th>
-      <th><input type="number" id="SDNR_inferior_planilla" step="any" ></th>
-    </tr>
-
-    
-  </table>
-  
 </div>
+
+<div style="margin-top: 20px; text-align:-webkit-center; text-align: -moz-center;">
+  <table style="width: 30%; top:50%">
+    <tr>
+      <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
+      </th>
+    </tr>
+  </table>
+</div>
+
 <div>
   <table>
     <tr>
@@ -139,38 +135,70 @@
 
     <tr>
       <th>Iniciales del realizador</th>
-      <th><input type="text" id="realizador_falso" value = "JM" step="any" readonly></th>
-      <th><input type="text" id="realizador_real"></th>
+      <th><input type="text" id="realizador_ant" value = "JM" step="any" readonly></th>
+      <th><input type="text" id="realizador_actual" required></th>
     </tr>
 
     <tr>
       <th>A</th>
-      <th><input type="number" id="a_falso_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="a_real_planilla" onchange="actualizar_funciones(this)"></th>
+      <th><input type="number" id="a_ant_planilla" value = 0 step="any" readonly></th>
+      <th><input type="number" id="a_actual_planilla" onchange="actualizar_funciones(this)" required></th>
     </tr>
 
     <tr>
       <th>B</th>
-      <th><input type="number" id="b_falso_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="b_real_planilla" onchange="actualizar_funciones(this)" step="any"></th>
+      <th><input type="number" id="b_ant_planilla" value = 0 step="any" readonly></th>
+      <th><input type="number" id="b_actual_planilla" onchange="actualizar_funciones(this)" step="any" required></th>
     </tr>
 
     <tr>
       <th >C</th>
-      <th><input type="number" id="c_falso_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="c_real_planilla" onchange="actualizar_funciones(this)" step="any" ></th>
+      <th><input type="number" id="c_ant_planilla" value = 0 step="any" readonly></th>
+      <th><input type="number" id="c_actual_planilla" onchange="actualizar_funciones(this)" step="any" required></th>
     </tr>
 
     <tr>
       <th >SDNR</th>
-      <th><input type="number" id="SDNR_falso_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="SDNR_real_planilla" step="any" ></th>
+      <th><input type="number" id="SDNR_ant_planilla" value = 0 step="any" readonly></th>
+      <th><input type="number" id="SDNR_actual_planilla" step="any" required></th>
     </tr>
 
     <tr>
-      <th>Artefactos aceptables de imagen del monitor</th>
-      <th><input type="number" id="artf_falso_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="artf_real_planilla" step="any" ></th>
+      <th>mAs</th>
+      <th><input type="number" id="mas_ant_planilla" value = 100 step="any" readonly></th>
+      <th><input type="number" id="mas_actual_planilla" step="any" required></th>
+    </tr>
+
+    <tr>
+      <th>¿Se observan artefactos en la imagen del monitor</th>
+      <th>
+        <select name="cumple_cual" id="artf_ant_planilla">
+          <option disabled selected value> NO </option>
+        </select>
+      </th>
+      <th>
+        <select name="cumple_cual" id="artf_actual_planilla" required>
+          <option disabled selected value> ... </option>
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
+      </th>
+    </tr>
+
+    <tr>
+      <th>¿La cantidad de artefactos presentes es aceptable?</th>
+      <th>
+        <select name="cumple_cual" id="n_artf_ant_planilla">
+          <option disabled selected value="Si">Si</option>
+        </select>
+      </th>
+      <th>
+        <select name="cumple_cual" id="n_artf_actual_planilla" required>
+          <option disabled selected value> ... </option>
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select>
+      </th>
     </tr>
 
   </table>
@@ -182,32 +210,124 @@
   </tr>
 
   <tr>
-      <th colspan="6">Cualitativa: No deben observarse lineas, artefactos, ni pixeles "brillantes" o "negros"</th>
-      <td><select name="cumple_cual_conf" id="cumple_rep_conf1">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select></td>
-  </tr>
-
-  <tr>
-      <th colspan="6">Cuantitativa: VPM dentro del +/-10% con respecto a los valores de referencia</th>
-      <td><select name="cumple_cuant1_conf" id="cumple_lin_conf2">
-          <option value="Si">Si</option>
-          <option value="No">No</option>
-        </select></td>
-  </tr>
-
-  <tr>
-    <th colspan="6">Cuantitativa: SDNR dentro del +/-10% con respecto a los valores de referencia</th>
-    <td><select name="cumple_cuant1_conf" id="cumple_lin_conf2">
+    <th colspan="5">¿El valor de mAs se encuentra dentro del rango aceptable?</th>
+    <td colspan="2"><select name="cumple_mas" id="cumple_mas">
+        <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
 
+  <tr>
+      <th colspan="5">Cuantitativa: VPM dentro del +/-10% con respecto a los valores de referencia</th>
+      <td colspan="2"><select name="cumple_cuantuno" id="cumple_cuantuno">
+          <option disabled selected value> ... </option>
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+        </select></td>
+  </tr>
+
+  <tr>
+    <th colspan="5">Cuantitativa: SDNR dentro del +/-10% con respecto a los valores de referencia</th>
+    <td colspan="2"><select name="cumple_cuantdos" id="cumple_cuantdos">
+        <option disabled selected value> ... </option>
+        <option value="Si">Si</option>
+        <option value="No">No</option>
+      </select></td>
+  </tr>
+
+  <tr>
+    <th colspan="5">Cualitativa: Mencione si se observa alguno de los siguientes desperfectos: lineas, artefactos, pixeles "brillantes" o "negros".</th>
+    <td colspan="2"><textarea name="cumple_cualuno" id="cumple_cualuno" cols="26" rows="6"></textarea></td>
+  </tr>
+
+  <tr>
+    <th colspan="5">Dada su respuesta anterior, ¿El mamógrafo debería pasar la prueba cualitativa?</th>
+    <td colspan="2"><select name="cumple_cualdos" id="cumple_cualdos">
+      <option disabled selected value> ... </option>
+      <option value="Si">Si</option>
+      <option value="No">No</option>
+    </select></td>
+  </tr>
+
 </table>
+
+<button class="btn-primary button-without-border btn-result" id="finalizar_imagen" type="submit">
+  Terminar Prueba
+</button>
+</div>
+
+
+<!--          MODAL PARA TERMINAR PRUEBA                  -->
+<div id="modal-imagen" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="height: 580px">
+      <div class="modal-header">
+        <h4 class="modal-title">Retroalimentación de Respuestas Ingresadas</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+      <div class="modal-body modal-volver" id="retroalimentacion_imagen">
+        <table>
+          <tr>
+            <td></td>
+            <td>
+              Resultados Esperados
+            </td>
+            <td>
+              Resultados Ingresados
+            </td>
+          </tr>
+
+          <tr>
+            <td>¿El valor de mAs se encuentra dentro del rango aceptable?</td>
+            <td id="mas_real"></td>
+            <td id="mas_ingresada"></td>
+          </tr>
+
+          <tr>
+            <td>Cuantitativa: VPM dentro del +/-10% con respecto a los valores de referencia</td>
+            <td id="cuantitativa1_real"></td>
+            <td id="cuantitativa1_ingresada"></td>
+          </tr>
+
+          <tr>
+            <td>Cuantitativa: SDNR dentro del +/-10% con respecto a los valores de referencia</td>
+            <td id="cuantitativa2_real"></td>
+            <td id="cuantitativa2_ingresada"></td>
+          </tr>
+
+
+          <tr>
+            <td>Cualitativa: Mencione si se observa alguno de los siguientes desperfectos: lineas, artefactos, pixeles "brillantes" o "negros".</td>
+            <td id="cualitativa1_real"></td>
+            <td id="cualitativa1_ingresada"></td>
+          </tr>
+
+          <tr>
+            <td>Dada su respuesta anterior, ¿El mamógrafo debería pasar la prueba cualitativa?</td>
+            <td id="cualitativa2_real"></td>
+            <td id="cualitativa2_ingresada"></td>
+          </tr>
+
+
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="volver-menu-desde-prueba-imagen"
+          class="btn btn-danger"
+          data-dismiss="modal"
+        >
+          Finalizar Prueba
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script type="text/javascript" src="amd/src/plantilla-imagen.js"></script>
-
-    

@@ -90,8 +90,12 @@ export default class Maquina {
       kilovolt: (this.kilovolt),
       //para herramienta de fantoma
       miliamperios_nom : (this.miliamperios),
+
+      miliamperios: (this.miliamperios),
+
       miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
       miliamperios_auto : this.miliamperios_auto,
+
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,

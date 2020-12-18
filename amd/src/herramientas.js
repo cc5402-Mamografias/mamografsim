@@ -4,6 +4,26 @@
 var pyKerma_server = "http://localhost:5000";
 //var pyKerma_server = "http://moodle2.cimt.cl/api";
 
+//funciones aux
+//operaciones con resultado entero
+function mError(min, max) {
+
+  return ((random() * (max - min) ) + min);
+}
+function elevar (base, exp){
+  return((Math.pow(base, exp)));
+}
+function multiplicar (x1,x2){
+  return((x1*x2));
+}
+//operacion Math.random con seed fijo
+var seed = 1;
+function random() {
+    var x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+}
+
+
 class AbstractTool {
   constructor() {
     if (this.constructor === AbstractTool) {
@@ -254,6 +274,7 @@ class DetectRad extends AbstractTool {
     this.y = 230;
     this.sprite = new Image();
     this.sprite.src = 'img/detector.svg';
+    this.errores = {};
   }
   colocar(bool) {
     this.colocada = bool;
@@ -261,6 +282,10 @@ class DetectRad extends AbstractTool {
 
 
   actualizar(estado) {
+    //cargamos errores
+    this.errores["rep"] = estado.errores.errorrep[0]
+    this.errores["lin"] = estado.errores.errorlin[0]
+    this.errores["rend"] = estado.errores.errorrend[0]
 
     if (estado.activo && this.colocada) {
 
@@ -295,10 +320,25 @@ class DetectRad extends AbstractTool {
   getResultado() {
 
     if (this.colocada == true && this.estado == "activo") {
+      //Primero aplicamos errores al kerma si es que existen
+      console.log("ERRORES REGISTRADOS")
+
+      console.log(this.errores["rep"])
+      console.log(this.errores["lin"])
+      console.log(this.errores["rend"])
+      console.log(this.kerma)
+
+      //(let kermamod = multiplicar((elevar((this.kerma),(1+this.errores["lin"]))+ mError(-this.errores["rep"]*this.kerma,this.errores["rep"]*this.kerma)),(1-this.errores["rend"]));
+      let kermalin = (elevar((this.kerma),(1+this.errores["lin"])))
+      let kermarep = kermalin + mError(-this.errores["rep"]*kermalin,this.errores["rep"]*kermalin)
+      let kermamod = kermarep * (1- this.errores["rend"])
+
+      console.log(kermamod)
+
       return {
         detector: [
           "Detector de Radiación",
-          "\t\t\tKerma: " + this.kerma.toFixed(2) + " mGy"
+          "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy"
         ]
       }
     }
