@@ -9,6 +9,9 @@ export class ClickeableObject {
     this.callback = callback;
   }
 
+
+
+
   on_click() {
     this.clicked = true;
     this.callback();
@@ -20,7 +23,7 @@ export class ClickeableObject {
     clearInterval(this.loop);
   }
 
-  isClicked(click) {
+  insideBoundingBox(click) {
     return !(
       click[0] < this.posicion[0] ||
       click[0] > this.posicion[0] + this.boundingBox[0] ||
