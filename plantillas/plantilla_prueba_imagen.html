@@ -5,20 +5,20 @@
     </div>
   </div>
 
-  
+
   <div style="height:210px">
-    
+
     <table style="float: left; width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de fantoma de uniformidad</th>
-        
+
       </tr>
-      
+
       <tr>
         <th>Filtro</th>
         <th><input type="text" class="text-center" id="filtro_planilla" value = "Mo" step="any" readonly></th>
       </tr>
-      
+
       <tr>
         <th>kV</th>
         <th><input type="number" class="text-center" id="kV_planilla" value = 28 step="any" readonly></th>
@@ -39,33 +39,30 @@
     <table style="float:right;  width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de SDNR</th>
-        
+
       </tr>
-      
+
       <tr>
         <th>valor promedio de SDNR</th>
         <th><input type="number" id="SDNR_planilla" step="any" value=0 readonly></th>
       </tr>
-      
+
       <tr>
         <th>Límite de acción superior = SDNR + 10%</th>
         <th><input type="number" id="SDNR_superior_planilla" step="any" value=0 readonly ></th>
       </tr>
-  
-  
+
       <tr>
         <th>Límite de acción inferior = SDNR - 10%</th>
         <th><input type="number" id="SDNR_inferior_planilla" step="any" value=0 readonly></th>
       </tr>
-  
-      
+
     </table>
-  
-    
+
   </div>
 
 
-    
+
 <!--          division de tablas                   -->
 
 
@@ -74,14 +71,13 @@
     <table style="float:left;  width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de mAs</th>
-        
       </tr>
-      
+
       <tr>
         <th>mAs Promedio</th>
         <th><input type="number" id="mAs_planilla" value = 100 step="any" readonly> </th>
       </tr>
-      
+
       <tr>
         <th>Límite superior = mAs + 10%</th>
         <th><input type="number" id="mas_superior_planilla" value = 110 step="any" readonly></th>
@@ -93,22 +89,19 @@
         <th><input type="number" id="mas_inferior_planilla" value = 90 step="any" readonly></th>
       </tr>
 
-      
     </table>
 
-  
-  
   <table style="float: right; width: 45%;">
     <tr>
       <th colspan="2">Condiciones base del Valor Pixel Medio (VPM)</th>
-      
+
     </tr>
-    
+
     <tr>
       <th>VPM del Disco (A)</th>
       <th><input type="number" class="text-center" id="VPM_planilla" step="any"  value=0 readonly></th>
     </tr>
-    
+
     <tr>
       <th>Límite de acción superior = VPM + 10%</th>
       <th><input type="number" class="text-center" id="VPM_superior_planilla" step="any" value=0 readonly></th>
@@ -319,7 +312,7 @@
             <td id="cualitativa2_ingresada"></td>
           </tr>
 
-         
+
         </table>
       </div>
       <div class="modal-footer">
@@ -338,5 +331,3 @@
 
 
 <script type="text/javascript" src="amd/src/plantilla-imagen.js"></script>
-
-    
