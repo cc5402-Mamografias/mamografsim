@@ -1,11 +1,11 @@
-<div class="height-100">
+<div>
     <div class="row h-100">
         <h3 class="custom-h3">RENDIMIENTO: REPETIBILIDAD Y LINEALIDAD</h3>
     </div>
-</div>
 
 
-<div class="height-100">
+
+<div>
 
     <table class="planilla-tabla" style="margin-top: 20px;">
         <tr>
@@ -434,18 +434,22 @@
         <tr>
             <th colspan="3">Repetibilidad 28 kVp: CV <= 5%</th>
             <td><select name="cumple_rep_conf1" id="cumple_rep_conf1">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rep_conf2" id="cumple_rep_conf2">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rep_conf3" id="cumple_rep_conf3">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rep_conf4" id="cumple_rep_conf4">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
@@ -453,19 +457,23 @@
 
         <tr>
             <th colspan="3">Linealidad: < +- 10%</th>
-            <td><select name="cumple_lin_conf1" id="cumple_lin_conf2">
+            <td><select name="cumple_lin_conf1" id="cumple_lin_conf1">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_lin_conf2" id="cumple_lin_conf2">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_lin_conf3" id="cumple_lin_conf3">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_lin_conf4" id="cumple_lin_conf4">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
@@ -474,18 +482,22 @@
         <tr>
             <th colspan="3">Rendimiento a 28 kV con Mo/Mo: > 300 uGy/mAs</th>
             <td><select name="cumple_rend_conf1" id="cumple_rend_conf1">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rend_conf2" id="cumple_rend_conf2">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rend_conf3" id="cumple_rend_conf3">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
             <td><select name="cumple_rend_conf4" id="cumple_rend_conf4">
+                <option disabled selected value> ... </option>
                 <option value="Si">Si</option>
                 <option value="No">No</option>
               </select></td>
@@ -493,5 +505,97 @@
 
     </table>
 
+</div>
+
+<!-- Boton y modal para terminar prueba -->
+<button class="btn-primary button-without-border btn-result" id="finalizar_rendimiento">
+    Terminar Prueba
+</button>
+</div>
+
+  <!--          MODAL PARA TERMINAR PRUEBA                  -->
+<div id="modal-rendimiento" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="height: 500px; width:800px; right:150px">
+            <div class="modal-header">
+                <h4 class="modal-title">Retroalimentación de Respuestas Ingresadas</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                &times;
+                </button>
+            </div>
+            <div class="modal-body modal-volver" id="retroalimentacion_rendimiento">
+                <table class="margin-top-40">
+                    <tr>
+                        <th colspan="2"></th>
+                        <th colspan="2">Resultados Configuración 1</th>
+                        <th colspan="2">Resultados Configuración 2</th>
+                        <th colspan="2">Resultados Configuración 3</th>
+                        <th colspan="2">Resultados Configuración 4</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Esperado</th>
+                        <th >Ingresado</th>
+                        <th >Esperado</th>
+                        <th >Ingresado</th>
+                        <th>Esperado</th>
+                        <th >Ingresado</th>
+                        <th >Esperado</th>
+                        <th >Ingresado</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Repetibilidad 28 kVp: CV <= 5%</th>
+                        <td id="repet_conf1_real"></td>
+                        <td id="repet_conf1_ingresado"></td>
+                        <td id="repet_conf2_real"></td>
+                        <td id="repet_conf2_ingresado"></td>
+                        <td id="repet_conf3_real"></td>
+                        <td id="repet_conf3_ingresado"></td>
+                        <td id="repet_conf4_real"></td>
+                        <td id="repet_conf4_ingresado"></td>
+
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Linealidad: < +- 10%</th>
+                        <td id="linealidad_conf1_real"></td>
+                        <td id="linealidad_conf1_ingresado"></td>
+                        <td id="linealidad_conf2_real"></td>
+                        <td id="linealidad_conf2_ingresado"></td>
+                        <td id="linealidad_conf3_real"></td>
+                        <td id="linealidad_conf3_ingresado"></td>
+                        <td id="linealidad_conf4_real"></td>
+                        <td id="linealidad_conf4_ingresado"></td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Rendimiento a 28 kV con Mo/Mo: > 30 uGy/mAs</th>
+                        <td id="rend_conf1_real"></td>
+                        <td id="rend_conf1_ingresado"></td>
+                        <td id="rend_conf2_real"></td>
+                        <td id="rend_conf2_ingresado"></td>
+                        <td id="rend_conf3_real"></td>
+                        <td id="rend_conf3_ingresado"></td>
+                        <td id="rend_conf4_real"></td>
+                        <td id="rend_conf4_ingresado"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button
+                type="button"
+                id="volver-menu-desde-prueba-rendimiento"
+                class="btn btn-danger"
+                data-dismiss="modal"
+                >
+                Finalizar Prueba
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="amd/src/plantilla-rendimiento.js"></script>

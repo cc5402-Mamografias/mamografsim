@@ -20,6 +20,22 @@ import {
   drawPedal
 } from "./vista";
 
+import {
+  PlantillaCompresion,
+  PlantillaRendimiento,
+  PlantillaImagen
+}
+from "./plantillas";
+
+// import
+//  PlantillaRendimiento
+// from "./plantillas";
+
+// import
+//  PlantillaImagen
+// from "./plantillas";
+
+
 import PanelResultados from "./panel-resultados";
 import MesaTopDown from "./vista-top-down";
 
@@ -34,12 +50,12 @@ var m = null;
 class Main {
   constructor(errors) {
 
+
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
     this.c.addEventListener("mousemove", (e)=>this.onMouseMove(e),false);
     this.ctx = this.c.getContext("2d");
-
     // Errores - parametros del simulador
     errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
@@ -50,6 +66,8 @@ class Main {
     errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
     errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
+
+    this.errordict = errors;
 
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
@@ -230,7 +248,7 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
-  let errordict = {}
+  var errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
 
@@ -280,6 +298,20 @@ function selector(pruebas2){
     }
   });
 
+
+  var label_prueba = {};
+  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
+  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
+  label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
+
+  var plantilla_prueba = {};
+  console.log("diccionario entregado")
+  console.log(m.errordict)
+  plantilla_prueba["compresion"] = new PlantillaCompresion(m.errordict);
+  plantilla_prueba["rendimiento"] = new PlantillaRendimiento(m.errordict);
+  plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
+
+
   let prueba_index = 0;
   let max_pruebas = pruebas.length - 1;
   $("#left").on('click', () => {
@@ -299,8 +331,11 @@ function selector(pruebas2){
       }
     }
 
+
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
   });
   $("#right").on('click', () => {
@@ -320,18 +355,24 @@ function selector(pruebas2){
         $("#right").prop('disabled', false);
       }
     }
+
     
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
   });
-  
-  
+
+
     let r;
+
     r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => cargarPrueba(pruebas[prueba_index][0]));
+    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+
     $("#prueba-button").html(r);
-  
+
     if(prueba_index===0){
       $("#left").prop('disabled',true);
     }
@@ -344,7 +385,7 @@ function selector(pruebas2){
     else{
       $("#right").prop('disabled',false);
     }
-    
+
   $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
     $("#contenedor-sim").hide();
@@ -366,7 +407,10 @@ function selector(pruebas2){
 
   console.log("Simulador inicializado");
 
-}
+
+};
+
+
 function show_h() {
   let x = document.getElementById("herrams");
   x.style.display = "block";

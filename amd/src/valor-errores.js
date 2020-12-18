@@ -41,7 +41,7 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: false
+                correcto: true
             },
             "Bajo": {
                 valor: [-0.5, 0.5],
@@ -131,21 +131,42 @@ var valores = {
     },
     "errorImagenLineas": {
         "valores_base": {
-            "Ninguno": { valor: "" },
-            "Vertical": { valor: "ver" },
-            "Horizontal": { valor: "hor" }
+            "Ninguno": {
+                valor: "",
+                correcto: true
+            },
+            "Vertical": {
+                valor: "ver",
+                correcto: false
+            },
+            "Horizontal": {
+                valor: "hor",
+                correcto: false
+            }
         }
     },
     "errorImagenRuido": {
         "valores_base": {
-            "Ninguno": { valor: 0 },
-            "Bajo": { valor: 1 },
-            "Alto": { valor: 4 }
+            "Ninguno": {
+                valor: 0,
+                correcto: true
+             },
+            "Bajo": {
+                valor: 1,
+                correcto: true
+            },
+            "Alto": {
+                valor: 4,
+                correcto: false
+            }
         }
     },
     "errorContraste": {
         "valores_base": {
-            "Ninguno": { valor: 0 },
+            "Ninguno": {
+                valor: 0,
+                correcto: true
+             },
             "Bajo": { valor: 1 },
             "Alto": { valor: 4 }
         }

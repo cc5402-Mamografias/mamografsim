@@ -1,13 +1,4 @@
-function show_pr() {
-    let x = document.getElementById("plantilla-rendimiento");
-    x.style.display = "block";
-    }
-
-function hide_pr() {
-    let x = document.getElementById("plantilla-rendimiento");
-    x.style.display = "none";
-}
-      
+window.$ = window.jQuery = $ = jQuery;  
        
 function actualizar_funciones(SelectedObject){
     var mas = SelectedObject.id;

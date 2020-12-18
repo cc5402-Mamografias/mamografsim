@@ -184,6 +184,13 @@ button.fltmode {
   border-radius: 8px;
 }
 
+button.btn-result {
+  margin-top: 50px; 
+  height: 30px ; 
+  width: 80px; 
+  padding-bottom: 50px;
+}
+
 button.anodemode {
   border-radius: 8px;
 }
@@ -702,4 +709,8 @@ body.modal-open {
 }
 button:disabled {
   opacity: 0.6;
+}
+
+.lista-centrada {
+  list-style-position: inside;
 }
