@@ -710,3 +710,7 @@ body.modal-open {
 button:disabled {
   opacity: 0.6;
 }
+
+.lista-centrada {
+  list-style-position: inside;
+}
