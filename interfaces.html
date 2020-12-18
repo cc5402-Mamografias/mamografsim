@@ -22,15 +22,11 @@
 
     <!-- INTERFAZ MENU INICIO -->
     <div id="contenedor-button" class="contenedor-button">
-      
       <div id="loader">
-        <div class="loader">
-          
-        </div>
+        <div class="loader"></div>
         <h2>Cargando...</h2>
-        
-        
       </div>
+
       <div id = "selector" style="display: none;">
         <div class ="row justify-content-center">
           <h2> Seleccionar una prueba: </h2>
@@ -82,9 +78,8 @@
       <!-- IZQUIERDA -->
       <div id="panel-izquierdo">
         <!-- INTERFAZ BOTONES -->
-        <div id="container-botones" class="botones">
-          <button class="btn-primary button-without-border" id="volver">Volver<img class="espacio-boton" src="icons/curve-arrow.png" width=15></button>
-          <button class="btn-primary button-without-border" id="ayuda">Ayuda<img class="espacio-boton" src="icons/question.png" width=15></button>
+        <div id="container-botones max-width" class="botones">
+          <button class="btn-primary button-without-border max-width" id="volver">Volver<img class="espacio-boton" src="icons/curve-arrow.png" width=15></button>
         </div>
 
         <!-- INTERFAZ PASOS -->
@@ -94,8 +89,8 @@
 
         <!-- INTERFAZ PANEL DE CONTROL -->
         <div class="panel-control">
-          <div class="titulo-panel">Panel de Control</div>
-          <div class="container">
+          <div class="titulo-panel titulo-seccion">Panel de Control</div>
+          <div class="container pt-2">
             <div class="row">
               <div class="col-sm">
                 <form>
@@ -119,43 +114,46 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm">
-                  <button class="btnmode" id="mode-b">MODE</button>
+                  <!-- <button class="btnmode" id="mode-b">MODE</button> -->
+                  <h6 class="mode-title">MODE</h6>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm">
-                  <label> AutoKV <input type="radio" name="mode" value="autokv" id="c01" checked disabled /> </label>
+                  <label class="mode-cursor"> AutoKV <input class="mode mode-cursor" type="radio" name="mode" value="autokv" id="c01" checked /> </label>
                 </div>
                 <div class="col-sm">
-                  <label> <input type="radio" name="mode" value="manual" id="c03" disabled /> Manual </label>
+                  <label class="mode-cursor"><input class="mode mode-cursor" type="radio" name="mode" value="manual" id="c03" /> Manual </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm">
-                  <label> Auto Time <input type="radio" name="mode" value="autotime" id="c02" disabled /> </label>
+                  <label class="mode-cursor"> Auto Time <input class="mode mode-cursor" type="radio" name="mode" value="autotime" id="c02" /> </label>
                 </div>
 
                 <div class="col-sm">
-                  <label> <input type="radio" name="mode" value="autopoint" id="c04" disabled /> Auto Point </label>
+                  <label class="mode-cursor"><input class="mode mode-cursor" type="radio" name="mode" value="autofilter" id="c04" /> Auto Filter </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="container">
-            <div class="filter-mode">
-              <button class="fltmode" id="filter-b">filter</button>
-              <label> Mo <input type="radio" name="filter" id="f01" checked disabled /> </label>
-              <label> Rh <input type="radio" name="filter" id="f02" disabled /> </label>
-              <label> Ag <input type="radio" name="filter" id="f03" disabled /> </label>
+            <div class="filter-mode row">
+              <!-- <button class="fltmode" id="filter-b">filter</button> -->
+              <div><p class="filter-title">FILTER</p></div>
+              <label class="filter-cursor margin-right-4"> Mo <input class="filter filter-cursor" type="radio" name="filter" id="f01" checked /> </label>
+              <label class="filter-cursor margin-right-4"> Rh <input class="filter filter-cursor" type="radio" name="filter" id="f02" /> </label>
+              <label class="filter-cursor margin-right-4"> Ag <input class="filter filter-cursor" type="radio" name="filter" id="f03" /> </label>
             </div>
           </div>
           <div class="container">
-            <div class="anode-mode">
-              <button class="anodemode" id="anode-b">anode</button>
-              <label> Mo <input type="radio" name="anode" id="a01" checked disabled /> </label>
-              <label> Rh <input type="radio" name="anode" id="a02" disabled /> </label>
-              <label> W <input type="radio" name="anode" id="a03" disabled /> </label>
+            <div class="anode-mode row">
+              <!-- <button class="anodemode" id="anode-b">anode</button> -->
+              <div><p class="anode-title">ANODE</p></div>
+              <label class="anode-cursor margin-right-4"> Mo <input class="anode anode-cursor" type="radio" name="anode" id="a01" checked /> </label>
+              <label class="anode-cursor margin-right-4"> Rh <input class="anode anode-cursor" type="radio" name="anode" id="a02" /> </label>
+              <label class="anode-cursor margin-right-4"> W <input class="anode anode-cursor" type="radio" name="anode" id="a03" /> </label>
             </div>
           </div>
 
@@ -188,20 +186,20 @@
 
         <!-- INTERFAZ HERRAMIENTAS -->
         <div class="herramientas-mini">
-          <h3 class="titulo-panel">Herramientas</h3>
+          <h3 class="titulo-panel titulo-seccion">Herramientas</h3>
           <div id="herramientas-express" class="herrams-lista"></div>
 
-          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver mas</button>
+          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver más Herramientas <img class="espacio-boton" src="icons/plus-4-xxl.png" width=14></button>
         </div>
         <!-- /INTERFAZ HERRAMIENTAS -->
 
         <!-- INTERFAZ RESULTADOS -->
         <div id="panel-resultados" class="panel-resultados">
-          <h3 class="titulo-panel">Resultados</h3>
+          <h3 class="titulo-panel titulo-seccion">Resultados</h3>
           <div id="resultados-lista" class="resultados-lista"></div>
 
           <!-- INTERFAZ BOTON PLANTILLA -->
-          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados</button>
+          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados <img class="espacio-boton" src="icons/notepad-xxl.png" width=15></button>
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
@@ -216,7 +214,7 @@
         </div>
 
         <div class="container">
-          <h3>Herramientas</h3>
+          <h3 class="titulo-seccion">Herramientas</h3>
           <div id="herrams-lista-completa" class="row">
           </div>
         </div>

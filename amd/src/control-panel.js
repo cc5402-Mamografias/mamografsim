@@ -7,7 +7,7 @@ let valores_modo = ["c01", "c02", "c03", "c04"];
 let valores_filtro = ["f01", "f02", "f03"];
 let valores_anodo = ["a01", "a02", "a03"];
 
-let label_modo = ["autokv", "autotime", "manual", "autopoint"];
+let label_modo = ["autokv", "autotime", "manual", "autofilter"];
 let label_filtro = ["mo", "rh", "ag"];
 let label_anodo = ["mo", "rh", "w"];
 
@@ -97,12 +97,6 @@ export const init = () => {
   // botones miliAmperes
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
-  // boton modo mamografo
-  document.getElementById("mode-b").onclick = () => cambiarModo(valores_modo);
-  // boton filtro
-  document.getElementById("filter-b").onclick = () => cambiarModo(valores_filtro);
-  // boton anodo
-  document.getElementById("anode-b").onclick = () => cambiarModo(valores_anodo);
   // para que se seteen sin tener que apretar algun boton antes de shoot
   setearParamsMamografo()
 
