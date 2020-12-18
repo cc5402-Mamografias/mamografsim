@@ -6,7 +6,7 @@
   </div>
 
   
-  <div style="height:300px">
+  <div style="height:210px">
     
     <table style="float: left; width: 45%;">
       <tr>
@@ -35,8 +35,43 @@
         <th><input type="number" class="text-center" id="fuerza_planilla" value = 80 step="any" readonly></th>
       </tr>
     </table>
-  
+
     <table style="float:right;  width: 45%;">
+      <tr>
+        <th colspan="2">Condiciones base de SDNR</th>
+        
+      </tr>
+      
+      <tr>
+        <th>valor promedio de SDNR</th>
+        <th><input type="number" id="SDNR_planilla" step="any" value=0 readonly></th>
+      </tr>
+      
+      <tr>
+        <th>Límite de acción superior = SDNR + 10%</th>
+        <th><input type="number" id="SDNR_superior_planilla" step="any" value=0 readonly ></th>
+      </tr>
+  
+  
+      <tr>
+        <th>Límite de acción inferior = SDNR - 10%</th>
+        <th><input type="number" id="SDNR_inferior_planilla" step="any" value=0 readonly></th>
+      </tr>
+  
+      
+    </table>
+  
+    
+  </div>
+
+
+    
+<!--          division de tablas                   -->
+
+
+  <div style="height: 190px;">
+
+    <table style="float:left;  width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de mAs</th>
         
@@ -60,24 +95,9 @@
 
       
     </table>
-  </div>
-
-
-    
-<!--          division de tablas                   -->
-
-
-  <div style="height: 500px;">
-
-    <table style="float: left; width: 30%; top:50%">
-      <tr>
-        <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
-        </th>
-      </tr>
-    </table>
 
   
-  <div style="height: 230px;">
+  
   <table style="float: right; width: 45%;">
     <tr>
       <th colspan="2">Condiciones base del Valor Pixel Medio (VPM)</th>
@@ -101,34 +121,17 @@
     </tr>
 
   </table>
- </div>
-
-  <table style="float: right; width: 45%;">
-    <tr>
-      <th colspan="2">Condiciones base de SDNR</th>
-      
-    </tr>
-    
-    <tr>
-      <th>valor promedio de SDNR</th>
-      <th><input type="number" id="SDNR_planilla" step="any" value=0 readonly></th>
-    </tr>
-    
-    <tr>
-      <th>Límite de acción superior = SDNR + 10%</th>
-      <th><input type="number" id="SDNR_superior_planilla" step="any" value=0 readonly ></th>
-    </tr>
-
-
-    <tr>
-      <th>Límite de acción inferior = SDNR - 10%</th>
-      <th><input type="number" id="SDNR_inferior_planilla" step="any" value=0 readonly></th>
-    </tr>
-
-    
-  </table>
-  
 </div>
+
+<div style="margin-top: 20px; text-align:-webkit-center;">
+  <table style="width: 30%; top:50%">
+    <tr>
+      <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
+      </th>
+    </tr>
+  </table>
+</div>
+
 <div>
   <table>
     <tr>

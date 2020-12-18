@@ -41,7 +41,7 @@ var valores = {
         "valores_base": {
             "Ninguno": {
                 valor: 0.0,
-                correcto: false
+                correcto: true
             },
             "Bajo": {
                 valor: [-0.5, 0.5],
