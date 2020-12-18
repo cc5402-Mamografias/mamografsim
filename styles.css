@@ -51,6 +51,10 @@
   /* display: inline-block; */
 }
 
+.max-width {
+  width: 100% !important;
+}
+
 
 .titulo-panel {
   font-size: large;
@@ -106,7 +110,7 @@
   left: 0;
   width: 100%;
   height: 43%;
-  padding-left: 20px;
+  padding-left: 0px;
   overflow-y: auto;
   outline: solid 1px black;
   text-align: justify;
@@ -118,11 +122,17 @@
   display: none;
   text-align: justify;
   padding-top: 10px;
+  padding-left: 20px;
   padding-right: 20px;
+}
+
+.pasos-prueba {
+
 }
 
 #prevBtn {
   position: absolute;
+  margin-left: 25px !important;
 }
 
 #prevBtn:active {
@@ -236,6 +246,7 @@ button.anodemode {
   border-style: solid;
   border-radius: 8px;
   border-color: rgb(118, 118, 118);
+  margin-top: 7px !important;
 }
 .modes-left {
   position: absolute;
@@ -443,6 +454,12 @@ input[type="radio"]:checked:after {
   text-align: center;
 }
 
+.mas-input-resultados {
+  width: 70px;
+  border: thick !important;
+  border-bottom: ridge !important;
+}
+
 .custom-table {
   width: 100%;
   text-align: center;
@@ -453,6 +470,10 @@ input[type="radio"]:checked:after {
 
 .margin-top-40 {
   margin-top: 40px;
+}
+
+.margin-right-4 {
+  margin-right: 4px;
 }
 
 .custom-th,
@@ -752,10 +773,10 @@ button:disabled {
 
 .titulo-seccion {
   background-color: lightsteelblue;
-    height: 35px;
-    padding-top: 5px;
-    flex-direction: column;
-    margin-bottom: 0;
+  height: 35px;
+  padding-top: 5px;
+  flex-direction: column;
+  margin-bottom: 0;
 }
 
 /* border-radius: 3rem;
