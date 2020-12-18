@@ -117,23 +117,16 @@ class Toalla extends AbstractTool {
     this.y = 265;
     this.description = "Poner la toalla encima de la balanza.";
 
-    //this.toalla = new Image();
-    //this.toalla.src = 'img/balanzatoalla.svg';
-
   }
 
   action(maquina) {
     if (maquina.herramienta.tipo == "Balanza") {
       let balanza = maquina.herramienta
       if (!balanza.toalla) {
-        //balanza.balanza = new Image();
-        //balanza.balanza.src = 'img/balanzatoalla.svg';
         balanza.balanza = balanza.sitoalla;
         balanza.toalla = true;
       }
       else {
-        //balanza.balanza = new Image();
-        //balanza.balanza.src = 'img/balanza.svg';
         balanza.balanza = balanza.notoalla;
         balanza.toalla = false;
       }
@@ -195,7 +188,6 @@ class Slab_45mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    //nuevo sprite aca
     this.slabs.src = 'img/slab45.svg';
 
   }
@@ -226,7 +218,6 @@ class Slab_70mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    //nuevo sprite aca
     this.slabs.src = 'img/slab70.svg';
 
   }
