@@ -34,6 +34,11 @@ var m = null;
 class Main {
   constructor(errors) {
 
+    this.c = document.getElementById("canvas");
+    this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
+    this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
+    this.ctx = this.c.getContext("2d");
+
     // Errores - parametros del simulador
     errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
     errors.erroralt = getError("errorAltura", errors.erroralt);
@@ -64,10 +69,6 @@ class Main {
       new Fantoma(this.visor),
     ];
 
-    this.c = document.getElementById("canvas");
-    this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
-    this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-    this.ctx = this.c.getContext("2d");
 
     this.receptor = new Image();
     this.receptor.src = "img/receptor.svg";
