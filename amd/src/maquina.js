@@ -1,13 +1,7 @@
 import { BaseNula } from "./herramientas";
 import { preloadImages, drawMam, drawPedal } from "./vista";
 
-import { check_pos, hide_alerta_correcta, hide_alerta_incorrecta, hide_mesa } from "./main";
-//import { setearParamsMamografo } from "./control-panel";
-
 const alturaMax = 80;
-const margenF = 0;
-const margenAlt = 2;
-
 
 //operacion Math.random con seed fijo
 var seed = 1;
@@ -31,9 +25,6 @@ export default class Maquina {
     this.rangemargenmA = errors["errorrep"][0];
     this.errorLinealidad = errors["errorlin"][0];
     this.errorRendimiento = errors["errorrend"][0];
-
-
-//const ponderacionmA = 1;
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
@@ -59,20 +50,21 @@ export default class Maquina {
     this.factorCompresiónini = Math.sqrt(this.compresionExp**(-this.sumaCompresion));
     this.factorCompresion = this.factorCompresiónini;
 
-    //NOSE SI COLOCAR VALORES POR DEFECTO EN EL CONSTRUCTOR
+    
     this.kilovolt = null;
     this.miliamperios = null;
     this.modo = null;
     this.filtro = null;
     this.anodo = null;
 
+    //PARA PRUEBA IMAGENES
+    this.miliamperios_auto = 100;
+
 
     preloadImages().then(() => {
       drawMam(ctx, this.alturaDesplegada());
       drawPedal(ctx, false, false)
     });
-
-    //setearParamsMamografo();
   }
 
   //operaciones con resultado entero
@@ -90,8 +82,6 @@ export default class Maquina {
 
   construirEstado(isActivo) {
 
-    //console.log(this.errorFuerza);
-    //console.log(margenmA);
     return {
       altura: (this.alturaCompresor),
          fuerza: this.factorCompresion > this.factorCompresiónini
@@ -101,8 +91,7 @@ export default class Maquina {
       //para herramienta de fantoma
       miliamperios_nom : (this.miliamperios),
       miliamperios: this.multiplicar((this.elevar((this.miliamperios),(1+this.errorLinealidad))+ this.mErrorInt(-this.rangemargenmA,this.rangemargenmA)),(1-this.errorRendimiento)),
-
-
+      miliamperios_auto : this.miliamperios_auto,
       filtro: this.filtro,
       anodo: this.anodo,
       modo: this.modo,
@@ -178,7 +167,6 @@ export default class Maquina {
         //MOSTRAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "block";
         //CARGAR VISTA TOP DOWN
-        //await Promise($("#container-vista-arriba").load(`configuraciones_top_down/top_down_rendimiento.html`));
         console.log("BOTON CONFIGURADO");
       }
       else {

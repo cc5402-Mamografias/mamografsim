@@ -88,7 +88,6 @@ $rendimiento_label = $moduleinstance->rendimiento_label;
 
 $imagen = $moduleinstance->imagen;
 $imagen_label = $moduleinstance->imagen_label;
-
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
     array(
         array(
@@ -116,7 +115,6 @@ $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 echo $OUTPUT->header();
 
-// Carga css para el archivo html
 readfile("interfaces.html");
 
 echo $OUTPUT->footer();

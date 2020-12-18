@@ -117,23 +117,16 @@ class Toalla extends AbstractTool {
     this.y = 265;
     this.description = "Poner la toalla encima de la balanza.";
 
-    //this.toalla = new Image();
-    //this.toalla.src = 'img/balanzatoalla.svg';
-
   }
 
   action(maquina) {
     if (maquina.herramienta.tipo == "Balanza") {
       let balanza = maquina.herramienta
       if (!balanza.toalla) {
-        //balanza.balanza = new Image();
-        //balanza.balanza.src = 'img/balanzatoalla.svg';
         balanza.balanza = balanza.sitoalla;
         balanza.toalla = true;
       }
       else {
-        //balanza.balanza = new Image();
-        //balanza.balanza.src = 'img/balanza.svg';
         balanza.balanza = balanza.notoalla;
         balanza.toalla = false;
       }
@@ -195,7 +188,6 @@ class Slab_45mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    //nuevo sprite aca
     this.slabs.src = 'img/slab45.svg';
 
   }
@@ -226,7 +218,6 @@ class Slab_70mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    //nuevo sprite aca
     this.slabs.src = 'img/slab70.svg';
 
   }
@@ -400,6 +391,7 @@ class Fantoma extends AbstractTool {
     this.parametros = false;
     this.colocada = false;
     this.presionado = false;
+    this.miliamperios_auto = null;
 
     this.altura = 4.5;
     this.result = [
@@ -429,8 +421,11 @@ class Fantoma extends AbstractTool {
   actualizar(estado) {
     console.log(estado);
 
+    console.log(this.miliamperios_auto);
+
+
     //Se esta presionando al fantoma con una fuerza apropiada
-    if (7 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 13) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
       this.presionado = true;
     }
     else {
@@ -438,7 +433,9 @@ class Fantoma extends AbstractTool {
     }
 
     //La configuracion en el panel de control es la adecuada
-    if (parseInt(estado.kilovolt) === 28 && parseInt(estado.miliamperios_nom) === 100) {
+    this.miliamperios_auto = estado.miliamperios_auto 
+    console.log(estado.miliamperios)
+    if (parseInt(estado.kilovolt) === 28 && estado.modo === "autotime") {
       this.parametros = true;
     }
     else {
@@ -447,6 +444,7 @@ class Fantoma extends AbstractTool {
 
     //Se ha disparado en el panel de control
     if (estado.activo) {
+      
       this.visor.reset();
       this.img = null;
       this.last_result = null;
@@ -508,6 +506,8 @@ class Fantoma extends AbstractTool {
         circ2.on("click", () => { this.visor.show() })
         result = { ...result, circ2: circ2 }
       }
+      var mas_auto = $(`<div style="color:black">mAs autotime = ${this.miliamperios_auto}</div>`);
+      result = { ...result, mas_auto: mas_auto}
       return result;
     }
 

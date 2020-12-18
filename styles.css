@@ -2,7 +2,6 @@
   position: relative;
 }
 
-
 .contenedor-sim {
   width: 1010px;
   height: 600px;
@@ -12,9 +11,6 @@
 
   flex-direction: column;
   flex-flow: row nowrap;  
-  /* justify-content: space-around; */
-  /* padding: 0; */
-  /* margin: 0; */ 
 }
 
 .contenedor-button {
@@ -28,32 +24,29 @@
 }
 
 #panel-izquierdo {
-  /* position: absolute; */
-  /* float: left; */
   width: 300px;
   height: 100%;
-  /* display: inline-block; */
 }
 
 #panel-central {
-  /* position: absolute; */
-  /* float: left; */
   width: 400px;
   height: 100%;
-  /* display: inline-block; */
 }
 
 #panel-derecho {
-  /* float: right; */
-  /* position: absolute; */
   width: 300px;
   height: 100%;
-  /* display: inline-block; */
 }
+
 
 .max-width {
   width: 100% !important;
 }
+
+
+#dragndrop-instrucciones {
+  height: 0px;
+  color: blue;
 
 
 .titulo-panel {
@@ -67,21 +60,17 @@
   min-height: 106.5px;
   border-radius: 8px;
   font-weight: bold;
- 
-  text-align: center;
 
+  text-align: center;
 }
-.direction-button{
+.direction-button {
   border-radius: 8px;
   font-weight: bold;
-  /*text-transform: capitalize;*/
   text-align: center;
- 
-
 }
 /* Interfaz Botones */
 .botones {
-  position: relative; 
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -92,19 +81,19 @@
   text-align: center;
 }
 
-.botones button{
+.botones button {
   width: 49%;
   height: 100%;
   margin: 0px;
 }
 
-.espacio-boton{
+.espacio-boton {
   margin-left: 4px;
   margin-right: 4px;
 }
 
 /* Interfaz pasos a seguir */
-.pasos {
+.pasos-panel {
   position: relative;
   top: 0;
   left: 0;
@@ -112,13 +101,27 @@
   height: 43%;
   padding-left: 0px;
   overflow-y: auto;
+
   outline: solid 1px black;
-  text-align: justify;
   background-color: #f5f5f5;
+  text-align: justify;
+  overflow-y: scroll;
 }
 
 .pasos-lista {
-  height: 70%;
+  padding-left: 20px;
+  position: relative;
+  min-height: 60%;
+}
+
+.pasos-botones {
+  position: relative;
+  width: 100%;
+  height: 10%;
+  margin-bottom: 2em;
+}
+
+.paso {
   display: none;
   text-align: justify;
   padding-top: 10px;
@@ -126,13 +129,19 @@
   padding-right: 20px;
 }
 
-.pasos-prueba {
 
+.pasos-prueba {
+  }
+
+.paso-activo {
+  display: block;
 }
 
 #prevBtn {
   position: absolute;
+
   margin-left: 25px !important;
+
 }
 
 #prevBtn:active {
@@ -141,8 +150,8 @@
 }
 
 #nextBtn {
-  position: relative; 
-  left: 61%;
+  position: absolute;
+  right: 1em;
 }
 
 #nextBtn:active {
@@ -346,16 +355,12 @@ input[type="radio"]:checked:after {
   position: relative;
   top: 0;
   outline: 1px solid black;
-  /* width: 100%; */
-  /* height: 100%; */
 }
 
 /* Interfaz herramientas mini */
 .herramientas-mini {
   position: relative;
   top: 0;
-  /* left: 700px; */
-  /* width: 302px; */
   height: 50%;
   outline: 1px solid black;
   text-align: center;
@@ -379,7 +384,7 @@ input[type="radio"]:checked:after {
 
 .her-b-s {
   width: 35%;
-  margin:2.5%;
+  margin: 2.5%;
 }
 
 .her-b-l {
@@ -432,7 +437,7 @@ input[type="radio"]:checked:after {
   background-color: #f5f5f5;
   outline: 1px solid black;
 }
-  
+
 .resultados-lista {
   width: 100%;
   height: 75%;
@@ -446,7 +451,7 @@ input[type="radio"]:checked:after {
 }
 
 /*Plantilla prueba rendimiento*/
-.plantilla input{
+.plantilla input {
   width: 100%;
   height: 100%;
   border: none !important;
@@ -499,13 +504,8 @@ input[type="radio"]:checked:after {
   height: 100px;
 }
 
-
-
 /* Interfaz boton plantilla */
 .contenedor-boton-plantilla {
-  /* position: absolute; */
-  /* top: 564px; */
-  /* left: 700px; */
   width: 300px;
   height: 38px;
   text-align: center;
@@ -530,14 +530,11 @@ input[type="radio"]:checked:after {
   overflow-y: auto;
   text-align: center;
   outline: solid 1px black;
-
 }
 
 .plantilla-salir {
   text-align: left;
 }
-
-
 
 /* Loading Animation */
 /* https://projects.lukehaas.me/css-loaders/ */
@@ -567,7 +564,7 @@ input[type="radio"]:checked:after {
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }
@@ -600,42 +597,11 @@ input[type="radio"]:checked:after {
   }
 }
 
-/*Clases para el pop-up de mesa para la prueba de rendimiento
-.modal {
-  display: none; 
-  position: absolute; 
-  z-index: 1; 
-  padding-top: 100px; 
-  left: 0;
-  top: 0;
-  width: 50%; 
-  height: 50%; 
-  overflow: auto;
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
-}
-*/
-
-/* Modal Content 
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #fefefe;
-  width: 70%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}*/
 
 /* MODAL */
 
-#contenedor-sim .modal{
+#contenedor-sim .modal {
   position: absolute !important;
-
 }
 
 #contenedor-sim .modal-backdrop {
@@ -644,52 +610,47 @@ input[type="radio"]:checked:after {
   left: -2.5%;
   width: 105%;
   height: 105%;
-
 }
 
-#contenedor-sim .modal-dialog{
-  overflow-y: initial !important
+#contenedor-sim .modal-dialog {
+  overflow-y: initial !important;
 }
 
-#contenedor-sim .modal-body{
+#contenedor-sim .modal-body {
   overflow-y: auto;
 }
 
-#contenedor-sim .modal-volver{
+#contenedor-sim .modal-volver {
   height: 20vh;
 }
 
-#contenedor-sim .modal-mesa{
-  height:70vh;
-  padding:0px;
+#contenedor-sim .modal-mesa {
+  height: 70vh;
+  padding: 0px;
 }
 
-
-.block 
-{
-  width:100%;
-  height:200px;
+.block {
+  width: 100%;
+  height: 200px;
 }
- 
 
 body.modal-open {
   overflow: none !important;
-} 
+}
 
-.after_modal_appended
-{  
-  position:relative;
+.after_modal_appended {
+  position: relative;
 }
 
 .receptor {
-  width:800px;
-  height:480px;
+  width: 800px;
+  height: 480px;
   position: relative;
   top: 0px;
   left: 0px;
 }
 
-.vista-arriba-receptor{
+.vista-arriba-receptor {
   position: absolute;
   top: -5px;
   left: -5px;
@@ -701,7 +662,6 @@ body.modal-open {
   overflow-y: auto;
   text-align: center;
 }
-
 
 /* Drag and drop dropzone */
 .dropzone-detector {
@@ -719,7 +679,7 @@ body.modal-open {
 }
 
 /* Drag and drop dropzone */
-.dropzone-disco{
+.dropzone-disco {
   width: 43px;
   height: 43px;
   border-radius: 50%;
@@ -734,8 +694,6 @@ body.modal-open {
   text-align: center;
   background: rgb(9, 177, 168);
 }
-
-
 
 /* Alertas de feedback sobre posición de la cámara de ionización */
 .alert-danger {
@@ -832,4 +790,5 @@ margin-top: 5px; */
 .filter:focus {
   outline: 0;
   box-shadow: none !important;
+
 }
