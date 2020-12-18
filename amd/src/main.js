@@ -37,6 +37,7 @@ class Main {
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
+    this.c.addEventListener("mousemove", (e)=>this.onMouseMove(e),false);
     this.ctx = this.c.getContext("2d");
 
     // Errores - parametros del simulador
@@ -94,8 +95,8 @@ class Main {
         this.mamografo.subirCompresorPerilla();
         this.actualizar();
       },
-      [230, getCompresorPosY()],
-      [50, 50],
+      [220, getCompresorPosY()],
+      [25, 35],
       20
     );
 
@@ -105,8 +106,8 @@ class Main {
         this.mamografo.bajarCompresorPerilla();
         this.actualizar();
       },
-      [140, getCompresorPosY()],
-      [50, 50],
+      [160, getCompresorPosY()],
+      [25, 35],
       20
     );
 
@@ -184,19 +185,40 @@ class Main {
 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
+  
   onCanvasClick(e) {
     let click = [e.layerX, e.layerY];
 
     for (let index = 0; index < this.clickeableOnCanvas.length; index++) {
       let elemento = this.clickeableOnCanvas[index];
-      if (elemento.isClicked(click)) {
+      if (elemento.insideBoundingBox(click)) {
         this.clicked = elemento;
         elemento.on_click();
         break;
       }
     }
   }
+  onMouseMove(e) { 
+    let pointer = false;
+    var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
+    var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
+    var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
+    let hover = [canvasX,canvasY];
+    for (let index = 0; index < this.clickeableOnCanvas.length; index++) {
+      let elemento = this.clickeableOnCanvas[index];
+      if (elemento.insideBoundingBox(hover)) {
+        $("#canvas").css("cursor","pointer");
+        pointer = true
+        break;
+      }
 
+    }
+    if(pointer === false){
+      $("#canvas").css("cursor","default");
+    }
+    
+
+}
   // Checkea que se elementó se clickeo y activa su callback
   releaseCanvasClick(e) {
     if (this.clicked !== null) {
