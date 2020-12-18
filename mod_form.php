@@ -84,7 +84,9 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         foreach ($pruebas2 as $key => $value) {
          $pruebasitem[] = &$mform->createElement('advcheckbox',$key, '', $value, array('name' => $key,'group'=>1), $key);
          $mform->setDefault($key, true);
-         $DB->set_field_select('mamografsim', "{$key}_label", $value,  null);
+         $mform->addElement('hidden', "{$key}_label",$value);
+         $mform->setType("{$key}_label", PARAM_TEXT);
+         
         }
         $mform->addGroup($pruebasitem, 'pruebas',"Pruebas disponibles",' ',false);
         
