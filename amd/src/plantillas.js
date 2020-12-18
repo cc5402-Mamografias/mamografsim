@@ -35,12 +35,13 @@ export class PlantillaCompresion extends PlantillaAbstracta{
         let errorFuerza = this.errorFuerza;
         let errorVisor = this.errorVisor;
 
-        $("#volver-menu-desde-prueba-compresion").on('click', () => {
-            $("#contenedor-button").show();
-            $("#contenedor-sim").hide();
-            });
 
-            $("#loader").remove();
+        $("body").on("click", "#volver-menu-desde-prueba-compresion", function () {
+            console.log("cerrar plantilla");
+            $("#plantilla").hide();
+            $("#contenedor-sim").hide();
+            $("#contenedor-button").show();
+        });
 
         $("body").on("click", "#finalizar_compresion", function () {
 
@@ -87,12 +88,12 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
         let errorLinealidad = this.errorLinealidad;
         let errorRendimiento = this.errorRendimiento;
 
-        $("#volver-menu-desde-prueba-rendimiento").on('click', () => {
-            $("#contenedor-button").show();
+        $("body").on("click", "#volver-menu-desde-prueba-rendimiento", function () {
+            console.log("cerrar plantilla");
+            $("#plantilla").hide();
             $("#contenedor-sim").hide();
+            $("#contenedor-button").show();
         });
-
-        $("#loader").remove();
 
         $("body").on("click", "#finalizar_rendimiento", function () {
             //$("#modal-rendimiento").scrollIntoView(true);
@@ -152,14 +153,12 @@ export class PlantillaImagen extends PlantillaAbstracta{
         let errorContraste = this.errorContraste;
         let errorCualitativa = this.errorCualitativa;
 
-        $("#volver-menu-desde-prueba-imagen").on('click', () => {
-            $("#contenedor-button").show();
+        $("body").on("click", "#volver-menu-desde-prueba-imagen", function () {
+            console.log("cerrar plantilla");
+            $("#plantilla").hide();
             $("#contenedor-sim").hide();
+            $("#contenedor-button").show();
         });
-
-        $("#loader").remove();
-
-        
 
         $("body").on("click", "#finalizar_imagen", function () {
             let masIngresado = document.getElementById("mas_actual_planilla").value === "" ? 0 : parseFloat(document.getElementById("mas_actual_planilla").value);
