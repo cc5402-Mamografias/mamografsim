@@ -1,35 +1,4 @@
-window.$ = window.jQuery = $ = jQuery;
-
-
-$("#volver-menu").on('click', () => {
-    $("#contenedor-button").show();
-    $("#contenedor-sim").hide();
-  })
-  $("#loader").remove();
-
-  $("body").on("click", "#volver", function () {
-
-    $("#modal-volver").modal("show");
-
-    //appending modal background inside the contenedor-main div
-    $('.modal-backdrop').appendTo('#contenedor-sim');
-
-    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
-    $('body').removeClass("modal-open");
-    $('body').css("padding-right", "");
-  });
-  
-
-function show_pr() {
-    let x = document.getElementById("plantilla-rendimiento");
-    x.style.display = "block";
-    }
-
-function hide_pr() {
-    let x = document.getElementById("plantilla-rendimiento");
-    x.style.display = "none";
-}
-      
+window.$ = window.jQuery = $ = jQuery;  
        
 function actualizar_funciones(SelectedObject){
     var mas = SelectedObject.id;
@@ -57,7 +26,7 @@ function calcular_funciones(SelectedObject){
     console.log("repetibilidad");
     console.log(repet);
     console.log(100*dev_est/promedio);
-    var rendimiento = (document.getElementById(mas).value.length == 0) ? "-" : (mas_value==0)? "#DIV/0!" : (promedio/mas_value).toFixed(2);
+    var rendimiento = (document.getElementById(mas).value.length == 0) ? "-" : (mas_value==0)? "#DIV/0!" : Math.max((promedio/mas_value).toFixed(2),0.01);
     
     document.getElementById('promedio_' + mas + "_" + conf).innerHTML = promedio;
     document.getElementById('desvest_' + mas + "_" + conf).innerHTML = dev_est;
