@@ -44,17 +44,17 @@
 
       <tr>
         <th>valor promedio de SDNR</th>
-        <th><input type="number" id="SDNR_planilla" step="any" value=0 readonly></th>
+        <th><input type="number" id="SDNR_planilla" step="any" value=22 readonly></th>
       </tr>
 
       <tr>
         <th>Límite de acción superior = SDNR + 10%</th>
-        <th><input type="number" id="SDNR_superior_planilla" step="any" value=0 readonly ></th>
+        <th><input type="number" id="SDNR_superior_planilla" step="any" value=24.2 readonly ></th>
       </tr>
 
       <tr>
         <th>Límite de acción inferior = SDNR - 10%</th>
-        <th><input type="number" id="SDNR_inferior_planilla" step="any" value=0 readonly></th>
+        <th><input type="number" id="SDNR_inferior_planilla" step="any" value=19.8 readonly></th>
       </tr>
 
     </table>
@@ -99,18 +99,18 @@
 
     <tr>
       <th>VPM del Disco (A)</th>
-      <th><input type="number" class="text-center" id="VPM_planilla" step="any"  value=0 readonly></th>
+      <th><input type="number" class="text-center" id="VPM_planilla" step="any"  value=255 readonly></th>
     </tr>
 
     <tr>
       <th>Límite de acción superior = VPM + 10%</th>
-      <th><input type="number" class="text-center" id="VPM_superior_planilla" step="any" value=0 readonly></th>
+      <th><input type="number" class="text-center" id="VPM_superior_planilla" step="any" value=280.5 readonly></th>
     </tr>
 
 
     <tr>
       <th>Límite de acción inferior = VPM - 10%</th>
-      <th><input type="number" class="text-center" id="VPM_inferior_planilla" step="any" value=0 readonly></th>
+      <th><input type="number" class="text-center" id="VPM_inferior_planilla" step="any" value=229.5 readonly></th>
     </tr>
 
   </table>
@@ -119,7 +119,7 @@
 <div style="margin-top: 20px; text-align:-webkit-center; text-align: -moz-center;">
   <table style="width: 30%; top:50%">
     <tr>
-      <th>SDNR = (B-A)/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
+      <th>SDNR = |B-A|/C <br> A = VPM del disco<br> B = VPM de fondo <br> C = Desviación estándar del fondo
       </th>
     </tr>
   </table>
@@ -141,25 +141,25 @@
 
     <tr>
       <th>A</th>
-      <th><input type="number" id="a_ant_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="a_actual_planilla" onchange="actualizar_funciones(this)" required></th>
+      <th><input type="number" id="a_ant_planilla" value = 255 step="any" readonly></th>
+      <th><input type="number" id="a_actual_planilla" step="any" onchange="actualizar_funciones(this)" required></th>
     </tr>
 
     <tr>
       <th>B</th>
-      <th><input type="number" id="b_ant_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="b_actual_planilla" onchange="actualizar_funciones(this)" step="any" required></th>
+      <th><input type="number" id="b_ant_planilla" value = 135 step="any" readonly></th>
+      <th><input type="number" id="b_actual_planilla" step="any" onchange="actualizar_funciones(this)" step="any" required></th>
     </tr>
 
     <tr>
       <th >C</th>
-      <th><input type="number" id="c_ant_planilla" value = 0 step="any" readonly></th>
-      <th><input type="number" id="c_actual_planilla" onchange="actualizar_funciones(this)" step="any" required></th>
+      <th><input type="number" id="c_ant_planilla" value = 5.5 step="any" readonly></th>
+      <th><input type="number" id="c_actual_planilla" step="any" onchange="actualizar_funciones(this)" step="any" required></th>
     </tr>
 
     <tr>
       <th >SDNR</th>
-      <th><input type="number" id="SDNR_ant_planilla" value = 0 step="any" readonly></th>
+      <th><input type="number" id="SDNR_ant_planilla" value = 58.5 step="any" readonly></th>
       <th><input type="number" id="SDNR_actual_planilla" step="any" required></th>
     </tr>
 
@@ -173,7 +173,7 @@
       <th>¿Se observan artefactos en la imagen del monitor</th>
       <th>
         <select name="cumple_cual" id="artf_ant_planilla">
-          <option disabled selected value> NO </option>
+          <option disabled selected value> No </option>
         </select>
       </th>
       <th>
