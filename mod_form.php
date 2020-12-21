@@ -93,7 +93,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         
         $mform->addRule('pruebas', get_string('required'), 'required', null, 'client');
 
-        
+        // Prueba de compresión
         $mform->addElement('header', 'mamografsimcomp', get_string('mamografsimcomp', 'mod_mamografsim'));
 
         $mform->addElement('select', 'errorvis', "Error indicador fuerza compresión", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (El visor muestra la misma fuerza que la balanza)','Bajo'=>'Bajo (El visor presenta un error dentro de valores de tolerancia)','Alto'=>'Alto (El visor presenta un error mayor a los valores de tolerancia)'));
@@ -112,7 +112,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->addRule('erroralt', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
 
-
+        // Prueba de rendimiento
         $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
 
         $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Grado de variación medio','Alto'=>'Grado de variación alto'));
@@ -130,7 +130,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         
         $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        // prueba imagen
+        // Prueba de imagen
         $mform->addElement('header', 'mamografsimimg', get_string('mamografsimimg', 'mod_mamografsim'));
 
         $mform->addElement('select', 'errorimglin', "Error Cualitativo - Lineas", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Imagen limpia','Vertical'=>'Imagen con lineas verticales','Horizontal'=>'Imagen con lineas horizontales'));
@@ -145,7 +145,12 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->setType('errorvmp', PARAM_TEXT);
         $mform->addRule('errorvmp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        // Add standard grading elements.
+        // Agregar más pruebas aca
+
+
+
+
+        // Add standard grading elements. (No se requiere actualmente, pero en caso de requerirse en el futuro, no borrar).
         //$this->standard_grading_coursemodule_elements();
 
         // Add standard elements.
