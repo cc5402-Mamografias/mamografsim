@@ -41,7 +41,7 @@ function getValorActivoRadioButtons(valores) {
   }
   return -1;
 }
-
+/*
 function cambiarModo(modos) {
   let index = getValorActivoRadioButtons(modos);
   if (index == -1) {
@@ -51,20 +51,20 @@ function cambiarModo(modos) {
     document.getElementById(modos[index]).checked = false;
     document.getElementById(modos[(index + 1) % modos.length]).checked = true;
   }
-  if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime"){
-    document.getElementById("mas").disabled =true;
-    document.getElementById("ma+").disabled =true;
-    document.getElementById("ma-").disabled =true;
-  }
-  else{
-    document.getElementById("mas").disabled =false;
-    document.getElementById("ma+").disabled =false;
-    document.getElementById("ma-").disabled =false;
-  }
-
-
-
   setearParamsMamografo();
+}
+*/
+function refreshMAS() {
+if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime"){
+  document.getElementById("mas").disabled =true;
+  document.getElementById("ma+").disabled =true;
+  document.getElementById("ma-").disabled =true;
+}
+else{
+  document.getElementById("mas").disabled =false;
+  document.getElementById("ma+").disabled =false;
+  document.getElementById("ma-").disabled =false;
+}
 }
 
 function disparoMamografo() {
@@ -82,10 +82,14 @@ function setearParamsMamografo() {
   let anodo = label_anodo[getValorActivoRadioButtons(valores_anodo)];
 
   
+
+
+  
   setear_params(kv, ma, modo, filtro, anodo);
 }
 
 function setearOnClick(id, fun) {
+
   let e = document.getElementById(id);
   e.onclick = () => { fun(e); e.blur(); }
 }
@@ -98,6 +102,11 @@ export const init = () => {
   setearOnClick("ma-", menos1);
   setearOnClick("ma+", mas1);
   // para que se seteen sin tener que apretar algun boton antes de shoot
+
+  setearOnClick("mode1", refreshMAS);
+  setearOnClick("mode2", refreshMAS);
+  setearOnClick("mode3", refreshMAS);
+  setearOnClick("mode4", refreshMAS);
   setearParamsMamografo()
 
   //boton disparo
