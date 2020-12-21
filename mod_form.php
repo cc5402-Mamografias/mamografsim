@@ -115,7 +115,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
 
         $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Grado de variación medio','Alto'=>'Grado de variación alto'));
         $mform->setType('errorrep', PARAM_TEXT);
         
         $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
