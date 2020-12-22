@@ -1,11 +1,11 @@
 //HAY QUE BUSCAR LA FORMA DE IMPORTAR FUNCIONES ADDEVENTLISTENER
 
 document.addEventListener("drag", function (event) {
-    console.log("pick");
+   //console.log("pick");
 }, false);
 
 document.addEventListener("dragstart", function (event) {
-    console.log("dragstart");
+   //console.log("dragstart");
     // store a ref. on the dragged elem
     this.dragged = event.target;
     // make it half transparent
@@ -13,7 +13,7 @@ document.addEventListener("dragstart", function (event) {
 }, false);
 
 document.addEventListener("dragend", function (event) {
-    console.log("reseteo transparencia");
+   //console.log("reseteo transparencia");
     // reset the transparency
     event.target.opacity = "";
 }, false);
@@ -25,7 +25,7 @@ document.addEventListener("dragover", function (event) {
 }, false);
 
 document.addEventListener("dragenter", function (event) {
-    console.log("Estoy dentro de un dropzone")
+   //console.log("Estoy dentro de un dropzone")
     // highlight potential drop target when the draggable element enters it
     if (event.target.classList.contains("dropzone")) {
         event.target.style.background = "red";
@@ -34,7 +34,7 @@ document.addEventListener("dragenter", function (event) {
 }, false);
 
 document.addEventListener("dragleave", function (event) {
-    console.log("salgo de mi posicion original");
+   //console.log("salgo de mi posicion original");
     // reset background of potential drop target when the draggable element leaves it
     if (event.target.classList.contains("dropzone")) {
         event.target.style.background = "";

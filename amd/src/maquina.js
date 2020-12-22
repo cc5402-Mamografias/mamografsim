@@ -32,7 +32,7 @@ export default class Maquina {
 
     this.fuerzamax = this.errorFuerza; 
     this.fuerzamaxManual = this.errorFuerza+10;
-    console.log(this.fuerzamax)
+   //console.log(this.fuerzamax)
     //Movimiento compresor
     this.velocY = 0.8;
     this.velocYManual = 0.5;
@@ -142,7 +142,7 @@ export default class Maquina {
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
 
-    console.log("seteo nuevos parametros");
+   //console.log("seteo nuevos parametros");
     this.kilovolt = kv;
     this.miliamperios = ma;
     this.modo = md;
@@ -168,7 +168,7 @@ export default class Maquina {
         //MOSTRAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "block";
         //CARGAR VISTA TOP DOWN
-        console.log("BOTON CONFIGURADO");
+       //console.log("BOTON CONFIGURADO");
       }
       else {
         document.getElementById("vista-desde-arriba").style.display = "none";
@@ -254,7 +254,7 @@ export default class Maquina {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocYManual, this.alturaMinima());
     }
     this.actualizar();
-    console.log(this.factorCompresion);
+   //console.log(this.factorCompresion);
   }
   
 

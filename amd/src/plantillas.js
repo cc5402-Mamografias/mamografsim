@@ -3,18 +3,13 @@ window.$ = window.jQuery = $ = jQuery;
 
 class PlantillaAbstracta {
     constructor(errors){
-        console.log(errors)
+       //console.log(errors)
         this.errorFuerza = errors["errorf"][1] ? "Sí" : "No";
         this.errorAltura = errors["erroralt"][1] ? "Sí" : "No";
         this.errorVisor = errors["errorvis"][1] ? "Sí" : "No";
         this.rangemargenmA = errors["errorrep"][1] ? "Sí" : "No";
         this.errorLinealidad = errors["errorlin"][1] ? "Sí" : "No";
         this.errorRendimiento = errors["errorrend"][1] ? "Sí" : "No";
-        //RECORDATORIO: falta agregar errores imagen  
-        console.log("ESTE ES UN CONSOLE LOG");
-        console.log(errors["errorimglin"]);
-        console.log(errors["errorimgsp"]);
-        console.log(errors["errorvmp"]);  
         this.errorImagenLineas = errors["errorimglin"][1] ? "No se observan líneas en la imagen (aceptable).": "Se observan líneas en la imagen (no aceptable).";
         this.errorImagenRuido = errors["errorimgsp"][1] ? "Se observan pocos pixeles blancos y negros, y espaciados entre sí (aceptable).": "Se observan muchos pixeles blancos y negros (no aceptable).";
         this.errorContraste = errors["errorvmp"][1] ? "Existe un bajo nivel de contraste (aceptable).": "Existe un alto nivel de contraste (no aceptable)."; 
@@ -37,7 +32,7 @@ export class PlantillaCompresion extends PlantillaAbstracta{
 
 
         $("body").on("click", "#volver-menu-desde-prueba-compresion", function () {
-            console.log("cerrar plantilla");
+           //console.log("cerrar plantilla");
             $("#plantilla").hide();
             $("#contenedor-sim").hide();
             $("#contenedor-button").show();
@@ -89,7 +84,7 @@ export class PlantillaRendimiento extends PlantillaAbstracta{
         let errorRendimiento = this.errorRendimiento;
 
         $("body").on("click", "#volver-menu-desde-prueba-rendimiento", function () {
-            console.log("cerrar plantilla");
+           //console.log("cerrar plantilla");
             $("#plantilla").hide();
             $("#contenedor-sim").hide();
             $("#contenedor-button").show();
@@ -154,7 +149,7 @@ export class PlantillaImagen extends PlantillaAbstracta{
         let errorCualitativa = this.errorCualitativa;
 
         $("body").on("click", "#volver-menu-desde-prueba-imagen", function () {
-            console.log("cerrar plantilla");
+           //console.log("cerrar plantilla");
             $("#plantilla").hide();
             $("#contenedor-sim").hide();
             $("#contenedor-button").show();
