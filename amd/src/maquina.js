@@ -256,8 +256,4 @@ export default class Maquina {
     this.actualizar();
     console.log(this.factorCompresion);
   }
-  
-
 }
-
-
