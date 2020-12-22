@@ -2,9 +2,7 @@ Konva = window.Konva;
 $ = window.$;
 
 export default class VisorImagen {
-  constructor(mamografo, actualizar) {
-
-    this.mamografo = mamografo;
+  constructor(actualizar) {
     this.actualizar = actualizar;
     this.panel = $('#visor-imagen');
     this.contenedor = $('#container-visor');
