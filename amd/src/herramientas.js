@@ -570,27 +570,20 @@ class Fantoma extends AbstractTool {
       }
       else {
         this.last_result = null;
+        result = "";
+        if (!this.colocada) {
+          result += "<span style='color:red'>Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
+        }
+        
+        if (!this.presionado) {
+          result += "<span style='color:red'>Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+        }
 
-        if (this.parametros && this.presionado && !this.colocada) {
-          result = "Error de Posición";
+        if (!this.parametros) {
+          result += "<span style='color:red'>Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
         }
-        else if (this.parametros && !this.presionado && this.colocada) {
-          result = "Error de Presión";
-        }
-        else if (this.parametros && !this.presionado && !this.colocada) {
-          result = "Error de Posición y Presión";
-        }
-        else if (!this.parametros && this.presionado && this.colocada) {
-          result = "Error de Parámetros";
-        }
-        else if (!this.parametros && !this.presionado && this.colocada) {
-          result = "Error de Parámetros y Presión";
-        }
-        else if (!this.parametros && this.presionado && !this.colocada) {
-          result = "Error de Parámetros y Posición";
-        }
-        else if (!this.parametros && !this.presionado && !this.colocada) {
-          result = "Error de Posición, Parámetros y Presión";
+        if (result === ""){
+          result += "Error de Posición."
         }
       }
     }
