@@ -16,7 +16,7 @@ export default class PanelResultados {
 
     for (const res in this.resultados) {
       for (const line of this.resultados[res]) {
-        $(`<div class="resultados-item"> </div>`).append(line).appendTo(this.res);
+        $(`<div class="resultados-item mr-3"> </div>`).append(line).appendTo(this.res);
       }
     }
   }
