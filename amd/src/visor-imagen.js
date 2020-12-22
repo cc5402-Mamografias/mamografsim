@@ -84,7 +84,7 @@ export default class VisorImagen {
       mamImage.width = mamImage.width * ratio;
       mamImage.height = mamImage.height * ratio;
 
-      var yoda = new Konva.Image({
+      var kimg = new Konva.Image({
         x: stage.getWidth() / 2 - mamImage.width / 2,
         y: 0,
         image: mamImage,
@@ -94,12 +94,25 @@ export default class VisorImagen {
       });
 
 
-      group.add(yoda);
-      yoda.moveToBottom();
+      group.add(kimg);
+      kimg.moveToBottom();
+
+      var helptext = new Konva.Text({
+        x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
+        y: 50,
+        text:
+          "Arrastre el ROI rojo sobre el objeto de contraste \n\nColoque el ROI azul alineado verticalmente\n",
+        fontSize: 16,
+        fontFamily: 'Calibri',
+        fill: 'black',
+        width: 300,
+        padding: 20,
+        align: 'left',
+      });
 
       var textCirc1 = new Konva.Text({
         x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
-        y: 100,
+        y: 200,
         text:
           "Avg: x \nStd: y",
         fontSize: 18,
@@ -112,7 +125,7 @@ export default class VisorImagen {
 
       var textCirc2 = new Konva.Text({
         x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
-        y: 200,
+        y: 300,
         text:
           "Avg: x \nStd: y",
         fontSize: 18,
@@ -125,7 +138,7 @@ export default class VisorImagen {
 
       group.add(textCirc1);
       group.add(textCirc2);
-
+      group.add(helptext);
       var circ1 = new Konva.Circle({
         x: 100,
         y: 100,
