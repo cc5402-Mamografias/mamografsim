@@ -69,7 +69,7 @@ function refreshMAS() {
 }
 
 function disparoMamografo() {
-  console.log("Shoot");
+ //console.log("Shoot");
   setearParamsMamografo();
   disparo();
 }

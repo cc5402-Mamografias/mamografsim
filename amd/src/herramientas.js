@@ -152,7 +152,7 @@ class Toalla extends AbstractTool {
       }
 
       maquina.actualizar();
-      console.log("balanza: ", balanza);
+     //console.log("balanza: ", balanza);
     }
   }
   actualizar(ctx) {
@@ -321,19 +321,19 @@ class DetectRad extends AbstractTool {
 
     if (this.colocada == true && this.estado == "activo") {
       //Primero aplicamos errores al kerma si es que existen
-      console.log("ERRORES REGISTRADOS")
+     //console.log("ERRORES REGISTRADOS")
 
-      console.log(this.errores["rep"])
-      console.log(this.errores["lin"])
-      console.log(this.errores["rend"])
-      console.log(this.kerma)
+     //console.log(this.errores["rep"])
+     //console.log(this.errores["lin"])
+     //console.log(this.errores["rend"])
+     //console.log(this.kerma)
 
       //(let kermamod = multiplicar((elevar((this.kerma),(1+this.errores["lin"]))+ mError(-this.errores["rep"]*this.kerma,this.errores["rep"]*this.kerma)),(1-this.errores["rend"]));
       let kermalin = (elevar((this.kerma),(1+this.errores["lin"])))
       let kermarep = kermalin + mError(-this.errores["rep"]*kermalin,this.errores["rep"]*kermalin)
       let kermamod = kermarep * (1- this.errores["rend"])
 
-      console.log(kermamod)
+     //console.log(kermamod)
 
       return {
         detector: [
@@ -459,9 +459,9 @@ class Fantoma extends AbstractTool {
   }
 
   actualizar(estado) {
-    console.log(estado);
+   //console.log(estado);
 
-    console.log(this.miliamperios_auto);
+   //console.log(this.miliamperios_auto);
 
 
     //Se esta presionando al fantoma con una fuerza apropiada
@@ -474,7 +474,7 @@ class Fantoma extends AbstractTool {
 
     //La configuracion en el panel de control es la adecuada
     this.miliamperios_auto = estado.miliamperios_auto 
-    console.log(estado.miliamperios)
+   //console.log(estado.miliamperios)
     if (parseInt(estado.kilovolt) === 28 && estado.modo === "autotime") {
       this.parametros = true;
     }
@@ -513,7 +513,7 @@ class Fantoma extends AbstractTool {
             this.visor.load_image(data);
           },
           error: (e) => {
-            console.log(e)
+           //console.log(e)
           }
         });
       }

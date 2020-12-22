@@ -171,12 +171,12 @@ class Main {
     try {
       this.panelResultados.registrarResultado(this.mamografo.getHerramienta().getResultado());
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
     try {
       this.panelResultados.registrarResultado(this.habitacion.getHerramienta().getResultado());
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
     this.panelResultados.escribirResultados();
     //actualizamos parametros de mesa top-down aca
@@ -186,7 +186,7 @@ class Main {
   }
 
   getMamografo() {
-    console.log("Conseguimos mamografo");
+    //console.log("Conseguimos mamografo");
     return this.mamografo;
   }
 
@@ -290,7 +290,6 @@ selector(pruebas2);
  
 };
 function selector(pruebas2){
-  console.log(pruebas2);
   let pruebas = [];
   pruebas2.forEach((prueba) => {
     if (prueba[0] !== "") {
@@ -299,14 +298,8 @@ function selector(pruebas2){
   });
 
 
-  var label_prueba = {};
-  label_prueba["compresion"] = "Fuerza de Compresión y Precisión de Espesor";
-  label_prueba["rendimiento"] = "Rendimiento: Repetibilidad y Linealidad";
-  label_prueba["imagen"] = "Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen";
-
+  // Plantillas de pruebas
   var plantilla_prueba = {};
-  console.log("diccionario entregado")
-  console.log(m.errordict)
   plantilla_prueba["compresion"] = new PlantillaCompresion(m.errordict);
   plantilla_prueba["rendimiento"] = new PlantillaRendimiento(m.errordict);
   plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
@@ -314,6 +307,7 @@ function selector(pruebas2){
 
   let prueba_index = 0;
   let max_pruebas = pruebas.length - 1;
+  //Botón izquierdo
   $("#left").on('click', () => {
     if (prueba_index > 0) {
       prueba_index--;
@@ -338,6 +332,7 @@ function selector(pruebas2){
 
     $("#prueba-button").html(r);
   });
+  //Botón derecho
   $("#right").on('click', () => {
     if (prueba_index < max_pruebas) {
       prueba_index++;
@@ -355,8 +350,6 @@ function selector(pruebas2){
         $("#right").prop('disabled', false);
       }
     }
-
-    
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
     plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
@@ -364,9 +357,8 @@ function selector(pruebas2){
     $("#prueba-button").html(r);
   });
 
-
+    // Prueba seleccionada por defecto.
     let r;
-
     r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
     plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
@@ -397,17 +389,13 @@ function selector(pruebas2){
 
     $("#modal-volver").modal("show");
 
-    //appending modal background inside the contenedor-main div
+    //Appending modal background inside the contenedor-main div
     $('.modal-backdrop').appendTo('#contenedor-sim');
 
-    //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+    //Remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
     $('body').removeClass("modal-open");
     $('body').css("padding-right", "");
   });
-
-  console.log("Simulador inicializado");
-
-
 };
 
 
@@ -454,7 +442,7 @@ function show_mesa_camara() {
 
 }
 function show_mesa_fantoma() {
-  console.log("muestrateimagen")
+  //console.log("muestrateimagen")
   let x = document.getElementById("vista-arriba-receptor-2");
   x.style.display = "block";
   var cr = document.getElementById("canvasReceptor-2");
@@ -487,7 +475,7 @@ function crearHerramButton(tool, onClickF) {
 }
 
 function cargarPrueba(prueba) {
-  console.log(`cargar prueba ${prueba}`);
+  //console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
   $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => inicializarPasos());
   $("#contenedor-sim").css('display', 'flex');
@@ -501,7 +489,7 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
 
 //disparo mamografo apretando boton shoot
 export let disparo = () => {
-  console.log("Shoot2");
+  //console.log("Shoot2");
   m.getMamografo().activar();
   m.actualizar();
 };
@@ -511,11 +499,11 @@ export let disparo = () => {
 // ESTO DEBERIA ESTAR SOLO EN drag-drop-receptor
 
 document.addEventListener("drag", function (event) {
-  console.log("pick");
+  //console.log("pick");
 }, false);
 
 document.addEventListener("dragstart", function (event) {
-  console.log("dragstart");
+  //console.log("dragstart");
   // store a ref. on the dragged elem
   this.dragged = event.target;
   // make it half transparent
@@ -523,7 +511,7 @@ document.addEventListener("dragstart", function (event) {
 }, false);
 
 document.addEventListener("dragend", function (event) {
-  console.log("reseteo transparencia");
+  //console.log("reseteo transparencia");
   // reset the transparency
   event.target.opacity = "";
 }, false);
@@ -535,7 +523,7 @@ document.addEventListener("dragover", function (event) {
 }, false);
 
 document.addEventListener("dragenter", function (event) {
-  console.log("Estoy dentro de un dropzone")
+  //console.log("Estoy dentro de un dropzone")
   // highlight potential drop target when the draggable element enters it
   if (event.target.classList.contains("dropzone")) {
     event.target.style.background = "red";
@@ -544,7 +532,7 @@ document.addEventListener("dragenter", function (event) {
 }, false);
 
 document.addEventListener("dragleave", function (event) {
-  console.log("salgo de mi posicion original");
+  //console.log("salgo de mi posicion original");
   // reset background of potential drop target when the draggable element leaves it
   if (event.target.classList.contains("dropzone")) {
     event.target.style.background = "";
