@@ -50,7 +50,6 @@ var m = null;
 class Main {
   constructor(errors) {
 
-
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
@@ -74,7 +73,7 @@ class Main {
     this.habitacion = new Habitacion();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
-    this.visor = new VisorImagen(this.mamografo, () => { this.actualizar() });
+    this.visor = new VisorImagen(() => { this.actualizar() });
 
     // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro()];
