@@ -1,0 +1,604 @@
+<div>
+    <div class="row h-100">
+        <h3 class="custom-h3">RENDIMIENTO: REPETIBILIDAD Y LINEALIDAD</h3>
+    </div>
+
+
+
+<div>
+
+    <table class="planilla-tabla" style="margin-top: 20px;">
+        <tr>
+            <td colspan="3" class="custom-td"></td>
+            <td>Configuración I</td>
+            <td>Configuración II</td>
+            <td>Configuración III</td>
+            <td>Configuración IV</td>
+        </tr>
+
+        <tr>
+            <th colspan="3">kV</th>
+            <td><input class="text-center" type="number" id="comp_mostrada_moto"></td>
+            <td><input class="text-center" type="number" id="comp_mostrada_moto"></td>
+            <td><input class="text-center" type="number" id="comp_mostrada_moto"></td>
+            <td><input class="text-center" type="number" id="comp_mostrada_moto"></td>
+        </tr>
+
+        <tr>
+            <th colspan="3">Ánodo</th>
+            <td>
+                <select name="anodo_conf1" id="anodo_conf1">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="anodo_conf2" id="anodo_conf2">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="anodo_conf3" id="anodo_conf3">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="anodo_conf4" id="anodo_conf4">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+
+        </tr>
+
+        <tr>
+            <th colspan="3">Filtro</th>
+            <td>
+                <select name="filtro_conf1" id="filtro_conf1">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="filtro_conf2" id="filtro_conf2">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="filtro_conf3" id="filtro_conf3">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+            <td>
+                <select name="filtro_conf4" id="filtro_conf4">
+                    <option value="Rh">Rh</option>
+                    <option value="Mo">Mo</option>
+                    <option value="w">W</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <table class="margin-top-40">
+        <tr>
+            <td rowspan="5">mAs1</th>
+            <td rowspan="5"><input class="text-center" type="number" id="mas1"
+                style="width: 70px; border: thick !important; border-bottom: dotted !important;"
+                onchange="actualizar_funciones(this)"></ts>
+            <td>Lectura 1</td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas1_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas1_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas1_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas1_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 2</td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas1_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas1_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas1_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas1_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 3</td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas1_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas1_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas1_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas1_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 4</td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas1_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas1_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas1_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas1_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 5</td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas1_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas1_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas1_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas1_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+    </table>
+
+    <table class="custom-table">
+        <tr class="custom-tr">
+            <td rowspan="4" class="custom-td"></td>
+            <td rowspan="4" class="custom-td"></td>
+            <th class="custom-th text-right">Promedio:</th>
+            <td class="custom-td"><label id="promedio_mas1_conf1">-</label></td>
+            <td class="custom-td"><label id="promedio_mas1_conf2">-</label></td>
+            <td class="custom-td"><label id="promedio_mas1_conf3">-</label></td>
+            <td class="custom-td"><label id="promedio_mas1_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Desv. Estándar:</th>
+            <td class="custom-td"><label id="desvest_mas1_conf1">-</label></td>
+            <td class="custom-td"><label id="desvest_mas1_conf2">-</label></td>
+            <td class="custom-td"><label id="desvest_mas1_conf3">-</label></td>
+            <td class="custom-td"><label id="desvest_mas1_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Repetibilidad:</th>
+            <td class="custom-td"><label id="repetibilidad_mas1_conf1">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas1_conf2">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas1_conf3">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas1_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Rendimiento:</th>
+            <td class="custom-td"><label id="rendimiento_mas1_conf1" onchange="a(this)">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas1_conf2">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas1_conf3">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas1_conf4">-</label></td>
+        </tr>
+
+    </table>
+
+
+    <table class="margin-top-40">
+        <tr>
+            <td rowspan="5">mAs2</th>
+            <td rowspan="5"><input class="text-center mas-input-resultados" type="number" id="mas2"
+                style="width: 70px; border: thick !important; border-bottom: dotted !important;"
+                onchange="actualizar_funciones(this)"></ts>
+            <td>Lectura 1</td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas2_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas2_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas2_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas2_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 2</td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas2_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas2_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas2_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas2_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 3</td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas2_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas2_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas2_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas2_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 4</td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas2_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas2_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" d="r4_mas2_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas2_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 5</td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas2_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas2_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas2_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas2_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+    </table>
+
+    <table class="custom-table">
+        <tr class="custom-tr">
+            <td rowspan="4" class="custom-td"></td>
+            <td rowspan="4" class="custom-td"></td>
+            <th class="custom-th text-right">Promedio:</th>
+            <td class="custom-td"><label id="promedio_mas2_conf1">-</label></td>
+            <td class="custom-td"><label id="promedio_mas2_conf2">-</label></td>
+            <td class="custom-td"><label id="promedio_mas2_conf3">-</label></td>
+            <td class="custom-td"><label id="promedio_mas2_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Desv. Estándar:</th>
+            <td class="custom-td"><label id="desvest_mas2_conf1">-</label></td>
+            <td class="custom-td"><label id="desvest_mas2_conf2">-</label></td>
+            <td class="custom-td"><label id="desvest_mas2_conf3">-</label></td>
+            <td class="custom-td"><label id="desvest_mas2_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Repetibilidad:</th>
+            <td class="custom-td"><label id="repetibilidad_mas2_conf1">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas2_conf2">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas2_conf3">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas2_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Rendimiento:</th>
+            <td class="custom-td"><label id="rendimiento_mas2_conf1">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas2_conf2">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas2_conf3">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas2_conf4">-</label></td>
+        </tr>
+
+    </table>
+
+    <table class="margin-top-40">
+        <tr>
+            <td rowspan="5">mAs3</th>
+            <td rowspan="5"><input class="mas-input-resultados text-center" type="number" id="mas3"
+                style="width: 70px; border: thick !important; border-bottom: dotted !important;"
+                onchange="actualizar_funciones(this)"></ts>
+            <td>Lectura 1</td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas3_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas3_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas3_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r1_mas3_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 2</td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas3_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas3_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas3_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r2_mas3_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 3</td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas3_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas3_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas3_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r3_mas3_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 4</td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas3_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas3_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas3_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r4_mas3_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+
+        <tr>
+            <td>Lectura 5</td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas3_conf1"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas3_conf2"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas3_conf3"
+                    onchange="calcular_funciones(this)"></td>
+            <td><input class="text-center" type="number" step="any" id="r5_mas3_conf4"
+                    onchange="calcular_funciones(this)"></td>
+        </tr>
+    </table>
+
+    <table class="custom-table">
+        <tr class="custom-tr">
+            <td rowspan="4" class="custom-td"></td>
+            <td rowspan="4" class="custom-td"></td>
+            <th class="custom-th text-right">Promedio:</th>
+            <td class="custom-td"><label id="promedio_mas3_conf1">-</label></td>
+            <td class="custom-td"><label id="promedio_mas3_conf2">-</label></td>
+            <td class="custom-td"><label id="promedio_mas3_conf3">-</label></td>
+            <td class="custom-td"><label id="promedio_mas3_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Desv. Estándar:</th>
+            <td class="custom-td"><label id="desvest_mas3_conf1">-</label></td>
+            <td class="custom-td"><label id="desvest_mas3_conf2">-</label></td>
+            <td class="custom-td"><label id="desvest_mas3_conf3">-</label></td>
+            <td class="custom-td"><label id="desvest_mas3_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Repetibilidad:</th>
+            <td class="custom-td"><label id="repetibilidad_mas3_conf1">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas3_conf2">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas3_conf3">-</label></td>
+            <td class="custom-td"><label id="repetibilidad_mas3_conf4">-</label></td>
+        </tr>
+
+        <tr>
+            <th class="custom-th text-right">Rendimiento:</th>
+            <td class="custom-td"><label id="rendimiento_mas3_conf1">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas3_conf2">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas3_conf3">-</label></td>
+            <td class="custom-td"><label id="rendimiento_mas3_conf4">-</label></td>
+        </tr>
+
+    </table>
+
+    <table class="margin-top-40">
+        <tr>
+            <th rowspan="2" colspan="2">Linealidad (%)</th>
+            <td>L1</td>
+            <td id="l1_conf1"></td>
+            <td id="l1_conf2"></td>
+            <td id="l1_conf3"></td>
+            <td id="l1_conf4"></td>
+        </tr>
+
+        <tr>
+            <td>L2</td>
+            <td id="l2_conf1"></td>
+            <td id="l2_conf2"></td>
+            <td id="l2_conf3"></td>
+            <td id="l2_conf4"></td>
+        </tr>
+
+        <tr>
+            <th colspan="3">Rendimiento normalizado (uGy/mAs a 1m)</th>
+            <td id="rend_norm_conf1"></td>
+            <td id="rend_norm_conf2"></td>
+            <td id="rend_norm_conf3"></td>
+            <td id="rend_norm_conf4"></td>
+        </tr>
+
+        </tr>
+    </table>
+
+    <table class="margin-top-40">
+        <tr>
+            <th colspan="7">Tolerancia</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Repetibilidad 28 kVp: CV <= 5%</th>
+            <td><select name="cumple_rep_conf1" id="cumple_rep_conf1">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rep_conf2" id="cumple_rep_conf2">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rep_conf3" id="cumple_rep_conf3">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rep_conf4" id="cumple_rep_conf4">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+        </tr>
+
+        <tr>
+            <th colspan="3">Linealidad: < +- 10%</th>
+            <td><select name="cumple_lin_conf1" id="cumple_lin_conf1">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_lin_conf2" id="cumple_lin_conf2">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_lin_conf3" id="cumple_lin_conf3">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_lin_conf4" id="cumple_lin_conf4">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+        </tr>
+
+        <tr>
+            <th colspan="3">Rendimiento a 28 kV: > 30 uGy/mAs</th>
+            <td><select name="cumple_rend_conf1" id="cumple_rend_conf1">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rend_conf2" id="cumple_rend_conf2">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rend_conf3" id="cumple_rend_conf3">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+            <td><select name="cumple_rend_conf4" id="cumple_rend_conf4">
+                <option disabled selected value> ... </option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+              </select></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- Boton y modal para terminar prueba -->
+<button class="btn-primary button-without-border btn-result" id="finalizar_rendimiento">
+    Terminar Prueba
+</button>
+</div>
+
+  <!--          MODAL PARA TERMINAR PRUEBA                  -->
+<div id="modal-rendimiento" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="height: 500px; width:800px; right:150px">
+            <div class="modal-header">
+                <h4 class="modal-title">Retroalimentación de Respuestas Ingresadas</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                &times;
+                </button>
+            </div>
+            <div class="modal-body modal-volver" id="retroalimentacion_rendimiento">
+                <table class="margin-top-40">
+                    <tr>
+                        <th colspan="2"></th>
+                        <th colspan="2">Resultados Configuración 1</th>
+                        <th colspan="2">Resultados Configuración 2</th>
+                        <th colspan="2">Resultados Configuración 3</th>
+                        <th colspan="2">Resultados Configuración 4</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2"></th>
+                        <th>Esperado</th>
+                        <th >Ingresado</th>
+                        <th >Esperado</th>
+                        <th >Ingresado</th>
+                        <th>Esperado</th>
+                        <th >Ingresado</th>
+                        <th >Esperado</th>
+                        <th >Ingresado</th>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Repetibilidad 28 kVp: CV <= 5%</th>
+                        <td id="repet_conf1_real"></td>
+                        <td id="repet_conf1_ingresado"></td>
+                        <td id="repet_conf2_real"></td>
+                        <td id="repet_conf2_ingresado"></td>
+                        <td id="repet_conf3_real"></td>
+                        <td id="repet_conf3_ingresado"></td>
+                        <td id="repet_conf4_real"></td>
+                        <td id="repet_conf4_ingresado"></td>
+
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Linealidad: < +- 10%</th>
+                        <td id="linealidad_conf1_real"></td>
+                        <td id="linealidad_conf1_ingresado"></td>
+                        <td id="linealidad_conf2_real"></td>
+                        <td id="linealidad_conf2_ingresado"></td>
+                        <td id="linealidad_conf3_real"></td>
+                        <td id="linealidad_conf3_ingresado"></td>
+                        <td id="linealidad_conf4_real"></td>
+                        <td id="linealidad_conf4_ingresado"></td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Rendimiento a 28 kV con Mo/Mo: > 30 uGy/mAs</th>
+                        <td id="rend_conf1_real"></td>
+                        <td id="rend_conf1_ingresado"></td>
+                        <td id="rend_conf2_real"></td>
+                        <td id="rend_conf2_ingresado"></td>
+                        <td id="rend_conf3_real"></td>
+                        <td id="rend_conf3_ingresado"></td>
+                        <td id="rend_conf4_real"></td>
+                        <td id="rend_conf4_ingresado"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button
+                type="button"
+                id="volver-menu-desde-prueba-rendimiento"
+                class="btn btn-danger"
+                data-dismiss="modal"
+                >
+                Finalizar Prueba
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="amd/src/plantilla-rendimiento.js"></script>

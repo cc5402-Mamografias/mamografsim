@@ -40,7 +40,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
      */
     public function definition() {
         global $CFG;
-
+        global $DB;
         $mform = $this->_form;
 
         // Adding the "general" fieldset, where all the common settings are shown.
@@ -54,10 +54,14 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         } else {
             $mform->setType('name', PARAM_CLEANHTML);
         }
-
+        
+        
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'mamografsimname', 'mod_mamografsim');
+
+        
+        //$mform->addHelpButton('test', 'mamografsimname', 'mod_mamografsim');
 
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
@@ -68,11 +72,86 @@ class mod_mamografsim_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_mamografsim settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
-        $mform->addElement('header', 'mamografsimfieldset', get_string('mamografsimfieldset', 'mod_mamografsim'));
+        // $mform->addElement('static', 'label1', 'mamografsimsettings', get_string('mamografsimsettings', 'mod_mamografsim'));
+        $mform->addElement('header', 'mamografsimact', get_string('mamografsimact', 'mod_mamografsim'));
+        $pruebas2 = array(
+            'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
+            'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad',
+            'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen'
+        );
+        
+        $pruebasitem = array();
+        foreach ($pruebas2 as $key => $value) {
+         $pruebasitem[] = &$mform->createElement('advcheckbox',$key, '', $value, array('name' => $key,'group'=>1), $key);
+         $mform->setDefault($key, true);
+         $mform->addElement('hidden', "{$key}_label",$value);
+         $mform->setType("{$key}_label", PARAM_TEXT);
+         
+        }
+        $mform->addGroup($pruebasitem, 'pruebas',"Pruebas disponibles",' ',false);
+        
+        
+        $mform->addRule('pruebas', get_string('required'), 'required', null, 'client');
 
-        // Add standard grading elements.
-        $this->standard_grading_coursemodule_elements();
+        // Prueba de compresión
+        $mform->addElement('header', 'mamografsimcomp', get_string('mamografsimcomp', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorvis', "Error indicador fuerza compresión", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (El visor muestra la misma fuerza que la balanza)','Bajo'=>'Bajo (El visor presenta un error dentro de valores de tolerancia)','Alto'=>'Alto (El visor presenta un error mayor a los valores de tolerancia)'));
+        $mform->setType('errorvis', PARAM_TEXT);
+        $mform->addRule('errorvis', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+
+        $mform->addElement('select', 'errorf', "Fuerza máxima", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Dentro de los valores de tolerancia','Alto'=>'Fuera de los valores de tolerancia'));
+        $mform->setType('errorf', PARAM_TEXT);
+
+        $mform->addRule('errorf', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+        
+
+        $mform->addElement('select', 'erroralt', "Error espesor de compresión", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (El mamógrafo mide el espesor exacto de los objetos)','Bajo'=>'Bajo (El mamógrafo presenta un error dentro del rango deseable)','Medio'=>'Medio (El mamógrafo presenta un error dentro del rango aceptable)','Alto'=>'Alto (El mamógrafo presenta un error mayor al rango aceptable)'));
+        $mform->setType('erroralt', PARAM_TEXT);
+        $mform->addRule('erroralt', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+
+        // Prueba de rendimiento
+        $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Grado de variación medio','Alto'=>'Grado de variación alto'));
+        $mform->setType('errorrep', PARAM_TEXT);
+        
+        $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorlin', "Error Linealidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->setType('errorlin', PARAM_TEXT);
+        
+        $mform->addRule('errorlin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorrend', "Error Rendimiento", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->setType('errorrend', PARAM_TEXT);
+        
+        $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        // Prueba de imagen
+        $mform->addElement('header', 'mamografsimimg', get_string('mamografsimimg', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorimglin', "Error Cualitativo - Lineas", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Imagen limpia','Vertical'=>'Imagen con lineas verticales','Horizontal'=>'Imagen con lineas horizontales'));
+        $mform->setType('errorimglin', PARAM_TEXT);
+        $mform->addRule('errorimglin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorimgsp', "Error Cualitativo - Puntos blancos y negros", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Imagen limpia','Bajo'=>'Pocos puntos','Alto'=>'Muchos puntos'));
+        $mform->setType('errorimgsp', PARAM_TEXT);
+        $mform->addRule('errorimgsp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        $mform->addElement('select', 'errorvmp', "Error de Contraste", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->setType('errorvmp', PARAM_TEXT);
+        $mform->addRule('errorvmp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        // Agregar más pruebas aca
+
+
+
+
+        // Add standard grading elements. (No se requiere actualmente, pero en caso de requerirse en el futuro, no borrar).
+        //$this->standard_grading_coursemodule_elements();
 
         // Add standard elements.
         $this->standard_coursemodule_elements();

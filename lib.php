@@ -55,10 +55,18 @@ function mamografsim_supports($feature) {
 function mamografsim_add_instance($moduleinstance, $mform = null) {
     global $DB;
 
+    
+
     $moduleinstance->timecreated = time();
 
     $id = $DB->insert_record('mamografsim', $moduleinstance);
-
+    /*
+    foreach ($moduleinstance as $key=>$value){
+        echo("key:" . $key . " value:" . $value . "\n" );
+        echo "<br>";
+    }
+    unset($value);
+    */
     return $id;
 }
 

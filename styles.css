@@ -1,0 +1,799 @@
+.contenedor-main {
+  position: relative;
+}
+
+.contenedor-sim {
+  width: 1010px;
+  height: 600px;
+  position: relative;
+  display: none;
+  margin: auto;
+
+  flex-direction: column;
+  flex-flow: row nowrap;
+}
+
+.contenedor-button {
+  width: 1000px;
+  height: 600px;
+  padding: 200px;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  outline: solid 1px black;
+}
+
+#panel-izquierdo {
+  width: 300px;
+  height: 100%;
+}
+
+#panel-central {
+  width: 400px;
+  height: 100%;
+}
+
+#panel-derecho {
+  width: 300px;
+  height: 100%;
+}
+
+.max-width {
+  width: 100% !important;
+}
+
+#dragndrop-instrucciones {
+  height: 0px;
+  color: blue;
+}
+
+.titulo-panel {
+  font-size: large;
+  text-align: center;
+  width: 100%;
+}
+
+.open-sim {
+  min-width: 400px;
+  min-height: 106.5px;
+  border-radius: 8px;
+  font-weight: bold;
+
+  text-align: center;
+}
+.direction-button {
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+/* Interfaz Botones */
+.botones {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7%;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  outline: solid 1px black;
+  text-align: center;
+}
+
+.botones button {
+  width: 49%;
+  height: 100%;
+  margin: 0px;
+}
+
+.espacio-boton {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* Interfaz pasos a seguir */
+.pasos-panel {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 43%;
+  padding-left: 0px;
+  overflow-y: auto;
+
+  outline: solid 1px black;
+  background-color: #f5f5f5;
+  text-align: justify;
+  overflow-y: scroll;
+}
+
+.pasos-lista {
+  position: relative;
+  min-height: 60%;
+}
+
+.pasos-botones {
+  position: relative;
+  width: 100%;
+  height: 10%;
+  margin-bottom: 2em;
+}
+
+.paso {
+  display: none;
+  text-align: justify;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+.pasos-height {
+  height: 45px !important;
+  line-height: 18px;
+}
+
+.paso-activo {
+  display: block;
+}
+
+#prevBtn {
+  position: absolute;
+
+  margin-left: 25px !important;
+}
+
+#prevBtn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+#nextBtn {
+  position: absolute;
+  right: 1em;
+}
+
+#nextBtn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid black;
+  table-layout: fixed;
+  margin-top: 60px;
+}
+th,
+td {
+  border: 1px solid black;
+  vertical-align: center;
+}
+
+/* Interfaz panel de control */
+/* Quitar flechas de input number para diferentes navegadores */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+button.btnadd {
+  border-radius: 8px;
+}
+button.btnsub {
+  border-radius: 8px;
+  margin-bottom: 7px;
+}
+button.btnmode {
+  border-radius: 8px;
+}
+
+button.fltmode {
+  border-radius: 8px;
+}
+
+button.btn-result {
+  margin-top: 50px;
+  height: 30px;
+  width: 80px;
+  padding-bottom: 50px;
+}
+
+button.anodemode {
+  border-radius: 8px;
+}
+.panel-control {
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  outline: solid 1px black;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.numeric_input {
+  position: absolute;
+  top: 50px;
+}
+.mas_input {
+  border: 3px;
+  width: 50px;
+  margin-bottom: 7px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  padding: 0 7px;
+}
+.kv_input {
+  width: 35px;
+  margin-left: 15px;
+  margin-bottom: 7px;
+  border: 2px solid lightgray;
+  border-radius: 4px;
+  padding: 0 7px;
+}
+.mas_label {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+.kv_label {
+  margin-left: 5px;
+  margin-right: 12px;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+.modes {
+  position: absolute;
+  top: 105px;
+  left: 4px;
+  width: 290px;
+  height: 90px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: rgb(118, 118, 118);
+  margin-top: 7px !important;
+}
+.modes-left {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100px;
+  height: 53px;
+  margin-right: 0px;
+  margin-left: auto;
+}
+.modes-center {
+  position: absolute;
+  top: 15px;
+  left: 98px;
+  width: 100px;
+  height: 43px;
+  text-align: center;
+}
+.modes-right {
+  position: absolute;
+  top: 5px;
+  left: 181px;
+  width: 100px;
+  height: 53px;
+}
+.autokv {
+  margin-left: 15px;
+}
+.autotime {
+  margin-left: 0px;
+}
+.manual {
+  margin-left: -11px;
+}
+.autofilter {
+  margin-left: 10px;
+}
+.filter-mode {
+  position: absolute;
+  top: 210px;
+  width: 300px;
+  height: 53px;
+  margin-right: 0px;
+}
+
+.anode-mode {
+  position: absolute;
+  top: 250px;
+  width: 300px;
+  height: 30px;
+  margin-right: 0px;
+}
+
+.shoot-mode {
+  position: absolute;
+  top: 230px;
+  left: 100px;
+  width: 300px;
+  height: 30px;
+  margin-right: 0px;
+}
+input[type="radio"]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+input[type="radio"]:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: rgb(0, 112, 216);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+.shoot-mode .shoot {
+  border-radius: 8px;
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* Interfaz mamografo */
+.mamografo {
+  position: relative;
+  top: 0;
+  outline: 1px solid black;
+}
+
+/* Interfaz herramientas mini */
+.herramientas-mini {
+  position: relative;
+  top: 0;
+  height: 50%;
+  outline: 1px solid black;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.herrams-titulo {
+  width: 100%;
+}
+
+.herrams-lista {
+  width: 100%;
+  height: 75%;
+  overflow-y: auto;
+}
+
+.herrams-btn {
+  height: 105px;
+  color: black !important;
+}
+
+.her-b-s {
+  width: 35%;
+  margin: 2.5%;
+}
+
+.her-b-l {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.her-b-s {
+  width: 40%;
+}
+
+.her-b-l {
+  width: 100%;
+}
+
+.boton-ver-mas {
+  width: 100%;
+  height: 38px;
+  outline: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Interfaz herramientas pop over */
+.herramientas-pop {
+  position: absolute;
+  top: -5;
+  left: -5;
+  display: none;
+  z-index: 100;
+  background-color: #f5f5f5;
+  width: 105%;
+  height: 105%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.herrams-salir {
+  text-align: left;
+}
+
+/* Interfaz resultados */
+.panel-resultados {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  background-color: #f5f5f5;
+  outline: 1px solid black;
+}
+
+.resultados-lista {
+  width: 100%;
+  height: 75%;
+  overflow-y: auto;
+  padding-left: 20px;
+}
+
+.resultados-item {
+  text-align: left;
+  font-size: medium;
+}
+
+/*Plantilla prueba rendimiento*/
+.plantilla input {
+  width: 100%;
+  height: 100%;
+  border: none !important;
+  outline: none;
+  text-align: center;
+}
+
+.mas-input-resultados {
+  width: 70px;
+  border: thick !important;
+  border-bottom: ridge !important;
+}
+
+.custom-table {
+  width: 100%;
+  text-align: center;
+  border: none !important;
+  table-layout: fixed;
+  margin-top: 20px;
+}
+
+.margin-top-40 {
+  margin-top: 40px;
+}
+
+.margin-right-4 {
+  margin-right: 4px;
+}
+
+.custom-th,
+.custom-td,
+.custom-tr {
+  border: none !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.custom-h3 {
+  margin-left: 220px;
+  margin-top: 30px;
+}
+
+.height-100 {
+  height: 100px;
+}
+
+/* Interfaz boton plantilla */
+.contenedor-boton-plantilla {
+  width: 300px;
+  height: 38px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.boton-plantilla {
+  width: 100%;
+  height: 38px;
+}
+
+/* Interfaz plantilla pop over */
+.plantilla-pop {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  display: none;
+  z-index: 100;
+  background-color: white;
+  width: 105%;
+  height: 105%;
+  overflow-y: auto;
+  text-align: center;
+  outline: solid 1px black;
+}
+
+.plantilla-salir {
+  text-align: left;
+}
+
+/* Loading Animation */
+/* https://projects.lukehaas.me/css-loaders/ */
+
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #000000;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+
+/* MODAL */
+
+#contenedor-sim .modal {
+  position: absolute !important;
+}
+
+#contenedor-sim .modal-backdrop {
+  position: absolute !important;
+  top: -2.5%;
+  left: -2.5%;
+  width: 105%;
+  height: 105%;
+}
+
+#contenedor-sim .modal-dialog {
+  overflow-y: initial !important;
+}
+
+#contenedor-sim .modal-body {
+  overflow-y: auto;
+}
+
+#contenedor-sim .modal-volver {
+  height: 20vh;
+}
+
+#contenedor-sim .modal-mesa {
+  height: 70vh;
+  padding: 0px;
+}
+
+.block {
+  width: 100%;
+  height: 200px;
+}
+
+body.modal-open {
+  overflow: none !important;
+}
+
+.after_modal_appended {
+  position: relative;
+}
+
+.receptor {
+  width: 800px;
+  height: 480px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+.vista-arriba-receptor {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  display: none;
+  z-index: 100;
+  background-color: #f5f5f5;
+  width: 105%;
+  height: 105%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+/* Drag and drop dropzone */
+.dropzone-detector {
+  width: 64px;
+  height: 128px;
+  background: none;
+  border: 2px solid rgb(255, 251, 0);
+}
+/* Drag and drop draggable test */
+#draggable-detector {
+  width: 60px;
+  height: 124px;
+  text-align: center;
+  background: white;
+}
+
+/* Drag and drop dropzone */
+.dropzone-disco {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  background: none;
+  border: 2px solid rgb(9, 255, 0);
+}
+/* Drag and drop draggable test */
+#draggable-disco {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  background: rgb(9, 177, 168);
+}
+
+/* Alertas de feedback sobre posición de la cámara de ionización */
+.alert-danger {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  display: none;
+}
+
+.alert-success {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  display: none;
+}
+
+/* Quitar borde de botones seleccionados */
+.button-without-border {
+  outline: none !important;
+  box-shadow: none;
+}
+button:disabled {
+  opacity: 0.6;
+}
+
+.titulo-seccion {
+  background-color: lightsteelblue;
+  height: 35px;
+  padding-top: 5px;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+/* border-radius: 3rem;
+width: auto;
+margin-left: 50px;
+margin-block: auto;
+margin-bottom: 5px;
+margin-top: 5px; */
+
+.mode-title {
+  margin-left: 15px;
+  margin-right: 10px;
+  color: darkgrey;
+  font-weight: bold;
+}
+
+.mode-cursor {
+  cursor: pointer;
+}
+
+.mode:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.anode-title {
+  margin-left: 15px;
+  margin-right: 10px;
+  color: darkgrey;
+  font-weight: bold;
+}
+
+.anode-cursor {
+  cursor: pointer;
+}
+
+.anode:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.filter-title {
+  margin-left: 15px;
+  margin-right: 10px;
+  color: darkgrey;
+  font-weight: bold;
+}
+
+.filter-cursor {
+  cursor: pointer;
+}
+
+.filter:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.lista-centrada {
+  list-style-position: inside;
+}

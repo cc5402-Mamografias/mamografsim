@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type='text/javascript' src="https://unpkg.com/konva@7.2.0/konva.min.js"></script>
+
+</head>
+
+<body>
+
+  <div style="width:1px; height:1px; visibility:hidden; overflow:hidden">
+    <img src="icons/left.png"/>
+    <img src="icons/balanza.png"/>
+    <img src="icons/barometer.png"/>
+    <img src="icons/battery.png"/>
+    <img src="icons/box.png"/>
+    <img src="icons/curve-arrow.png"/>
+    <img src="icons/fantoma.png"/>
+    <img src="icons/grid.png"/>
+    <img src="icons/ionizador.png"/>
+    <img src="icons/left.png"/>
+    <img src="icons/notepad-xxl.png"/>
+    <img src="icons/plus-4-xxl.png"/>
+    <img src="icons/question.png"/>
+    <img src="icons/slabs.png"/>
+    <img src="icons/tape.png"/>
+    <img src="icons/thermometer.png"/>
+    <img src="icons/towel.png"/>
+
+    <img src="img/all.svg"/>
+    <img src="img/balanza.svg"/>
+    <img src="img/balanzatoalla.svg"/>
+    <img src="img/barometer.svg"/>
+    <img src="img/cam.svg"/>
+    <img src="img/complete.svg"/>
+    <img src="img/compresor.svg"/>
+    <img src="img/detector.svg"/>
+    <img src="img/fantoma45_contraste.svg"/>
+    <img src="img/fondo.svg"/>
+    <img src="img/mamogram.svg"/>
+    <img src="img/receptor_con_fantoma.svg"/>
+    <img src="img/receptor.svg"/>
+    <img src="img/slab20.svg"/>
+    <img src="img/slab45.svg"/>
+    <img src="img/slab70.svg"/>
+    <img src="img/thermometer.svg"/>
+    
+    <img src="img/pedals/pedal-base.svg"/>
+    <img src="img/pedals/pedal-down-off.svg"/>
+    <img src="img/pedals/pedal-down-on.svg"/>
+    <img src="img/pedals/pedal-up-off.svg"/>
+    <img src="img/pedals/pedal-up-on.svg"/>
+  </div>
+  <div id="contenedor-main" class="contenedor-main">
+
+
+
+    <!-- INTERFAZ MENU INICIO -->
+    <div id="contenedor-button" class="contenedor-button">
+      <div id="loader">
+        <div class="loader"></div>
+        <h2>Cargando...</h2>
+      </div>
+
+      <div id = "selector" style="display: none;">
+        <div class ="row justify-content-center">
+          <h2> Seleccionar una prueba: </h2>
+        </div>
+        <div class ="row justify-content-center ">
+          <div class="col-md-2">
+            <button id = "left" class="direction-button p-2"><img src="icons/left.png" width="64" height="64">Anterior</button>
+          </div>
+          <div class="col-md-8">
+            <!--<div class ="row justify-content-center ">-->
+            <div id="prueba-button"> 
+
+            </div>
+          <!-- </div>-->
+          </div>
+          <div class="col-md-2">
+            <button id ="right" class="direction-button p-2" height="64"><img src="icons/right.png"  width="64">Siguiente</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- INTERFAZ MENU INICIO -->
+
+    <div id="contenedor-sim" class="contenedor-sim">
+      <!-- MODAL VOLVER -->
+      <div id="modal-volver" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">¿Deseas volver al menú principal?</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body modal-volver">
+              <p>Todo el progreso que has hecho dentro de esta prueba será borrado si regresas al menú principal.</p>
+              <br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="volver-menu" class="btn btn-danger" data-dismiss="modal">Volver</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- IZQUIERDA -->
+      <div id="panel-izquierdo">
+        <!-- INTERFAZ BOTONES -->
+        <div id="container-botones max-width" class="botones">
+          <button class="btn-primary button-without-border max-width" id="volver">Volver<img class="espacio-boton" src="icons/curve-arrow.png" width=15></button>
+        </div>
+
+        <!-- INTERFAZ PASOS -->
+        <div id="container-pasos" class="pasos-panel">
+        </div>
+        <!-- /INTERFAZ PASOS -->
+
+        <!-- INTERFAZ PANEL DE CONTROL -->
+        <div class="panel-control">
+          <div class="titulo-panel titulo-seccion">Panel de Control</div>
+          <div class="container pt-2">
+            <div class="row">
+              <div class="col-sm">
+                <form>
+                  <input type="number" id="kv" name="kv" min="22" max="35" class="kv_input" value=30>
+                  <input type="number" id="mas" name="mas" min="10" max="200" class="mas_input" value=100>
+                </form>
+              </div>
+              <div class="col-sm" style="text-align:center;">
+                <label class="kv_label"> kV</label>
+                <label class="mas_label"> mAs</label>
+              </div>
+              <div class="col-sm" style="text-align:left;">
+                <button class="btnsub" id="kv-" value="kv">-</button>
+                <button class="btnadd" id="kv+" value="kv">+</button>
+                <button class="btnsub" id="ma-" value="mas">-</button>
+                <button class="btnadd" id="ma+" value="mas">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="modes">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <!-- <button class="btnmode" id="mode-b">MODE</button> -->
+                  <h6 class="mode-title">MODE</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <label class="mode-cursor" id="mode1"> AutoKV <input class="mode mode-cursor" type="radio" name="mode" value="autokv" id="c01" checked /> </label>
+                </div>
+                <div class="col-sm">
+                  <label class="mode-cursor" id="mode2"><input class="mode mode-cursor" type="radio" name="mode" value="manual" id="c03" /> Manual </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm">
+                  <label class="mode-cursor" id="mode3"> Auto Time <input class="mode mode-cursor" type="radio" name="mode" value="autotime" id="c02" /> </label>
+                </div>
+
+                <div class="col-sm">
+                  <label class="mode-cursor" id="mode4"><input class="mode mode-cursor" type="radio" name="mode" value="autofilter" id="c04" /> Auto Filter </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="filter-mode row">
+              <!-- <button class="fltmode" id="filter-b">filter</button> -->
+              <div><p class="filter-title">FILTER</p></div>
+              <label class="filter-cursor margin-right-4"> Mo <input class="filter filter-cursor" type="radio" name="filter" id="f01" checked /> </label>
+              <label class="filter-cursor margin-right-4"> Rh <input class="filter filter-cursor" type="radio" name="filter" id="f02" /> </label>
+              <label class="filter-cursor margin-right-4"> Ag <input class="filter filter-cursor" type="radio" name="filter" id="f03" /> </label>
+            </div>
+          </div>
+          <div class="container">
+            <div class="anode-mode row">
+              <!-- <button class="anodemode" id="anode-b">anode</button> -->
+              <div><p class="anode-title">ANODE</p></div>
+              <label class="anode-cursor margin-right-4"> Mo <input class="anode anode-cursor" type="radio" name="anode" id="a01" checked /> </label>
+              <label class="anode-cursor margin-right-4"> Rh <input class="anode anode-cursor" type="radio" name="anode" id="a02" /> </label>
+              <label class="anode-cursor margin-right-4"> W <input class="anode anode-cursor" type="radio" name="anode" id="a03" /> </label>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class="shoot-mode">
+              <button class="btn btn-danger shoot" id="shoot-b">Shoot</button>
+
+            </div>
+          </div>
+        </div>
+        <!-- INTERFAZ PANEL DE CONTROL -->
+      </div>
+
+      <!-- /IZQUIERDA -->
+
+
+      <!-- CENTRO -->
+      <div id="panel-central">
+        <!-- CANVAS MAMOGRAFO -->
+        <canvas id="canvas" class="mamografo" width="400" height="600"></canvas>
+        <button id="vista-desde-arriba" style="position:absolute;left:59%;top:7%; display: None;"><img
+            src="icons/grid.png" width=30><br>Ver mesa</button>
+        <!-- /CANVAS MAMOGRAFO -->
+      </div>
+      <!-- /CENTRO -->
+
+
+      <!-- DERECHO -->
+      <div id="panel-derecho">
+
+        <!-- INTERFAZ HERRAMIENTAS -->
+        <div class="herramientas-mini">
+          <h3 class="titulo-panel titulo-seccion">Herramientas</h3>
+          <div id="herramientas-express" class="herrams-lista"></div>
+
+          <button id="herrams-mas" class="boton-ver-mas btn btn-primary">Ver más Herramientas <img class="espacio-boton" src="icons/plus-4-xxl.png" width=14></button>
+        </div>
+        <!-- /INTERFAZ HERRAMIENTAS -->
+
+        <!-- INTERFAZ RESULTADOS -->
+        <div id="panel-resultados" class="panel-resultados">
+          <h3 class="titulo-panel titulo-seccion">Resultados</h3>
+          <div id="resultados-lista" class="resultados-lista"></div>
+
+          <!-- INTERFAZ BOTON PLANTILLA -->
+          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados <img class="espacio-boton" src="icons/notepad-xxl.png" width=15></button>
+          <!-- /INTERFAZ BOTON PLANTILLA -->
+        </div>
+        <!-- /INTERFAZ RESULTADOS -->
+
+      </div>
+      <!-- /DERECHO -->
+
+      <!-- MENU OCULTO HERRAMIENTAS -->
+      <div id="herrams" class="herramientas-pop">
+        <div id="herrams-menos" class="herrams-salir">
+          <button type="button" class="btn btn-danger">&lt; Volver al simulador</button>
+        </div>
+
+        <div class="container">
+          <h3 class="titulo-seccion">Herramientas</h3>
+          <div id="herrams-lista-completa" class="row">
+          </div>
+        </div>
+      </div>
+      <!-- /MENU OCULTO HERRAMIENTAS -->
+
+
+      <!-- PLANTILLA OCULTA RESULTADOS -->
+      <div id="plantilla" class="plantilla-pop">
+        <div class="plantilla-salir">
+          <button id="plantilla-cerrar" class="btn btn-danger" type="button">&lt; Volver al simulador</button>
+        </div>
+        <div id="container-plantilla" class="container plantilla"></div>
+      </div>
+      <!-- /PLANTILLA OCULTA RESULTADOS -->
+
+      <!-- VISTA DESDE ARRIBA DEL RECEPTOR OCULTA PARA CAMARA-->
+      <div id="vista-arriba-receptor" class="vista-arriba-receptor">
+        <div id="container-vista-arriba" class="container plantilla">
+          <div class="mt-4">
+            <h4>Vista Superior Receptor de Mama</h4>
+          </div>
+
+          <div id="dragndrop-instrucciones">
+          <b>Arrastre la herramienta que se encuentra a su derecha hacia la posicion correcta manteniendo el click izquierdo del mouse presionado.</b>
+          </div>
+          <canvas id="canvasReceptor" class="receptor" width="800" height="480">
+          </canvas>
+
+          <div id="alerta-posicion-correcta" class="alert-success mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_correcta" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
+            Posición correcta
+          </div>
+          <div id="alerta-posicion-incorrecta" class="alert-danger mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_incorrecta" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
+            Posición incorrecta
+          </div>
+          <div style="margin-top: 1rem;">
+            <button type="button" id="Guardar-pos" class="btn btn-primary button-without-border px-3 mx-2" data-dismiss="modal">Verificar
+              Posición</button>
+            <button id="cerrar-vista-desde-arriba" class="btn btn-success px-3 mx-2" type="button">Guardar y
+              Salir</button>
+          </div>
+          <div id="posicion_buena" class="dropzone dropzone-detector" style="position:absolute; left:458px; top:403px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-detector" style="position:absolute; left:800px; top:276px;">
+            <img id="draggable-detector" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"
+              src="img/cam.svg" width=30>
+          </div>
+          <div id="posicion_mala" class="dropzone dropzone-detector" style="position:absolute; left:458px; top:244px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-detector" style="position:absolute; left:330px; top:340px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-detector" style="position:absolute; left:586px; top:340px;"></div>
+        </div>
+      </div>
+      <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
+      <!-- VISTA DESDE ARRIBA DEL RECEPTOR OCULTA PARA FANTOMA-->
+
+      <div id="vista-arriba-receptor-2" class="vista-arriba-receptor">
+        <div id="container-vista-arriba-2" class="container plantilla">
+          <div class="mt-4">
+            <h4>Vista Superior Receptor de Mama</h4>
+          </div>
+          <div id="dragndrop-instrucciones">
+            <b>Arrastre la herramienta que se encuentra a su derecha hacia la posicion correcta manteniendo el click izquierdo del mouse presionado.</b>
+            </div>
+          <canvas id="canvasReceptor-2" class="receptor" width="800" height="480">
+          </canvas>
+
+          <div id="alerta-posicion-correcta-2" class="alert-success mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_correcta-2" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
+            Posición correcta
+          </div>
+          <div id="alerta-posicion-incorrecta-2" class="alert-danger mt-1" role="alert">
+            <a id="cerrar_alerta_posicion_incorrecta-2" href="#" class="close" data-dismiss="alert"
+              aria-label="close">&times;</a>
+            Posición incorrecta
+          </div>
+          <div style="margin-top: 1rem;">
+            <button type="button" id="Guardar-pos-2" class="btn btn-primary button-without-border px-3 mx-2" data-dismiss="modal">Verificar
+              Posición</button>
+            <button id="cerrar-vista-desde-arriba-2" class="btn btn-success px-3 mx-2" type="button">Guardar y
+              Salir</button>
+          </div>
+          <div id="posicion_buena" class="dropzone dropzone-disco" style="position:absolute; left:470px; top:427px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-disco" style="position:absolute; left:800px; top:427px;">
+            <div id="draggable-disco" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)"></div>
+          </div>
+          <div id="posicion_mala" class="dropzone dropzone-disco" style="position:absolute; left:390px; top:427px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-disco" style="position:absolute; left:550px; top:427px;"></div>
+          <div id="posicion_mala" class="dropzone dropzone-disco" style="position:absolute; left:470px; top:491px;"></div>
+        </div>
+      </div>
+      <!-- /VISTA DESDE ARRIBA DEL RECEPTOR -->
+
+      <!-- VISOR IMAGEN DE MAMOGRAFIA -->
+      <div id="visor-imagen" class="plantilla-pop">
+        <div class="plantilla-salir">
+          <button id="visor-cerrar" class="btn btn-danger" style="position:relative; z-index:2" type="button">&lt; Volver al simulador</button>
+        </div>
+        <div id="container-visor" style="margin-top:-20px; z-index: 1" class="container"></div>
+      </div>
+      <!-- /VISOR IMAGEN DE MAMOGRAFIA -->
+
+
+    </div>
+  </div>
+
+</body>
+
+</html>

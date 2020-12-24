@@ -25,4 +25,17 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Simulador de mamografías';
+
+$string['mamografsimname'] = 'Nombre Prueba o Actividad';
+$string['mamografsimname_help'] = 'Nombre de la instancia';
+$string['mamografsimfieldset'] = 'Configuraciones del Mamógrafo';
+$string['mamografsimcomp'] = 'Configuraciones de la prueba de compresión';
+$string['mamografsimrend'] = 'Configuraciones de la prueba de rendimiento';
+$string['mamografsimimg'] = 'Configuraciones de la prueba de imagen';
+$string['mamografsimact'] = 'Configuraciones actividad';
+$string['modulename'] = 'Mamografsim';
+$string['modulename_help'] = '';
+$string['modulename_link'] = 'mod/mamografsim/view';
+$string['modulenameplural'] = 'Mamografsims';
+$string['pluginadministration'] = 'Administración Mamografsim';
+$string['pluginname'] = 'Mamografsim';

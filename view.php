@@ -25,6 +25,7 @@
 require(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 
+
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
 
@@ -61,6 +62,59 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
+/*
+foreach ($moduleinstance as $key=>$value){
+    echo("key:" . $key . " value:" . $value . "\n");
+
+}
+unset($value);
+*/
+//Errores
+$errorvis = $moduleinstance->errorvis;
+$errorrep = $moduleinstance->errorrep;
+$errorlin = $moduleinstance->errorlin;
+$errorrend = $moduleinstance->errorrend;
+$errorf = $moduleinstance->errorf;
+$erroralt = $moduleinstance->erroralt;
+$errorimglin = $moduleinstance->errorimglin;
+$errorimgsp = $moduleinstance->errorimgsp;
+$errorvmp = $moduleinstance->errorvmp;
+//Pruebas
+$compresion = $moduleinstance->compresion;
+$compresion_label = $moduleinstance->compresion_label;
+
+$rendimiento = $moduleinstance->rendimiento;
+$rendimiento_label = $moduleinstance->rendimiento_label;
+
+$imagen = $moduleinstance->imagen;
+$imagen_label = $moduleinstance->imagen_label;
+$PAGE->requires->js_call_amd('mod_mamografsim/main','init',
+    array(
+        array(
+            array('errorrep',$errorrep),
+            array('errorlin',$errorlin),
+            array('errorrend',$errorrend),
+            array('errorf',$errorf),
+            array('erroralt',$erroralt),
+            array('errorvis',$errorvis),
+            array('errorimglin',$errorimglin),
+            array('errorimgsp',$errorimgsp),
+            array('errorvmp',$errorvmp)
+        ),
+        array(
+            array($compresion,$compresion_label),
+            array($rendimiento,$rendimiento_label),
+            array($imagen,$imagen_label)
+
+    )
+));
+$PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
+
+
+
+
 echo $OUTPUT->header();
+
+readfile("interfaces.html");
 
 echo $OUTPUT->footer();
