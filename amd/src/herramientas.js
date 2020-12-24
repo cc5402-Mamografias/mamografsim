@@ -119,7 +119,9 @@ class Balanza extends AbstractTool {
   getResultado() {
     if (this.toalla == false && this.fuerza != 0) {
       return {
-        balanza: ["ADVERTENCIA: ¡Se está comprimiendo balanza sin toalla!"],
+        balanza: [
+          "<span style='color:red'>ADVERTENCIA:</span> ¡Se está comprimiendo balanza sin toalla!",
+        ],
       };
     } else {
       return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
