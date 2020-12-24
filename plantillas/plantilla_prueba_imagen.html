@@ -2,55 +2,78 @@
   <div style="height: 100px;">
     <div class="row h-100">
       <h3 style="margin-left: 110px; margin-top: 30px">CONTROL DE CALIDAD DE UN OBJETO DE PRUEBA Y ARTEFACTOS EN EL RECEPTOR DE IMAGEN</h3>
-    </div> 
+    </div>
+  </div>
 
 
   <div style="height:210px">
- <table style="float: left; width: 45%;">   <tr>     <th colspan="2">Condiciones base de fantoma de uniformidad</th>
+
+    <table style="float: left; width: 45%;">
+      <tr>
+        <th colspan="2">Condiciones base de fantoma de uniformidad</th>
 
       </tr>
 
-      <tr> alr dedo >deiltro</th>
+      <tr>
+        <th>Filtro</th>
         <th><input type="text" class="text-center" id="filtro_planilla" value = "Mo" step="any" readonly></th>
       </tr>
 
-      <tr>a     <th>kV</th>
+      <tr>
+        <th>kV</th>
         <th><input type="number" class="text-center" id="kV_planilla" value = 28 step="any" readonly></th>
       </tr>
 
-   <tr> Espesor Doon (mm)</th>
+
+      <tr>
+        <th>Espesor De Compresión (mm)</th>
         <th><input type="number" class="text-center" id="espesor_planilla" value = 45 step="any" readonly></th>
       </tr>
 
-      <tr>     <th>Fuerza De Compreson (N)</th>   ray<input type="number" class="text-center" id="fuerza_planilla" value = 80 step="any" readonly></th>
+      <tr>
+        <th>Fuerza De Compresión (N)</th>
+        <th><input type="number" class="text-center" id="fuerza_planilla" value = 80 step="any" readonly></th>
       </tr>
     </table>
 
-    <table style="float:right;  width: 45%;">   <tr>     <th colspan="2">nes base de SDNR<>
+    <table style="float:right;  width: 45%;">
+      <tr>
+        <th colspan="2">Condiciones base de SDNR</th>
 
-      </tr>
-
-      <tr>é     <th>valor promedio de SDNR</th>e     <th><input type="number" id="SDNR_peanilla" step="any" value=22 readonly></th>
       </tr>
 
       <tr>
-        <th>Límite de acción superior = SDNR + 10%</th>     <th><input type="number" id="SDNR_superior_planilla" step="any" va>
+        <th>valor promedio de SDNR</th>
+        <th><input type="number" id="SDNR_planilla" step="any" value=22 readonly></th>
+      </tr>
+
+      <tr>
+        <th>Límite de acción superior = SDNR + 10%</th>
+        <th><input type="number" id="SDNR_superior_planilla" step="any" value=24.2 readonly ></th>
+      </tr>
 
       <tr>
         <th>Límite de acción inferior = SDNR - 10%</th>
-        <th><input type="number" id="SDNR_inferior_planilla" step="any" value   </tr>
+        <th><input type="number" id="SDNR_inferior_planilla" step="any" value=19.8 readonly></th>
+      </tr>
 
     </table>
 
-  </div>,respectivamente, 
+  </div>
+
+
+
 <!--          division de tablas                   -->
 
 
   <div style="height: 190px;">
+
     <table style="float:left;  width: 45%;">
       <tr>
         <th colspan="2">Condiciones base de mAs</th>
-      </tr>nobjtod p>ueb
+      </tr>
+
+      <tr>
         <th>mAs Promedio</th>
         <th><input type="number" id="mAs_planilla" value = 100 step="any" readonly> </th>
       </tr>
