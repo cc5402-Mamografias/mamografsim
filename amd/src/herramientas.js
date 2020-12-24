@@ -7,22 +7,20 @@ var pyKerma_server = "http://localhost:5000";
 //funciones aux
 //operaciones con resultado entero
 function mError(min, max) {
-
-  return ((random() * (max - min) ) + min);
+  return random() * (max - min) + min;
 }
-function elevar (base, exp){
-  return((Math.pow(base, exp)));
+function elevar(base, exp) {
+  return Math.pow(base, exp);
 }
-function multiplicar (x1,x2){
-  return((x1*x2));
+function multiplicar(x1, x2) {
+  return x1 * x2;
 }
 //operacion Math.random con seed fijo
 var seed = 1;
 function random() {
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
+  var x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
 }
-
 
 class AbstractTool {
   constructor() {
@@ -78,7 +76,6 @@ class BaseNula extends AbstractTool {
 }
 
 class Balanza extends AbstractTool {
-
   constructor() {
     super();
     this.toalla = false;
@@ -92,11 +89,11 @@ class Balanza extends AbstractTool {
     this.y = 265;
     this.description = "Esta es una balanza.";
     this.notoalla = new Image();
-    this.notoalla.src = 'img/balanza.svg';
+    this.notoalla.src = "img/balanza.svg";
     this.sitoalla = new Image();
-    this.sitoalla.src = 'img/balanzatoalla.svg';
+    this.sitoalla.src = "img/balanzatoalla.svg";
 
-    this.balanza = this.notoalla
+    this.balanza = this.notoalla;
   }
 
   actualizar(estado) {
@@ -110,18 +107,25 @@ class Balanza extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.balanza, this.x, this.y, this.balanza.width * this.scale, this.balanza.height * this.scale);
+    ctx.drawImage(
+      this.balanza,
+      this.x,
+      this.y,
+      this.balanza.width * this.scale,
+      this.balanza.height * this.scale
+    );
   }
 
   getResultado() {
     if (this.toalla == false && this.fuerza != 0) {
-      return { balanza: ["ADVERTENCIA: ¡Se está comprimiendo balanza sin toalla!"] };
-
-    }
-    else {
+      return {
+        balanza: [
+          "<span style='color:red'>ADVERTENCIA:</span> ¡Se está comprimiendo balanza sin toalla!",
+        ],
+      };
+    } else {
       return { balanza: ["Balanza: " + this.fuerza.toFixed(2) + " Kg."] };
     }
-
   }
 }
 
@@ -136,23 +140,21 @@ class Toalla extends AbstractTool {
     this.x = 152;
     this.y = 265;
     this.description = "Poner la toalla encima de la balanza.";
-
   }
 
   action(maquina) {
     if (maquina.herramienta.tipo == "Balanza") {
-      let balanza = maquina.herramienta
+      let balanza = maquina.herramienta;
       if (!balanza.toalla) {
         balanza.balanza = balanza.sitoalla;
         balanza.toalla = true;
-      }
-      else {
+      } else {
         balanza.balanza = balanza.notoalla;
         balanza.toalla = false;
       }
 
       maquina.actualizar();
-     //console.log("balanza: ", balanza);
+      //console.log("balanza: ", balanza);
     }
   }
   actualizar(ctx) {
@@ -161,7 +163,6 @@ class Toalla extends AbstractTool {
   dibujar(ctx) {
     //nada
   }
-
 }
 
 class Slab_20mm extends AbstractTool {
@@ -179,8 +180,7 @@ class Slab_20mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    this.slabs.src = 'img/slab20.svg';
-
+    this.slabs.src = "img/slab20.svg";
   }
 
   actualizar(estado) {
@@ -188,7 +188,13 @@ class Slab_20mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.drawImage(
+      this.slabs,
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
   }
 
   getResultado() {
@@ -208,8 +214,7 @@ class Slab_45mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    this.slabs.src = 'img/slab45.svg';
-
+    this.slabs.src = "img/slab45.svg";
   }
 
   actualizar(estado) {
@@ -217,7 +222,13 @@ class Slab_45mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.drawImage(
+      this.slabs,
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
   }
 
   getResultado() {
@@ -238,8 +249,7 @@ class Slab_70mm extends AbstractTool {
     this.y = 250;
 
     this.slabs = new Image();
-    this.slabs.src = 'img/slab70.svg';
-
+    this.slabs.src = "img/slab70.svg";
   }
 
   actualizar(estado) {
@@ -247,7 +257,13 @@ class Slab_70mm extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.slabs, this.x, this.y, this.slabs.width * this.scale, this.slabs.height * this.scale);
+    ctx.drawImage(
+      this.slabs,
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
   }
 
   getResultado() {
@@ -264,36 +280,31 @@ class DetectRad extends AbstractTool {
     this.description = "Esta es una camara de ionizacion.";
     this.colocada = false;
     this.kerma = null;
-    this.result = [
-      "Detector de Radiación",
-      "NADA"
-    ];
+    this.result = ["Detector de Radiación", "NADA"];
 
     this.scale = 0.5;
     this.x = 130;
     this.y = 230;
     this.sprite = new Image();
-    this.sprite.src = 'img/detector.svg';
+    this.sprite.src = "img/detector.svg";
     this.errores = {};
   }
   colocar(bool) {
     this.colocada = bool;
   }
 
-
   actualizar(estado) {
     //cargamos errores
-    this.errores["rep"] = estado.errores.errorrep[0]
-    this.errores["lin"] = estado.errores.errorlin[0]
-    this.errores["rend"] = estado.errores.errorrend[0]
+    this.errores["rep"] = estado.errores.errorrep[0];
+    this.errores["lin"] = estado.errores.errorlin[0];
+    this.errores["rend"] = estado.errores.errorrend[0];
 
     if (estado.activo && this.colocada) {
-
       let request = {
-        "kvp": estado.kilovolt,
-        "mas": estado.miliamperios,
-        "anodo": estado.anodo,
-        "filtro": estado.filtro,
+        kvp: estado.kilovolt,
+        mas: estado.miliamperios,
+        anodo: estado.anodo,
+        filtro: estado.filtro,
       };
 
       $.ajax({
@@ -303,7 +314,7 @@ class DetectRad extends AbstractTool {
         async: false,
         success: (data) => {
           this.kerma = data.kerma;
-        }
+        },
       });
     }
 
@@ -315,46 +326,41 @@ class DetectRad extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
+    ctx.drawImage(
+      this.sprite,
+      this.x,
+      this.y,
+      this.sprite.width * this.scale,
+      this.sprite.height * this.scale
+    );
   }
   getResultado() {
-
     if (this.colocada == true && this.estado == "activo") {
       //Primero aplicamos errores al kerma si es que existen
-     //console.log("ERRORES REGISTRADOS")
-
-     //console.log(this.errores["rep"])
-     //console.log(this.errores["lin"])
-     //console.log(this.errores["rend"])
-     //console.log(this.kerma)
 
       //(let kermamod = multiplicar((elevar((this.kerma),(1+this.errores["lin"]))+ mError(-this.errores["rep"]*this.kerma,this.errores["rep"]*this.kerma)),(1-this.errores["rend"]));
-      let kermalin = (elevar((this.kerma),(1+this.errores["lin"])))
-      let kermarep = kermalin + mError(-this.errores["rep"]*kermalin,this.errores["rep"]*kermalin)
-      let kermamod = kermarep * (1- this.errores["rend"])
-
-     //console.log(kermamod)
+      let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
+      let kermarep =
+        kermalin +
+        mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
+      let kermamod = kermarep * (1 - this.errores["rend"]);
+      //console.log(kermamod)
 
       return {
         detector: [
           "Detector de Radiación",
-          "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy"
-        ]
-      }
-    }
-    else if (!this.colocada && this.estado) {
+          "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
+        ],
+      };
+    } else if (!this.colocada && this.estado) {
       return {
-        camara: ["Detector de Radiación",
-          "NADA"
-        ]
-      }
-    }
-
-    else {
+        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+      };
+    } else {
       this.actualizar_default();
       return {
-        camara: this.result
-      }
+        camara: this.result,
+      };
     }
   }
 
@@ -371,7 +377,7 @@ class Termometro extends AbstractTool {
     this.estado = "inactivo";
     this.description = "Este es un termometro.";
     this.termometro = new Image();
-    this.termometro.src = 'img/thermometer.svg';
+    this.termometro.src = "img/thermometer.svg";
     this.x = 10;
     this.y = 10;
     this.scale = 0.18;
@@ -383,13 +389,18 @@ class Termometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.termometro, this.x, this.y, this.termometro.width * this.scale, this.termometro.height * this.scale);
+    ctx.drawImage(
+      this.termometro,
+      this.x,
+      this.y,
+      this.termometro.width * this.scale,
+      this.termometro.height * this.scale
+    );
   }
 
   getResultado() {
     return { termometro: ["Temperatura: " + this.temperatura + " °C"] };
   }
-
 }
 
 class Barometro extends AbstractTool {
@@ -412,7 +423,13 @@ class Barometro extends AbstractTool {
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.barometro, this.x, this.y, this.barometro.width * this.scale, this.barometro.height * this.scale);
+    ctx.drawImage(
+      this.barometro,
+      this.x,
+      this.y,
+      this.barometro.width * this.scale,
+      this.barometro.height * this.scale
+    );
   }
 
   getResultado() {
@@ -421,7 +438,6 @@ class Barometro extends AbstractTool {
 }
 
 class Fantoma extends AbstractTool {
-
   constructor(visor) {
     super();
     this.tipo = "Fantoma";
@@ -434,22 +450,11 @@ class Fantoma extends AbstractTool {
     this.miliamperios_auto = null;
 
     this.altura = 4.5;
-    this.result = [
-      "Ver Imagen",
-      "Error de Posición",
-      "Error de Parámetros",
-      "Error de Presión",
-      "Imagen no disponible",
-      "Error de Posición y Parámetros",
-      "Error de Posición y Presión",
-      "Error de Parámetros y Presión",
-      "Error de Posición, Parámetros y Presión"
-    ];
     this.scale = 0.5;
     this.x = 152;
     this.y = 250;
     this.sprite = new Image();
-    this.sprite.src = 'img/fantoma45_contraste.svg';
+    this.sprite.src = "img/fantoma45_contraste.svg";
     this.visor = visor;
     this.last_result = null;
   }
@@ -459,48 +464,39 @@ class Fantoma extends AbstractTool {
   }
 
   actualizar(estado) {
-   //console.log(estado);
-
-   //console.log(this.miliamperios_auto);
-
-
     //Se esta presionando al fantoma con una fuerza apropiada
     if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
       this.presionado = true;
-    }
-    else {
+    } else {
       this.presionado = false;
     }
 
     //La configuracion en el panel de control es la adecuada
-    this.miliamperios_auto = estado.miliamperios_auto 
-   //console.log(estado.miliamperios)
+    this.miliamperios_auto = estado.miliamperios_auto;
+
     if (parseInt(estado.kilovolt) === 28 && estado.modo === "autotime") {
       this.parametros = true;
-    }
-    else {
+    } else {
       this.parametros = false;
     }
 
     //Se ha disparado en el panel de control
     if (estado.activo) {
-      
       this.visor.reset();
       this.img = null;
       this.last_result = null;
       this.estado = "activo";
-      
-      if (this.parametros && this.presionado && this.colocada) {
 
-        let lineas = estado.errores.errorimlin == ""? 0 : 3;
+      if (this.parametros && this.presionado && this.colocada) {
+        let lineas = estado.errores.errorimlin == "" ? 0 : 3;
 
         let request = {
-          "imagen": "objeto_contraste",
-          "mancha": "1",
-          "lineas": lineas,
-          "l_sentido": estado.errores.errorimglin[0],
-          "ruido": estado.errores.errorimgsp[0],
-          "contraste": estado.errores.errorvmp[0]
+          imagen: "objeto_contraste",
+          mancha: "1",
+          lineas: lineas,
+          l_sentido: estado.errores.errorimglin[0],
+          ruido: estado.errores.errorimgsp[0],
+          contraste: estado.errores.errorvmp[0],
         };
 
         $.ajax({
@@ -512,20 +508,21 @@ class Fantoma extends AbstractTool {
             this.img = data;
             this.visor.load_image(data);
           },
-          error: (e) => {
-           //console.log(e)
-          }
         });
       }
-    }
-
-    else {
+    } else {
       this.estado = "inactivo";
     }
   }
 
   dibujar(ctx) {
-    ctx.drawImage(this.sprite, this.x, this.y, this.sprite.width * this.scale, this.sprite.height * this.scale);
+    ctx.drawImage(
+      this.sprite,
+      this.x,
+      this.y,
+      this.sprite.width * this.scale,
+      this.sprite.height * this.scale
+    );
   }
 
   getResultado() {
@@ -533,61 +530,72 @@ class Fantoma extends AbstractTool {
 
     if (this.last_result !== null) {
       var p = this.visor.get_results();
-      result = { fantoma: ["Fantoma: ", this.last_result] }
+      result = { fantoma: ["Fantoma: ", this.last_result] };
 
       if (p[0] !== null) {
-        var circ1 = $(`<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`);
-        circ1.on("click", () => { this.visor.show() })
-        result = { ...result, circ1: circ1 }
+        var circ1 = $(
+          `<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`
+        );
+        circ1.on("click", () => {
+          this.visor.show();
+        });
+        result = { ...result, circ1: circ1 };
       }
 
       if (p[1] !== null) {
-        var circ2 = $(`<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`);
-        circ2.on("click", () => { this.visor.show() })
-        result = { ...result, circ2: circ2 }
+        var circ2 = $(
+          `<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`
+        );
+        circ2.on("click", () => {
+          this.visor.show();
+        });
+        result = { ...result, circ2: circ2 };
       }
-      var mas_auto = $(`<div style="color:black">mAs autotime = ${this.miliamperios_auto}</div>`);
-      result = { ...result, mas_auto: mas_auto}
+      var mas_auto = $(
+        `<div style="color:black">mAs autotime = ${this.miliamperios_auto}</div>`
+      );
+      result = { ...result, mas_auto: mas_auto };
       return result;
     }
 
     if (this.estado == "activo") {
       if (this.parametros && this.presionado && this.colocada) {
-
         if (this.img !== null) {
           var im = new Image(120, 160);
           im.src = this.img;
           im.style.display = "block";
           im.style.margin = "auto";
-          im.onclick = () => { this.visor.show() };
+          im.onclick = () => {
+            this.visor.show();
+          };
           result = im;
           this.last_result = result;
-        }
-        else {
+        } else {
           this.last_result = null;
           throw "No se obtuvo la imagen";
         }
-      }
-      else {
+      } else {
         this.last_result = null;
         result = "";
         if (!this.colocada) {
-          result += "<span style='color:red'>Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
+          result +=
+            "<span style='color:red'>Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
         }
-        
+
         if (!this.presionado) {
-          result += "<span style='color:red'>Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+          result +=
+            "<span style='color:red'>Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
         }
 
         if (!this.parametros) {
-          result += "<span style='color:red'>Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
+          result +=
+            "<span style='color:red'>Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
         }
-        if (result === ""){
-          result += "Error de Posición."
+        if (result === "") {
+          result += "Error de Posición.";
         }
       }
-    }
-    else {
+    } else {
       result = "Imagen no disponible";
     }
 
@@ -609,5 +617,5 @@ export {
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,
-  Fantoma
+  Fantoma,
 };

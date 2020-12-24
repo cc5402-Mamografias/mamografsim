@@ -22,7 +22,18 @@ class PlantillaAbstracta {
     // TODO: Revisar si contraste afecta el resultado de la evaluación cualitativa
     this.errorCualitativa =
       errors["errorimglin"][1] && errors["errorimgsp"][1] ? "Sí" : "No";
+
+    $('#plantilla').on('focus', 'input[type=number]', function (e) {
+      $(this).on('wheel.disableScroll', function (e) {
+        e.preventDefault()
+      })
+    })
+
+    $('#plantilla').on('blur', 'input[type=number]', function (e) {
+      $(this).off('wheel.disableScroll');
+    })
   }
+  
   setFeedback() {}
 }
 
