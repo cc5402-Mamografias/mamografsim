@@ -280,7 +280,6 @@ class DetectRad extends AbstractTool {
     this.description = "Esta es una camara de ionizacion.";
     this.colocada = false;
     this.kerma = null;
-    this.result = ["Detector de Radiación", "NADA"];
 
     this.scale = 0.5;
     this.x = 130;
@@ -335,7 +334,7 @@ class DetectRad extends AbstractTool {
     );
   }
   getResultado() {
-    if (this.colocada == true && this.estado == "activo") {
+    if (this.colocada && this.estado == "activo") {
       //Primero aplicamos errores al kerma si es que existen
 
       //(let kermamod = multiplicar((elevar((this.kerma),(1+this.errores["lin"]))+ mError(-this.errores["rep"]*this.kerma,this.errores["rep"]*this.kerma)),(1-this.errores["rend"]));
@@ -344,22 +343,22 @@ class DetectRad extends AbstractTool {
         kermalin +
         mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
       let kermamod = kermarep * (1 - this.errores["rend"]);
-      //console.log(kermamod)
-
+    
       return {
         detector: [
           "Detector de Radiación",
           "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
         ],
       };
-    } else if (!this.colocada && this.estado) {
+    } else if (!this.colocada && this.estado =='activo') {
       return {
-        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+        camara: ["Detector de Radiación",
+          "\t\t\t<span style='color:red'>Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
       };
     } else {
       this.actualizar_default();
       return {
-        camara: this.result,
+        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
       };
     }
   }
