@@ -7,6 +7,10 @@
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type='text/javascript' src="https://unpkg.com/konva@7.2.0/konva.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 
 </head>
 
@@ -239,7 +243,7 @@
           <div id="resultados-lista" class="resultados-lista"></div>
 
           <!-- INTERFAZ BOTON PLANTILLA -->
-          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados <img class="espacio-boton" src="icons/notepad-xxl.png" width=15></button>
+          <button id="plantilla-abrir" class="boton-ver-mas btn btn-primary">Hoja de Resultados<img class="espacio-boton" src="icons/notepad-xxl.png" width=15></button>
           <!-- /INTERFAZ BOTON PLANTILLA -->
         </div>
         <!-- /INTERFAZ RESULTADOS -->
@@ -279,7 +283,8 @@
           </div>
 
           <div id="dragndrop-instrucciones">
-          <b>Arrastre la herramienta que se encuentra a su derecha hacia la posicion correcta manteniendo el click izquierdo del mouse presionado.</b>
+          <b>Arrastre la herramienta que se encuentra a su derecha hacia la posicion correcta manteniendo el click izquierdo del mouse presionado.
+          </b>
           </div>
           <canvas id="canvasReceptor" class="receptor" width="800" height="600">
           </canvas>
