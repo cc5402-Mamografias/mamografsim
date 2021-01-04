@@ -90,13 +90,38 @@ function setearOnClick(id, fun) {
   e.onclick = () => { fun(e); e.blur(); }
 }
 
+function setearOnClickandHold(id, fun) {
+  var interval;
+
+  let e = document.getElementById(id);
+  e.onclick = () => { fun(e); e.blur(); }
+
+  e.addEventListener("mousedown",event => {
+    clearTimeout(e.downTimer);
+    e.downTimer = setTimeout(function() {
+      console.log("go");
+      interval= setInterval(function(){
+        fun(e);
+      }, 100);
+    }, 500);
+    }
+  );
+
+  e.addEventListener("mouseup",event => {
+    clearTimeout(e.downTimer);
+    console.log("free");
+    clearInterval(interval);
+    }
+  );
+}
+
 export const init = () => {
   // botones KiloVolts
-  setearOnClick("kv-", menos1);
-  setearOnClick("kv+", mas1);
+  setearOnClickandHold("kv-", menos1);
+  setearOnClickandHold("kv+", mas1);
   // botones miliAmperes
-  setearOnClick("ma-", menos1);
-  setearOnClick("ma+", mas1);
+  setearOnClickandHold("ma-", menos1);
+  setearOnClickandHold("ma+", mas1);
   // para que se seteen sin tener que apretar algun boton antes de shoot
 
   setearOnClick("mode1", refreshMAS);
