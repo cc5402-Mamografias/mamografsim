@@ -13,7 +13,6 @@ import {
 
 import Habitacion from "./habitacion";
 import Maquina from "./maquina";
-import { Pedal } from "./pedal";
 import { ClickeableObject } from "./utils";
 import {
   getCompresorPosY,
@@ -89,22 +88,30 @@ class Main {
 
 
     this.receptor = new Image();
-    this.receptor.src = "img/receptor.svg";
+    this.receptor.src = "img/receptor2.svg";
 
     this.receptor2 = new Image();
-    this.receptor2.src = "img/receptor_con_fantoma.svg";
+    this.receptor2.src = "img/receptor_con_fantoma2.svg";
 
     // pedal derecho sube el compresor
-    this.pedalUp = new Pedal(() => {
+    this.pedalUp = new ClickeableObject(() => {
       this.mamografo.subirCompresor();
       this.actualizar();
-    }, [220, 500]);
+    }, 
+    [220, 500],
+    [50, 55],
+    20
+    );
 
     // pedal izquierdo baja el compresor
-    this.pedalDown = new Pedal(() => {
+    this.pedalDown = new ClickeableObject(() => {
       this.mamografo.bajarCompresor();
       this.actualizar();
-    }, [130, 500]);
+    }, 
+    [130, 500],
+    [50, 55],
+    20
+    );
 
     // perilla derecha sube el compresor
     this.perrillaUp = new ClickeableObject(

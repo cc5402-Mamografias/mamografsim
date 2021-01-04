@@ -31,4 +31,7 @@ export class ClickeableObject {
       click[1] > this.posicion[1] + this.boundingBox[1]
     );
   }
+  getState() {
+    return this.clicked;
+  }
 }

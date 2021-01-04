@@ -30,7 +30,7 @@ visor.src = "img/visor.svg";
 
 
 var receptor = new Image();
-receptor.src = "img/receptor.svg";
+receptor.src = "img/receptor2.svg";
 
 
 var pedal_base = new Image();
