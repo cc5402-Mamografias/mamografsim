@@ -503,4 +503,6 @@ export let disparo = () => {
   //console.log("Shoot2");
   m.getMamografo().activar();
   m.actualizar();
+  console.log("SHOOT")
+  $("#shoot").css("brightness", 0);
 };
