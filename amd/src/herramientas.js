@@ -353,7 +353,7 @@ class DetectRad extends AbstractTool {
     } else if (!this.colocada && this.estado =='activo') {
       return {
         camara: ["Detector de Radiación",
-          "\t\t\t<span style='color:red'>Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
+          "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
       };
     } else {
       this.actualizar_default();
@@ -578,17 +578,17 @@ class Fantoma extends AbstractTool {
         result = "";
         if (!this.colocada) {
           result +=
-            "<span style='color:red'>Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
+            "<span style='color:red'>¡Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
         }
 
         if (!this.presionado) {
           result +=
-            "<span style='color:red'>Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
         }
 
         if (!this.parametros) {
           result +=
-            "<span style='color:red'>Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
         }
         if (result === "") {
           result += "Error de Posición.";

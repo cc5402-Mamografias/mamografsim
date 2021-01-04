@@ -293,6 +293,9 @@ export const init = (errors, pruebas2) => {
 // Selector de pruebas
 
 selector(pruebas2);
+
+// drag-drop-receptor
+setDragAndDrop(m);
   
   
  
@@ -501,8 +504,3 @@ export let disparo = () => {
   m.getMamografo().activar();
   m.actualizar();
 };
-
-
-
-// ESTO DEBERIA ESTAR SOLO EN drag-drop-receptor
-setDragAndDrop();
