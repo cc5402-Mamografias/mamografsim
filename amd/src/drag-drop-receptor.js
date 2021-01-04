@@ -1,4 +1,3 @@
-//HAY QUE BUSCAR LA FORMA DE IMPORTAR FUNCIONES ADDEVENTLISTENER
 
 export function setDragAndDrop(main) {
 
