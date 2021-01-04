@@ -95,11 +95,10 @@ function setearOnClickandHold(id, fun) {
 
   let e = document.getElementById(id);
   e.onclick = () => { fun(e); e.blur(); }
-
+  //codigo con la parte de hold
   e.addEventListener("mousedown",event => {
     clearTimeout(e.downTimer);
     e.downTimer = setTimeout(function() {
-      console.log("go");
       interval= setInterval(function(){
         fun(e);
       }, 100);
@@ -109,7 +108,6 @@ function setearOnClickandHold(id, fun) {
 
   e.addEventListener("mouseup",event => {
     clearTimeout(e.downTimer);
-    console.log("free");
     clearInterval(interval);
     }
   );

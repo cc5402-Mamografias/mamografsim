@@ -1,5 +1,7 @@
 //HAY QUE BUSCAR LA FORMA DE IMPORTAR FUNCIONES ADDEVENTLISTENER
 
+export function setDragAndDrop() {
+
 document.addEventListener("drag", function (event) {
    //console.log("pick");
 }, false);
@@ -52,3 +54,5 @@ document.addEventListener("drop", function (event) {
         event.target.appendChild(this.dragged);
     }
 }, false);
+
+};
