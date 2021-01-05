@@ -501,8 +501,16 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
 //disparo mamografo apretando boton shoot
 export let disparo = () => {
   //console.log("Shoot2");
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
   m.getMamografo().activar();
   m.actualizar();
-  console.log("SHOOT")
-  $("#shoot").css("brightness", 0);
+  shootMam(m,ctx);
 };
+
+function shootMam(m,ctx){
+  setTimeout(function() {
+    ctx.filter = 'none';
+    m.actualizar();
+  },1000);
+}

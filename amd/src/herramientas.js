@@ -15,6 +15,19 @@ function elevar(base, exp) {
 function multiplicar(x1, x2) {
   return x1 * x2;
 }
+
+
+//efecto disparo correcto
+function blur(){
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.filter = 'blur(10px)';
+}
+
+
+
+
+
 //operacion Math.random con seed fijo
 var seed = 1;
 function random() {
@@ -293,12 +306,17 @@ class DetectRad extends AbstractTool {
   }
 
   actualizar(estado) {
+    
     //cargamos errores
     this.errores["rep"] = estado.errores.errorrep[0];
     this.errores["lin"] = estado.errores.errorlin[0];
     this.errores["rend"] = estado.errores.errorrend[0];
 
+
+    //DISPARO CORRECTO
     if (estado.activo && this.colocada) {
+      blur();
+      //shootMam();
       let request = {
         kvp: estado.kilovolt,
         mas: estado.miliamperios,
@@ -315,6 +333,7 @@ class DetectRad extends AbstractTool {
           this.kerma = data.kerma;
         },
       });
+      
     }
 
     this.estado = estado.activo ? "activo" : "inactivo";
@@ -485,8 +504,9 @@ class Fantoma extends AbstractTool {
       this.img = null;
       this.last_result = null;
       this.estado = "activo";
-
+      //DISPARO CORRECTO
       if (this.parametros && this.presionado && this.colocada) {
+        blur();
         let lineas = estado.errores.errorimlin == "" ? 0 : 3;
 
         let request = {
