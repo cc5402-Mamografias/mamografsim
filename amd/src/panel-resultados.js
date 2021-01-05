@@ -1,4 +1,4 @@
-
+window.$ = window.jQuery = $ = jQuery;
 export default class PanelResultados {
 
   constructor() {

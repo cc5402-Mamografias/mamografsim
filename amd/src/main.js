@@ -488,7 +488,11 @@ function crearHerramButton(tool, onClickF) {
 function cargarPrueba(prueba) {
   //console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
-  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => inicializarPasos());
+  $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => {
+    inicializarPasos();
+    $.getScript("https://polyfill.io/v3/polyfill.min.js?features=es6");});
+    
+  
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();
 };
