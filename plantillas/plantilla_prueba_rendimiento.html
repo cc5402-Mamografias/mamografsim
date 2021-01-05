@@ -1,11 +1,4 @@
-
-
-<head>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
-  </head>
+  
 <div>
     <div class="row h-100">
         <h3 class="custom-h3">RENDIMIENTO: REPETIBILIDAD Y LINEALIDAD</h3>
@@ -13,6 +6,7 @@
 
 
 
+    
 <div>
 
     <table class="planilla-tabla" style="margin-top: 20px;">
@@ -166,35 +160,13 @@
 
     
 
-    <table style="float: left; width: 30%;">
-  
-        <tr>
-          <th>Promedio</th>
-          <td></td>
-        </tr>
-  
-        <tr>
-          <th>Desv. Estándar</th>
-          <td>
-          </td>
-        </tr>
-  
-  
-        <tr>
-          <th>Repetibilidad</th>
-          <td>\[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]</td>
-        </tr>
-  
-        <tr>
-          <th>Rendimiento</th>
-          <td>promedio/mAs</td>
-        </tr>
-      </table>
+    
 
     <table class="custom-table">
         <tr class="custom-tr">
             <td rowspan="4" class="custom-td"></td>
             <td rowspan="4" class="custom-td"></td>
+            <th class="custom-th text-right">Promedio:</th>
             <td class="custom-td"><label id="promedio_mas1_conf1">-</label></td>
             <td class="custom-td"><label id="promedio_mas1_conf2">-</label></td>
             <td class="custom-td"><label id="promedio_mas1_conf3">-</label></td>
@@ -202,6 +174,7 @@
         </tr>
 
         <tr>
+            <th class="custom-th text-right">Desv. Estándar:</th>
             <td class="custom-td"><label id="desvest_mas1_conf1">-</label></td>
             <td class="custom-td"><label id="desvest_mas1_conf2">-</label></td>
             <td class="custom-td"><label id="desvest_mas1_conf3">-</label></td>
@@ -209,6 +182,7 @@
         </tr>
 
         <tr>
+            <th class="custom-th text-right">Repetibilidad:</th>
             <td class="custom-td"><label id="repetibilidad_mas1_conf1">-</label></td>
             <td class="custom-td"><label id="repetibilidad_mas1_conf2">-</label></td>
             <td class="custom-td"><label id="repetibilidad_mas1_conf3">-</label></td>
@@ -216,6 +190,7 @@
         </tr>
 
         <tr>
+            <th class="custom-th text-right">Rendimiento:</th>
             <td class="custom-td"><label id="rendimiento_mas1_conf1" onchange="a(this)">-</label></td>
             <td class="custom-td"><label id="rendimiento_mas1_conf2">-</label></td>
             <td class="custom-td"><label id="rendimiento_mas1_conf3">-</label></td>
@@ -433,7 +408,32 @@
 
     </table>
 
-    <table class="margin-top-40">
+    <table class = "form-table">
+        <tr>
+          <th>Repetibilidad</th>
+          <td><img style="padding: 5px" src="img/formulas/rendimiento/repetibilidad.gif" alt="repetibilidad" /></td>
+        </tr>
+  
+        <tr>
+          <th>Rendimiento</th>
+          <td><img style="padding: 5px" src="img/formulas/rendimiento/rendimiento.gif" alt="rendimiento" /></td>
+        </tr>
+        <tr>
+            <th>Linealidad entre mAs1 y mAs2 (L1)</th>
+            <td><img style="padding: 5px" src="img/formulas/rendimiento/linealidad1.gif" alt="linealidad1" /></td>
+        </tr>
+    
+        <tr>
+            <th>Linealidad entre mAs2 y mAs3 (L2)</th>
+            <td><img style="padding: 5px" src="img/formulas/rendimiento/linealidad2.gif" alt="linealidad2" /></td>
+        </tr>
+        <tr>
+            <th>Rendimiento Normalizado</th>
+            <td><img style="padding: 5px" src="img/formulas/rendimiento/rendimientonormalizado.gif" alt="rendimientonormalizado" /></td>
+        </tr>
+      </table>
+
+    <table class="margin-top-60">
         <tr>
             <th rowspan="2" colspan="2">Linealidad (%)</th>
             <td>L1</td>

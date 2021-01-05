@@ -469,16 +469,26 @@ input[type="radio"]:checked:after {
 }
 
 .custom-table {
-  width: 65%;
+  width: 100%;
   text-align: center;
   border: none !important;
   table-layout: fixed;
-  
+  margin-top: 30px;
+  margin-bottom: 30px;
   float: right; 
+}
+
+.form-table {
+  margin-top: 30px; 
+  margin-bottom: 30px;
 }
 
 .margin-top-40 {
   margin-top: 40px;
+}
+
+.margin-top-60 {
+  margin-top: 60px;
 }
 
 .margin-right-4 {
