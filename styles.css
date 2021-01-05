@@ -550,6 +550,18 @@ input[type="radio"]:checked:after {
 .plantilla-salir {
   text-align: left;
 }
+#plantilla-cerrar{
+  display: block;
+  float: left;
+
+}
+#plantilla-mini{
+  display: block;
+  float: right;
+  
+}
+
+
 
 /* Loading Animation */
 /* https://projects.lukehaas.me/css-loaders/ */

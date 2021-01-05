@@ -25,7 +25,7 @@ import {
   PlantillaRendimiento,
   PlantillaImagen
 }
-from "./plantillas";
+  from "./plantillas";
 
 // import
 //  PlantillaRendimiento
@@ -53,7 +53,7 @@ class Main {
     this.c = document.getElementById("canvas");
     this.c.addEventListener("mousedown", (e) => this.onCanvasClick(e), false);
     this.c.addEventListener("mouseup", () => this.releaseCanvasClick(), false);
-    this.c.addEventListener("mousemove", (e)=>this.onMouseMove(e),false);
+    this.c.addEventListener("mousemove", (e) => this.onMouseMove(e), false);
     this.ctx = this.c.getContext("2d");
     // Errores - parametros del simulador
     errors.errorf = getError("errorFuerzaEjercida", errors.errorf);
@@ -98,20 +98,20 @@ class Main {
     this.pedalUp = new ClickeableObject(() => {
       this.mamografo.subirCompresor();
       this.actualizar();
-    }, 
-    [220, 500],
-    [50, 55],
-    20
+    },
+      [220, 500],
+      [50, 55],
+      20
     );
 
     // pedal izquierdo baja el compresor
     this.pedalDown = new ClickeableObject(() => {
       this.mamografo.bajarCompresor();
       this.actualizar();
-    }, 
-    [130, 500],
-    [50, 55],
-    20
+    },
+      [130, 500],
+      [50, 55],
+      20
     );
 
     // perilla derecha sube el compresor
@@ -211,7 +211,7 @@ class Main {
 
   // Este método se levanta cada vez que hay un click en el canvas
   // Checkea que se haya clickeado
-  
+
   onCanvasClick(e) {
     let click = [e.layerX, e.layerY];
 
@@ -224,27 +224,27 @@ class Main {
       }
     }
   }
-  onMouseMove(e) { 
+  onMouseMove(e) {
     let pointer = false;
     var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height
     var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
     var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
-    let hover = [canvasX,canvasY];
+    let hover = [canvasX, canvasY];
     for (let index = 0; index < this.clickeableOnCanvas.length; index++) {
       let elemento = this.clickeableOnCanvas[index];
       if (elemento.insideBoundingBox(hover)) {
-        $("#canvas").css("cursor","pointer");
+        $("#canvas").css("cursor", "pointer");
         pointer = true
         break;
       }
 
     }
-    if(pointer === false){
-      $("#canvas").css("cursor","default");
+    if (pointer === false) {
+      $("#canvas").css("cursor", "default");
     }
-    
 
-}
+
+  }
   // Checkea que se elementó se clickeo y activa su callback
   releaseCanvasClick(e) {
     if (this.clicked !== null) {
@@ -274,6 +274,7 @@ export const init = (errors, pruebas2) => {
   }
   document.getElementById("plantilla-abrir").onclick = show_p;
   document.getElementById("plantilla-cerrar").onclick = hide_p;
+  document.getElementById("plantilla-mini").onclick = pop_p;
   document.getElementById("vista-desde-arriba").onclick = show_mesa;
   document.getElementById("Guardar-pos").onclick = () => m.mesaTopDown.check_pos();
   document.getElementById("Guardar-pos-2").onclick = () => m.mesaTopDown.check_pos();
@@ -290,21 +291,21 @@ export const init = (errors, pruebas2) => {
 
 
 
-// Selector de pruebas
+  // Selector de pruebas
 
-selector(pruebas2);
+  selector(pruebas2);
 
-// drag-drop-receptor
-setDragAndDrop(m);
-  
-  
- 
+  // drag-drop-receptor
+  setDragAndDrop(m);
+
+
+
 };
-function selector(pruebas2){
+function selector(pruebas2) {
   let pruebas = [];
   pruebas2.forEach((prueba) => {
     if (prueba[0] !== "") {
-      pruebas.push([prueba[0],prueba[1]]);
+      pruebas.push([prueba[0], prueba[1]]);
     }
   });
 
@@ -338,8 +339,10 @@ function selector(pruebas2){
 
 
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
-    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+    r.on("click", () => {
+      cargarPrueba(pruebas[prueba_index][0]);
+      plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
+    });
 
     $("#prueba-button").html(r);
   });
@@ -362,32 +365,36 @@ function selector(pruebas2){
       }
     }
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
-    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+    r.on("click", () => {
+      cargarPrueba(pruebas[prueba_index][0]);
+      plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
+    });
 
     $("#prueba-button").html(r);
   });
 
-    // Prueba seleccionada por defecto.
-    let r;
-    r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
-    r.on("click", () => {cargarPrueba(pruebas[prueba_index][0]);
-    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();});
+  // Prueba seleccionada por defecto.
+  let r;
+  r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
+  r.on("click", () => {
+    cargarPrueba(pruebas[prueba_index][0]);
+    plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
+  });
 
-    $("#prueba-button").html(r);
+  $("#prueba-button").html(r);
 
-    if(prueba_index===0){
-      $("#left").prop('disabled',true);
-    }
-    else{
-      $("#left").prop('disabled',false);
-    }
-    if(prueba_index===max_pruebas){
-      $("#right").prop('disabled',true);
-    }
-    else{
-      $("#right").prop('disabled',false);
-    }
+  if (prueba_index === 0) {
+    $("#left").prop('disabled', true);
+  }
+  else {
+    $("#left").prop('disabled', false);
+  }
+  if (prueba_index === max_pruebas) {
+    $("#right").prop('disabled', true);
+  }
+  else {
+    $("#right").prop('disabled', false);
+  }
 
   $("#volver-menu").on('click', () => {
     $("#contenedor-button").show();
@@ -429,6 +436,28 @@ function hide_p() {
   let x = document.getElementById("plantilla");
   x.style.display = "none";
 }
+
+function pop_p() {
+  let hoja = document.getElementById("container-plantilla").outerHTML;
+  writeConsole(hoja);
+  function writeConsole(content) {
+    top.consoleRef = window.open('', 'myconsole',
+      'width=1600,height=3200'
+      + ',menubar=0'
+      + ',toolbar=1'
+      + ',status=0'
+      + ',scrollbars=1'
+      + ',resizable=1')
+    top.consoleRef.document.write(
+      '<html><head><title>Hoja de Respuestas</title><link rel="stylesheet" type="text/css" href="styles.css"></head>'
+      + '<body bgcolor=white onLoad="self.focus()">'
+      + content
+      + '</body></html>'
+    )
+    top.consoleRef.document.close()
+  }
+}
+
 
 function show_mesa() {
   if (m.mamografo.getHerramienta().getTipo() === "Detector de Radiación") {
@@ -490,9 +519,10 @@ function cargarPrueba(prueba) {
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
   $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => {
     inicializarPasos();
-    $.getScript("https://polyfill.io/v3/polyfill.min.js?features=es6");});
-    
-  
+    $.getScript("https://polyfill.io/v3/polyfill.min.js?features=es6");
+  });
+
+
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();
 };
@@ -509,12 +539,12 @@ export let disparo = () => {
   var ctx = canvas.getContext('2d');
   m.getMamografo().activar();
   m.actualizar();
-  shootMam(m,ctx);
+  shootMam(m, ctx);
 };
 
-function shootMam(m,ctx){
-  setTimeout(function() {
+function shootMam(m, ctx) {
+  setTimeout(function () {
     ctx.filter = 'none';
     m.actualizar();
-  },1000);
+  }, 1000);
 }
