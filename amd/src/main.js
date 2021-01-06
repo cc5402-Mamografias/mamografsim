@@ -1,4 +1,4 @@
-import jQuery from "jquery";
+// import jQuery from "jquery";
 import {
   Balanza,
   Barometro,
@@ -27,13 +27,6 @@ import {
 }
   from "./plantillas";
 
-// import
-//  PlantillaRendimiento
-// from "./plantillas";
-
-// import
-//  PlantillaImagen
-// from "./plantillas";
 
 
 import PanelResultados from "./panel-resultados";
@@ -44,9 +37,13 @@ import { getError } from "./valor-errores";
 import VisorImagen from "./visor-imagen";
 import { inicializarPasos } from "./botones-pasos";
 import { drawReceptor } from "./vista";
+
+
 window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
+
+
 class Main {
   constructor(errors) {
 
@@ -256,11 +253,14 @@ class Main {
 }
 
 export const init = (errors, pruebas2) => {
+  //definimos errores para exportar
+  
   var errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
 
   });
+  window.errs = errors;
   m = new Main(errordict);
   let elems;
   document.getElementById("herrams-mas").onclick = show_h;
@@ -440,21 +440,24 @@ function hide_p() {
 function pop_p() {
   let hoja = document.getElementById("container-plantilla").outerHTML;
   writeConsole(hoja);
+
   function writeConsole(content) {
-    top.consoleRef = window.open('', 'myconsole',
+    var win = window.open('', 'myconsole',
       'width=1600,height=3200'
       + ',menubar=0'
       + ',toolbar=1'
       + ',status=0'
       + ',scrollbars=1'
       + ',resizable=1')
-    top.consoleRef.document.write(
-      '<html><head><title>Hoja de Respuestas</title><link rel="stylesheet" type="text/css" href="styles.css"></head>'
+    
+    win.document.write(
+      '<html><head><title>Hoja de Respuestas</title><link rel="stylesheet" type="text/css" href="styles.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script type="module" src="amd/src/main-aux.js"></script></head>'
       + '<body bgcolor=white onLoad="self.focus()">'
       + content
       + '</body></html>'
     )
-    top.consoleRef.document.close()
+    win.document.close()
+    win.focus()
   }
 }
 
@@ -519,7 +522,6 @@ function cargarPrueba(prueba) {
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
   $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => {
     inicializarPasos();
-    $.getScript("https://polyfill.io/v3/polyfill.min.js?features=es6");
   });
 
 

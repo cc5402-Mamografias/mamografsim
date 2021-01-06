@@ -108,6 +108,22 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
 
     )
 ));
+
+$PAGE->requires->js_call_amd('mod_mamografsim/main-aux','init2',
+    array(
+        array(
+            array('errorrep',$errorrep),
+            array('errorlin',$errorlin),
+            array('errorrend',$errorrend),
+            array('errorf',$errorf),
+            array('erroralt',$erroralt),
+            array('errorvis',$errorvis),
+            array('errorimglin',$errorimglin),
+            array('errorimgsp',$errorimgsp),
+            array('errorvmp',$errorvmp)
+        )
+        
+));
 $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 
 
@@ -116,5 +132,6 @@ $PAGE->requires->js_call_amd('mod_mamografsim/control-panel','init');
 echo $OUTPUT->header();
 
 readfile("interfaces.html");
+
 
 echo $OUTPUT->footer();
