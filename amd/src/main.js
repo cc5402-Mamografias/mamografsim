@@ -43,6 +43,8 @@ window.$ = window.jQuery = $ = jQuery;
 
 var m = null;
 
+var exterrores = null;
+
 
 class Main {
   constructor(errors) {
@@ -260,7 +262,7 @@ export const init = (errors, pruebas2) => {
     errordict[pair[0]] = pair[1];
 
   });
-  window.errs = errors;
+  exterrores = errors;
   m = new Main(errordict);
   let elems;
   document.getElementById("herrams-mas").onclick = show_h;
@@ -441,6 +443,7 @@ function pop_p() {
   let hoja = document.getElementById("container-plantilla").outerHTML;
   writeConsole(hoja);
 
+  console.log(exterrores)
   function writeConsole(content) {
     var win = window.open('', 'myconsole',
       'width=1600,height=3200'
@@ -451,13 +454,16 @@ function pop_p() {
       + ',resizable=1')
     
     win.document.write(
-      '<html><head><title>Hoja de Respuestas</title><link rel="stylesheet" type="text/css" href="styles.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script type="module" src="amd/src/main-aux.js"></script></head>'
+      '<html><head><title>Hoja de Respuestas</title><link rel="stylesheet" type="text/css" href="styles.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script><script type="module" src="amd/src/main-aux.js"></script></head>'
       + '<body bgcolor=white onLoad="self.focus()">'
       + content
       + '</body></html>'
     )
-    win.document.close()
-    win.focus()
+    win.document.close();
+    win.focus();
+    var dics = {foo:exterrores};
+    win.exterrores = dics;
+
   }
 }
 
