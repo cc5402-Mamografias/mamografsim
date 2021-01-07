@@ -39,6 +39,7 @@ export default class VisorImagen {
   }
 
   get_mean_std(x, y) {
+    console.log("std")
     const data = this.ctx.getImageData(Math.round(x), Math.round(y), 20, 20).data;
     const components = data.length;
 
@@ -186,6 +187,7 @@ export default class VisorImagen {
 
     var scaleBy = 1.05;
     stage.on('wheel', (e) => {
+      
       e.evt.preventDefault();
       var oldScale = stage.scaleX();
 

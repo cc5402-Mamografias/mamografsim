@@ -656,6 +656,35 @@ input[type="radio"]:checked:after {
   padding: 0px;
 }
 
+#container-plantilla .modal {
+  position: absolute !important;
+}
+
+#contenedor-plantilla .modal-backdrop {
+  position: absolute !important;
+  top: -2.5%;
+  left: -2.5%;
+  width: 105%;
+  height: 105%;
+}
+
+#contenedor-plantilla .modal-dialog {
+  overflow-y: initial !important;
+}
+
+#contenedor-plantilla .modal-body {
+  overflow-y: auto;
+}
+
+#contenedor-plantilla .modal-volver {
+  height: 20vh;
+}
+
+#contenedor-plantilla .modal-mesa {
+  height: 70vh;
+  padding: 0px;
+}
+
 .block {
   width: 100%;
   height: 200px;
