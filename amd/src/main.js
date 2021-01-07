@@ -66,6 +66,7 @@ class Main {
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
 
     this.errordict = errors;
+    exterrores = errors;
 
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
@@ -262,7 +263,7 @@ export const init = (errors, pruebas2) => {
     errordict[pair[0]] = pair[1];
 
   });
-  exterrores = errors;
+  
   m = new Main(errordict);
   let elems;
   document.getElementById("herrams-mas").onclick = show_h;
@@ -440,7 +441,7 @@ function hide_p() {
 }
 
 function pop_p() {
-  let hoja = document.getElementById("container-plantilla").outerHTML;
+  let hoja = document.getElementById("plantilla").outerHTML;
   writeConsole(hoja);
 
   console.log(exterrores)
@@ -463,7 +464,6 @@ function pop_p() {
     win.focus();
     var dics = {foo:exterrores};
     win.exterrores = dics;
-
   }
 }
 

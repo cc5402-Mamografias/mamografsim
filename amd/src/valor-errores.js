@@ -120,11 +120,11 @@ var valores = {
             },
             "Medio": {
                 valor: 0.92,
-                correcto: true
+                correcto: false
             },
             "Alto": {
                 valor: 0.95,
-                correcto: true
+                correcto: false
             }
         }
         
