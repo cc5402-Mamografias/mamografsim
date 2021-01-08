@@ -9,6 +9,8 @@ export default class VisorImagen {
     $('#visor-cerrar').on('click', () => this.hide());
     this.img = null;
     this.ctx = null;
+    //guardo escala de zoom del visor
+    this.scale =null;
     this.reset();
   }
 
@@ -39,19 +41,23 @@ export default class VisorImagen {
   }
 
   get_mean_std(x, y) {
-    console.log("std")
     const data = this.ctx.getImageData(Math.round(x), Math.round(y), 20, 20).data;
     const components = data.length;
-
     var p = 0;
     var s = 0;
     for (let i = 0; i < components; i += 4) {
       // A single pixel (R, G, B, A) will take 4 positions in the array:
       p += data[i] + data[i + 1] + data[i + 2];
       s += ((data[i] + data[i + 1] + data[i + 2]) / 3) ** 2;
+      if (i == 0){
+        console.log(s)
+      }
+
     }
+
     p = p / (3 * 20 * 20);
-    s = s / (20 * 20);
+    s = (s / (20 * 20));
+    
     return [p.toFixed(2), Math.sqrt(s - p * p).toFixed(2)];
   }
 
@@ -60,6 +66,7 @@ export default class VisorImagen {
     if(this.img === null){
       return;
     }
+    this.scale = 1;
 
     var stage = new Konva.Stage({
       container: 'container-visor',
@@ -167,6 +174,8 @@ export default class VisorImagen {
       circ1.on('dragend', () => {
         let pos = circ1.absolutePosition();
         let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        console.log("p=")
+        console.log(p)
         this.res1 = p;
         textCirc1.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
       })
@@ -190,6 +199,9 @@ export default class VisorImagen {
       
       e.evt.preventDefault();
       var oldScale = stage.scaleX();
+      console.log("oldscale")
+
+      console.log(oldScale)
 
       var pointer = stage.getPointerPosition();
 
@@ -200,6 +212,9 @@ export default class VisorImagen {
 
       var newScale =
         e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+      console.log("newscale")
+      console.log(newScale)
+      this.scale = newScale
 
       stage.scale({ x: newScale, y: newScale });
 
