@@ -656,11 +656,11 @@ input[type="radio"]:checked:after {
   padding: 0px;
 }
 
-#container-plantilla .modal {
+#plantilla .modal {
   position: absolute !important;
 }
 
-#contenedor-plantilla .modal-backdrop {
+#plantilla .modal-backdrop {
   position: absolute !important;
   top: -2.5%;
   left: -2.5%;
@@ -668,19 +668,19 @@ input[type="radio"]:checked:after {
   height: 105%;
 }
 
-#contenedor-plantilla .modal-dialog {
+#plantilla .modal-dialog {
   overflow-y: initial !important;
 }
 
-#contenedor-plantilla .modal-body {
+#plantilla .modal-body {
   overflow-y: auto;
 }
 
-#contenedor-plantilla .modal-volver {
+#plantilla .modal-volver {
   height: 20vh;
 }
 
-#contenedor-plantilla .modal-mesa {
+#plantilla .modal-mesa {
   height: 70vh;
   padding: 0px;
 }
