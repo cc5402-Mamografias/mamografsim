@@ -38,8 +38,6 @@ export default class Maquina {
     this.velocYManual = 0.5;
     this.multSubida = 15
     //Formula de compresión
-    
-    
     this.velocCompresion = 0.1;
     this.velocCompresionManual = 0.07;
 
@@ -59,6 +57,9 @@ export default class Maquina {
 
     //PARA PRUEBA IMAGENES
     this.miliamperios_auto = 100;
+
+    //PARA SABER QUE PRUEBA SE ESTA DESARROLLANDO
+    this.prueba = null;
 
 
     preloadImages().then(() => {
@@ -97,10 +98,15 @@ export default class Maquina {
       anodo: this.anodo,
       modo: this.modo,
       activo: isActivo,
-      errores: this.errors
+      errores: this.errors,
+      prueba: this.prueba
       
     };
   }
+  cargarTest(prueba){
+    this.prueba = prueba;
+  };
+
 
   valoresMedidos() {
 
@@ -130,6 +136,9 @@ export default class Maquina {
   }
 
   dibujar(ctx) {
+    var herrs2 = [this.herramienta].push.apply([this.herramienta],this.herramientassec)
+    console.log(herrs2)
+
     drawMam(
       ctx,
       this.alturaDesplegada(),
@@ -157,8 +166,9 @@ export default class Maquina {
       // return;
     }
     if (addon) {
-
+    
       herram.action(this);
+
 
     }
     else {

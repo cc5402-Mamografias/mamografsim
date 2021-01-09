@@ -88,6 +88,9 @@ $rendimiento_label = $moduleinstance->rendimiento_label;
 
 $imagen = $moduleinstance->imagen;
 $imagen_label = $moduleinstance->imagen_label;
+
+$hemirreductor = $moduleinstance->hemirreductor;
+$hemirreductor_label = $moduleinstance->hemirreductor_label;
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
     array(
         array(
@@ -104,7 +107,8 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
         array(
             array($compresion,$compresion_label),
             array($rendimiento,$rendimiento_label),
-            array($imagen,$imagen_label)
+            array($imagen,$imagen_label),
+            array($hemirreductor,$hemirreductor_label)
 
     )
 ));

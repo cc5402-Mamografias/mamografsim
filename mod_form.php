@@ -77,7 +77,9 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $pruebas2 = array(
             'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
             'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad',
-            'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen'
+            'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen',
+            'hemirreductor' => 'Filtración y Espesor Hemirreductor (EHR o AVL)'
+
         );
         
         $pruebasitem = array();
@@ -146,6 +148,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->addRule('errorvmp', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
         // Agregar más pruebas aca
+        // Prueba hemirreductor
+        $mform->addElement('header', 'mamografsimhem', get_string('mamografsimhem', 'mod_mamografsim'));
 
 
 

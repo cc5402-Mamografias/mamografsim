@@ -74,6 +74,7 @@ export function drawMam(
     mamogram.height * scale
   );
   if (herramientas !== null) {
+    console.log(herramientas)
     herramientas.forEach((t) => t.dibujar(ctx));
   }
 

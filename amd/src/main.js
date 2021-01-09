@@ -8,7 +8,10 @@ import {
   Slab_45mm,
   Slab_70mm,
   Toalla,
-  Fantoma
+  Fantoma,
+  Placa,
+  FiltroAl_03,
+  FiltroAl_04
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
@@ -85,6 +88,9 @@ class Main {
       new Slab_70mm(),
       new DetectRad(),
       new Fantoma(this.visor),
+      new Placa(),
+      new FiltroAl_03,
+      new FiltroAl_04
     ];
 
 
@@ -199,7 +205,9 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
+    console.log("YEAH")
     if (tool.addon) {
+      console.log("OOO")
       herramientaHolder.setHerramienta(tool, true);
     }
     else {
@@ -344,6 +352,7 @@ function selector(pruebas2) {
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
+      this.mamografo.cargarTest(pruebas[prueba_index][0]);
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 
@@ -370,6 +379,7 @@ function selector(pruebas2) {
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
+      this.mamografo.cargarTest(pruebas[prueba_index][0]);
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 
@@ -381,6 +391,7 @@ function selector(pruebas2) {
   r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
   r.on("click", () => {
     cargarPrueba(pruebas[prueba_index][0]);
+    this.mamografo.cargarTest(pruebas[prueba_index][0]);
     plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
   });
 
@@ -529,7 +540,6 @@ function cargarPrueba(prueba) {
   $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => {
     inicializarPasos();
   });
-
 
   $("#contenedor-sim").css('display', 'flex');
   $("#contenedor-button").hide();

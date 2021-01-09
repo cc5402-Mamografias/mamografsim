@@ -32,6 +32,7 @@ $string['mamografsimfieldset'] = 'Configuraciones del Mamógrafo';
 $string['mamografsimcomp'] = 'Configuraciones de la prueba de compresión';
 $string['mamografsimrend'] = 'Configuraciones de la prueba de rendimiento';
 $string['mamografsimimg'] = 'Configuraciones de la prueba de imagen';
+$string['mamografsimhem'] = 'Configuraciones de la prueba de hemirreductor';
 $string['mamografsimact'] = 'Configuraciones actividad';
 $string['modulename'] = 'Mamografsim';
 $string['modulename_help'] = '';

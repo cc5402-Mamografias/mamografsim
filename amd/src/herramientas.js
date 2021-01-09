@@ -178,6 +178,128 @@ class Toalla extends AbstractTool {
   }
 }
 
+class Placa extends AbstractTool {
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Placa";
+    this.icon = "placa.png";
+    this.altura = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Placa protectora de radiacion.";
+
+  }
+
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Detector de Radiación") {
+      let detector = maquina.herramienta;
+      if (!detector.placa) {
+        detector.sprite = detector.siplaca;
+        detector.placa = true;
+      } else {
+        detector.sprite = detector.noplaca;
+        detector.placa = false;
+      }
+      maquina.actualizar();
+      //console.log("balanza: ", balanza);
+    }
+    
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+
+  }
+}
+
+class FiltroAl_03 extends AbstractTool {
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Filtro Aluminio (0.3 mm)";
+    this.icon = "aluminio.png";
+    this.altura = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Filtro de aluminio de 0.3 mm.";
+
+  }
+
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Detector de Radiación") {
+      let detector = maquina.herramienta;
+      if (detector.placa) {
+        if ((!detector.filtro) || (detector.filtro && detector.filtroesp != 0.3)) {
+          detector.sprite = detector.siplacasifiltro03;
+          detector.filtro = true;
+          detector.filtroesp = 0.3;
+        } else {
+          detector.sprite = detector.siplaca;
+          detector.filtro = false;
+        }
+      } 
+      maquina.actualizar();
+      //console.log("balanza: ", balanza);
+    }
+    
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+
+  }
+}
+
+class FiltroAl_04 extends AbstractTool {
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Filtro Aluminio (0.4 mm)";
+    this.icon = "aluminio.png";
+    this.altura = 0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Filtro de aluminio de 0.4 mm.";
+
+  }
+
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Detector de Radiación") {
+      let detector = maquina.herramienta;
+      if (detector.placa) {
+        if ((!detector.filtro) || (detector.filtro && detector.filtroesp != 0.4)) {
+          console.log("coloco filtro")
+          detector.sprite = detector.siplacasifiltro04;
+          console.log("filtro colocado")
+          detector.filtro = true;
+          detector.filtroesp = 0.4;
+        } else {
+          detector.sprite = detector.siplaca;
+          detector.filtro = false;
+        }
+      } 
+      maquina.actualizar();
+      //console.log("balanza: ", balanza);
+    }
+    
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+
+  }
+}
+
 class Slab_20mm extends AbstractTool {
   constructor() {
     super();
@@ -270,6 +392,7 @@ class Slab_70mm extends AbstractTool {
   }
 
   dibujar(ctx) {
+    console.log("GRRR")
     ctx.drawImage(
       this.slabs,
       this.x,
@@ -287,6 +410,9 @@ class Slab_70mm extends AbstractTool {
 class DetectRad extends AbstractTool {
   constructor() {
     super();
+    this.placa = false;
+    this.filtro = false;
+    this.filtroesp = 0; 
     this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
@@ -297,9 +423,17 @@ class DetectRad extends AbstractTool {
     this.scale = 0.5;
     this.x = 130;
     this.y = 230;
-    this.sprite = new Image();
-    this.sprite.src = "img/detector.svg";
     this.errores = {};
+    this.noplaca = new Image();
+    this.noplaca.src = "img/detector.svg";
+    this.siplaca = new Image();
+    this.siplaca.src = "img/detectorplaca.svg";
+    this.siplacasifiltro03 = new Image();
+    this.siplacasifiltro03.src = "img/detectorplacayfiltro.svg";
+    this.siplacasifiltro04 = new Image();
+    this.siplacasifiltro04.src = "img/detectorplacayfiltro04.svg";
+
+    this.sprite = this.noplaca;
   }
   colocar(bool) {
     this.colocada = bool;
@@ -637,4 +771,7 @@ export {
   Slab_45mm,
   Slab_70mm,
   Fantoma,
+  Placa,
+  FiltroAl_03,
+  FiltroAl_04
 };

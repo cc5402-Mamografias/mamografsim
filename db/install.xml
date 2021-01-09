@@ -28,6 +28,8 @@
         <FIELD NAME="rendimiento_label" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Label prueba de rendimiento"/>
         <FIELD NAME="imagen" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Disponibilidad prueba de imagen"/>
         <FIELD NAME="imagen_label" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Label prueba de imagen"/>
+        <FIELD NAME="hemirreductor" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Disponibilidad prueba de hemirreductor"/>
+        <FIELD NAME="hemirreductor_label" TYPE="text" LENGTH="300" NOTNULL="false" SEQUENCE="false" COMMENT="Label prueba de hemirreductor"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
