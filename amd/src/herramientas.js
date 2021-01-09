@@ -18,7 +18,7 @@ function multiplicar(x1, x2) {
 
 
 //efecto disparo correcto
-function blur(){
+function blur() {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   ctx.filter = 'blur(10px)';
@@ -48,6 +48,7 @@ class AbstractTool {
     }
 
     this.altura = 0;
+    this.prueba = null;
   }
 
   actualizar(estado) {
@@ -205,7 +206,7 @@ class Placa extends AbstractTool {
       maquina.actualizar();
       //console.log("balanza: ", balanza);
     }
-    
+
   }
   actualizar(ctx) {
     //nada
@@ -242,11 +243,11 @@ class FiltroAl_03 extends AbstractTool {
           detector.sprite = detector.siplaca;
           detector.filtro = false;
         }
-      } 
+      }
       maquina.actualizar();
       //console.log("balanza: ", balanza);
     }
-    
+
   }
   actualizar(ctx) {
     //nada
@@ -285,11 +286,11 @@ class FiltroAl_04 extends AbstractTool {
           detector.sprite = detector.siplaca;
           detector.filtro = false;
         }
-      } 
+      }
       maquina.actualizar();
       //console.log("balanza: ", balanza);
     }
-    
+
   }
   actualizar(ctx) {
     //nada
@@ -412,14 +413,13 @@ class DetectRad extends AbstractTool {
     super();
     this.placa = false;
     this.filtro = false;
-    this.filtroesp = 0; 
+    this.filtroesp = 0;
     this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
     this.colocada = false;
     this.kerma = null;
-
     this.scale = 0.5;
     this.x = 130;
     this.y = 230;
@@ -440,7 +440,8 @@ class DetectRad extends AbstractTool {
   }
 
   actualizar(estado) {
-    
+    this.prueba = estado.prueba;
+
     //cargamos errores
     this.errores["rep"] = estado.errores.errorrep[0];
     this.errores["lin"] = estado.errores.errorlin[0];
@@ -450,7 +451,6 @@ class DetectRad extends AbstractTool {
     //DISPARO CORRECTO
     if (estado.activo && this.colocada) {
       blur();
-      //shootMam();
       let request = {
         kvp: estado.kilovolt,
         mas: estado.miliamperios,
@@ -467,7 +467,7 @@ class DetectRad extends AbstractTool {
           this.kerma = data.kerma;
         },
       });
-      
+
     }
 
     this.estado = estado.activo ? "activo" : "inactivo";
@@ -487,33 +487,68 @@ class DetectRad extends AbstractTool {
     );
   }
   getResultado() {
-    if (this.colocada && this.estado == "activo") {
-      //Primero aplicamos errores al kerma si es que existen
+    //DEPENDIENDO DE LA PRUEBA, SE VAN A PEDIR DISTINTOS REQUISITOS ANTES DE DISPARAR, Y SE APLICAN
+    //DISTINTOS ERRORES
+    //PRUEBA RENDIMIENTO
+    if (this.prueba == "rendimiento") {
+      console.log("estoy en rendimiento")
+      if (this.colocada && this.estado == "activo") {
+        //Primero aplicamos errores al kerma si es que existen
 
-      //(let kermamod = multiplicar((elevar((this.kerma),(1+this.errores["lin"]))+ mError(-this.errores["rep"]*this.kerma,this.errores["rep"]*this.kerma)),(1-this.errores["rend"]));
-      let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
-      let kermarep =
-        kermalin +
-        mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
-      let kermamod = kermarep * (1 - this.errores["rend"]);
-    
-      return {
-        detector: [
-          "Detector de Radiación",
-          "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
-        ],
+        let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
+        let kermarep =
+          kermalin +
+          mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
+        let kermamod = kermarep * (1 - this.errores["rend"]);
+
+        return {
+          detector: [
+            "Detector de Radiación",
+            "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
+          ],
+        };
+      } else if (!this.colocada && this.estado == 'activo') {
+        return {
+          camara: ["Detector de Radiación",
+            "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
+        };
+      } else {
+        this.actualizar_default();
+        return {
+          camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+        };
       };
-    } else if (!this.colocada && this.estado =='activo') {
-      return {
-        camara: ["Detector de Radiación",
-          "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
+    };
+    //PRUEBA HEMIRREDUCTOR
+    if (this.prueba == "hemirreductor") {
+      console.log("estoy en hemirreductor")
+      if (this.colocada && this.estado == "activo") {
+        //Primero aplicamos errores al kerma si es que existen
+
+        let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
+        let kermarep =
+          kermalin +
+          mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
+        let kermamod = kermarep * (1 - this.errores["rend"]);
+
+        return {
+          detector: [
+            "Detector de Radiación",
+            "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
+          ],
+        };
+      } else if (!this.colocada && this.estado == 'activo') {
+        return {
+          camara: ["Detector de Radiación",
+            "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
+        };
+      } else {
+        this.actualizar_default();
+        return {
+          camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+        };
       };
-    } else {
-      this.actualizar_default();
-      return {
-        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
-      };
-    }
+    };
   }
 
   estaColocada() {

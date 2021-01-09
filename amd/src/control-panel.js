@@ -56,20 +56,20 @@ function cambiarModo(modos) {
 */
 
 function refreshMAS() {
-  if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime"){
-    document.getElementById("mas").disabled =true;
-    document.getElementById("ma+").disabled =true;
-    document.getElementById("ma-").disabled =true;
+  if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime") {
+    document.getElementById("mas").disabled = true;
+    document.getElementById("ma+").disabled = true;
+    document.getElementById("ma-").disabled = true;
   }
-  else{
-    document.getElementById("mas").disabled =false;
-    document.getElementById("ma+").disabled =false;
-    document.getElementById("ma-").disabled =false;
+  else {
+    document.getElementById("mas").disabled = false;
+    document.getElementById("ma+").disabled = false;
+    document.getElementById("ma-").disabled = false;
   }
 }
 
 function disparoMamografo() {
- //console.log("Shoot");
+  //console.log("Shoot");
   setearParamsMamografo();
   disparo();
 }
@@ -85,9 +85,19 @@ function setearParamsMamografo() {
 }
 
 function setearOnClick(id, fun) {
-
   let e = document.getElementById(id);
   e.onclick = () => { fun(e); e.blur(); }
+}
+
+function setearOnClickandTempBlock(id, fun) {
+  let e = document.getElementById(id);
+  e.onclick = () => {
+    fun(e); e.blur();
+    e.disabled = true;
+    setTimeout(function () {
+      e.disabled = false;
+    }, 1000);
+  }
 }
 
 function setearOnClickandHold(id, fun) {
@@ -96,20 +106,20 @@ function setearOnClickandHold(id, fun) {
   let e = document.getElementById(id);
   e.onclick = () => { fun(e); e.blur(); }
   //codigo con la parte de hold
-  e.addEventListener("mousedown",event => {
+  e.addEventListener("mousedown", event => {
     clearTimeout(e.downTimer);
-    e.downTimer = setTimeout(function() {
-      interval= setInterval(function(){
+    e.downTimer = setTimeout(function () {
+      interval = setInterval(function () {
         fun(e);
       }, 100);
     }, 500);
-    }
+  }
   );
 
-  e.addEventListener("mouseup",event => {
+  e.addEventListener("mouseup", event => {
     clearTimeout(e.downTimer);
     clearInterval(interval);
-    }
+  }
   );
 }
 
@@ -129,5 +139,5 @@ export const init = () => {
   setearParamsMamografo()
 
   //boton disparo
-  setearOnClick("shoot-b", disparoMamografo);
+  setearOnClickandTempBlock("shoot-b", disparoMamografo);
 };

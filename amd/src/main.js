@@ -352,7 +352,7 @@ function selector(pruebas2) {
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
-      this.mamografo.cargarTest(pruebas[prueba_index][0]);
+      m.mamografo.cargarTest(pruebas[prueba_index][0]);
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 
@@ -379,7 +379,7 @@ function selector(pruebas2) {
     let r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim  container-flex p-2">${pruebas[prueba_index][1]}</button>`);
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
-      this.mamografo.cargarTest(pruebas[prueba_index][0]);
+      m.mamografo.cargarTest(pruebas[prueba_index][0]);
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 
@@ -391,7 +391,7 @@ function selector(pruebas2) {
   r = $(`<button id = "inicio-${pruebas[prueba_index][0]}" class="open-sim container-flex p-2">${pruebas[prueba_index][1]}</button>`);
   r.on("click", () => {
     cargarPrueba(pruebas[prueba_index][0]);
-    this.mamografo.cargarTest(pruebas[prueba_index][0]);
+    m.mamografo.cargarTest(pruebas[prueba_index][0]);
     plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
   });
 
@@ -556,7 +556,8 @@ export let disparo = () => {
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   m.getMamografo().activar();
-  m.actualizar();
+  //m.actualizar();
+  m.getMamografo().dibujar(ctx)
   shootMam(m, ctx);
 };
 
