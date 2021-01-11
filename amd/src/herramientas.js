@@ -411,15 +411,22 @@ class Slab_70mm extends AbstractTool {
 class DetectRad extends AbstractTool {
   constructor() {
     super();
-    this.placa = false;
-    this.filtro = false;
-    this.filtroesp = 0;
+    
     this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Esta es una camara de ionizacion.";
+    //flags estado
     this.colocada = false;
+    this.parametros = false;
+    this.alturacorrecta = false;
+    this.suplementos = false;
+    this.placa = false;
+    this.filtro = false;
+    this.filtroesp = 0;
+
     this.kerma = null;
+
     this.scale = 0.5;
     this.x = 130;
     this.y = 230;
@@ -436,10 +443,19 @@ class DetectRad extends AbstractTool {
     this.sprite = this.noplaca;
   }
   colocar(bool) {
+    if (bool) {
+      console.log("BIEN COLOCADA")
+    }
+    else {
+      console.log("SE COLOCO MAL")
+    }
+
     this.colocada = bool;
   }
 
   actualizar(estado) {
+    console.log(estado.altura)
+    console.log(this.filtroesp)
     this.prueba = estado.prueba;
 
     //cargamos errores
@@ -447,9 +463,19 @@ class DetectRad extends AbstractTool {
     this.errores["lin"] = estado.errores.errorlin[0];
     this.errores["rend"] = estado.errores.errorrend[0];
 
+    if (parseInt(estado.kilovolt) === 28) {
+      this.parametros = true;
+    } else {
+      this.parametros = false;
+    }
 
+    if (22 <= parseInt(estado.altura) && parseInt(estado.altura) <= 27) {
+      this.alturacorrecta = true;
+    } else {
+      this.alturacorrecta = false;
+    }
     //DISPARO CORRECTO
-    if (estado.activo && this.colocada) {
+    if (estado.activo) {
       blur();
       let request = {
         kvp: estado.kilovolt,
@@ -487,69 +513,95 @@ class DetectRad extends AbstractTool {
     );
   }
   getResultado() {
+    var result = null;
     //DEPENDIENDO DE LA PRUEBA, SE VAN A PEDIR DISTINTOS REQUISITOS ANTES DE DISPARAR, Y SE APLICAN
     //DISTINTOS ERRORES
+
     //PRUEBA RENDIMIENTO
     if (this.prueba == "rendimiento") {
-      console.log("estoy en rendimiento")
-      if (this.colocada && this.estado == "activo") {
-        //Primero aplicamos errores al kerma si es que existen
+      if (this.estado == "activo") {
+        if (this.colocada) {
+          console.log("BIEN COLOCADA")
+          //Primero aplicamos errores al kerma si es que existen
+          let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
+          let kermarep =
+            kermalin +
+            mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
+          let kermamod = kermarep * (1 - this.errores["rend"]);
 
-        let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
-        let kermarep =
-          kermalin +
-          mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
-        let kermamod = kermarep * (1 - this.errores["rend"]);
-
-        return {
-          detector: [
-            "Detector de Radiación",
-            "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
-          ],
-        };
-      } else if (!this.colocada && this.estado == 'activo') {
-        return {
-          camara: ["Detector de Radiación",
-            "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
-        };
-      } else {
-        this.actualizar_default();
-        return {
-          camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
-        };
+          return {
+            camara: [
+              "Detector de Radiación",
+              "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
+            ],
+          }
+        }else {
+          console.log("MAL COLOCADO");
+          result = "";
+          if (!this.colocada) {
+          result +=
+            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+          return { camara: ["Detector de Radiación ", result] }
+        }
+        }
       };
-    };
+      this.actualizar_default();
+      return {
+        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+      };
+    }
     //PRUEBA HEMIRREDUCTOR
+
     if (this.prueba == "hemirreductor") {
-      console.log("estoy en hemirreductor")
-      if (this.colocada && this.estado == "activo") {
-        //Primero aplicamos errores al kerma si es que existen
+      if (this.estado == "activo") {
+        if (this.colocada && this.alturacorrecta && this.parametros && this.placa) {
+          let kermamod = null;
+          if (this.filtroesp === 0.3){
+            kermamod = (this.kerma*0.55)*1.5;
+          }
+          else if (this.filtroesp === 0.4){
+            kermamod = (this.kerma*0.45)*1.5;
+          }
+          else {
+            kermamod = this.kerma;
+          }
+          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod)
 
-        let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
-        let kermarep =
-          kermalin +
-          mError(-this.errores["rep"] * kermalin, this.errores["rep"] * kermalin);
-        let kermamod = kermarep * (1 - this.errores["rend"]);
-
-        return {
-          detector: [
-            "Detector de Radiación",
-            "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
-          ],
-        };
-      } else if (!this.colocada && this.estado == 'activo') {
-        return {
-          camara: ["Detector de Radiación",
-            "\t\t\t<span style='color:red'>¡Error!</span> Coloque el Detector en la posición correcta."], // aca poner mensaje de error
-        };
-      } else {
-        this.actualizar_default();
-        return {
-          camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
-        };
+          return {
+            camara: [
+              "Detector de Radiación",
+              "\t\t\tKerma: " + kermamod2.toFixed(2) + " mGy",
+            ],
+          }
+        }else {
+          result = "";
+          if (!this.colocada) {
+            result +=
+            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+          }
+          if (!this.alturacorrecta) {
+            result +=
+            "<span style='color:red'>¡Error de Altura!</span> Desplaze el compresor a una altura adecuada.<br>";
+          }
+          if (!this.parametros) {
+            result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28.<br>";
+          }
+          if (!this.placa) {
+            result +=
+            "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
+          }
+          return { camara: ["Detector de Radiación ", result] }
+        }
       };
-    };
-  }
+      this.actualizar_default();
+      return {
+        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+      };
+    }
+
+  };
+
 
   estaColocada() {
     return this.colocada;

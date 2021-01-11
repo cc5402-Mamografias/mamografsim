@@ -67,6 +67,7 @@ class Main {
     errors.errorimglin = getError("errorImagenLineas", errors.errorimglin);
     errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
+    errors.errorhem = getError("errorHemirreductor", errors.errorhem);
 
     this.errordict = errors;
     exterrores = errors;
@@ -89,8 +90,8 @@ class Main {
       new DetectRad(),
       new Fantoma(this.visor),
       new Placa(),
-      new FiltroAl_03,
-      new FiltroAl_04
+      new FiltroAl_03(),
+      new FiltroAl_04()
     ];
 
 

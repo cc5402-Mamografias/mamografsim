@@ -170,6 +170,19 @@ var valores = {
             "Bajo": { valor: 1 },
             "Alto": { valor: 4 }
         }
+    },
+    "errorHemirreductor": {
+        "valores_base": {
+            "Ninguno": {
+                valor: 0,
+                correcto: true
+             },
+            "Bajo": { 
+                valor: 1.5,
+                correcto: false },
+            "Alto": { valor: 3,
+                correcto: false }
+        }
     }
 }
 

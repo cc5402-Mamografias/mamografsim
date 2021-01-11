@@ -151,6 +151,10 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // Prueba hemirreductor
         $mform->addElement('header', 'mamografsimhem', get_string('mamografsimhem', 'mod_mamografsim'));
 
+        $mform->addElement('select', 'errorhem', "Error Hemirreductor", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->setType('errorhem', PARAM_TEXT);
+        $mform->addRule('errorhem', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
 
 
 

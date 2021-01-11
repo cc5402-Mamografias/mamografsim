@@ -22,6 +22,10 @@ class PlantillaAbstracta {
     // TODO: Revisar si contraste afecta el resultado de la evaluación cualitativa
     this.errorCualitativa =
       errors["errorimglin"][1] && errors["errorimgsp"][1] ? "Sí" : "No";
+    
+    this.errorHemirreductor =
+      errors["errorhem"][1] ? "Sí" : "No";
+    
 
     $('#plantilla').on('focus', 'input[type=number]', function (e) {
       $(this).on('wheel.disableScroll', function (e) {
@@ -264,5 +268,15 @@ export class PlantillaImagen extends PlantillaAbstracta {
         document.getElementById("cumple_cuantdos").value
       );
     });
+  }
+}
+export class PlantillaHemirreductor extends PlantillaAbstracta {
+  constructor(errors) {
+    super(errors);
+  }
+
+  setFeedback() {
+    let errorHemirreductor = this.errorAltura;
+   
   }
 }

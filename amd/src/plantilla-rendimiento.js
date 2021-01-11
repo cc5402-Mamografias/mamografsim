@@ -1,6 +1,4 @@
 window.$ = window.jQuery = $ = jQuery;  
-
-console.log("CHARGED")
        
 function actualizar_funciones(SelectedObject){
     var mas = SelectedObject.id;

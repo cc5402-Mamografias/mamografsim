@@ -79,6 +79,8 @@ $erroralt = $moduleinstance->erroralt;
 $errorimglin = $moduleinstance->errorimglin;
 $errorimgsp = $moduleinstance->errorimgsp;
 $errorvmp = $moduleinstance->errorvmp;
+
+$errorhem = $moduleinstance->errorhem;
 //Pruebas
 $compresion = $moduleinstance->compresion;
 $compresion_label = $moduleinstance->compresion_label;
@@ -102,7 +104,8 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
             array('errorvis',$errorvis),
             array('errorimglin',$errorimglin),
             array('errorimgsp',$errorimgsp),
-            array('errorvmp',$errorvmp)
+            array('errorvmp',$errorvmp),
+            array('errorhem',$errorhem)
         ),
         array(
             array($compresion,$compresion_label),
@@ -124,7 +127,8 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main-aux','init2',
             array('errorvis',$errorvis),
             array('errorimglin',$errorimglin),
             array('errorimgsp',$errorimgsp),
-            array('errorvmp',$errorvmp)
+            array('errorvmp',$errorvmp),
+            array('errorhem',$errorhem)
         )
         
 ));
