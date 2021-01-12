@@ -277,6 +277,12 @@ export class PlantillaHemirreductor extends PlantillaAbstracta {
 
   setFeedback() {
     let errorHemirreductor = this.errorHemirreductor;
+    $("body").on("click", "#volver-menu-desde-prueba-hemirreductor", function () {
+      //console.log("cerrar plantilla");
+      $("#plantilla").hide();
+      $("#contenedor-sim").hide();
+      $("#contenedor-button").show();
+    });
 
     $("body").on("click", "#finalizar_hemirreductor", function () {
       console.log("ABRETE")

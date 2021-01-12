@@ -242,6 +242,7 @@ class FiltroAl_03 extends AbstractTool {
         } else {
           detector.sprite = detector.siplaca;
           detector.filtro = false;
+          detector.filtroesp = 0;
         }
       }
       maquina.actualizar();
@@ -285,6 +286,7 @@ class FiltroAl_04 extends AbstractTool {
         } else {
           detector.sprite = detector.siplaca;
           detector.filtro = false;
+          detector.filtroesp = 0;
         }
       }
       maquina.actualizar();
@@ -463,6 +465,8 @@ class DetectRad extends AbstractTool {
     this.errores["lin"] = estado.errores.errorlin[0];
     this.errores["rend"] = estado.errores.errorrend[0];
 
+    this.errores["hem"] = estado.errores.errorhem[0];
+
     if (parseInt(estado.kilovolt) === 28) {
       this.parametros = true;
     } else {
@@ -477,6 +481,10 @@ class DetectRad extends AbstractTool {
     //DISPARO CORRECTO
     if (estado.activo) {
       blur();
+      console.log(estado.kilovolt)
+      console.log(estado.miliamperios)
+      console.log(estado.anodo)
+      console.log(estado.filtro)
       let request = {
         kvp: estado.kilovolt,
         mas: estado.miliamperios,
@@ -532,7 +540,7 @@ class DetectRad extends AbstractTool {
           return {
             camara: [
               "Detector de Radiación",
-              "\t\t\tKerma: " + kermamod.toFixed(2) + " mGy",
+              "\t\t\tKerma: " + kermamod.toFixed(3) + " mGy",
             ],
           }
         }else {
@@ -558,10 +566,10 @@ class DetectRad extends AbstractTool {
         if (this.colocada && this.alturacorrecta && this.parametros && this.placa) {
           let kermamod = null;
           if (this.filtroesp === 0.3){
-            kermamod = (this.kerma*0.55);
+            kermamod = (this.kerma*0.55)*this.errores["hem"];
           }
           else if (this.filtroesp === 0.4){
-            kermamod = (this.kerma*0.45);
+            kermamod = (this.kerma*0.45)*this.errores["hem"];
           }
           else {
             kermamod = this.kerma;
@@ -571,7 +579,7 @@ class DetectRad extends AbstractTool {
           return {
             camara: [
               "Detector de Radiación",
-              "\t\t\tKerma: " + kermamod2.toFixed(2) + " mGy",
+              "\t\t\tKerma: " + kermamod2.toFixed(3) + " mGy",
             ],
           }
         }else {

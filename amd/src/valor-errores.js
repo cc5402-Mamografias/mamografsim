@@ -174,13 +174,13 @@ var valores = {
     "errorHemirreductor": {
         "valores_base": {
             "Ninguno": {
-                valor: 0,
+                valor: 1,
                 correcto: true
              },
             "Bajo": { 
-                valor: 1.5,
+                valor: 0.8,
                 correcto: false },
-            "Alto": { valor: 3,
+            "Alto": { valor: 0.6,
                 correcto: false }
         }
     }

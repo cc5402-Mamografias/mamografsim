@@ -16,7 +16,7 @@
 
   <tr>
     <th>kV</th>
-    <td><input type="text" class="text-center" id="kv_main" value = "28" step="any" readonly></td>
+    <td><input type="text" class="text-center" id="kv_main" value = "" step="any" onchange="actualizar_funciones_iniciales()"></td>
   </tr>
 
   <tr>
@@ -26,7 +26,7 @@
 </table>
 
 
-<table class="planilla-tabla" style="margin-top: 20px;">
+<table class="planilla-tabla" style="margin-top: 20px;" >
   <tr>
     <th colspan="2">Configuracion I</th>
     <th>mm Aluminio</th>
@@ -34,23 +34,24 @@
   </tr>
 
   <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_1" value = "Mo" step="any" readonly></th>
+    <th>Filtro</th>
+    <th><input type="text" class="text-center" id="filtro_1" value = "Mo" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum00_1" value = "0" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma00_1" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma00_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
   <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_1" value = "Mo" step="any" readonly></th>
+    <th>Ánodo</th>
+    <th><input type="text" class="text-center" id="anodo_1" value = "Mo" step="any" readonly></th>
+    
     <th><input type="text" class="text-center" id="alum03_1" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma03_1" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma03_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
   <tr>
     <th>C</th>
     <td><input class="text-center" type="number" id="C_1" value = "0.12" step="any" readonly></td>
     <th><input type="text" class="text-center" id="alum04_1" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma04_1" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma04_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
@@ -58,22 +59,22 @@
   <tr class="custom-tr">
     
     <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><label id="ehr_1">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="ehr_1" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><label id="liminf_1">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="liminf_1" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><label id="limsup_1" >-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="limsup_1" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
 
-<table class="planilla-tabla" style="margin-top: 20px;">
+<table class="planilla-tabla" style="margin-top: 20px;"  >
   <tr>
     <th colspan="2">Configuracion II</th>
     <th>mm Aluminio</th>
@@ -81,23 +82,23 @@
   </tr>
 
   <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_2" value = "Mo" step="any" readonly></th>
+    <th>Filtro</th>
+    <th><input type="text" class="text-center" id="filtro_2" value = "Rh" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum00_2" value = "0" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma00_2" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma00_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
   <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_2" value = "Rh" step="any" readonly></th>
+    <th>Ánodo</th>
+    <th><input type="text" class="text-center" id="anodo_2" value = "Mo" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum03_2" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma03_2" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma03_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
   <tr>
     <th>C</th>
     <td><input class="text-center" type="number" id="C_2" value = "0.19" step="any" readonly></td>
     <th><input type="text" class="text-center" id="alum04_2" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma04_2" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma04_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
@@ -105,21 +106,21 @@
   <tr class="custom-tr">
     
     <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><label id="ehr_2">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="ehr_2" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><label id="liminf_2">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="liminf_2" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><label id="limsup_2" onchange="a(this)">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="limsup_2" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
-<table class="planilla-tabla" style="margin-top: 20px;">
+<table class="planilla-tabla" style="margin-top: 20px;" >
   <tr>
     <th colspan="2">Configuracion III</th>
     <th>mm Aluminio</th>
@@ -127,23 +128,23 @@
   </tr>
 
   <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_3" value = "Rh" step="any" readonly></th>
+    <th>Filtro</th>
+    <th><input type="text" class="text-center" id="filtro_3" value = "Rh" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum00_3" value = "0" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma00_3" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma00_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
   <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_3" value = "Rh" step="any" readonly></th>
+    <th>Ánodo</th>
+    <th><input type="text" class="text-center" id="anodo_3" value = "Rh" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum03_3" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma03_3" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma03_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
   <tr>
     <th>C</th>
     <td><input class="text-center" type="number" id="C_3" value = "0.22" step="any" readonly></td>
     <th><input type="text" class="text-center" id="alum04_3" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma04_3" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma04_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
@@ -151,21 +152,21 @@
   <tr class="custom-tr">
     
     <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><label id="ehr_3">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="ehr_3" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><label id="liminf_3">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="liminf_3" value = "-" step="any" readonly></td>
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><label id="limsup_3" onchange="a(this)">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="limsup_3" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
-<table class="planilla-tabla" style="margin-top: 20px;">
+<table class="planilla-tabla" style="margin-top: 20px;" >
   <tr>
     <th colspan="2">Configuracion IV</th>
     <th>mm Aluminio</th>
@@ -173,23 +174,23 @@
   </tr>
 
   <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_4" value = "W" step="any" readonly></th>
+    <th>Filtro</th>
+    <th><input type="text" class="text-center" id="filtro_4" value = "Rh" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum00_4" value = "0" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma00_4" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma00_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
   <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_4" value = "Rh" step="any" readonly></th>
+    <th>Ánodo</th>
+    <th><input type="text" class="text-center" id="anodo_4" value = "W" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum03_4" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma03_4" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma03_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
   <tr>
     <th>C</th>
     <td><input class="text-center" type="number" id="C_4" value = "0.3" step="any" readonly></td>
     <th><input type="text" class="text-center" id="alum04_4" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma04_4" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma04_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
@@ -197,17 +198,20 @@
   <tr class="custom-tr">
     
     <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><label id="ehr_4">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="ehr_4" value = "-" step="any" readonly></td>
+
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><label id="liminf_4">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="liminf_4" value = "-" step="any" readonly></td>
+
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><label id="limsup_4" onchange="a(this)">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="limsup_4" value = "-" step="any" readonly></td>
+
   </tr>
 
 </table>
@@ -219,23 +223,23 @@
   </tr>
 
   <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_5" value = "W" step="any" readonly></th>
+    <th>Filtro</th>
+    <th><input type="text" class="text-center" id="filtro_5" value = "Ag" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum00_5" value = "0" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma00_5" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma00_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
   <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_5" value = "Ag" step="any" readonly></th>
+    <th>Ánodo</th>
+    <th><input type="text" class="text-center" id="anodo_5" value = "W" step="any" readonly></th>
     <th><input type="text" class="text-center" id="alum03_5" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma03_5" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma03_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
   <tr>
     <th>C</th>
     <td><input class="text-center" type="number" id="C_5" value = "0.32" step="any" readonly></td>
     <th><input type="text" class="text-center" id="alum04_5" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center" type="number" id="kerma04_5" step="any" onchange="calcular_funciones(this)"></td>
+    <td><input class="text-center" type="number" id="kerma04_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
@@ -243,17 +247,20 @@
   <tr class="custom-tr">
     
     <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><label id="ehr_5">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="ehr_5" value = "-" step="any" readonly></td>
+
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><label id="liminf_5">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="liminf_5" value = "-" step="any" readonly></td>
+
   </tr>
 
   <tr>
     <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><label id="limsup_5" onchange="a(this)">-</label></td>
+    <td class="custom-td"><input type="text" class="text-center" id="limsup_5" value = "-" step="any" readonly></td>
+
   </tr>
 
 </table>
