@@ -4,6 +4,7 @@ import {
   Barometro,
   DetectRad,
   Termometro,
+  CintaMetrica,
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,
@@ -26,7 +27,8 @@ import {
 import {
   PlantillaCompresion,
   PlantillaRendimiento,
-  PlantillaImagen
+  PlantillaImagen,
+  PlantillaHemirreductor
 }
   from "./plantillas";
 
@@ -80,7 +82,7 @@ class Main {
     this.visor = new VisorImagen(() => { this.actualizar() });
 
     // Instanciar Herramientas
-    this.herramientas_hab = [new Barometro(), new Termometro()];
+    this.herramientas_hab = [new Barometro(), new Termometro(), new CintaMetrica()];
     this.herramientas_mam = [
       new Balanza(),
       new Toalla(),
@@ -327,6 +329,7 @@ function selector(pruebas2) {
   plantilla_prueba["compresion"] = new PlantillaCompresion(m.errordict);
   plantilla_prueba["rendimiento"] = new PlantillaRendimiento(m.errordict);
   plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
+  plantilla_prueba["hemirreductor"] = new PlantillaHemirreductor(m.errordict);
 
 
   let prueba_index = 0;
@@ -381,6 +384,8 @@ function selector(pruebas2) {
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
       m.mamografo.cargarTest(pruebas[prueba_index][0]);
+      console.log(pruebas[prueba_index][0])
+      console.log(plantilla_prueba[pruebas[prueba_index]])
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 

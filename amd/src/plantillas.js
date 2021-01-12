@@ -276,7 +276,45 @@ export class PlantillaHemirreductor extends PlantillaAbstracta {
   }
 
   setFeedback() {
-    let errorHemirreductor = this.errorAltura;
+    let errorHemirreductor = this.errorHemirreductor;
+
+    $("body").on("click", "#finalizar_hemirreductor", function () {
+      console.log("ABRETE")
+      //$("#modal-rendimiento").scrollIntoView(true);
+      $("#modal-hemirreductor").modal("show");
+      $("#plantilla").scrollTop(0);
+
+      //appending modal background inside the contenedor-main div
+      $(".modal-backdrop").appendTo("#plantilla");
+      $(".modal-backdrop").height("270%");
+
+      //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+      $("body").removeClass("modal-open");
+      $("body").css("padding-right", "");
+
+      // Resultados esperados
+      $("#ehr_1_real").text(errorHemirreductor);
+      $("#ehr_2_real").text(errorHemirreductor);
+      $("#ehr_3_real").text(errorHemirreductor);
+      $("#ehr_4_real").text(errorHemirreductor);
+      
+
+      // Resultados ingresados por usuario
+      $("#ehr_1_ingresado").text(
+        document.getElementById("ehr_resp").value
+      );
+      $("#ehr_2_ingresado").text(
+        document.getElementById("ehr_resp").value
+      );
+      $("#ehr_3_ingresado").text(
+        document.getElementById("ehr_resp").value
+      );
+      $("#ehr_4_ingresado").text(
+        document.getElementById("ehr_resp").value
+      );
+
+      //finalmente movemos la view
+    });
    
   }
 }

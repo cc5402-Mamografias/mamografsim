@@ -32,7 +32,7 @@ export default class Maquina {
     console.log(this.errorLinealidad)
 
     this.alturaCompresor = 80;
-    this.alturaEspesor = 25;
+    this.alturaEspesor = 80;
     this.fuerza = 0.0;
 
     this.fuerzamax = this.errorFuerza; 

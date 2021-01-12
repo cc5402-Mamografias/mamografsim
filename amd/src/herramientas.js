@@ -469,7 +469,7 @@ class DetectRad extends AbstractTool {
       this.parametros = false;
     }
 
-    if (22 <= parseInt(estado.altura) && parseInt(estado.altura) <= 27) {
+    if (30 <= parseInt(estado.altura) && parseInt(estado.altura) <= 50) {
       this.alturacorrecta = true;
     } else {
       this.alturacorrecta = false;
@@ -553,14 +553,15 @@ class DetectRad extends AbstractTool {
     //PRUEBA HEMIRREDUCTOR
 
     if (this.prueba == "hemirreductor") {
+      console.log(this.kerma)
       if (this.estado == "activo") {
         if (this.colocada && this.alturacorrecta && this.parametros && this.placa) {
           let kermamod = null;
           if (this.filtroesp === 0.3){
-            kermamod = (this.kerma*0.55)*1.5;
+            kermamod = (this.kerma*0.55);
           }
           else if (this.filtroesp === 0.4){
-            kermamod = (this.kerma*0.45)*1.5;
+            kermamod = (this.kerma*0.45);
           }
           else {
             kermamod = this.kerma;
@@ -673,6 +674,41 @@ class Barometro extends AbstractTool {
 
   getResultado() {
     return { barometro: ["Presión: " + this.presion + " hPa"] };
+  }
+}
+
+class CintaMetrica extends AbstractTool {
+  constructor() {
+    super();
+    this.tipo = "Cinta métrica";
+    this.icon = "tape.png";
+    this.estado = "inactivo";
+    this.description = "Esta es una cinta.";
+    this.cinta = new Image();
+    this.cinta.src = "img/regla.svg";
+    this.x = 250;
+    this.y = 195;
+    this.scale = 0.09;
+    this.alturamedida = null;
+  }
+
+  actualizar(estado) {
+    console.log(estado)
+    this.alturamedida = (estado.altura*10);
+  }
+
+  dibujar(ctx) {
+    ctx.drawImage(
+      this.cinta,
+      this.x,
+      this.y,
+      this.cinta.width * this.scale,
+      this.cinta.height * this.scale
+    );
+  }
+
+  getResultado() {
+    return { cinta: ["Altura medida en cm"] };
   }
 }
 
@@ -854,6 +890,7 @@ export {
   Barometro,
   DetectRad,
   Termometro,
+  CintaMetrica,
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,

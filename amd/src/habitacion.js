@@ -15,6 +15,7 @@ export default class Habitacion {
       estado: true,
       presion: this.presion,
       temperatura: this.temperatura,
+      
     });
   }
 
