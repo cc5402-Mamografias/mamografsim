@@ -208,6 +208,7 @@ export class PlantillaImagen extends PlantillaAbstracta {
     });
 
     $("body").on("click", "#finalizar_imagen", function () {
+      console.log("finalizarimagen")
       let masIngresado =
         document.getElementById("mas_actual_planilla").value === ""
           ? 0
@@ -303,20 +304,24 @@ export class PlantillaHemirreductor extends PlantillaAbstracta {
       $("#ehr_2_real").text(errorHemirreductor);
       $("#ehr_3_real").text(errorHemirreductor);
       $("#ehr_4_real").text(errorHemirreductor);
+      $("#ehr_5_real").text(errorHemirreductor);
       
 
       // Resultados ingresados por usuario
       $("#ehr_1_ingresado").text(
-        document.getElementById("ehr_resp").value
+        document.getElementById("ehr_resp1").value
       );
       $("#ehr_2_ingresado").text(
-        document.getElementById("ehr_resp").value
+        document.getElementById("ehr_resp2").value
       );
       $("#ehr_3_ingresado").text(
-        document.getElementById("ehr_resp").value
+        document.getElementById("ehr_resp3").value
       );
       $("#ehr_4_ingresado").text(
-        document.getElementById("ehr_resp").value
+        document.getElementById("ehr_resp4").value
+      );
+      $("#ehr_5_ingresado").text(
+        document.getElementById("ehr_resp5").value
       );
 
       //finalmente movemos la view
