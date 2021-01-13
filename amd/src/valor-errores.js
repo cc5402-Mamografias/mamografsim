@@ -183,6 +183,19 @@ var valores = {
             "Alto": { valor: 0.6,
                 correcto: false }
         }
+    },
+    "errorDGM": {
+        "valores_base": {
+            "Ninguno": {
+                valor: 1,
+                correcto: true
+             },
+            "Bajo": { 
+                valor: 0.8,
+                correcto: false },
+            "Alto": { valor: 0.6,
+                correcto: false }
+        }
     }
 }
 

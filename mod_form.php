@@ -78,7 +78,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
             'compresion' => 'Fuerza de Compresión y Precisión de Espesor',
             'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad',
             'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen',
-            'hemirreductor' => 'Filtración y Espesor Hemirreductor (EHR o AVL)'
+            'hemirreductor' => 'Filtración y Espesor Hemirreductor (EHR o AVL)',
+            'kermadgm' => 'Determinación del Kerma en Superficie de Entrada y Dósis Glandular Media'
 
         );
         
@@ -151,9 +152,17 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // Prueba hemirreductor
         $mform->addElement('header', 'mamografsimhem', get_string('mamografsimhem', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorhem', "Error Hemirreductor", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorhem', "Error Hemirreductor", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno (el mamógrafo se encuentra dentro de todos los rangos aceptables)','Bajo'=>'Bajo (el mamógrafo no cumple con restrcciones por un margen menor)','Alto'=>'Alto (el mamógrafo no cumple con restrcciones por un margen mayor)'));
         $mform->setType('errorhem', PARAM_TEXT);
         $mform->addRule('errorhem', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        // Prueba de kerma y dgm
+        $mform->addElement('header', 'mamografsimdgm', get_string('mamografsimdgm', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errordgm', "Error DGM", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->setType('errordgm', PARAM_TEXT);
+        $mform->addRule('errordgm', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
 
 
 

@@ -27,6 +27,8 @@ export default class Maquina {
     this.errorRendimiento = errors["errorrend"][0];
 
     this.errorHemirreductor = errors["errorhem"][0];
+
+    this.errorDGM = errors["errordgm"][0];
     console.log("error hermirreductor")
     console.log(this.errorHemirreductor)
     console.log(this.errorLinealidad)

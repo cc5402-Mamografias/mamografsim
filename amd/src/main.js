@@ -70,6 +70,7 @@ class Main {
     errors.errorimgsp = getError("errorImagenRuido", errors.errorimgsp);
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
     errors.errorhem = getError("errorHemirreductor", errors.errorhem);
+    errors.errordgm = getError("errorDGM", errors.errordgm);
 
     this.errordict = errors;
     exterrores = errors;
