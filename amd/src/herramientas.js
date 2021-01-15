@@ -17,12 +17,7 @@ function multiplicar(x1, x2) {
 }
 
 
-//efecto disparo correcto
-function blur() {
-  var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
-  ctx.filter = 'blur(10px)';
-}
+
 
 
 
@@ -308,10 +303,14 @@ class Slab_20mm extends AbstractTool {
     super();
     this.tipo = "Slab(20 mm)";
     this.icon = "slabs.png";
-    this.estado = "inactivo";
-    this.fuerza = 0;
-    this.description = "Estos son unos slabs.";
     this.altura = 2.0;
+    this.estado = "inactivo";
+
+    this.parametros = false;
+    this.presionado = false;
+    this.prueba = null;
+    this.miliamperios_auto = 40;
+    
 
     this.scale = 0.5;
     this.x = 152;
@@ -322,7 +321,23 @@ class Slab_20mm extends AbstractTool {
   }
 
   actualizar(estado) {
-    // nada
+    this.prueba = estado.prueba;
+    //comprobamos parametros correctos para disparo
+    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
+      this.parametros = true;
+    } else {
+      this.parametros = false;
+    }
+    //leemos miliamperios auto de la maquina
+    //this.miliamperios_auto = estado.miliamperios_auto_dgm -10;
+    //comprobamos altura correcta pa disparo
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+      this.presionado = true;
+    } else {
+      this.presionado = false;
+    }
+    this.estado = estado.activo ? "activo" : "inactivo";
+
   }
 
   dibujar(ctx) {
@@ -336,7 +351,33 @@ class Slab_20mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab20: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
+    var result = null;
+
+    if (this.estado == "activo") {
+      if (this.parametros && this.presionado) {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+
+      } else {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+
+        if (!this.presionado) {
+          result +=
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+        }
+
+        if (!this.parametros) {
+          result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+        }
+        if (result === "") {
+          result += "Error de Posición.";
+        }
+      }
+    } else {
+      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
+    }
+    return { slab20: [result] };
   }
 }
 class Slab_45mm extends AbstractTool {
@@ -345,8 +386,14 @@ class Slab_45mm extends AbstractTool {
     this.tipo = "Slab(45 mm)";
     this.icon = "slabs.png";
     this.altura = 4.5;
+    this.estado = "inactivo";
 
-    // pasar parametros a vista?
+    this.parametros = false;
+    this.presionado = false;
+    this.prueba = null;
+    this.miliamperios_auto = 80;
+    
+
     this.scale = 0.5;
     this.x = 152;
     this.y = 250;
@@ -356,7 +403,23 @@ class Slab_45mm extends AbstractTool {
   }
 
   actualizar(estado) {
-    // nada
+    this.prueba = estado.prueba;
+    //comprobamos parametros correctos para disparo
+    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
+      this.parametros = true;
+    } else {
+      this.parametros = false;
+    }
+    //leemos miliamperios auto de la maquina
+    //this.miliamperios_auto = estado.miliamperios_auto_dgm;
+    //comprobamos altura correcta pa disparo
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+      this.presionado = true;
+    } else {
+      this.presionado = false;
+    }
+    this.estado = estado.activo ? "activo" : "inactivo";
+
   }
 
   dibujar(ctx) {
@@ -370,9 +433,36 @@ class Slab_45mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab45: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
+    var result = null;
+
+    if (this.estado == "activo") {
+      if (this.parametros && this.presionado) {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+
+      } else {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+
+        if (!this.presionado) {
+          result +=
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+        }
+
+        if (!this.parametros) {
+          result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+        }
+        if (result === "") {
+          result += "Error de Posición.";
+        }
+      }
+    } else {
+      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
+    }
+    return { slab45: [result] };
   }
 }
+
 
 class Slab_70mm extends AbstractTool {
   constructor() {
@@ -380,8 +470,14 @@ class Slab_70mm extends AbstractTool {
     this.tipo = "Slab(70 mm)";
     this.icon = "slabs.png";
     this.altura = 7.0;
+    this.estado = "inactivo";
 
-    // pasar parametros a vista?
+    this.parametros = false;
+    this.presionado = false;
+    this.prueba = null;
+    this.miliamperios_auto = 160;
+    
+
     this.scale = 0.5;
     this.x = 152;
     this.y = 250;
@@ -391,11 +487,26 @@ class Slab_70mm extends AbstractTool {
   }
 
   actualizar(estado) {
-    // nada
+    this.prueba = estado.prueba;
+    //comprobamos parametros correctos para disparo
+    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
+      this.parametros = true;
+    } else {
+      this.parametros = false;
+    }
+    //leemos miliamperios auto de la maquina
+    this.miliamperios_auto = estado.miliamperios_auto_dgm +10;
+    //comprobamos altura correcta pa disparo
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+      this.presionado = true;
+    } else {
+      this.presionado = false;
+    }
+    this.estado = estado.activo ? "activo" : "inactivo";
+
   }
 
   dibujar(ctx) {
-    console.log("GRRR")
     ctx.drawImage(
       this.slabs,
       this.x,
@@ -406,7 +517,34 @@ class Slab_70mm extends AbstractTool {
   }
 
   getResultado() {
-    return { slab70: ["Altura Slabs: " + this.getAltura() * 10 + " mm."] };
+    var result = null;
+
+    if (this.estado == "activo") {
+      if (this.parametros && this.presionado) {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+
+      } else {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+
+        if (!this.presionado) {
+          result +=
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+        }
+
+        if (!this.parametros) {
+          result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+        }
+        if (result === "") {
+          result += "Error de Posición.";
+        }
+      }
+    } else {
+      console.log("NICE")
+      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
+    }
+    return { slab70: [result] };
   }
 }
 
@@ -456,8 +594,6 @@ class DetectRad extends AbstractTool {
   }
 
   actualizar(estado) {
-    console.log(estado.altura)
-    console.log(this.filtroesp)
     this.prueba = estado.prueba;
 
     //cargamos errores
@@ -467,7 +603,7 @@ class DetectRad extends AbstractTool {
 
     this.errores["hem"] = estado.errores.errorhem[0];
 
-    if (parseInt(estado.kilovolt) === 28) {
+    if (parseInt(estado.kilovolt) === 28 && estado.modo === "manual") {
       this.parametros = true;
     } else {
       this.parametros = false;
@@ -480,11 +616,7 @@ class DetectRad extends AbstractTool {
     }
     //DISPARO CORRECTO
     if (estado.activo) {
-      blur();
-      console.log(estado.kilovolt)
-      console.log(estado.miliamperios)
-      console.log(estado.anodo)
-      console.log(estado.filtro)
+      //blur();
       let request = {
         kvp: estado.kilovolt,
         mas: estado.miliamperios,
@@ -594,7 +726,45 @@ class DetectRad extends AbstractTool {
           }
           if (!this.parametros) {
             result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28.<br>";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28 y en modo manual.<br>";
+          }
+          if (!this.placa) {
+            result +=
+            "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
+          }
+          return { camara: ["Detector de Radiación ", result] }
+        }
+      };
+      this.actualizar_default();
+      return {
+        camara: ["Detector de Radiación", "\t\t\tKerma: " + "-- " + " mGy"],
+      };
+    }
+    //PRUEBA KERMADGM
+    if (this.prueba == "kermadgm") {
+      if (this.estado == "activo") {
+        if (this.colocada  && this.parametros && this.placa) {
+          let kermamod = null;
+          
+          kermamod = this.kerma;
+          
+          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod)
+
+          return {
+            camara: [
+              "Detector de Radiación",
+              "\t\t\tKerma: " + kermamod2.toFixed(3) + " mGy",
+            ],
+          }
+        }else {
+          result = "";
+          if (!this.colocada) {
+            result +=
+            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+          }
+          if (!this.parametros) {
+            result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28 y en modo manual.<br>";
           }
           if (!this.placa) {
             result +=
@@ -610,8 +780,6 @@ class DetectRad extends AbstractTool {
     }
 
   };
-
-
   estaColocada() {
     return this.colocada;
   }
@@ -771,7 +939,7 @@ class Fantoma extends AbstractTool {
       this.estado = "activo";
       //DISPARO CORRECTO
       if (this.parametros && this.presionado && this.colocada) {
-        blur();
+        //blur();
         let lineas = estado.errores.errorimlin == "" ? 0 : 3;
 
         let request = {

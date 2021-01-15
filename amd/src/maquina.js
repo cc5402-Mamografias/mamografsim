@@ -10,6 +10,13 @@ function random() {
     return x - Math.floor(x);
 }
 
+//efecto disparo correcto
+function blur() {
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.filter = 'blur(10px)';
+}
+
 
 export default class Maquina {
   constructor(errors, ctx) {
@@ -65,6 +72,9 @@ export default class Maquina {
     //PARA PRUEBA IMAGENES
     this.miliamperios_auto = 100;
 
+    //PARA PRUEBA DGM
+    this.miliamperios_auto_dgm = 40;
+
     //PARA SABER QUE PRUEBA SE ESTA DESARROLLANDO
     this.prueba = null;
 
@@ -100,6 +110,7 @@ export default class Maquina {
       miliamperios_nom : (this.miliamperios),
       miliamperios: (this.miliamperios),
       miliamperios_auto : this.miliamperios_auto,
+      miliamperios_auto_dgm : this.miliamperios_auto_dgm,
 
       filtro: this.filtro,
       anodo: this.anodo,
@@ -210,6 +221,7 @@ export default class Maquina {
   }
 
   activar() {
+    blur();
     this.actualizar(true);
   }
 

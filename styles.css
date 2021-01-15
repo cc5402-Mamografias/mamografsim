@@ -403,6 +403,11 @@ input[type="radio"]:checked:after {
 .her-b-l {
   width: 100%;
 }
+.cont-large-btn {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 5%;
+}
 
 .boton-ver-mas {
   width: 100%;

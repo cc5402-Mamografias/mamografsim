@@ -28,7 +28,8 @@ import {
   PlantillaCompresion,
   PlantillaRendimiento,
   PlantillaImagen,
-  PlantillaHemirreductor
+  PlantillaHemirreductor,
+  PlantillaKermaDGM
 }
   from "./plantillas";
 
@@ -331,6 +332,7 @@ function selector(pruebas2) {
   plantilla_prueba["rendimiento"] = new PlantillaRendimiento(m.errordict);
   plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
   plantilla_prueba["hemirreductor"] = new PlantillaHemirreductor(m.errordict);
+  plantilla_prueba["kermadgm"] = new PlantillaKermaDGM(m.errordict);
 
 
   let prueba_index = 0;
@@ -534,6 +536,8 @@ function crearHerramButton(tool, onClickF) {
   r.on("click", onClickF);
   r.appendTo("#herramientas-express");
 
+
+  //boton en modal
   let r_col = $(`<div class="col-sm-2"></div>`);
   let r2 = r.clone().removeClass("her-b-s").addClass("her-b-l");
   r2.on("click", onClickF);
@@ -559,7 +563,7 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
 
 //disparo mamografo apretando boton shoot
 export let disparo = () => {
-  //console.log("Shoot2");
+  console.log("Shoot2");
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   m.getMamografo().activar();
