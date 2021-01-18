@@ -10,12 +10,13 @@ import {
   Slab_70mm,
   Toalla,
   Fantoma,
-  Placa,
+  PlacaExt,
   FiltroAl_03,
   FiltroAl_04
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
+//import MesaReceptora from "./mesa-receptora";
 import Maquina from "./maquina";
 import { ClickeableObject } from "./utils";
 import { setDragAndDrop } from "./drag-drop-receptor";
@@ -79,12 +80,14 @@ class Main {
     // Instanciar componentes de la simulación
     this.mamografo = new Maquina(errors, this.ctx);
     this.habitacion = new Habitacion();
+    //this.mesaReceptora = new MesaReceptora();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
     this.visor = new VisorImagen(() => { this.actualizar() });
 
     // Instanciar Herramientas
-    this.herramientas_hab = [new Barometro(), new Termometro(), new CintaMetrica()];
+    this.herramientas_hab = [new Barometro(), new Termometro(),new CintaMetrica()];
+    //this.herramientas_mesa = [new PlacaExt()];
     this.herramientas_mam = [
       new Balanza(),
       new Toalla(),
@@ -93,9 +96,9 @@ class Main {
       new Slab_70mm(),
       new DetectRad(),
       new Fantoma(this.visor),
-      new Placa(),
       new FiltroAl_03(),
-      new FiltroAl_04()
+      new FiltroAl_04(),
+      new PlacaExt()
     ];
 
 
@@ -154,6 +157,9 @@ class Main {
     this.herramientas_hab.forEach((tool) => {
       crearHerramButton(tool, () => this.onClickTool(this.habitacion, tool))
     });
+    //this.herramientas_mesa.forEach((tool) => {
+    //  crearHerramButton(tool, () => this.onClickTool(this.mesaReceptora, tool))
+    //});
 
     this.clickeableOnCanvas = [
       this.pedalUp,
@@ -184,6 +190,7 @@ class Main {
     drawPedal(this.ctx, this.pedalDown.getState(), this.pedalUp.getState());
     this.mamografo.dibujar(this.ctx);
     this.habitacion.dibujar(this.ctx);
+    //this.mesaReceptora.dibujar(this.ctx);
 
     this.panelResultados.limpiarResultados();
     try {
@@ -193,6 +200,11 @@ class Main {
     }
     try {
       this.panelResultados.registrarResultado(this.habitacion.getHerramienta().getResultado());
+    } catch (error) {
+      //console.log(error);
+    }
+    try {
+      this.panelResultados.registrarResultado(this.mamografo.getHerramientaMesa().getResultado());
     } catch (error) {
       //console.log(error);
     }
@@ -210,13 +222,18 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
+
     if (tool.addon) {
+      
       herramientaHolder.setHerramienta(tool, true);
     }
+    else if (tool.mesa){
+      herramientaHolder.setHerramientaMesa(tool, false);
+    }
+
     else {
       herramientaHolder.setHerramienta(tool);
     }
-
     this.actualizar();
   }
 

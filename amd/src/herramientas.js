@@ -174,41 +174,36 @@ class Toalla extends AbstractTool {
   }
 }
 
-class Placa extends AbstractTool {
+class PlacaExt extends AbstractTool {
   constructor() {
     super();
-    this.addon = true;
+    this.mesa = true;//se trata de una heeramienta encima de la mesa receptora
     this.tipo = "Placa";
     this.icon = "placa.png";
+    this.placa = new Image();
+    this.placa.src = "img/placalone.svg";
     this.altura = 0;
     this.scale = 0.5;
-    this.x = 152;
-    this.y = 265;
+    this.x = 130;
+    this.y = 230;
     this.description = "Placa protectora de radiacion.";
 
   }
 
-  action(maquina) {
-    if (maquina.herramienta.tipo == "Detector de Radiación") {
-      let detector = maquina.herramienta;
-      if (!detector.placa) {
-        detector.sprite = detector.siplaca;
-        detector.placa = true;
-      } else {
-        detector.sprite = detector.noplaca;
-        detector.placa = false;
-      }
-      maquina.actualizar();
-      //console.log("balanza: ", balanza);
-    }
-
-  }
   actualizar(ctx) {
     //nada
   }
   dibujar(ctx) {
-    //nada
-
+    ctx.drawImage(
+      this.placa,
+      this.x,
+      this.y,
+      this.placa.width * this.scale,
+      this.placa.height * this.scale
+    );
+  }
+  getResultado() {
+    return { placa: ["Placa de aluminio colocada"] };
   }
 }
 
@@ -551,7 +546,6 @@ class Slab_70mm extends AbstractTool {
 class DetectRad extends AbstractTool {
   constructor() {
     super();
-    
     this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
@@ -564,7 +558,6 @@ class DetectRad extends AbstractTool {
     this.placa = false;
     this.filtro = false;
     this.filtroesp = 0;
-
     this.kerma = null;
 
     this.scale = 0.5;
@@ -573,8 +566,6 @@ class DetectRad extends AbstractTool {
     this.errores = {};
     this.noplaca = new Image();
     this.noplaca.src = "img/detector.svg";
-    this.siplaca = new Image();
-    this.siplaca.src = "img/detectorplaca.svg";
     this.siplacasifiltro03 = new Image();
     this.siplacasifiltro03.src = "img/detectorplacayfiltro.svg";
     this.siplacasifiltro04 = new Image();
@@ -615,6 +606,11 @@ class DetectRad extends AbstractTool {
     } else {
       this.alturacorrecta = false;
     }
+    //si la placa esta colocada
+    console.log(estado.placa);
+    this.placa = estado.placa;
+    console.log(this.placa);
+
     //DISPARO CORRECTO
     if (estado.activo) {
       //blur();
@@ -1074,7 +1070,7 @@ export {
   Slab_45mm,
   Slab_70mm,
   Fantoma,
-  Placa,
+  PlacaExt,
   FiltroAl_03,
   FiltroAl_04
 };

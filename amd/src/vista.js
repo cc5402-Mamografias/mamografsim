@@ -49,6 +49,11 @@ export function drawHab(ctx, herramientas) {
     herramientas.forEach((t) => t.dibujar(ctx));
   }
 }
+export function drawMesa(ctx, herramientas) {
+  if (herramientas !== null) {
+    herramientas.forEach((t) => t.dibujar(ctx));
+  }
+}
 
 export function drawMam(
   ctx,

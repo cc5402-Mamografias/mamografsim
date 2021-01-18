@@ -1,5 +1,5 @@
 import { BaseNula } from "./herramientas";
-import { preloadImages, drawMam, drawPedal } from "./vista";
+import { preloadImages, drawMam, drawPedal, drawMesa } from "./vista";
 
 const alturaMax = 80;
 
@@ -22,6 +22,8 @@ export default class Maquina {
   constructor(errors, ctx) {
     this.errors = errors;
     this.herramienta = new BaseNula();
+    this.herramientaMesa = new BaseNula();
+    this.placa= false;
     //Errores
     
     this.errorFuerza = errors["errorf"][0];
@@ -117,7 +119,8 @@ export default class Maquina {
       modo: this.modo,
       activo: isActivo,
       errores: this.errors,
-      prueba: this.prueba
+      prueba: this.prueba,
+      placa: this.placa
       
     };
   }
@@ -150,20 +153,20 @@ export default class Maquina {
 
 
   actualizar(activo = false) {
+    this.herramientaMesa.actualizar(this.construirEstado(activo));
     this.herramienta.actualizar(this.construirEstado(activo));
   }
 
   dibujar(ctx) {
-    var herrs2 = [this.herramienta].push.apply([this.herramienta],this.herramientassec)
-    console.log(herrs2)
 
     drawMam(
       ctx,
       this.alturaDesplegada(),
-      [this.herramienta],
+      [this.herramientaMesa, this.herramienta],
       this.valoresMedidos().fuerza.toFixed(2),
       this.valoresMedidos().altura
     );
+    
   }
 
   // Setea los parametros del panel de control
@@ -184,9 +187,7 @@ export default class Maquina {
       // return;
     }
     if (addon) {
-    
       herram.action(this);
-
 
     }
     else {
@@ -208,6 +209,7 @@ export default class Maquina {
 
         }
         this.herramienta = new BaseNula();
+        
       } else {
         this.herramienta = herram;
       }
@@ -216,8 +218,32 @@ export default class Maquina {
     }
   }
 
+  setHerramientaMesa(herram, addon = false) {
+    if (this.factorCompresion != this.factorCompresiónini || this.alturaCompresor - 5 < herram.altura) {
+      throw 'No se puede posicionar la herramienta con el compresor tan bajo';
+      // return;
+    } 
+    if (this.herramientaMesa.getTipo() == herram.getTipo()) {
+      
+      this.herramientaMesa = new BaseNula();
+      this.placa = false;
+    } else {
+      this.herramientaMesa = herram;
+      if (herram.getTipo() === "Placa"){
+        console.log("PLACA SELECCIONADA")
+        this.placa = true;
+
+      }
+
+    }
+    this.actualizar();  
+  }
+
   getHerramienta() {
     return this.herramienta;
+  }
+  getHerramientaMesa() {
+    return this.herramientaMesa;
   }
 
   activar() {
