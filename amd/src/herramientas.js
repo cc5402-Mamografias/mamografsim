@@ -301,7 +301,7 @@ class FiltroAl_04 extends AbstractTool {
 class Slab_20mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab(20 mm)";
+    this.tipo = "Slab (20 mm)";
     this.icon = "slabs.png";
     this.altura = 2.0;
     this.estado = "inactivo";
@@ -331,7 +331,7 @@ class Slab_20mm extends AbstractTool {
     //leemos miliamperios auto de la maquina
     //this.miliamperios_auto = estado.miliamperios_auto_dgm -10;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -363,7 +363,7 @@ class Slab_20mm extends AbstractTool {
 
         if (!this.presionado) {
           result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
         }
 
         if (!this.parametros) {
@@ -383,7 +383,7 @@ class Slab_20mm extends AbstractTool {
 class Slab_45mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab(45 mm)";
+    this.tipo = "Slab (45 mm)";
     this.icon = "slabs.png";
     this.altura = 4.5;
     this.estado = "inactivo";
@@ -413,7 +413,7 @@ class Slab_45mm extends AbstractTool {
     //leemos miliamperios auto de la maquina
     //this.miliamperios_auto = estado.miliamperios_auto_dgm;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -445,7 +445,7 @@ class Slab_45mm extends AbstractTool {
 
         if (!this.presionado) {
           result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
         }
 
         if (!this.parametros) {
@@ -467,7 +467,7 @@ class Slab_45mm extends AbstractTool {
 class Slab_70mm extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab(70 mm)";
+    this.tipo = "Slab (70 mm)";
     this.icon = "slabs.png";
     this.altura = 7.0;
     this.estado = "inactivo";
@@ -497,7 +497,7 @@ class Slab_70mm extends AbstractTool {
     //leemos miliamperios auto de la maquina
     //this.miliamperios_auto = estado.miliamperios_auto_dgm +10;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -529,7 +529,7 @@ class Slab_70mm extends AbstractTool {
 
         if (!this.presionado) {
           result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
         }
 
         if (!this.parametros) {

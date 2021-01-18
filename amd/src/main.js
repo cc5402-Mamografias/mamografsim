@@ -210,9 +210,7 @@ class Main {
   }
 
   onClickTool(herramientaHolder, tool) {
-    console.log("YEAH")
     if (tool.addon) {
-      console.log("OOO")
       herramientaHolder.setHerramienta(tool, true);
     }
     else {
