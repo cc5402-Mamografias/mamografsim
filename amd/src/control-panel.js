@@ -41,19 +41,6 @@ function getValorActivoRadioButtons(valores) {
   }
   return -1;
 }
-/*
-function cambiarModo(modos) {
-  let index = getValorActivoRadioButtons(modos);
-  if (index == -1) {
-    document.getElementById(modos[0]).checked = true;
-  }
-  else {
-    document.getElementById(modos[index]).checked = false;
-    document.getElementById(modos[(index + 1) % modos.length]).checked = true;
-  }
-  setearParamsMamografo();
-}
-*/
 
 function refreshMAS() {
   if (label_modo[getValorActivoRadioButtons(valores_modo)] == "autotime") {
@@ -69,7 +56,6 @@ function refreshMAS() {
 }
 
 function disparoMamografo() {
-  //console.log("Shoot");
   setearParamsMamografo();
   disparo();
 }

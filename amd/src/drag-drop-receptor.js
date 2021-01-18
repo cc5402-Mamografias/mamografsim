@@ -2,19 +2,14 @@
 export function setDragAndDrop(main) {
 
     document.addEventListener("drag", function (event) {
-        //console.log("pick");
       }, false);
       
       document.addEventListener("dragstart", function (event) {
-        //console.log("dragstart");
-        // store a ref. on the dragged elem
         this.dragged = event.target;
-        // make it half transparent
         event.target.opacity = 0.5;
       }, false);
       
       document.addEventListener("dragend", function (event) {
-        //console.log("reseteo transparencia");
         // reset the transparency
         event.target.opacity = "";
       }, false);
@@ -35,12 +30,10 @@ export function setDragAndDrop(main) {
       }, false);
       
       document.addEventListener("dragleave", function (event) {
-        //console.log("salgo de mi posicion original");
         // reset background of potential drop target when the draggable element leaves it
         if (event.target.classList.contains("dropzone")) {
           event.target.style.background = "";
         }
-      
       }, false);
       
       document.addEventListener("drop", function (event) {
@@ -59,7 +52,6 @@ export function setDragAndDrop(main) {
             main.mesaTopDown.check_pos_incorrect()
           }
         }
-      
       }, false);
 
 };
