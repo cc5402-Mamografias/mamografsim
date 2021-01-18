@@ -24,6 +24,7 @@ class Main {
     this.plantilla_prueba["compresion"] = new PlantillaCompresion(this.errordict);
     this.plantilla_prueba["rendimiento"] = new PlantillaRendimiento(this.errordict);
     this.plantilla_prueba["imagen"] = new PlantillaImagen(this.errordict);
+    this.plantilla_prueba["kermadgm"] = new PlantillaKermaDGM(this.errordict);
     
     console.log(this.plantilla_prueba["imagen"])
     console.log(this.plantilla_prueba["hemirreductor"])
@@ -62,6 +63,7 @@ export function reload(){
   m.plantilla_prueba["compresion"].setFeedback();
   m.plantilla_prueba["rendimiento"].setFeedback();
   m.plantilla_prueba["imagen"].setFeedback();
+  m.plantilla_prueba["kermadgm"].setFeedback();
 };
 
 class PlantillaAbstracta {
@@ -88,6 +90,8 @@ class PlantillaAbstracta {
 
     this.errorHemirreductor =
       errors["errorhem"][1] ? "Sí" : "No";
+    this.errorDGM =
+      errors["errordgm"][1] ? "Sí" : "No";
 
     $('#plantilla').on('focus', 'input[type=number]', function (e) {
       $(this).on('wheel.disableScroll', function (e) {
@@ -371,6 +375,54 @@ class PlantillaHemirreductor extends PlantillaAbstracta {
       //finalmente movemos la view
     });
     console.log("HEMIRREDUCTOR CARGADO")
+   
+  }
+}
+
+class PlantillaKermaDGM extends PlantillaAbstracta {
+  constructor(errors) {
+    super(errors);
+  }
+  setFeedback() {
+    console.log("feedback kerma cargado")
+    let errorDGM = this.errorDGM;
+
+    $("body").on("click", "#finalizar_kermadgm", function () {
+      console.log("ABRETE")
+      //$("#modal-rendimiento").scrollIntoView(true);
+      $("#modal-kermadgm").modal("show");
+      $("#plantilla").scrollTop(0);
+
+      //appending modal background inside the contenedor-main div
+      $(".modal-backdrop").appendTo("#plantilla");
+      $(".modal-backdrop").height("270%");
+
+      //remove the padding right and modal-open class from the body tag which bootstrap adds when a modal is shown
+      $("body").removeClass("modal-open");
+      $("body").css("padding-right", "");
+
+      // Resultados esperados
+      $("#dgm_1_real").text(errorDGM);
+      $("#dgm_2_real").text(errorDGM);
+      $("#dgm_3_real").text(errorDGM);
+      
+      
+
+      // Resultados ingresados por usuario
+      $("#dgm_1_ingresado").text(
+        document.getElementById("dgm_resp1").value
+      );
+      $("#dgm_2_ingresado").text(
+        document.getElementById("dgm_resp2").value
+      );
+      $("#dgm_3_ingresado").text(
+        document.getElementById("dgm_resp3").value
+      );
+      
+
+      //finalmente movemos la view
+    });
+    console.log("DGM CARGADO")
    
   }
 }

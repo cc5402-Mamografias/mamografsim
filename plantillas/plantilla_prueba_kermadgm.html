@@ -8,6 +8,7 @@
 
 
 
+<div>
 
 <table class="planilla-tabla" style="margin-top: 20px;">
   <tr>
@@ -21,7 +22,7 @@
 
   <tr>
     <th>d<sub>T</sub> (mm)</th>
-    <td><input type="text" class="text-center" id="mas_main" value = "600" step="any" readonly></td>
+    <td><input type="text" class="text-center" id="dt_main" value = "600" step="any" readonly></td>
   </tr>
 </table>
 
@@ -54,22 +55,22 @@
   <tr>
     <th>Filtro</th>
     <td>
-      <select name="filtro_20" id="filtro_20">
-        <option value="mo">Mo</option>
+      <select name="filtro_20" id="filtro_20" onchange="actualizar_funciones(20)">
+        <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="ag">Ag</option>
       </select>
     </td>
     <td>
-      <select name="filtro_45" id="filtro_45">
-        <option value="mo">Mo</option>
+      <select name="filtro_45" id="filtro_45" onchange="actualizar_funciones(45)">
+        <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="ag">Ag</option>
       </select>
     </td>
     <td>
-      <select name="filtro_70" id="filtro_70">
-        <option value="mo">Mo</option>
+      <select name="filtro_70" id="filtro_70" onchange="actualizar_funciones(70)">
+        <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="ag">Ag</option>
       </select>
@@ -79,21 +80,21 @@
 
   <tr>
     <th>Ánodo</th>
-    <td><select name="anodo_20" id="anodo_20">
-      <option value="mo">Mo</option>
+    <td><select name="anodo_20" id="anodo_20" onchange="actualizar_funciones(20)">
+      <option value="mo" >Mo</option>
       <option value="rh">Rh</option>
       <option value="w">W</option>
     </select></td>
     <td>
-      <select name="anodo_45" id="anodo_45">
-        <option value="mo">Mo</option>
+      <select name="anodo_45" id="anodo_45" onchange="actualizar_funciones(45)">
+        <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="w">W</option>
       </select>
     </td>
     <td>
-      <select name="anodo_70" id="anodo_70">
-        <option value="mo">Mo</option>
+      <select name="anodo_70" id="anodo_70" onchange="actualizar_funciones(70)">
+        <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="w">W</option>
       </select>
@@ -116,9 +117,9 @@
 
   <tr>
     <th>Kerma Incidente en aire (Ki)</th>
-    <td><input type="text" class="text-center" id="kerma_20" value = "" step="any" ></td>
-    <td><input type="text" class="text-center" id="kerma_45" value = "" step="any" ></td>
-    <td><input type="text" class="text-center" id="kerma_70" value = "" step="any" ></td>
+    <td><input type="text" class="text-center" id="kerma_20" value = "" step="any" onchange="actualizar_funciones(20)" ></td>
+    <td><input type="text" class="text-center" id="kerma_45" value = "" step="any" onchange="actualizar_funciones(45)"></td>
+    <td><input type="text" class="text-center" id="kerma_70" value = "" step="any" onchange="actualizar_funciones(70)"></td>
   </tr>
 
   <tr>
@@ -197,7 +198,7 @@
 
 
 
-<table class="margin-top-40">
+<table class="margin-top-40" style="float: right; width: 48%;">
   <tr>
     <th colspan="7">Tolerancia</th>
   </tr>
@@ -228,9 +229,61 @@
   </tr>
 </table>
 
+<table class="margin-top-40" style="float: left; width: 48%;">
+  <tr>
+    <th colspan="4">Combinación ánodo/filtro</th>
+    <th colspan="3">Factor s</th>
+  </tr>
+
+  <tr>
+    <th colspan="4">Mo/Mo</th>
+    <th colspan="3">1</th>
+  </tr>
+  <tr>
+    <th colspan="4">Mo/Rh</th>
+    <th colspan="3">1.017</th>
+  </tr>
+  <tr>
+    <th colspan="4">Rh/Rh</th>
+    <th colspan="3">1.061</th>
+  </tr>
+  <tr>
+    <th colspan="4">W/Rh</th>
+    <th colspan="3">1.042</th>
+  </tr>
+  <tr>
+    <th colspan="4">W/Ag</th>
+    <th colspan="3">1.042</th>
+  </tr>
+</table>
+
+</div>
+
+<table class="margin-top-40" style="float: left; width: 48%;">
+
+  <tr>
+    <th colspan="7">Fórmulas</th>
+  </tr>
+  <tr>
+    <th colspan="4">Kerma corregido a una dist. de 20 mm</th>
+    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k20.gif" alt="k20" /></th>
+  </tr>
+
+  <tr>
+    <th colspan="4">Kerma corregido a una dist. de 70 mm</th>
+    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k70.gif" alt="k70" /></th>
+  </tr>
+  <tr>
+    <th colspan="4">Dosis Glandular Media</th>
+    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/dgm.gif" alt="dgm" /></th>
+  </tr>
+
+</table>
+
 </div>
 
 <!-- Boton y modal para terminar prueba -->
+<div>
 <button class="btn-primary button-without-border btn-result" id="finalizar_kermadgm">
   Terminar Prueba
 </button>

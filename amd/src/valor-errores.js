@@ -191,9 +191,9 @@ var valores = {
                 correcto: true
              },
             "Bajo": { 
-                valor: 0.8,
+                valor: 2,
                 correcto: false },
-            "Alto": { valor: 0.6,
+            "Alto": { valor: 3,
                 correcto: false }
         }
     }

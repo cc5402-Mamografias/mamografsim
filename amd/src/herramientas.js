@@ -216,7 +216,7 @@ class FiltroAl_03 extends AbstractTool {
   constructor() {
     super();
     this.addon = true;
-    this.tipo = "Filtro Aluminio (0.3 mm)";
+    this.tipo = "F. Aluminio (0.3 mm)";
     this.icon = "aluminio.png";
     this.altura = 0;
     this.scale = 0.5;
@@ -258,7 +258,7 @@ class FiltroAl_04 extends AbstractTool {
   constructor() {
     super();
     this.addon = true;
-    this.tipo = "Filtro Aluminio (0.4 mm)";
+    this.tipo = "F. Aluminio (0.4 mm)";
     this.icon = "aluminio.png";
     this.altura = 0;
     this.scale = 0.5;
@@ -309,7 +309,7 @@ class Slab_20mm extends AbstractTool {
     this.parametros = false;
     this.presionado = false;
     this.prueba = null;
-    this.miliamperios_auto = 40;
+    this.miliamperios_auto = 12;
     
 
     this.scale = 0.5;
@@ -331,7 +331,7 @@ class Slab_20mm extends AbstractTool {
     //leemos miliamperios auto de la maquina
     //this.miliamperios_auto = estado.miliamperios_auto_dgm -10;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -356,7 +356,7 @@ class Slab_20mm extends AbstractTool {
     if (this.estado == "activo") {
       if (this.parametros && this.presionado) {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
 
       } else {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
@@ -368,7 +368,7 @@ class Slab_20mm extends AbstractTool {
 
         if (!this.parametros) {
           result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
         }
         if (result === "") {
           result += "Error de Posición.";
@@ -391,7 +391,7 @@ class Slab_45mm extends AbstractTool {
     this.parametros = false;
     this.presionado = false;
     this.prueba = null;
-    this.miliamperios_auto = 80;
+    this.miliamperios_auto = 60;
     
 
     this.scale = 0.5;
@@ -413,7 +413,7 @@ class Slab_45mm extends AbstractTool {
     //leemos miliamperios auto de la maquina
     //this.miliamperios_auto = estado.miliamperios_auto_dgm;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -438,7 +438,7 @@ class Slab_45mm extends AbstractTool {
     if (this.estado == "activo") {
       if (this.parametros && this.presionado) {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
 
       } else {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
@@ -450,7 +450,7 @@ class Slab_45mm extends AbstractTool {
 
         if (!this.parametros) {
           result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
         }
         if (result === "") {
           result += "Error de Posición.";
@@ -475,7 +475,7 @@ class Slab_70mm extends AbstractTool {
     this.parametros = false;
     this.presionado = false;
     this.prueba = null;
-    this.miliamperios_auto = 160;
+    this.miliamperios_auto = 140;
     
 
     this.scale = 0.5;
@@ -495,9 +495,9 @@ class Slab_70mm extends AbstractTool {
       this.parametros = false;
     }
     //leemos miliamperios auto de la maquina
-    this.miliamperios_auto = estado.miliamperios_auto_dgm +10;
+    //this.miliamperios_auto = estado.miliamperios_auto_dgm +10;
     //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 8) {
       this.presionado = true;
     } else {
       this.presionado = false;
@@ -522,7 +522,7 @@ class Slab_70mm extends AbstractTool {
     if (this.estado == "activo") {
       if (this.parametros && this.presionado) {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + this.miliamperios_auto+ " mAs.";
+        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
 
       } else {
         result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
@@ -534,7 +534,7 @@ class Slab_70mm extends AbstractTool {
 
         if (!this.parametros) {
           result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.<br>";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
         }
         if (result === "") {
           result += "Error de Posición.";
@@ -602,8 +602,9 @@ class DetectRad extends AbstractTool {
     this.errores["rend"] = estado.errores.errorrend[0];
 
     this.errores["hem"] = estado.errores.errorhem[0];
+    this.errores["dgm"] = estado.errores.errordgm[0];
 
-    if (parseInt(estado.kilovolt) === 28 && estado.modo === "manual") {
+    if ((parseInt(estado.kilovolt) === 28 || parseInt(estado.kilovolt) === 27)  && estado.modo === "manual") {
       this.parametros = true;
     } else {
       this.parametros = false;
@@ -748,12 +749,14 @@ class DetectRad extends AbstractTool {
           
           kermamod = this.kerma;
           
-          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod)
+          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod);
+
+          let kermamod3 = this.errores["dgm"]*kermamod2;
 
           return {
             camara: [
               "Detector de Radiación",
-              "\t\t\tKerma: " + kermamod2.toFixed(3) + " mGy",
+              "\t\t\tKerma: " + kermamod3.toFixed(3) + " mGy",
             ],
           }
         }else {
@@ -764,7 +767,7 @@ class DetectRad extends AbstractTool {
           }
           if (!this.parametros) {
             result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28 y en modo manual.<br>";
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 27 y en modo manual.<br>";
           }
           if (!this.placa) {
             result +=

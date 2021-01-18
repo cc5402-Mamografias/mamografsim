@@ -26,7 +26,7 @@ class PlantillaAbstracta {
     this.errorHemirreductor =
       errors["errorhem"][1] ? "Sí" : "No";
 
-      this.errorDGM =
+    this.errorDGM =
       errors["errordgm"][1] ? "Sí" : "No";
     
 
@@ -280,6 +280,7 @@ export class PlantillaHemirreductor extends PlantillaAbstracta {
   }
 
   setFeedback() {
+    console.log("feedback kerma HEMIRREDUCTOR")
     let errorHemirreductor = this.errorHemirreductor;
     $("body").on("click", "#volver-menu-desde-prueba-hemirreductor", function () {
       //console.log("cerrar plantilla");
@@ -337,8 +338,8 @@ export class PlantillaKermaDGM extends PlantillaAbstracta {
   constructor(errors) {
     super(errors);
   }
-
   setFeedback() {
+    console.log("feedback kerma cargado")
     let errorDGM = this.errorDGM;
     $("body").on("click", "#volver-menu-desde-prueba-kermadgm", function () {
       //console.log("cerrar plantilla");
@@ -365,8 +366,6 @@ export class PlantillaKermaDGM extends PlantillaAbstracta {
       $("#dgm_1_real").text(errorDGM);
       $("#dgm_2_real").text(errorDGM);
       $("#dgm_3_real").text(errorDGM);
-      $("#dgm_4_real").text(errorDGM);
-      $("#dgm_5_real").text(errorDGM);
       
 
       // Resultados ingresados por usuario
@@ -378,12 +377,6 @@ export class PlantillaKermaDGM extends PlantillaAbstracta {
       );
       $("#dgm_3_ingresado").text(
         document.getElementById("dgm_resp3").value
-      );
-      $("#dgm_4_ingresado").text(
-        document.getElementById("dgm_resp4").value
-      );
-      $("#dgm_5_ingresado").text(
-        document.getElementById("dgm_resp5").value
       );
 
       //finalmente movemos la view
