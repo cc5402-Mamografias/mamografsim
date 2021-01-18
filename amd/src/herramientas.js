@@ -19,10 +19,6 @@ function multiplicar(x1, x2) {
 
 
 
-
-
-
-
 //operacion Math.random con seed fijo
 var seed = 1;
 function random() {
@@ -96,7 +92,8 @@ class Balanza extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
-    this.description = "Esta es una balanza.";
+    this.description = "Balanza de contrapeso.";
+    this.longdescription = "Balanza de contrapeso que se utiliza para medir la compresión real del compresor del mamógrafo. Mide la fuerza en kilogramos.";
     this.notoalla = new Image();
     this.notoalla.src = "img/balanza.svg";
     this.sitoalla = new Image();
@@ -148,7 +145,8 @@ class Toalla extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
-    this.description = "Poner la toalla encima de la balanza.";
+    this.description = "Toalla para cubrir balanza.";
+    this.longdescription = "Toalla que se utiliza para cubrir la balanza antes de que sea comprimida, para evitar daños tanto en la balanza como en el mamñografo.";
   }
 
   action(maquina) {
@@ -186,7 +184,8 @@ class PlacaExt extends AbstractTool {
     this.scale = 0.5;
     this.x = 130;
     this.y = 230;
-    this.description = "Placa protectora de radiacion.";
+    this.description = "Placa protectora de aluminio.";
+    this.longdescription = "Placa protectora de aluminio para evitar que el exceso de radiación provocado por la toma de imágenes pueda causar artefactos.";
 
   }
 
@@ -203,7 +202,7 @@ class PlacaExt extends AbstractTool {
     );
   }
   getResultado() {
-    return { placa: ["Placa de aluminio colocada"] };
+    return { placa: [""] };
   }
 }
 
@@ -217,7 +216,8 @@ class FiltroAl_03 extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
-    this.description = "Filtro de aluminio de 0.3 mm.";
+    this.description = "Filtro de aluminio de 0.3 [mm].";
+    this.longdescription = "Conjunto apilado de 3 filtros de aluminio de 0.1 [mm] para cubrir el volumen activo del detector de radiación.";
 
   }
 
@@ -230,7 +230,7 @@ class FiltroAl_03 extends AbstractTool {
           detector.filtro = true;
           detector.filtroesp = 0.3;
         } else {
-          detector.sprite = detector.siplaca;
+          detector.sprite = detector.noplaca;
           detector.filtro = false;
           detector.filtroesp = 0;
         }
@@ -259,7 +259,9 @@ class FiltroAl_04 extends AbstractTool {
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
-    this.description = "Filtro de aluminio de 0.4 mm.";
+    this.description = "Filtro de aluminio de 0.4 [mm].";
+    this.longdescription = "Conjunto apilado de 4 filtros de aluminio de 0.1 [mm] para cubrir el volumen activo del detector de radiación.";
+
 
   }
 
@@ -274,13 +276,12 @@ class FiltroAl_04 extends AbstractTool {
           detector.filtro = true;
           detector.filtroesp = 0.4;
         } else {
-          detector.sprite = detector.siplaca;
+          detector.sprite = detector.noplaca;
           detector.filtro = false;
           detector.filtroesp = 0;
         }
       }
       maquina.actualizar();
-      //console.log("balanza: ", balanza);
     }
 
   }
@@ -305,6 +306,9 @@ class Slab_20mm extends AbstractTool {
     this.presionado = false;
     this.prueba = null;
     this.miliamperios_auto = 12;
+
+    this.description = "Bloque de PMMA de 20 [mm].";
+    this.longdescription = "Conjunto de bloques de PMMA que alineados suman 20 [mm] de altura.";
     
 
     this.scale = 0.5;
@@ -387,6 +391,9 @@ class Slab_45mm extends AbstractTool {
     this.presionado = false;
     this.prueba = null;
     this.miliamperios_auto = 60;
+
+    this.description = "Bloque de PMMA de 45 [mm].";
+    this.longdescription = "Conjunto de bloques de PMMA que alineados suman 45 [mm] de altura.";
     
 
     this.scale = 0.5;
@@ -471,6 +478,9 @@ class Slab_70mm extends AbstractTool {
     this.presionado = false;
     this.prueba = null;
     this.miliamperios_auto = 140;
+
+    this.description = "Bloque de PMMA de 70 [mm].";
+    this.longdescription = "Conjunto de bloques de PMMA que alineados suman 70 [mm] de altura.";
     
 
     this.scale = 0.5;
@@ -549,7 +559,8 @@ class DetectRad extends AbstractTool {
     this.tipo = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
-    this.description = "Esta es una camara de ionizacion.";
+    this.description = "Este es un detector de radiación.";
+    this.longdescription = "Es un detector de estado sólido que se utiliza para registrar y calcular el kerma en el aire del haz del disparo del mamógrafo. No requiere de un electrómetro y se encuentra a la altura adecuada gracias a que incluye un soporte.";
     //flags estado
     this.colocada = false;
     this.parametros = false;
@@ -790,7 +801,8 @@ class Termometro extends AbstractTool {
     this.tipo = "Termómetro";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
-    this.description = "Este es un termometro.";
+    this.description = "Termómetro de vidrio.";
+    this.longdescription = "Termómetro de vidrio que se utiliza para registrar la temperatura del cuarto.";
     this.termometro = new Image();
     this.termometro.src = "img/thermometer.svg";
     this.x = 10;
@@ -824,7 +836,8 @@ class Barometro extends AbstractTool {
     this.tipo = "Barómetro";
     this.icon = "barometer.png";
     this.estado = "inactivo";
-    this.description = "Este es un barometro.";
+    this.description = "Barómetro de mercurio.";
+    this.longdescription = "Barómetro de mercurio que se utiliza para registrar la presión del cuarto.";
     this.barometro = new Image();
     this.barometro.src = "img/barometer.svg";
     this.scale = 0.15;
@@ -858,7 +871,8 @@ class CintaMetrica extends AbstractTool {
     this.tipo = "Cinta métrica";
     this.icon = "tape.png";
     this.estado = "inactivo";
-    this.description = "Esta es una cinta.";
+    this.description = "Cinta métrica extendible.";
+    this.longdescription = "Cinta métrica extendible para medir la altura en la que se encuentra la compresión. La línea roja de este indica aproximadamente la mitad de la altura máxima.";
     this.cinta = new Image();
     this.cinta.src = "img/regla.svg";
     this.x = 250;
@@ -883,7 +897,7 @@ class CintaMetrica extends AbstractTool {
   }
 
   getResultado() {
-    return { cinta: ["Altura medida en cm"] };
+    return { cinta: [""] };
   }
 }
 
@@ -893,7 +907,8 @@ class Fantoma extends AbstractTool {
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
     this.estado = "inactivo";
-    this.description = "Este es un fantoma.";
+    this.description = "Fantoma con objeto de contraste.";
+    this.longdescription = "Fantoma de 45 [mm] que simula la mama de un paciente. Incluye un objeto de contraste que corresponde a un disco de PMMA de 1 mm de espesor y 25 mm de diámetro.";
     this.parametros = false;
     this.colocada = false;
     this.presionado = false;

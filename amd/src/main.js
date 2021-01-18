@@ -553,10 +553,14 @@ function crearHerramButton(tool, onClickF) {
 
 
   //boton en modal
-  let r_col = $(`<div class="col-sm-2"></div>`);
+  let r_col = $(`<div class="col-sm-3"></div>`);
+  let r_cont = $(`<div class="container "></div>`);
+  r_cont.appendTo(r_col)
   let r2 = r.clone().removeClass("her-b-s").addClass("her-b-l");
   r2.on("click", onClickF);
-  r_col.append(r2);
+  r_cont.append(r2);
+  let r_desc = $(`<div>${tool.longdescription}</div>`);
+  r_cont.append(r_desc);
   r_col.appendTo("#herrams-lista-completa");
 }
 
