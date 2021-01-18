@@ -196,17 +196,14 @@ class Main {
     try {
       this.panelResultados.registrarResultado(this.mamografo.getHerramienta().getResultado());
     } catch (error) {
-      //console.log(error);
     }
     try {
       this.panelResultados.registrarResultado(this.habitacion.getHerramienta().getResultado());
     } catch (error) {
-      //console.log(error);
     }
     try {
       this.panelResultados.registrarResultado(this.mamografo.getHerramientaMesa().getResultado());
     } catch (error) {
-      //console.log(error);
     }
     this.panelResultados.escribirResultados();
     //actualizamos parametros de mesa top-down aca
@@ -217,7 +214,6 @@ class Main {
   }
 
   getMamografo() {
-    //console.log("Conseguimos mamografo");
     return this.mamografo;
   }
 
@@ -402,8 +398,6 @@ function selector(pruebas2) {
     r.on("click", () => {
       cargarPrueba(pruebas[prueba_index][0]);
       m.mamografo.cargarTest(pruebas[prueba_index][0]);
-      console.log(pruebas[prueba_index][0])
-      console.log(plantilla_prueba[pruebas[prueba_index]])
       plantilla_prueba[pruebas[prueba_index][0]].setFeedback();
     });
 
@@ -478,8 +472,6 @@ function hide_p() {
 function pop_p() {
   let hoja = document.getElementById("plantilla").outerHTML;
   writeConsole(hoja);
-
-  console.log(exterrores)
   function writeConsole(content) {
     var win = window.open('', 'myconsole',
       'width=1600,height=3200'
@@ -526,7 +518,6 @@ function show_mesa_camara() {
 
 }
 function show_mesa_fantoma() {
-  //console.log("muestrateimagen")
   let x = document.getElementById("vista-arriba-receptor-2");
   x.style.display = "block";
   var cr = document.getElementById("canvasReceptor-2");
@@ -565,7 +556,6 @@ function crearHerramButton(tool, onClickF) {
 }
 
 function cargarPrueba(prueba) {
-  //console.log(`cargar prueba ${prueba}`);
   $("#container-pasos").load(`pasos/pasos_prueba_${prueba}.html`);
   $("#container-plantilla").load(`plantillas/plantilla_prueba_${prueba}.html`, () => {
     inicializarPasos();
@@ -582,11 +572,9 @@ export let setear_params = (kv, ma, md, fltr, anod) => {
 
 //disparo mamografo apretando boton shoot
 export let disparo = () => {
-  console.log("Shoot2");
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   m.getMamografo().activar();
-  //m.actualizar();
   m.getMamografo().dibujar(ctx)
   shootMam(m, ctx);
 };

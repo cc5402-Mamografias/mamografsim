@@ -14,7 +14,6 @@ export default class MesaTopDown {
             this.vistaArribaReceptor = $("#vista-arriba-receptor");
         }
         else if (her.getTipo() == "Fantoma"){
-           //console.log("TENEMOS FANTOMA")
             this.incorrectAlert = $("#alerta-posicion-incorrecta-2");
             this.correctAlert = $("#alerta-posicion-correcta-2");
             this.vistaArribaReceptor = $("#vista-arriba-receptor-2");

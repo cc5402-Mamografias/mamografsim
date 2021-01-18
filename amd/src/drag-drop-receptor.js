@@ -1,3 +1,4 @@
+import Main from "./main";
 
 export function setDragAndDrop(main) {
 
@@ -21,7 +22,6 @@ export function setDragAndDrop(main) {
       }, false);
       
       document.addEventListener("dragenter", function (event) {
-        //console.log("Estoy dentro de un dropzone")
         // highlight potential drop target when the draggable element enters it
         if (event.target.classList.contains("dropzone")) {
           event.target.style.background = "red";

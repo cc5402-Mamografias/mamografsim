@@ -12,12 +12,6 @@ function mError(min, max) {
 function elevar(base, exp) {
   return Math.pow(base, exp);
 }
-function multiplicar(x1, x2) {
-  return x1 * x2;
-}
-
-
-
 
 //operacion Math.random con seed fijo
 var seed = 1;
@@ -161,7 +155,6 @@ class Toalla extends AbstractTool {
       }
 
       maquina.actualizar();
-      //console.log("balanza: ", balanza);
     }
   }
   actualizar(ctx) {
@@ -236,7 +229,6 @@ class FiltroAl_03 extends AbstractTool {
         }
       }
       maquina.actualizar();
-      //console.log("balanza: ", balanza);
     }
 
   }
@@ -270,9 +262,7 @@ class FiltroAl_04 extends AbstractTool {
       let detector = maquina.herramienta;
       if (detector.placa) {
         if ((!detector.filtro) || (detector.filtro && detector.filtroesp != 0.4)) {
-          console.log("coloco filtro")
           detector.sprite = detector.siplacasifiltro04;
-          console.log("filtro colocado")
           detector.filtro = true;
           detector.filtroesp = 0.4;
         } else {
@@ -546,7 +536,6 @@ class Slab_70mm extends AbstractTool {
         }
       }
     } else {
-      console.log("NICE")
       result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
     }
     return { slab70: [result] };
@@ -585,13 +574,6 @@ class DetectRad extends AbstractTool {
     this.sprite = this.noplaca;
   }
   colocar(bool) {
-    if (bool) {
-      console.log("BIEN COLOCADA")
-    }
-    else {
-      console.log("SE COLOCO MAL")
-    }
-
     this.colocada = bool;
   }
 
@@ -618,9 +600,7 @@ class DetectRad extends AbstractTool {
       this.alturacorrecta = false;
     }
     //si la placa esta colocada
-    console.log(estado.placa);
     this.placa = estado.placa;
-    console.log(this.placa);
 
     //DISPARO CORRECTO
     if (estado.activo) {
@@ -669,7 +649,6 @@ class DetectRad extends AbstractTool {
     if (this.prueba == "rendimiento") {
       if (this.estado == "activo") {
         if (this.colocada) {
-          console.log("BIEN COLOCADA")
           //Primero aplicamos errores al kerma si es que existen
           let kermalin = elevar(this.kerma, 1 + this.errores["lin"]);
           let kermarep =
@@ -684,7 +663,6 @@ class DetectRad extends AbstractTool {
             ],
           }
         }else {
-          console.log("MAL COLOCADO");
           result = "";
           if (!this.colocada) {
           result +=
@@ -701,7 +679,6 @@ class DetectRad extends AbstractTool {
     //PRUEBA HEMIRREDUCTOR
 
     if (this.prueba == "hemirreductor") {
-      console.log(this.kerma)
       if (this.estado == "activo") {
         if (this.colocada && this.alturacorrecta && this.parametros && this.placa) {
           let kermamod = null;
@@ -882,7 +859,6 @@ class CintaMetrica extends AbstractTool {
   }
 
   actualizar(estado) {
-    console.log(estado)
     this.alturamedida = (estado.altura*10);
   }
 
@@ -953,7 +929,6 @@ class Fantoma extends AbstractTool {
       this.estado = "activo";
       //DISPARO CORRECTO
       if (this.parametros && this.presionado && this.colocada) {
-        //blur();
         let lineas = estado.errores.errorimlin == "" ? 0 : 3;
 
         let request = {

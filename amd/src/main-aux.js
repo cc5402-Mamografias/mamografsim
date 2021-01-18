@@ -2,7 +2,6 @@
 window.$ = window.jQuery = $ = jQuery;
 
 window.onload = function (event) {
-  console.log(exterrores);
   initreal(exterrores.foo);
 }
 
@@ -12,11 +11,9 @@ var m = null;
 var errores = null;
 class Main {
   constructor(errors) {
-    console.log("MAINCARGADO")
     // Errores ya estan cvargados
 
     this.errordict = errors;
-
 
     // Plantillas de pruebas
     this.plantilla_prueba = {};
@@ -25,10 +22,6 @@ class Main {
     this.plantilla_prueba["rendimiento"] = new PlantillaRendimiento(this.errordict);
     this.plantilla_prueba["imagen"] = new PlantillaImagen(this.errordict);
     this.plantilla_prueba["kermadgm"] = new PlantillaKermaDGM(this.errordict);
-    
-    console.log(this.plantilla_prueba["imagen"])
-    console.log(this.plantilla_prueba["hemirreductor"])
-
   }
 
 }
@@ -36,7 +29,6 @@ class Main {
 
 export const init2 = (errors) => {
   errores = errors;
-  console.log(errores);
   var errordict = {}
   errors.forEach((pair) => {
     errordict[pair[0]] = pair[1];
@@ -58,7 +50,6 @@ function initreal(errors){
 
 
 export function reload(){
-  console.log("RELOADING");
   m.plantilla_prueba["hemirreductor"].setFeedback();
   m.plantilla_prueba["compresion"].setFeedback();
   m.plantilla_prueba["rendimiento"].setFeedback();
@@ -68,7 +59,6 @@ export function reload(){
 
 class PlantillaAbstracta {
   constructor(errors) {
-    //console.log(errors)
     this.errorFuerza = errors["errorf"][1] ? "Sí" : "No";
     this.errorAltura = errors["erroralt"][1] ? "Sí" : "No";
     this.errorVisor = errors["errorvis"][1] ? "Sí" : "No";
@@ -110,7 +100,6 @@ class PlantillaAbstracta {
 class PlantillaCompresion extends PlantillaAbstracta {
   constructor(errors) {
     super(errors);
-    console.log("PLNATILLA INSTANCIADA")
   }
 
   setFeedback() {
@@ -160,9 +149,7 @@ class PlantillaCompresion extends PlantillaAbstracta {
       $("#resultado_espesor_70_ingresado").html(
         document.getElementById("cumple_70").value
       );
-      console.log("PRUEBA FINALIZADA");
     });
-    console.log("FEEDBACK CARGADO");
   }
 }
 
@@ -243,7 +230,6 @@ class PlantillaRendimiento extends PlantillaAbstracta {
 
       //finalmente movemos la view
     });
-    console.log("FEEDBACK CARGADO");
   }
 }
 
@@ -320,7 +306,6 @@ class PlantillaImagen extends PlantillaAbstracta {
         document.getElementById("cumple_cuantdos").value
       );
     });
-    console.log("FEEDBACK CARGADO");
   }
 }
 
@@ -330,11 +315,9 @@ class PlantillaHemirreductor extends PlantillaAbstracta {
   }
 
   setFeedback() {
-    console.log("e,piezo a cargar")
     let errorHemirreductor = this.errorHemirreductor;
     
     $("body").on("click", "#finalizar_hemirreductor", function () {
-      console.log("ABRETE")
       //$("#modal-rendimiento").scrollIntoView(true);
       $("#modal-hemirreductor").modal("show");
       $("#plantilla").scrollTop(0);
@@ -374,7 +357,6 @@ class PlantillaHemirreductor extends PlantillaAbstracta {
 
       //finalmente movemos la view
     });
-    console.log("HEMIRREDUCTOR CARGADO")
    
   }
 }
@@ -384,11 +366,9 @@ class PlantillaKermaDGM extends PlantillaAbstracta {
     super(errors);
   }
   setFeedback() {
-    console.log("feedback kerma cargado")
     let errorDGM = this.errorDGM;
 
     $("body").on("click", "#finalizar_kermadgm", function () {
-      console.log("ABRETE")
       //$("#modal-rendimiento").scrollIntoView(true);
       $("#modal-kermadgm").modal("show");
       $("#plantilla").scrollTop(0);
@@ -421,9 +401,7 @@ class PlantillaKermaDGM extends PlantillaAbstracta {
       
 
       //finalmente movemos la view
-    });
-    console.log("DGM CARGADO")
-   
+    });   
   }
 }
 

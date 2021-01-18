@@ -8,13 +8,9 @@ function actualizar_funciones(number){
 
 
 function calcular_S(number){
-    console.log(document.getElementById("anodo_"+number.toString()).value)
-    console.log(document.getElementById("filtro_"+number.toString()).value)
     var an = (document.getElementById("anodo_"+number.toString()).value.length == 0) ? "sin_valor" : (document.getElementById("anodo_"+number.toString()).value).toString();
     var fil = (document.getElementById("filtro_"+number.toString()).value.length == 0) ? "sin_valor" : (document.getElementById("filtro_"+number.toString()).value).toString();
     var s = null;
-    console.log(an)
-    console.log(fil)
 
     if (an === "mo" && fil === "mo"){
         s = 1;

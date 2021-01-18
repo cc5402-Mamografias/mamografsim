@@ -3,7 +3,6 @@ window.$ = window.jQuery = $ = jQuery;
 
 class PlantillaAbstracta {
   constructor(errors) {
-    //console.log(errors)
     this.errorFuerza = errors["errorf"][1] ? "Sí" : "No";
     this.errorAltura = errors["erroralt"][1] ? "Sí" : "No";
     this.errorVisor = errors["errorvis"][1] ? "Sí" : "No";
@@ -280,7 +279,6 @@ export class PlantillaHemirreductor extends PlantillaAbstracta {
   }
 
   setFeedback() {
-    console.log("feedback kerma HEMIRREDUCTOR")
     let errorHemirreductor = this.errorHemirreductor;
     $("body").on("click", "#volver-menu-desde-prueba-hemirreductor", function () {
       //console.log("cerrar plantilla");
@@ -339,7 +337,6 @@ export class PlantillaKermaDGM extends PlantillaAbstracta {
     super(errors);
   }
   setFeedback() {
-    console.log("feedback kerma cargado")
     let errorDGM = this.errorDGM;
     $("body").on("click", "#volver-menu-desde-prueba-kermadgm", function () {
       //console.log("cerrar plantilla");

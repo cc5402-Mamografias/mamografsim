@@ -22,9 +22,6 @@ function calcular_funciones(SelectedObject){
     var dev_est = standardDeviation(rs).toFixed(2);
     var mas_value = parseFloat(document.getElementById(mas).value);
     var repet = (promedio == 0) ? "#DIV/0!" : (100*dev_est/promedio).toFixed(2);
-   //console.log("repetibilidad");
-   //console.log(repet);
-   //console.log(100*dev_est/promedio);
     var rendimiento = (document.getElementById(mas).value.length == 0) ? "-" : (mas_value==0)? "#DIV/0!" : Math.max((promedio/mas_value).toFixed(2),0.01);
     
     document.getElementById('promedio_' + mas + "_" + conf).innerHTML = promedio;
@@ -46,7 +43,6 @@ function average(data){
     var data = data.filter(function(x) {
     return x !== "sin_valor";
     });
-   //console.log(data);
 
     var sum = data.reduce(function(sum, value){
     return sum + value;
@@ -90,8 +86,7 @@ function rendimiento_normalizado(r1, r2, r3){
     var avg = average([r1, r2, r3]);
     //multiplicamos para pasar de u a m (micro a mili)
     var normavg = avg * 1000;
-   //console.log("promedio")
-   //console.log(normavg);
+ 
     //asumiento que la distancia del mamografo es de 60 cm
     return (normavg/0.6).toFixed(2);
 }

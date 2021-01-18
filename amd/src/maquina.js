@@ -36,11 +36,8 @@ export default class Maquina {
     this.errorRendimiento = errors["errorrend"][0];
 
     this.errorHemirreductor = errors["errorhem"][0];
-
     this.errorDGM = errors["errordgm"][0];
-    console.log("error hermirreductor")
-    console.log(this.errorHemirreductor)
-    console.log(this.errorLinealidad)
+
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;
@@ -48,7 +45,7 @@ export default class Maquina {
 
     this.fuerzamax = this.errorFuerza; 
     this.fuerzamaxManual = this.errorFuerza+10;
-   //console.log(this.fuerzamax)
+
     //Movimiento compresor
     this.velocY = 0.8;
     this.velocYManual = 0.5;
@@ -172,7 +169,6 @@ export default class Maquina {
   // Setea los parametros del panel de control
   setearParams(kv, ma, md, fltr, anod) {
 
-   //console.log("seteo nuevos parametros");
     this.kilovolt = kv;
     this.miliamperios = ma;
     this.modo = md;
@@ -197,7 +193,6 @@ export default class Maquina {
         //MOSTRAR BOTON
         document.getElementById("vista-desde-arriba").style.display = "block";
         //CARGAR VISTA TOP DOWN
-       //console.log("BOTON CONFIGURADO");
       }
       else {
         document.getElementById("vista-desde-arriba").style.display = "none";
@@ -230,9 +225,7 @@ export default class Maquina {
     } else {
       this.herramientaMesa = herram;
       if (herram.getTipo() === "Placa"){
-        console.log("PLACA SELECCIONADA")
         this.placa = true;
-
       }
 
     }
@@ -309,6 +302,5 @@ export default class Maquina {
       this.alturaCompresor = Math.max(this.alturaCompresor - this.velocYManual, this.alturaMinima());
     }
     this.actualizar();
-   //console.log(this.factorCompresion);
   }
 }
