@@ -34,6 +34,7 @@ $string['mamografsimrend'] = 'Configuraciones de la prueba de rendimiento';
 $string['mamografsimimg'] = 'Configuraciones de la prueba de imagen';
 $string['mamografsimhem'] = 'Configuraciones de la prueba de hemirreductor';
 $string['mamografsimdgm'] = 'Configuraciones de la prueba de kerma y dgm';
+$string['mamografsimcae'] = 'Configuraciones de la prueba de cae';
 $string['mamografsimact'] = 'Configuraciones actividad';
 $string['modulename'] = 'Mamografsim';
 $string['modulename_help'] = '';

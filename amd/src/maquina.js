@@ -38,6 +38,8 @@ export default class Maquina {
     this.errorHemirreductor = errors["errorhem"][0];
     this.errorDGM = errors["errordgm"][0];
 
+    this.errorCAE = errors["errorcae"][0];
+
 
     this.alturaCompresor = 80;
     this.alturaEspesor = 25;

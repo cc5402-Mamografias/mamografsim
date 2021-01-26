@@ -30,7 +30,8 @@ import {
   PlantillaRendimiento,
   PlantillaImagen,
   PlantillaHemirreductor,
-  PlantillaKermaDGM
+  PlantillaKermaDGM,
+  PlantillaCAE
 }
   from "./plantillas";
 
@@ -73,6 +74,7 @@ class Main {
     errors.errorvmp = getError("errorContraste", errors.errorvmp);
     errors.errorhem = getError("errorHemirreductor", errors.errorhem);
     errors.errordgm = getError("errorDGM", errors.errordgm);
+    errors.errorcae = getError("errorCAE", errors.errorcae);
 
     this.errordict = errors;
     exterrores = errors;
@@ -344,6 +346,7 @@ function selector(pruebas2) {
   plantilla_prueba["imagen"] = new PlantillaImagen(m.errordict);
   plantilla_prueba["hemirreductor"] = new PlantillaHemirreductor(m.errordict);
   plantilla_prueba["kermadgm"] = new PlantillaKermaDGM(m.errordict);
+  plantilla_prueba["cae"] = new PlantillaCAE(m.errordict);
 
 
   let prueba_index = 0;

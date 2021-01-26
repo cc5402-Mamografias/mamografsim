@@ -82,6 +82,7 @@ $errorvmp = $moduleinstance->errorvmp;
 
 $errorhem = $moduleinstance->errorhem;
 $errordgm = $moduleinstance->errordgm;
+$errorcae = $moduleinstance->errorcae;
 //Pruebas
 $compresion = $moduleinstance->compresion;
 $compresion_label = $moduleinstance->compresion_label;
@@ -97,6 +98,9 @@ $hemirreductor_label = $moduleinstance->hemirreductor_label;
 
 $kermadgm = $moduleinstance->kermadgm;
 $kermadgm_label = $moduleinstance->kermadgm_label;
+
+$cae = $moduleinstance->cae;
+$cae_label = $moduleinstance->cae_label;
 $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
     array(
         array(
@@ -110,14 +114,16 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main','init',
             array('errorimgsp',$errorimgsp),
             array('errorvmp',$errorvmp),
             array('errorhem',$errorhem),
-            array('errordgm',$errordgm)
+            array('errordgm',$errordgm),
+            array('errorcae',$errorcae)
         ),
         array(
             array($compresion,$compresion_label),
             array($rendimiento,$rendimiento_label),
             array($imagen,$imagen_label),
             array($hemirreductor,$hemirreductor_label),
-            array($kermadgm,$kermadgm_label)
+            array($kermadgm,$kermadgm_label),
+            array($cae,$cae_label)
 
     )
 ));
@@ -135,7 +141,8 @@ $PAGE->requires->js_call_amd('mod_mamografsim/main-aux','init2',
             array('errorimgsp',$errorimgsp),
             array('errorvmp',$errorvmp),
             array('errorhem',$errorhem),
-            array('errordgm',$errordgm)
+            array('errordgm',$errordgm),
+            array('errorcae',$errorcae)
         )
         
 ));

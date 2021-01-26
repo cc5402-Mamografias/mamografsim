@@ -79,7 +79,8 @@ class mod_mamografsim_mod_form extends moodleform_mod {
             'rendimiento' => 'Rendimiento: Repetibilidad y Linealidad',
             'imagen' => 'Control de Calidad de un Objeto de Prueba y Artefactos en el Receptor de Imagen',
             'hemirreductor' => 'Filtración y Espesor Hemirreductor (EHR o AVL)',
-            'kermadgm' => 'Determinación del Kerma en Superficie de Entrada y Dósis Glandular Media'
+            'kermadgm' => 'Determinación del Kerma en Superficie de Entrada y Dósis Glandular Media',
+            'cae' => 'Evaluación del CAE'
 
         );
         
@@ -162,6 +163,13 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         $mform->addElement('select', 'errordgm', "Error DGM", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo (Fuera de los valores de tolerancia)','Alto'=>'Alto (Fuera de los valores de tolerancia)'));
         $mform->setType('errordgm', PARAM_TEXT);
         $mform->addRule('errordgm', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
+
+        // Prueba de cae
+        $mform->addElement('header', 'mamografsimcae', get_string('mamografsimcae', 'mod_mamografsim'));
+
+        $mform->addElement('select', 'errorcae', "Error CAE", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo (Fuera de los valores de tolerancia)','Alto'=>'Alto (Fuera de los valores de tolerancia)'));
+        $mform->setType('errorcae', PARAM_TEXT);
+        $mform->addRule('errorcae', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
 
 

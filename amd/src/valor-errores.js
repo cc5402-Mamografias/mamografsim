@@ -197,6 +197,19 @@ var valores = {
             "Alto": { valor: 3,
                 correcto: false }
         }
+    },
+    "errorCAE": {
+        "valores_base": {
+            "Ninguno": {
+                valor: 1,
+                correcto: true
+             },
+            "Bajo": { 
+                valor: 2,
+                correcto: false },
+            "Alto": { valor: 3,
+                correcto: false }
+        }
     }
 }
 
