@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Manual</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="simulador-de-control-de-calidad-en-mamógrafos"><strong>Simulador de Control de Calidad en Mamógrafos</strong></h1>
+<p>El simulador de mamógrafos es una forma de realizar pruebas de calidad sobre equipos defectuosos o en buen estado sin la necesidad de requerir varios ejemplares con las fallas a evaluar.</p>
+<p>La primera interfaz que se muestra al ejecutar una instancia del plugin, es la del selector de pruebas. En esta, el usuario puede revisar las distintas pruebas disponibles en el simulador al hacer click en los botones anterior y siguiente. Para seleccionar una prueba, debe hacer click en el cuadro que contiene el nombre:</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102793014-0301e080-4388-11eb-9ae3-b37604179c34.png" alt="Simulador de Pruebas"></p>
+<p>A continuación, se muestra cómo se ve una instancia del simulador:</p>
+<p><img src="https://imgur.com/AZ27P2v.png" alt="Imagen del Simulador"></p>
+<p>Se puede observar que la interfaz se divide en 5 secciones:</p>
+<ul>
+<li><strong>Pasos de la Prueba</strong></li>
+<li><strong>Panel de Control del Mamógrafo</strong></li>
+<li><strong>Vista del mamógrafo</strong></li>
+<li><strong>Herramientas</strong></li>
+<li><strong>Resultados</strong></li>
+</ul>
+<p>Además, existen botones que abren otras interfaces y/o no corresponden a las secciones anteriores:</p>
+<ul>
+<li><strong>Volver</strong>: Regresar a la selección de pruebas.</li>
+<li><strong>Ver más Info Herramientas</strong>: Despliega el conjunto completo de herramientas disponibles.</li>
+<li><strong>Hoja de Resultados</strong>: Abrir la plantilla para ingresar los resultados obtenidos.</li>
+<li><strong>Vista Superior Receptor de Mama</strong>: Permite posicionar ciertas herramientas sobre el plato receptor.</li>
+</ul>
+<hr>
+<h2 id="secciones"><strong>Secciones</strong></h2>
+<h3 id="pasos-de-la-prueba">Pasos de la prueba</h3>
+<p>Esta sección describe los pasos que debe seguir el usuario para completar la prueba. Notar que estos pasos están adaptados al simulador respecto a los pasos originales que un/una profesional debe seguir en un contexto real.</p>
+<p>Bajo el texto, se encuentran dos botones que permiten avanzar y retroceder en los pasos libremente. Además, permite realizar <em>scroll</em> para bajar o subir dentro de la sección si es que el texto que describe el paso es muy extenso.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/103099742-7147dc80-45ee-11eb-9749-72e50a29ee9b.png" alt="Pasos de la Prueba"></p>
+<h3 id="panel-de-control-del-mamógrafo">Panel de Control del Mamógrafo</h3>
+<p>Esta sección permite manipular los parámetros principales del mamógrafo, y realizar el disparo de radiación. Estos parámetros son importantes tanto para la prueba de Rendimiento (cálculo del Kerma), como para la de calidad de imagen, y en general, para cualquier prueba que requiera que el mamógrafo emita radiación.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102798476-ed90b480-438f-11eb-88a3-ecff0f60d606.png" alt="Panel de control"></p>
+<p>Desglosando los parámetros de la imagen en orden:</p>
+<ul>
+<li><strong>kV</strong>: <em>kilo Volt</em>. Rango: entre 22 y 35.</li>
+<li><strong>mAs</strong>: <em>mili Ampere segundo</em>. Rango: entre 10 y 200.</li>
+<li><strong>Mode</strong>: Determina el modo o configuración del disparo. Actualmente, no tienen mayor funcionalidad, salvo el modo <em>Auto Time</em> que deshabilita el input de <strong>mAs</strong> y le asigna un valor por defecto.</li>
+<li><strong>Filter y Anode</strong>: Permite seleccionar el filtro y ánodo a usar. Importante para el cálculo del kerma en la prueba de Rendimiento.</li>
+</ul>
+<h3 id="vista-del-mamógrafo">Vista del Mamógrafo</h3>
+<p>Está vista muestra el mamógrafo en su estado actual. Si hay alguna herramienta en uso, esta se muestra aquí. En el visor de la máquina se puede observar la fuerza ejercida y la altura del compresor. Estos valores son los medidos por el equipo y no son necesariamente los valores reales.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102802294-3008c000-4395-11eb-8433-fb5c0df4eeb7.png" alt="Mamografo"></p>
+<p>Hay dos elementos que son interactivos en la vista: los pedales que se ven en la parte inferior y las perillas que se resaltan en la siguiente imagen.</p>
+<p><img src="https://user-images.githubusercontent.com/22508602/102816611-17a49f80-43ad-11eb-8c5d-74f2a42f0682.png" alt="Perillas"></p>
+<p>Ambos sirven para subir o bajar el compresor. Los pedales corresponden al movimiento automático y las perillas al movimiento manual.</p>
+<h3 id="herramientas">Herramientas</h3>
+<p>Aquí es donde se seleccionan las herramientas a usar sobre el mamógrafo. Al hacer click en un botón, la herramienta correspondiente se coloca en el lugar adecuado.</p>
+<p><img src="https://imgur.com/h7nylJ7.png" alt="Herramientas"></p>
+<p>El botón <strong>Ver más Info Herramientas</strong> abre una interfaz de herramientas expandida, para poder ver todas las herramientas disponibles en una vista más grande. Además, se despliega mayor información de estas como por ejemplo su material, composición, entre otros.</p>
+<p><img src="https://imgur.com/ytXynO4.png" alt="Herramientas expandidas"></p>
+<p>Notar que algunas herramientas requieren ser posicionadas de manera particular; estas, modificarán la vista del mamógrafo, incluyendo un botón adicional con nombre “Ver Mesa” que permitirá posicionar la herramienta de forma adecuada en otra interfaz.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102896330-f8f1e780-4444-11eb-9eaa-1c0998b10bcb.jpg" alt="Botón Ver Mesa"></p>
+<h3 id="resultados">Resultados</h3>
+<p>En esta sección se muestran los resultados de las distintas interacciones del mamógrafo y sus herramientas Por ejemplo, la balanza mostrará la fuerza de compresión que se mide.</p>
+<p><img src="https://user-images.githubusercontent.com/22508602/103091261-5f584080-45d2-11eb-83cc-ce2915061953.png" alt="Resultados"></p>
+<p>El botón <strong>Hoja de Resultados</strong> muestra la plantilla de resultados que se debe rellenar con los valores obtenidos al ir realizando la prueba.</p>
+<p><img src="https://imgur.com/VW4YykK.png" alt="Plantilla Resultados"></p>
+<hr>
+<h2 id="vistas-contextuales"><strong>Vistas contextuales</strong></h2>
+<h3 id="vista-superior-receptor-de-mama">Vista Superior Receptor de Mama</h3>
+<p>Esta interfaz solo se encuentra disponible para ciertas interacciones de herramientas-mamógrafo. Aquí, el usuario debe arrastrar el objeto dispuesto al costado derecho, a alguna de las posiciones delimitadas.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102897403-b29d8800-4446-11eb-9c2b-c588ceba264d.png" alt="Vista top fantoma"></p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102897451-c6e18500-4446-11eb-884d-bcdb8fbb262f.png" alt="Vista top detector"></p>
+<p>La herramienta solo se puede usar correctamente si la posición escogida es la correcta, según los pasos indicados en la sección de Pasos de la prueba. Esto puede comprobarse presionando el botón “Verificar Posición”. A continuación, se pueden ver los mensajes asociados.</p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102899462-abc44480-4449-11eb-8874-99d27a4e5862.png" alt="correcta"></p>
+<p><img src="https://user-images.githubusercontent.com/21973732/102899500-c26a9b80-4449-11eb-9575-57d6dac2dc03.png" alt="incorrecta"></p>
+</div>
+</body>
+
+</html>

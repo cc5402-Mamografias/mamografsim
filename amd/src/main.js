@@ -446,6 +446,11 @@ function selector(pruebas2) {
     $('body').removeClass("modal-open");
     $('body').css("padding-right", "");
   });
+
+  $("body").on("click", "#manual", function () {
+    var win = window.open("../mamografsim/manual.html", "_blank");
+    win.focus();
+  });
 };
 
 

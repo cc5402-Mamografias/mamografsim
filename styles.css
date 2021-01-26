@@ -47,6 +47,18 @@
   width: 100% !important;
 }
 
+.exit-main {
+  width: 48% !important;
+  display: block;
+  float: left;
+}
+
+.manual-main {
+  width: 48% !important;
+  display: block;
+  float: right;
+}
+
 #dragndrop-instrucciones {
   height: 0px;
   color: blue;
@@ -458,11 +470,17 @@ input[type="radio"]:checked:after {
   font-size: medium;
 }
 
+.user-input{
+  border: thick !important;
+  border-bottom: dotted !important;
+  width: 70px !important;
+}
+
 /*Plantilla prueba rendimiento*/
 .plantilla input {
   width: 100%;
   height: 100%;
-  border: none !important;
+  border: none;
   outline: none;
   text-align: center;
 }
@@ -565,6 +583,8 @@ input[type="radio"]:checked:after {
   float: right;
   
 }
+
+
 
 
 
