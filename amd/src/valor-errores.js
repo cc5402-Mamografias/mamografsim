@@ -119,11 +119,11 @@ var valores = {
                 correcto: true
             },
             "Medio": {
-                valor: 0.92,
+                valor: 0.93,
                 correcto: false
             },
             "Alto": {
-                valor: 0.95,
+                valor: 0.96,
                 correcto: false
             }
         }
@@ -167,6 +167,7 @@ var valores = {
                 valor: 0,
                 correcto: true
              },
+             //Que sean correctos o no, dependen directamente de los valores de SDNR Y VPM que se coloquen en la hoja
             "Bajo": { valor: 1 },
             "Alto": { valor: 4 }
         }

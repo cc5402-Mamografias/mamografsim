@@ -134,9 +134,11 @@ export default class Maquina {
         : this.alturaCompresor < this.alturaEspesor
           ? (this.alturaCompresor) * 10
           : 0,
-      fuerza: this.factorCompresion > this.factorCompresiónini
-        ? Math.max(0,(this.fuerza + this.errorVisor))
-        : 0
+      fuerza: this.factorCompresion <= this.factorCompresiónini
+        ? 0
+        : (this.prueba === "compresion")
+          ? Math.max(0,(this.fuerza + this.errorVisor))
+          : Math.max(0,(this.fuerza))
     };
   }
 

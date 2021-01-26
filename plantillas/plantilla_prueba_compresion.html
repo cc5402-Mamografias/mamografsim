@@ -11,11 +11,11 @@
 
 <div class="lista-centrada" style="height: 70px;">
 <ul>
-  <li>Máxima fuerza compresión motorizada: <b>15 [kg] < F < 20 [kg]</b></li>
-  <li>Máxima fuerza compresión manual: <b>F < 30 [kg]</b></li>
   <li>Precisión del indicador de fuerza de compresión:<b> +/- 2 [kg]</b></li>
   <li>Precisión aceptable indicador de espesor:<b> +/- 8 [mm]</b></li>
   <li>Precisión deseable indicador de espesor: <b>+/- 5 [mm]</b></li>
+  <li>Máxima fuerza compresión motorizada: <b>15 [kg] < F < 20 [kg]</b></li>
+  <li>Máxima fuerza compresión manual: <b>F < 30 [kg]</b></li>
 </ul>
 </div>
 
@@ -29,18 +29,18 @@
 
     <tr>
       <th>Fuerza de compresión real</th>
-      <th><input type="number" id="comp_max_moto"></th>
-      <th><input type="number" id="comp_max_manual"></th>
+      <th><input type="number" id="comp_max_moto" step="any"></th>
+      <th><input type="number" id="comp_max_manual" step="any"></th>
     </tr>
 
     <tr>
       <th>Fuerza de compresión nominal</th>
-      <th><input type="number" id="comp_mostrada_moto"></th>
-      <th><input type="number" id="comp_mostrada_manual"></th>
+      <th><input type="number" id="comp_mostrada_moto" step="any"></th>
+      <th><input type="number" id="comp_mostrada_manual" step="any"></th>
     </tr>
 
     <tr>
-      <th>¿Se encuentra dentro de los rangos de precisión fuerza de compresión?</th>
+      <th>¿La diferencia entre fuerza real y nominal se encuentra dentro de rangos aceptables?</th>
       <th><select name="cumple" id="cumple_moto">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
@@ -70,8 +70,8 @@
     </tr>
     <tr>
       <td>20 [mm]</td>
-      <td><input type="number" id="esp_20"></td>
-      <td><input type="number" id="fuer_20"></td>
+      <td><input type="number" id="esp_20" step="any"></td>
+      <td><input type="number" id="fuer_20" step="any"></td>
       <td><select name="cumple" id="cumple_20">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
@@ -80,8 +80,8 @@
     </tr>
     <tr>
       <td>45 [mm]</td>
-      <td><input type="number" id="esp_45"></td>
-      <td><input type="number" id="fuer_45"></td>
+      <td><input type="number" id="esp_45" step="any"></td>
+      <td><input type="number" id="fuer_45" step="any"></td>
       <td><select name="cumple" id="cumple_45">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
@@ -90,8 +90,8 @@
     </tr>
     <tr>
       <td>70 [mm]</td>
-      <td><input type="number" id="esp_70"></td>
-      <td><input type="number" id="fuer_70"></td>
+      <td><input type="number" id="esp_70" step="any"></td>
+      <td><input type="number" id="fuer_70" step="any"></td>
       <td><select name="cumple" id="cumple_70">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>

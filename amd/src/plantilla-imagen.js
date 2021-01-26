@@ -17,7 +17,7 @@ function calcular_SDNR(SelectedObject){
     return x !== "sin_valor";
     });
 
-    var result = (valoresreales.length != 3) ? 0 : parseFloat(Math.abs((B-A)/C)).toFixed(2)
+    var result = (valoresreales.length != 3) ? 0 : parseFloat(Math.abs((B-A)/C)).toFixed(3)
     document.getElementById("SDNR_actual_planilla").value = result;
 
 }

@@ -118,17 +118,17 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // Prueba de rendimiento
         $mform->addElement('header', 'mamografsimrend', get_string('mamografsimrend', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo','Medio'=>'Grado de variación medio','Alto'=>'Grado de variación alto'));
+        $mform->addElement('select', 'errorrep', "Error Repetibilidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Los resultados no presentan variación','Bajo'=>'Grado de variación bajo (Dentro de los valores de tolerancia)','Medio'=>'Grado de variación medio','Alto'=>'Grado de variación alto'));
         $mform->setType('errorrep', PARAM_TEXT);
         
         $mform->addRule('errorrep', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        $mform->addElement('select', 'errorlin', "Error Linealidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorlin', "Error Linealidad", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo (Dentro de los valores de tolerancia)','Medio'=>'Medio (Fuera de los valores de tolerancia)','Alto'=>'Alto (Fuera de los valores de tolerancia)'));
         $mform->setType('errorlin', PARAM_TEXT);
         
         $mform->addRule('errorlin', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
-        $mform->addElement('select', 'errorrend', "Error Rendimiento", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Medio'=>'Medio','Alto'=>'Alto'));
+        $mform->addElement('select', 'errorrend', "Error Rendimiento", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo (Dentro de los valores de tolerancia)','Medio'=>'Medio (Fuera de los valores de tolerancia)','Alto'=>'Alto (Fuera de los valores de tolerancia)'));
         $mform->setType('errorrend', PARAM_TEXT);
         
         $mform->addRule('errorrend', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
@@ -159,7 +159,7 @@ class mod_mamografsim_mod_form extends moodleform_mod {
         // Prueba de kerma y dgm
         $mform->addElement('header', 'mamografsimdgm', get_string('mamografsimdgm', 'mod_mamografsim'));
 
-        $mform->addElement('select', 'errordgm', "Error DGM", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo','Alto'=>'Alto'));
+        $mform->addElement('select', 'errordgm', "Error DGM", array('Aleatorio'=>'Aleatorio','Ninguno'=>'Ninguno','Bajo'=>'Bajo (Fuera de los valores de tolerancia)','Alto'=>'Alto (Fuera de los valores de tolerancia)'));
         $mform->setType('errordgm', PARAM_TEXT);
         $mform->addRule('errordgm', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
 
