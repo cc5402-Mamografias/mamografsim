@@ -99,7 +99,33 @@ export default class VisorImagen {
         x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
         y: 50,
         text:
-          "Arrastre el ROI rojo sobre el objeto de contraste \n\nColoque el ROI azul alineado verticalmente\n",
+          "Arrastre el ROI rojo sobre el objeto de contraste\n",
+        fontSize: 16,
+        fontFamily: 'Calibri',
+        fill: 'red',
+        width: 300,
+        padding: 20,
+        align: 'left',
+      });
+
+      var helptext2 = new Konva.Text({
+        x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
+        y: 100,
+        text:
+          "Coloque el ROI azul alineado verticalmente\n",
+        fontSize: 16,
+        fontFamily: 'Calibri',
+        fill: 'blue',
+        width: 300,
+        padding: 20,
+        align: 'left',
+      });
+
+      var helptext3 = new Konva.Text({
+        x: stage.getWidth() / 2 + mamImage.width / 2 + 10,
+        y: 150,
+        text:
+          "Puede ampliar la imagen usando la rueda del mouse\n",
         fontSize: 16,
         fontFamily: 'Calibri',
         fill: 'black',
@@ -137,6 +163,8 @@ export default class VisorImagen {
       group.add(textCirc1);
       group.add(textCirc2);
       group.add(helptext);
+      group.add(helptext2);
+      group.add(helptext3);
       var circ1 = new Konva.Circle({
         x: 100,
         y: 100,

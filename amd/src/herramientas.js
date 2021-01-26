@@ -1025,7 +1025,7 @@ class Fantoma extends AbstractTool {
 
         if (!this.presionado) {
           result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 8kg.<br>";
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
         }
 
         if (!this.parametros) {
