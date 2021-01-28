@@ -409,17 +409,17 @@ class PlantillaKermaDGM extends PlantillaAbstracta {
     });   
   }
 }
-
 class PlantillaCAE extends PlantillaAbstracta {
   constructor(errors) {
     super(errors);
   }
   setFeedback() {
-    let errorDGM = this.errorDGM;
-
-    $("body").on("click", "#finalizar_kermadgm", function () {
+    let errorCAE = this.errorCAE;
+    
+    $("body").on("click", "#finalizar_cae", function () {
+      console.log("ABRETE")
       //$("#modal-rendimiento").scrollIntoView(true);
-      $("#modal-kermadgm").modal("show");
+      $("#modal-cae").modal("show");
       $("#plantilla").scrollTop(0);
 
       //appending modal background inside the contenedor-main div
@@ -431,26 +431,25 @@ class PlantillaCAE extends PlantillaAbstracta {
       $("body").css("padding-right", "");
 
       // Resultados esperados
-      $("#dgm_1_real").text(errorDGM);
-      $("#dgm_2_real").text(errorDGM);
-      $("#dgm_3_real").text(errorDGM);
-      
+      $("#sdnr_1_real").text(errorCAE);
+      $("#sdnr_2_real").text(errorCAE);
+      $("#sdnr_3_real").text(errorCAE);
       
 
       // Resultados ingresados por usuario
-      $("#dgm_1_ingresado").text(
-        document.getElementById("dgm_resp1").value
+      $("#sdnr_1_ingresado").text(
+        document.getElementById("sdnr_resp1").value
       );
-      $("#dgm_2_ingresado").text(
-        document.getElementById("dgm_resp2").value
+      $("#sdnr_2_ingresado").text(
+        document.getElementById("sdnr_resp2").value
       );
-      $("#dgm_3_ingresado").text(
-        document.getElementById("dgm_resp3").value
+      $("#sdnr_3_ingresado").text(
+        document.getElementById("sdnr_resp3").value
       );
-      
 
       //finalmente movemos la view
-    });   
+    });
+   
   }
 }
 

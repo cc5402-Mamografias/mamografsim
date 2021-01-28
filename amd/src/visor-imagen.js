@@ -2,13 +2,19 @@ Konva = window.Konva;
 $ = window.$;
 
 export default class VisorImagen {
-  constructor(actualizar) {
+  constructor(actualizar, mamografo) {
     this.actualizar = actualizar;
     this.panel = $('#visor-imagen');
     this.contenedor = $('#container-visor');
     $('#visor-cerrar').on('click', () => this.hide());
     this.img = null;
     this.ctx = null;
+
+    //recibimos parametros del mamografo
+    this.mamografo = mamografo;
+    this.errores = mamografo.errors;
+
+
     this.reset();
   }
 
@@ -193,8 +199,13 @@ export default class VisorImagen {
 
       circ1.on('dragend', () => {
         let pos = circ1.absolutePosition();
+
         let p = this.get_mean_std(pos.x - 10, pos.y - 10);
+        //aplicamos error de cae si es que estamos en esa prueba
+
+        
         this.res1 = p;
+
         textCirc1.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
       })
 
@@ -202,7 +213,14 @@ export default class VisorImagen {
         let pos = circ2.absolutePosition();
         let p = this.get_mean_std(pos.x - 10, pos.y - 10);
         this.res2 = p;
-        textCirc2.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
+        if (this.mamografo.getPrueba() == "cae"){
+          var pond = this.mamografo.getHerramienta().getPonderacion();
+          var res = (p[0] * pond).toFixed(2)
+          textCirc2.text(`Mean: ${res}\nStd: ${p[1]}`);
+        }
+        else{
+          textCirc2.text(`Mean: ${p[0]}\nStd: ${p[1]}`);
+        }
       })
 
       layer.batchDraw();

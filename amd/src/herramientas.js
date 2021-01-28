@@ -34,6 +34,8 @@ class AbstractTool {
 
     this.altura = 0;
     this.prueba = null;
+    this.tipo = null;
+    this.name = null;
   }
 
   actualizar(estado) {
@@ -52,6 +54,10 @@ class AbstractTool {
     return this.tipo;
   }
 
+  getName() {
+    return this.name;
+  }
+
   getAltura() {
     return this.altura;
   }
@@ -61,6 +67,7 @@ class BaseNula extends AbstractTool {
   constructor() {
     super();
     this.tipo = "null";
+    this.name = "null";
     this.estado = "null";
     this.altura = 0;
   }
@@ -79,6 +86,7 @@ class Balanza extends AbstractTool {
     super();
     this.toalla = false;
     this.tipo = "Balanza";
+    this.name = "Balanza";
     this.icon = "balanza.png";
     this.altura = 5;
     this.estado = "inactivo";
@@ -97,6 +105,7 @@ class Balanza extends AbstractTool {
   }
 
   actualizar(estado) {
+    this.prueba = estado.prueba;
     if (estado.fuerza != 0) {
       this.fuerza = estado.fuerza;
       this.estado = "activo";
@@ -134,6 +143,7 @@ class Toalla extends AbstractTool {
     super();
     this.addon = true;
     this.tipo = "Toalla";
+    this.name = "Toalla";
     this.icon = "towel.png";
     this.altura = 5;
     this.scale = 0.5;
@@ -170,6 +180,7 @@ class PlacaExt extends AbstractTool {
     super();
     this.mesa = true;//se trata de una heeramienta encima de la mesa receptora
     this.tipo = "Placa";
+    this.name = "Placa";
     this.icon = "placa.png";
     this.placa = new Image();
     this.placa.src = "img/placalone.svg";
@@ -199,21 +210,34 @@ class PlacaExt extends AbstractTool {
   }
 }
 
-class FiltroAl_03 extends AbstractTool {
+//clase "abstracta" para los filtros que se colocan encima del detector solido
+class FiltroAl extends AbstractTool {
   constructor() {
     super();
     this.addon = true;
-    this.tipo = "F. Aluminio (0.3 mm)";
+    this.tipo = "F. Aluminio";
     this.icon = "aluminio.png";
     this.altura = 0;
     this.scale = 0.5;
     this.x = 152;
     this.y = 265;
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+
+  }
+}
+class FiltroAl_03 extends FiltroAl {
+  constructor() {
+    super();
+    this.name = "F. Aluminio (0.3 mm)";
     this.description = "Filtro de aluminio de 0.3 [mm].";
     this.longdescription = "Conjunto apilado de 3 filtros de aluminio de 0.1 [mm] para cubrir el volumen activo del detector de radiación.";
 
   }
-
   action(maquina) {
     if (maquina.herramienta.tipo == "Detector de Radiación") {
       let detector = maquina.herramienta;
@@ -230,33 +254,16 @@ class FiltroAl_03 extends AbstractTool {
       }
       maquina.actualizar();
     }
-
-  }
-  actualizar(ctx) {
-    //nada
-  }
-  dibujar(ctx) {
-    //nada
-
   }
 }
 
-class FiltroAl_04 extends AbstractTool {
+class FiltroAl_04 extends FiltroAl {
   constructor() {
     super();
-    this.addon = true;
-    this.tipo = "F. Aluminio (0.4 mm)";
-    this.icon = "aluminio.png";
-    this.altura = 0;
-    this.scale = 0.5;
-    this.x = 152;
-    this.y = 265;
+    this.name = "F. Aluminio (0.4 mm)";
     this.description = "Filtro de aluminio de 0.4 [mm].";
     this.longdescription = "Conjunto apilado de 4 filtros de aluminio de 0.1 [mm] para cubrir el volumen activo del detector de radiación.";
-
-
   }
-
   action(maquina) {
     if (maquina.herramienta.tipo == "Detector de Radiación") {
       let detector = maquina.herramienta;
@@ -275,270 +282,124 @@ class FiltroAl_04 extends AbstractTool {
     }
 
   }
-  actualizar(ctx) {
-    //nada
-  }
-  dibujar(ctx) {
-    //nada
-
-  }
 }
 
-class Slab_20mm extends AbstractTool {
+class Slab extends AbstractTool {
   constructor() {
     super();
-    this.tipo = "Slab (20 mm)";
+    this.tipo = "Slab";
     this.icon = "slabs.png";
-    this.altura = 2.0;
     this.estado = "inactivo";
 
     this.parametros = false;
     this.presionado = false;
-    this.prueba = null;
-    this.miliamperios_auto = 12;
 
-    this.description = "Bloque de PMMA de 20 [mm].";
-    this.longdescription = "Conjunto de bloques de PMMA que alineados suman 20 [mm] de altura.";
-    
+    this.miliamperios_auto = null;
 
     this.scale = 0.5;
     this.x = 152;
     this.y = 250;
+
+  }
+
+  actualizar(estado) {
+    this.prueba = estado.prueba;
+    //comprobamos parametros correctos para disparo
+    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")) {
+      this.parametros = true;
+    } else {
+      this.parametros = false;
+    }
+    //comprobamos altura correcta pa disparo
+    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+      this.presionado = true;
+    } else {
+      this.presionado = false;
+    }
+    this.estado = estado.activo ? "activo" : "inactivo";
+
+  }
+
+  dibujar(ctx) {
+    ctx.drawImage(
+      this.slabs,
+      this.x,
+      this.y,
+      this.slabs.width * this.scale,
+      this.slabs.height * this.scale
+    );
+  }
+
+  getResultado() {
+    var result = null;
+    if (this.estado == "activo") {
+      if (this.parametros && this.presionado) {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto - 2, this.miliamperios_auto + 2)) + " mAs.";
+      } else {
+        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
+
+        if (!this.presionado) {
+          result +=
+            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
+        }
+
+        if (!this.parametros) {
+          result +=
+            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
+        }
+        if (result === "") {
+          result += "Error de Posición.";
+        }
+      }
+    } else {
+      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
+    }
+    return { slab: [result] };
+  }
+}
+
+class Slab_20mm extends Slab {
+  constructor() {
+    super();
+    this.name = "Slab (20 mm)";
+    this.altura = 2.0;
+    this.miliamperios_auto = 12;
+
+    this.description = "Bloque de PMMA de 20 [mm].";
+    this.longdescription = "Conjunto de bloques de PMMA que alineados suman 20 [mm] de altura.";
 
     this.slabs = new Image();
     this.slabs.src = "img/slab20.svg";
   }
 
-  actualizar(estado) {
-    this.prueba = estado.prueba;
-    //comprobamos parametros correctos para disparo
-    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
-      this.parametros = true;
-    } else {
-      this.parametros = false;
-    }
-    //leemos miliamperios auto de la maquina
-    //this.miliamperios_auto = estado.miliamperios_auto_dgm -10;
-    //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
-      this.presionado = true;
-    } else {
-      this.presionado = false;
-    }
-    this.estado = estado.activo ? "activo" : "inactivo";
-
-  }
-
-  dibujar(ctx) {
-    ctx.drawImage(
-      this.slabs,
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
-  }
-
-  getResultado() {
-    var result = null;
-
-    if (this.estado == "activo") {
-      if (this.parametros && this.presionado) {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
-
-      } else {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-
-        if (!this.presionado) {
-          result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
-        }
-
-        if (!this.parametros) {
-          result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
-        }
-        if (result === "") {
-          result += "Error de Posición.";
-        }
-      }
-    } else {
-      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
-    }
-    return { slab20: [result] };
-  }
 }
-class Slab_45mm extends AbstractTool {
+class Slab_45mm extends Slab {
   constructor() {
     super();
-    this.tipo = "Slab (45 mm)";
-    this.icon = "slabs.png";
+    this.name = "Slab (45 mm)";
     this.altura = 4.5;
-    this.estado = "inactivo";
-
-    this.parametros = false;
-    this.presionado = false;
-    this.prueba = null;
     this.miliamperios_auto = 60;
 
     this.description = "Bloque de PMMA de 45 [mm].";
     this.longdescription = "Conjunto de bloques de PMMA que alineados suman 45 [mm] de altura.";
-    
-
-    this.scale = 0.5;
-    this.x = 152;
-    this.y = 250;
-
     this.slabs = new Image();
     this.slabs.src = "img/slab45.svg";
   }
-
-  actualizar(estado) {
-    this.prueba = estado.prueba;
-    //comprobamos parametros correctos para disparo
-    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
-      this.parametros = true;
-    } else {
-      this.parametros = false;
-    }
-    //leemos miliamperios auto de la maquina
-    //this.miliamperios_auto = estado.miliamperios_auto_dgm;
-    //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
-      this.presionado = true;
-    } else {
-      this.presionado = false;
-    }
-    this.estado = estado.activo ? "activo" : "inactivo";
-
-  }
-
-  dibujar(ctx) {
-    ctx.drawImage(
-      this.slabs,
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
-  }
-
-  getResultado() {
-    var result = null;
-
-    if (this.estado == "activo") {
-      if (this.parametros && this.presionado) {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
-
-      } else {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-
-        if (!this.presionado) {
-          result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
-        }
-
-        if (!this.parametros) {
-          result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
-        }
-        if (result === "") {
-          result += "Error de Posición.";
-        }
-      }
-    } else {
-      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
-    }
-    return { slab45: [result] };
-  }
 }
 
-
-class Slab_70mm extends AbstractTool {
+class Slab_70mm extends Slab {
   constructor() {
     super();
-    this.tipo = "Slab (70 mm)";
-    this.icon = "slabs.png";
+    this.name = "Slab (70 mm)";
     this.altura = 7.0;
-    this.estado = "inactivo";
-
-    this.parametros = false;
-    this.presionado = false;
-    this.prueba = null;
     this.miliamperios_auto = 140;
 
     this.description = "Bloque de PMMA de 70 [mm].";
     this.longdescription = "Conjunto de bloques de PMMA que alineados suman 70 [mm] de altura.";
-    
-
-    this.scale = 0.5;
-    this.x = 152;
-    this.y = 250;
 
     this.slabs = new Image();
     this.slabs.src = "img/slab70.svg";
-  }
-
-  actualizar(estado) {
-    this.prueba = estado.prueba;
-    //comprobamos parametros correctos para disparo
-    if ((parseInt(estado.kilovolt) === 27) && (estado.modo == "autotime")){
-      this.parametros = true;
-    } else {
-      this.parametros = false;
-    }
-    //leemos miliamperios auto de la maquina
-    //this.miliamperios_auto = estado.miliamperios_auto_dgm +10;
-    //comprobamos altura correcta pa disparo
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
-      this.presionado = true;
-    } else {
-      this.presionado = false;
-    }
-    this.estado = estado.activo ? "activo" : "inactivo";
-
-  }
-
-  dibujar(ctx) {
-    ctx.drawImage(
-      this.slabs,
-      this.x,
-      this.y,
-      this.slabs.width * this.scale,
-      this.slabs.height * this.scale
-    );
-  }
-
-  getResultado() {
-    var result = null;
-
-    if (this.estado == "activo") {
-      if (this.parametros && this.presionado) {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-        result += "mAs Autotime: " + parseInt(mError(this.miliamperios_auto-2, this.miliamperios_auto+2))+ " mAs.";
-
-      } else {
-        result = "Altura Slabs: " + this.getAltura() * 10 + " mm.<br>";
-
-        if (!this.presionado) {
-          result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
-        }
-
-        if (!this.parametros) {
-          result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 27 y Modo en Autotime.<br>";
-        }
-        if (result === "") {
-          result += "Error de Posición.";
-        }
-      }
-    } else {
-      result = "Altura Slabs: " + this.getAltura() * 10 + " mm.";
-    }
-    return { slab70: [result] };
   }
 }
 
@@ -546,6 +407,7 @@ class DetectRad extends AbstractTool {
   constructor() {
     super();
     this.tipo = "Detector de Radiación";
+    this.name = "Detector de Radiación";
     this.icon = "ionizador.png";
     this.estado = "inactivo";
     this.description = "Este es un detector de radiación.";
@@ -588,7 +450,7 @@ class DetectRad extends AbstractTool {
     this.errores["hem"] = estado.errores.errorhem[0];
     this.errores["dgm"] = estado.errores.errordgm[0];
 
-    if ((parseInt(estado.kilovolt) === 28 || parseInt(estado.kilovolt) === 27)  && estado.modo === "manual") {
+    if ((parseInt(estado.kilovolt) === 28 || parseInt(estado.kilovolt) === 27) && estado.modo === "manual") {
       this.parametros = true;
     } else {
       this.parametros = false;
@@ -662,13 +524,13 @@ class DetectRad extends AbstractTool {
               "\t\t\tKerma: " + kermamod.toFixed(3) + " mGy",
             ],
           }
-        }else {
+        } else {
           result = "";
           if (!this.colocada) {
-          result +=
-            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
-          return { camara: ["Detector de Radiación ", result] }
-        }
+            result +=
+              "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+            return { camara: ["Detector de Radiación ", result] }
+          }
         }
       };
       this.actualizar_default();
@@ -682,16 +544,16 @@ class DetectRad extends AbstractTool {
       if (this.estado == "activo") {
         if (this.colocada && this.alturacorrecta && this.parametros && this.placa) {
           let kermamod = null;
-          if (this.filtroesp === 0.3){
-            kermamod = (this.kerma*0.55)*this.errores["hem"];
+          if (this.filtroesp === 0.3) {
+            kermamod = (this.kerma * 0.55) * this.errores["hem"];
           }
-          else if (this.filtroesp === 0.4){
-            kermamod = (this.kerma*0.45)*this.errores["hem"];
+          else if (this.filtroesp === 0.4) {
+            kermamod = (this.kerma * 0.45) * this.errores["hem"];
           }
           else {
             kermamod = this.kerma;
           }
-          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod)
+          let kermamod2 = kermamod + mError(-0.05 * kermamod, 0.05 * kermamod)
 
           return {
             camara: [
@@ -699,23 +561,23 @@ class DetectRad extends AbstractTool {
               "\t\t\tKerma: " + kermamod2.toFixed(3) + " mGy",
             ],
           }
-        }else {
+        } else {
           result = "";
           if (!this.colocada) {
             result +=
-            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+              "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
           }
           if (!this.alturacorrecta) {
             result +=
-            "<span style='color:red'>¡Error de Altura!</span> Desplaze el compresor a una altura adecuada.<br>";
+              "<span style='color:red'>¡Error de Altura!</span> Desplaze el compresor a una altura adecuada.<br>";
           }
           if (!this.parametros) {
             result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28 y en modo manual.<br>";
+              "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 28 y en modo manual.<br>";
           }
           if (!this.placa) {
             result +=
-            "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
+              "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
           }
           return { camara: ["Detector de Radiación ", result] }
         }
@@ -728,14 +590,14 @@ class DetectRad extends AbstractTool {
     //PRUEBA KERMADGM
     if (this.prueba == "kermadgm") {
       if (this.estado == "activo") {
-        if (this.colocada  && this.parametros && this.placa) {
+        if (this.colocada && this.parametros && this.placa) {
           let kermamod = null;
-          
-          kermamod = this.kerma;
-          
-          let kermamod2= kermamod + mError(-0.05 * kermamod, 0.05 * kermamod);
 
-          let kermamod3 = this.errores["dgm"]*kermamod2;
+          kermamod = this.kerma;
+
+          let kermamod2 = kermamod + mError(-0.05 * kermamod, 0.05 * kermamod);
+
+          let kermamod3 = this.errores["dgm"] * kermamod2;
 
           return {
             camara: [
@@ -743,19 +605,19 @@ class DetectRad extends AbstractTool {
               "\t\t\tKerma: " + kermamod3.toFixed(3) + " mGy",
             ],
           }
-        }else {
+        } else {
           result = "";
           if (!this.colocada) {
             result +=
-            "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
+              "<span style='color:red'>¡Error de Posición!</span> Coloque el detector adecuadamente.<br>";
           }
           if (!this.parametros) {
             result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 27 y en modo manual.<br>";
+              "<span style='color:red'>¡Error de Parámetros!</span> Fije el Panel de Control kV en 27 y en modo manual.<br>";
           }
           if (!this.placa) {
             result +=
-            "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
+              "<span style='color:red'>¡Error de Placa!</span> Debe colocarse la placa de aluminio antes de disparar.<br>";
           }
           return { camara: ["Detector de Radiación ", result] }
         }
@@ -776,6 +638,7 @@ class Termometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "Termómetro";
+    this.name = "Termómetro";
     this.icon = "thermometer.png";
     this.estado = "inactivo";
     this.description = "Termómetro de vidrio.";
@@ -789,6 +652,7 @@ class Termometro extends AbstractTool {
   }
 
   actualizar(estado) {
+    this.prueba = estado.prueba;
     this.temperatura = estado.temperatura;
   }
 
@@ -811,6 +675,7 @@ class Barometro extends AbstractTool {
   constructor() {
     super();
     this.tipo = "Barómetro";
+    this.name = "Barómetro";
     this.icon = "barometer.png";
     this.estado = "inactivo";
     this.description = "Barómetro de mercurio.";
@@ -824,6 +689,7 @@ class Barometro extends AbstractTool {
   }
 
   actualizar(estado) {
+    this.prueba = estado.prueba;
     this.presion = estado.presion;
   }
 
@@ -846,6 +712,7 @@ class CintaMetrica extends AbstractTool {
   constructor() {
     super();
     this.tipo = "Cinta métrica";
+    this.name = "Cinta métrica";
     this.icon = "tape.png";
     this.estado = "inactivo";
     this.description = "Cinta métrica extendible.";
@@ -859,7 +726,8 @@ class CintaMetrica extends AbstractTool {
   }
 
   actualizar(estado) {
-    this.alturamedida = (estado.altura*10);
+    this.prueba = estado.prueba;
+    this.alturamedida = (estado.altura * 10);
   }
 
   dibujar(ctx) {
@@ -877,82 +745,225 @@ class CintaMetrica extends AbstractTool {
   }
 }
 
+
+class Esp_8 extends AbstractTool {
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Espaciador";
+    this.name = "Espaciador (8 mm)";
+    this.icon = "espaciador.png";
+    this.altura = 0.8;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Espaciador de 8 mm de espesor.";
+    this.longdescription = "Espaciador de 8 mm de espesor apropiado requerido para simular espesores de la mama con propósitos dosimétricos.";
+  }
+
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Fantoma" && maquina.herramienta.name == "Fantoma (45 mm)") {
+      let fantoma = maquina.herramienta;
+      if (!fantoma.espaciador) {
+        fantoma.sprite = fantoma.fantoma_esp;
+        fantoma.espaciador = true;
+        fantoma.altura = fantoma.altura + this.altura;
+      } else {
+        fantoma.sprite = fantoma.fantoma;
+        fantoma.espaciador = false;
+        fantoma.altura = fantoma.altura - this.altura;
+      }
+      maquina.actualizar();
+    }
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+  }
+}
+
+class Esp_20 extends AbstractTool {
+  constructor() {
+    super();
+    this.addon = true;
+    this.tipo = "Espaciador";
+    this.name = "Espaciador (20 mm)";
+    this.icon = "espaciador.png";
+    this.altura = 2.0;
+    this.scale = 0.5;
+    this.x = 152;
+    this.y = 265;
+    this.description = "Espaciador de 20 mm de espesor.";
+    this.longdescription = "Espaciador de 20 mm de espesor apropiado requerido para simular espesores de la mama con propósitos dosimétricos.";
+  }
+
+  action(maquina) {
+    if (maquina.herramienta.tipo == "Fantoma" && maquina.herramienta.name == "Fantoma (70 mm)") {
+      let fantoma = maquina.herramienta;
+      if (!fantoma.espaciador) {
+        fantoma.sprite = fantoma.fantoma_esp;
+        fantoma.espaciador = true;
+        fantoma.altura = fantoma.altura + this.altura;
+      } else {
+        fantoma.sprite = fantoma.fantoma;
+        fantoma.espaciador = false;
+        fantoma.altura = fantoma.altura - this.altura;
+      }
+      maquina.actualizar();
+    }
+  }
+  actualizar(ctx) {
+    //nada
+  }
+  dibujar(ctx) {
+    //nada
+  }
+}
+
 class Fantoma extends AbstractTool {
-  constructor(visor) {
+  constructor() {
     super();
     this.tipo = "Fantoma";
     this.icon = "fantoma.png";
     this.estado = "inactivo";
-    this.description = "Fantoma con objeto de contraste.";
-    this.longdescription = "Fantoma de 45 [mm] que simula la mama de un paciente. Incluye un objeto de contraste que corresponde a un disco de PMMA de 1 mm de espesor y 25 mm de diámetro.";
     this.parametros = false;
     this.colocada = false;
     this.presionado = false;
+    this.espaciador = false;
     this.miliamperios_auto = null;
-
-    this.altura = 4.5;
     this.scale = 0.5;
     this.x = 152;
     this.y = 250;
-    this.sprite = new Image();
-    this.sprite.src = "img/fantoma45_contraste.svg";
-    this.visor = visor;
+    this.errores = {};
+    //para que el valor de sdnr cambie dependiendo del espesor del fantoma
+    this.ponderacion = null;
+    this.visor = null;
     this.last_result = null;
   }
 
   colocar(bool) {
     this.colocada = bool;
   }
+  getPonderacion() {                           
+    return this.ponderacion;
+  }
+
 
   actualizar(estado) {
-    //Se esta presionando al fantoma con una fuerza apropiada
-    if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
-      this.presionado = true;
-    } else {
-      this.presionado = false;
-    }
-
-    //La configuracion en el panel de control es la adecuada
-    this.miliamperios_auto = estado.miliamperios_auto;
-
-    if (parseInt(estado.kilovolt) === 28 && estado.modo === "autotime") {
-      this.parametros = true;
-    } else {
-      this.parametros = false;
-    }
-
-    //Se ha disparado en el panel de control
-    if (estado.activo) {
-      this.visor.reset();
-      this.img = null;
-      this.last_result = null;
-      this.estado = "activo";
-      //DISPARO CORRECTO
-      if (this.parametros && this.presionado && this.colocada) {
-        let lineas = estado.errores.errorimlin == "" ? 0 : 3;
-
-        let request = {
-          imagen: "objeto_contraste",
-          mancha: "1",
-          lineas: lineas,
-          l_sentido: estado.errores.errorimglin[0],
-          ruido: estado.errores.errorimgsp[0],
-          contraste: estado.errores.errorvmp[0],
-        };
-
-        $.ajax({
-          url: pyKerma_server + "/prueba_imagen",
-          type: "get",
-          data: request,
-          async: false,
-          success: (data) => {
-            this.img = data;
-            this.visor.load_image(data);
-          },
-        });
+    this.prueba = estado.prueba;
+    //cargamos errores
+    this.errores["cae"] = estado.errores.errorcae[0];
+    //si se tratara de prueba de imagen
+    if (this.prueba == "imagen") {
+      //Se esta presionando al fantoma con una fuerza apropiada
+      if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+        this.presionado = true;
+      } else {
+        this.presionado = false;
       }
-    } else {
-      this.estado = "inactivo";
+
+      //La configuracion en el panel de control es la adecuada
+      this.miliamperios_auto = estado.miliamperios_auto;
+
+
+      if (parseInt(estado.kilovolt) === 28 && estado.modo === "autotime") {
+        this.parametros = true;
+      }
+    
+
+      else {
+        this.parametros = false;
+      }
+
+      //Se ha disparado en el panel de control
+      if (estado.activo) {
+        this.visor.reset();
+        this.img = null;
+        this.last_result = null;
+        this.estado = "activo";
+        //DISPARO CORRECTO
+        if (this.parametros && this.presionado && this.colocada) {
+          let lineas = estado.errores.errorimlin == "" ? 0 : 3;
+          let request = {
+            imagen: "objeto_contraste",
+            mancha: "1",
+            lineas: lineas,
+            l_sentido: estado.errores.errorimglin[0],
+            ruido: estado.errores.errorimgsp[0],
+            contraste: estado.errores.errorvmp[0],
+          };
+
+          $.ajax({
+            url: pyKerma_server + "/prueba_imagen",
+            type: "get",
+            data: request,
+            async: false,
+            success: (data) => {
+              this.img = data;
+              this.visor.load_image(data);
+            },
+          });
+        }
+      } else {
+        this.estado = "inactivo";
+      }
+    }
+
+    else if (this.prueba == "cae") {
+      //Se esta presionando al fantoma con una fuerza apropiada
+      if (6 <= parseInt(estado.fuerza) && parseInt(estado.fuerza) <= 10) {
+        this.presionado = true;
+      } else {
+        this.presionado = false;
+      }
+
+      //La configuracion en el panel de control es la adecuada
+      this.miliamperios_auto = estado.miliamperios_auto;
+
+
+      //para prueba de imagen
+      if (parseInt(estado.kilovolt) === 28 && estado.modo === "autokv" && parseInt(estado.miliamperios) === 60) {
+        this.parametros = true;
+      }
+
+      else {
+        this.parametros = false;
+      }
+
+      //Se ha disparado en el panel de control
+      if (estado.activo) {
+        this.visor.reset();
+        this.img = null;
+        this.last_result = null;
+        this.estado = "activo";
+        //DISPARO CORRECTO
+        if (this.parametros && this.presionado && this.colocada && this.espaciador) {
+          let lineas = estado.errores.errorimlin == "" ? 0 : 3;
+          let request = {
+            imagen: "objeto_contraste",
+            mancha: "1",
+            lineas: lineas,
+            l_sentido: "",
+            ruido: 0,
+            contraste: estado.errores.errorvmp[0],
+          };
+
+          $.ajax({
+            url: pyKerma_server + "/prueba_imagen",
+            type: "get",
+            data: request,
+            async: false,
+            success: (data) => {
+              this.img = data;
+              this.visor.load_image(data);
+            },
+          });
+        }
+      } else {
+        this.estado = "inactivo";
+      }
     }
   }
 
@@ -968,85 +979,225 @@ class Fantoma extends AbstractTool {
 
   getResultado() {
     var result = null;
+    if (this.prueba == "imagen") {
+      if (this.last_result !== null) {
+        var p = this.visor.get_results();
+        result = { fantoma: ["Fantoma: ", this.last_result] };
 
-    if (this.last_result !== null) {
-      var p = this.visor.get_results();
-      result = { fantoma: ["Fantoma: ", this.last_result] };
-
-      if (p[0] !== null) {
-        var circ1 = $(
-          `<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`
-        );
-        circ1.on("click", () => {
-          this.visor.show();
-        });
-        result = { ...result, circ1: circ1 };
-      }
-
-      if (p[1] !== null) {
-        var circ2 = $(
-          `<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`
-        );
-        circ2.on("click", () => {
-          this.visor.show();
-        });
-        result = { ...result, circ2: circ2 };
-      }
-      var mas_auto = $(
-        `<div style="color:black">mAs autotime = ${this.miliamperios_auto}</div>`
-      );
-      result = { ...result, mas_auto: mas_auto };
-      return result;
-    }
-
-    if (this.estado == "activo") {
-      if (this.parametros && this.presionado && this.colocada) {
-        if (this.img !== null) {
-          var im = new Image(120, 160);
-          im.src = this.img;
-          im.style.display = "block";
-          im.style.margin = "auto";
-          im.onclick = () => {
+        if (p[0] !== null) {
+          var circ1 = $(
+            `<div style="color:red"> circulo 1 - VPM: ${p[0][0] } - std: ${p[0][1]} </div>`
+          );
+          circ1.on("click", () => {
             this.visor.show();
-          };
-          result = im;
-          this.last_result = result;
+          });
+          result = { ...result, circ1: circ1 };
+        }
+
+        if (p[1] !== null) {
+          var circ2 = $(
+            `<div style="color:blue"> circulo 2 - VPM: ${p[1][0]} - std: ${p[1][1]} </div>`
+          );
+          circ2.on("click", () => {
+            this.visor.show();
+          });
+          result = { ...result, circ2: circ2 };
+        }
+        var mas_auto = $(
+          `<div style="color:black">mAs autotime = ${this.miliamperios_auto}</div>`
+        );
+        result = { ...result, mas_auto: mas_auto };
+        return result;
+      }
+
+      if (this.estado == "activo") {
+        if (this.parametros && this.presionado && this.colocada) {
+          if (this.img !== null) {
+            var im = new Image(120, 160);
+            im.src = this.img;
+            im.style.display = "block";
+            im.style.margin = "auto";
+            im.onclick = () => {
+              this.visor.show();
+            };
+            result = im;
+            this.last_result = result;
+          } else {
+            this.last_result = null;
+            throw "No se obtuvo la imagen";
+          }
         } else {
           this.last_result = null;
-          throw "No se obtuvo la imagen";
+          result = "";
+          if (!this.colocada) {
+            result +=
+              "<span style='color:red'>¡Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
+          }
+
+          if (!this.presionado) {
+            result +=
+              "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
+          }
+
+          if (!this.parametros) {
+            result +=
+              "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
+          }
+          if (result === "") {
+            result += "Error de Posición.";
+          }
         }
       } else {
-        this.last_result = null;
-        result = "";
-        if (!this.colocada) {
-          result +=
-            "<span style='color:red'>¡Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
-        }
-
-        if (!this.presionado) {
-          result +=
-            "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
-        }
-
-        if (!this.parametros) {
-          result +=
-            "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28 y Modo en Autotime.";
-        }
-        if (result === "") {
-          result += "Error de Posición.";
-        }
+        result = "Imagen no disponible";
       }
-    } else {
-      result = "Imagen no disponible";
+
+      return { fantoma: ["Fantoma: ", result] };
     }
 
-    return { fantoma: ["Fantoma: ", result] };
-  }
+    else if (this.prueba == "cae") {
+      if (this.last_result !== null) {
+        var p = this.visor.get_results();
+        result = { fantoma: ["Fantoma: ", this.last_result] };
+        
 
+        if (p[0] !== null) {
+          var circ1 = $(
+            `<div style="color:red"> circulo 1 - VPM: ${p[0][0]} - std: ${p[0][1]} </div>`
+          );
+          circ1.on("click", () => {
+            this.visor.show();
+          });
+          result = { ...result, circ1: circ1 };
+        }
+
+        var res = (p[1][0] * this.ponderacion * this.errores["cae"]).toFixed(2);
+
+        var res2 = (p[1][1] * this.errores["cae"]*1.8).toFixed(2);
+
+        if (p[1] !== null) {
+          var circ2 = $(
+            `<div style="color:blue"> circulo 2 - VPM: ${res} - std: ${res2} </div>`
+          );
+          circ2.on("click", () => {
+            this.visor.show();
+          });
+          result = { ...result, circ2: circ2 };
+        }
+        return result;
+      }
+
+      if (this.estado == "activo") {
+        if (this.parametros && this.presionado && this.colocada && this.espaciador) {
+          if (this.img !== null) {
+            var im = new Image(120, 160);
+            im.src = this.img;
+            im.style.display = "block";
+            im.style.margin = "auto";
+            im.onclick = () => {
+              this.visor.show();
+            };
+            result = im;
+            this.last_result = result;
+          } else {
+            this.last_result = null;
+            throw "No se obtuvo la imagen";
+          }
+        } else {
+          this.last_result = null;
+          result = "";
+          if (!this.colocada) {
+            result +=
+              "<span style='color:red'>¡Error de Posición!</span> Coloque el objeto de contraste adecuadamente.<br>";
+          }
+
+          if (!this.presionado) {
+            result +=
+              "<span style='color:red'>¡Error de Presión!</span> Debe presionar el fantoma entre 6 y 10 kg.<br>";
+          }
+
+          if (!this.parametros) {
+            result +=
+              "<span style='color:red'>¡Error de Parámetros!</span> Fije kV en 28, mAs en 60 y Modo en AutoKv.<br>";
+          }
+
+          if (!this.espaciador) {
+            result +=
+              "<span style='color:red'>¡Error de Espesor!</span> Coloque el espaciador adecuado para el fantoma.";
+          }
+          if (result === "") {
+            result += "Error de Posición.";
+          }
+        }
+      } else {
+        result = "Imagen no disponible";
+      }
+
+      return { fantoma: ["Fantoma: ", result] };
+    }
+  }
   estaColocada() {
     return this.colocada;
   }
 }
+
+class Fantoma_45mm extends Fantoma {
+  constructor(visor) {
+    super();
+    this.name = "Fantoma (45 mm)";
+    this.description = "Fantoma de 45 [mm] con objeto de contraste.";
+    this.longdescription = "Fantoma de 45 [mm] que simula la mama de un paciente. Incluye un objeto de contraste que corresponde a un disco de PMMA de 1 mm de espesor y 25 mm de diámetro.";
+    this.altura = 4.5;
+    this.fantoma = new Image();
+    this.fantoma.src = "img/fantoma45_contraste.svg";
+
+    this.ponderacion = 1.0;
+
+    this.fantoma_esp = new Image();
+    this.fantoma_esp.src = "img/fantoma45_contraste_espaciador.svg";
+    this.visor = visor;
+    this.last_result = null;
+    this.sprite = this.fantoma;
+  }
+}
+
+class Fantoma_20mm extends Fantoma {
+  constructor(visor) {
+    super();
+    this.name = "Fantoma (20 mm)";
+    this.description = "Fantoma de 20 [mm] con objeto de contraste.";
+    this.longdescription = "Fantoma de 20 [mm] que simula la mama de un paciente. Incluye un objeto de contraste que corresponde a un disco de PMMA de 1 mm de espesor y 25 mm de diámetro.";
+    this.altura = 2.0;
+    this.fantoma = new Image();
+    this.fantoma.src = "img/fantoma20_contraste.svg";
+
+    this.ponderacion =0.95;
+    this.visor = visor;
+    this.last_result = null;
+    this.sprite = this.fantoma;
+
+    this.espaciador = true; //no necesita addons en la prueba del cae
+  }
+}
+class Fantoma_70mm extends Fantoma {
+  constructor(visor) {
+    super();
+    this.name = "Fantoma (70 mm)";
+    this.description = "Fantoma de 70 [mm] con objeto de contraste.";
+    this.longdescription = "Fantoma de 70 [mm] que simula la mama de un paciente. Incluye un objeto de contraste que corresponde a un disco de PMMA de 1 mm de espesor y 25 mm de diámetro.";
+    this.altura = 7.0;
+    this.fantoma = new Image();
+    this.fantoma.src = "img/fantoma70_contraste.svg";
+
+    this.ponderacion = 1.1;
+    this.fantoma_esp = new Image();
+    this.fantoma_esp.src = "img/fantoma70_contraste_espaciador.svg";
+    this.visor = visor;
+    this.last_result = null;
+    this.sprite = this.fantoma;
+  }
+}
+
+
 
 export {
   BaseNula,
@@ -1059,8 +1210,12 @@ export {
   Slab_20mm,
   Slab_45mm,
   Slab_70mm,
-  Fantoma,
+  Fantoma_20mm,
+  Fantoma_45mm,
+  Fantoma_70mm,
   PlacaExt,
   FiltroAl_03,
-  FiltroAl_04
+  FiltroAl_04,
+  Esp_8,
+  Esp_20
 };

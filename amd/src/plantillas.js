@@ -28,7 +28,7 @@ class PlantillaAbstracta {
     this.errorDGM =
       errors["errordgm"][1] ? "Sí" : "No";
 
-      this.errorCAE =
+    this.errorCAE =
       errors["errorcae"][1] ? "Sí" : "No";
     
 
@@ -390,18 +390,18 @@ export class PlantillaCAE extends PlantillaAbstracta {
     super(errors);
   }
   setFeedback() {
-    let errorDGM = this.errorDGM;
-    $("body").on("click", "#volver-menu-desde-prueba-kermadgm", function () {
+    let errorCAE = this.errorCAE;
+    $("body").on("click", "#volver-menu-desde-prueba-cae", function () {
       //console.log("cerrar plantilla");
       $("#plantilla").hide();
       $("#contenedor-sim").hide();
       $("#contenedor-button").show();
     });
 
-    $("body").on("click", "#finalizar_kermadgm", function () {
+    $("body").on("click", "#finalizar_cae", function () {
       console.log("ABRETE")
       //$("#modal-rendimiento").scrollIntoView(true);
-      $("#modal-kermadgm").modal("show");
+      $("#modal-cae").modal("show");
       $("#plantilla").scrollTop(0);
 
       //appending modal background inside the contenedor-main div
@@ -413,20 +413,20 @@ export class PlantillaCAE extends PlantillaAbstracta {
       $("body").css("padding-right", "");
 
       // Resultados esperados
-      $("#dgm_1_real").text(errorDGM);
-      $("#dgm_2_real").text(errorDGM);
-      $("#dgm_3_real").text(errorDGM);
+      $("#sdnr_1_real").text(errorCAE);
+      $("#sdnr_2_real").text(errorCAE);
+      $("#sdnr_3_real").text(errorCAE);
       
 
       // Resultados ingresados por usuario
-      $("#dgm_1_ingresado").text(
-        document.getElementById("dgm_resp1").value
+      $("#sdnr_1_ingresado").text(
+        document.getElementById("sdnr_resp1").value
       );
-      $("#dgm_2_ingresado").text(
-        document.getElementById("dgm_resp2").value
+      $("#sdnr_2_ingresado").text(
+        document.getElementById("sdnr_resp2").value
       );
-      $("#dgm_3_ingresado").text(
-        document.getElementById("dgm_resp3").value
+      $("#sdnr_3_ingresado").text(
+        document.getElementById("sdnr_resp3").value
       );
 
       //finalmente movemos la view

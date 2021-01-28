@@ -201,7 +201,7 @@ export default class Maquina {
       else {
         document.getElementById("vista-desde-arriba").style.display = "none";
       }
-      if (this.herramienta.getTipo() == herram.getTipo()) {
+      if (this.herramienta.getName() == herram.getName()) {
         if (herram.getTipo() === "Detector de Radiación"|| herram.getTipo() === "Fantoma") {
           //OCULTAR BOTON
           document.getElementById("vista-desde-arriba").style.display = "none";
@@ -239,6 +239,11 @@ export default class Maquina {
   getHerramienta() {
     return this.herramienta;
   }
+
+  getPrueba() {
+    return this.prueba;
+  }
+  
   getHerramientaMesa() {
     return this.herramientaMesa;
   }

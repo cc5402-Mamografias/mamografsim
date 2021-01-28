@@ -9,10 +9,14 @@ import {
   Slab_45mm,
   Slab_70mm,
   Toalla,
-  Fantoma,
+  Fantoma_20mm,
+  Fantoma_45mm,
+  Fantoma_70mm,
   PlacaExt,
   FiltroAl_03,
-  FiltroAl_04
+  FiltroAl_04,
+  Esp_8,
+  Esp_20
 } from "./herramientas";
 
 import Habitacion from "./habitacion";
@@ -85,7 +89,7 @@ class Main {
     //this.mesaReceptora = new MesaReceptora();
     this.panelResultados = new PanelResultados();
     this.mesaTopDown = new MesaTopDown(this.mamografo);
-    this.visor = new VisorImagen(() => { this.actualizar() });
+    this.visor = new VisorImagen(() => { this.actualizar() }, this.mamografo);
 
     // Instanciar Herramientas
     this.herramientas_hab = [new Barometro(), new Termometro(),new CintaMetrica()];
@@ -97,7 +101,11 @@ class Main {
       new Slab_45mm(),
       new Slab_70mm(),
       new DetectRad(),
-      new Fantoma(this.visor),
+      new Fantoma_20mm(this.visor),
+      new Fantoma_45mm(this.visor),
+      new Fantoma_70mm(this.visor),
+      new Esp_8(),
+      new Esp_20(),
       new FiltroAl_03(),
       new FiltroAl_04(),
       new PlacaExt()
@@ -546,7 +554,7 @@ function crearHerramButton(tool, onClickF) {
 
   let r = $(
     `<button title= "${tool.description}" class="herrams-btn btn btn-outline-secondary button-without-border her-b-s"> </button>`
-  ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.tipo}`);
+  ).append(`<img src="icons/${tool.icon}" width=48><br>${tool.name}`);
   r.on("click", onClickF);
   r.appendTo("#herramientas-express");
 

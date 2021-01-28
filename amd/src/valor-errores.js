@@ -201,13 +201,13 @@ var valores = {
     "errorCAE": {
         "valores_base": {
             "Ninguno": {
-                valor: 1,
+                valor: 1.0,
                 correcto: true
              },
             "Bajo": { 
-                valor: 2,
+                valor: 1.3,
                 correcto: false },
-            "Alto": { valor: 3,
+            "Alto": { valor: 1.6,
                 correcto: false }
         }
     }
