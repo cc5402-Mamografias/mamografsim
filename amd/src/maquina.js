@@ -129,10 +129,12 @@ export default class Maquina {
 
 
   valoresMedidos() {
-
+    
     return {
       altura: this.alturaCompresor === this.alturaMinima()
+        ? (this.prueba === "compresion")
         ? (this.alturaCompresor + this.errorAltura) * 10
+        : (this.alturaCompresor) * 10
         : this.alturaCompresor < this.alturaEspesor
           ? (this.alturaCompresor) * 10
           : 0,

@@ -218,7 +218,6 @@ class Main {
     this.panelResultados.escribirResultados();
     //actualizamos parametros de mesa top-down aca
     this.mesaTopDown.change_divs();
-    setDragAndDrop();
 
 
   }
