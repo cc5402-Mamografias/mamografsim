@@ -521,6 +521,8 @@ function show_mesa() {
 
 
 function show_mesa_camara() {
+
+  //mostramos la mesa
   let x = document.getElementById("vista-arriba-receptor");
   x.style.display = "block";
   var cr = document.getElementById("canvasReceptor");
@@ -528,11 +530,24 @@ function show_mesa_camara() {
   var ctxr = cr.getContext("2d");
   ctxr.clearRect(0, 0, cr.width, cr.height);
   var scale = 1.0;
-
   ctxr.drawImage(m.receptor, 155, -30, m.receptor.width * scale * 0.8, m.receptor.height * scale * 0.8)
+
+  //reiniciamos posicion de drag and drop
+  $('div[name ="pos_ini_1"]').empty()
+  $('div[name ="pos_1_1"]').empty()
+  $('div[name ="pos_1_2"]').empty()
+  $('div[name ="pos_1_3"]').empty()
+  $('div[name ="pos_1_4"]').empty()
+  $('div[name ="pos_ini_1"]').append('<img id="draggable-detector" draggable="true" ondragstart="event.dataTransfer.setData("text/plain",null)" src="img/cam.svg" width=30>')
+  
+  m.mamografo.getHerramienta().colocar(false)
+
+  //pos.append(html)
 
 }
 function show_mesa_fantoma() {
+
+  //mostramos la mesa
   let x = document.getElementById("vista-arriba-receptor-2");
   x.style.display = "block";
   var cr = document.getElementById("canvasReceptor-2");
@@ -542,6 +557,18 @@ function show_mesa_fantoma() {
   var scale = 1.0;
 
   ctxr.drawImage(m.receptor2, 155, -30, m.receptor2.width * scale * 0.8, m.receptor2.height * scale * 0.8)
+
+  //reiniciamos posicion de drag and drop
+
+  $('div[name ="pos_ini_2"]').empty()
+  $('div[name ="pos_2_1"]').empty()
+  $('div[name ="pos_2_2"]').empty()
+  $('div[name ="pos_2_3"]').empty()
+  $('div[name ="pos_2_4"]').empty()
+  $('div[name ="pos_ini_2"]').append('<div id="draggable-disco" draggable="true" ondragstart="event.dataTransfer.setData("text/plain",null)"></div>')
+
+  m.mamografo.getHerramienta().colocar(false)
+
 
 }
 
