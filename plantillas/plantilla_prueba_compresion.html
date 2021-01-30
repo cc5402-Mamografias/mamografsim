@@ -20,34 +20,34 @@
 </div>
 
 <div style="height: 100px;">
-  <table>
-    <tr>
-      <th ></th>
-      <th>Motorizada [kg]</th>
-      <th>Manual [kg]</th>
+  <table class="planilla-tabla">
+    <tr class="inst">
+      <th class= "inst" ></th>
+      <th class= "inst">Motorizada [kg]</th>
+      <th class= "inst">Manual [kg]</th>
     </tr>
 
-    <tr>
-      <th>Fuerza de compresión real</th>
-      <th><input class= "user-input" type="number" id="comp_max_moto" step="any"></th>
-      <th><input class= "user-input" type="number" id="comp_max_manual" step="any"></th>
+    <tr class="inst">
+      <th class= "inst">Fuerza de compresión real</th>
+      <th class= "inst"><input class= "user-input" type="number" id="comp_max_moto" step="any"></th>
+      <th class= "inst"><input class= "user-input" type="number" id="comp_max_manual" step="any"></th>
     </tr>
 
-    <tr>
-      <th>Fuerza de compresión nominal</th>
-      <th><input class= "user-input" type="number" id="comp_mostrada_moto" step="any"></th>
-      <th><input class= "user-input" type="number" id="comp_mostrada_manual" step="any"></th>
+    <tr class="inst">
+      <th class= "inst">Fuerza de compresión nominal</th>
+      <th class= "inst"><input class= "user-input" type="number" id="comp_mostrada_moto" step="any"></th>
+      <th class= "inst"><input class= "user-input" type="number" id="comp_mostrada_manual" step="any"></th>
     </tr>
 
-    <tr>
-      <th>¿La diferencia entre fuerza real y nominal se encuentra dentro de rangos aceptables?</th>
-      <th><select name="cumple" id="cumple_moto">
+    <tr class="inst">
+      <th class= "inst">¿La diferencia entre fuerza real y nominal se encuentra dentro de rangos aceptables?</th>
+      <th class= "inst"><select name="cumple" id="cumple_moto">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select>
     </th>
-    <th>
+    <th class= "inst">
       <select name="cumple" id="cumple_manual">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
@@ -61,38 +61,38 @@
 <!--          division de tablas                   -->
 
 <div style="height: 120px;">
-  <table>
-    <tr>
-      <th>Espesor Real</th>
-      <th>Espesor Indicado [mm]</th>
-      <th>Fuerza de Compresión [kg]</th>
-      <th>¿Se encuentra dentro de los rangos de precisión aceptable?</th>
+  <table class="planilla-tabla">
+    <tr class="inst">
+      <th class= "inst">Espesor Real</th>
+      <th class= "inst">Espesor Indicado [mm]</th>
+      <th class= "inst">Fuerza de Compresión [kg]</th>
+      <th class= "inst">¿Se encuentra dentro de los rangos de precisión aceptable?</th>
     </tr>
-    <tr>
-      <td>20 [mm]</td>
-      <td><input class= "user-input" type="number" id="esp_20" step="any"></td>
-      <td><input class= "user-input" type="number" id="fuer_20" step="any"></td>
-      <td><select name="cumple" id="cumple_20">
+    <tr class="inst">
+      <td class="inst">20 [mm]</td>
+      <td class="inst"><input class= "user-input" type="number" id="esp_20" step="any"></td>
+      <td class="inst"><input class= "user-input" type="number" id="fuer_20" step="any"></td>
+      <td class="inst"><select name="cumple" id="cumple_20">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
     </tr>
-    <tr>
-      <td>45 [mm]</td>
-      <td><input class= "user-input" type="number" id="esp_45" step="any"></td>
-      <td><input class= "user-input" type="number" id="fuer_45" step="any"></td>
-      <td><select name="cumple" id="cumple_45">
+    <tr class="inst">
+      <td class="inst">45 [mm]</td>
+      <td class="inst"><input class= "user-input" type="number" id="esp_45" step="any"></td>
+      <td class="inst"><input class= "user-input" type="number" id="fuer_45" step="any"></td>
+      <td class="inst"><select name="cumple" id="cumple_45">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
     </tr>
-    <tr>
-      <td>70 [mm]</td>
-      <td><input class= "user-input" type="number" id="esp_70" step="any"></td>
-      <td><input class= "user-input" type="number" id="fuer_70" step="any"></td>
-      <td><select name="cumple" id="cumple_70">
+    <tr class="inst">
+      <td class="inst">70 [mm]</td>
+      <td class="inst"><input class= "user-input" type="number" id="esp_70" step="any"></td>
+      <td class="inst"><input class= "user-input" type="number" id="fuer_70" step="any"></td>
+      <td class="inst"><select name="cumple" id="cumple_70">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
         <option value="No">No</option>
@@ -104,13 +104,13 @@
 
 
 <div style="height: 35px;">
-  <table >
-    <tr>
-      <th colspan="7">Tolerancia</th>
+  <table class="planilla-tabla">
+    <tr class="inst">
+      <th class= "inst" colspan="7">Tolerancia</th>
     </tr>
-    <tr>
-      <th colspan="6">¿Se encuentra la fuerza ejercida dentro de los rangos de fuerza de compresión motorizada y manual?</th>
-      <td><select name="cumple_cual_conf" id="cumple_fuerza_ejercida">
+    <tr class="inst">
+      <th class= "inst" colspan="6">¿Se encuentra la fuerza ejercida dentro de los rangos de fuerza de compresión motorizada y manual?</th>
+      <td class="inst"><select name="cumple_cual_conf" id="cumple_fuerza_ejercida">
         <option disabled selected value>...</option>
         <option value="Si">Si</option>
           <option value="No">No</option>
@@ -136,51 +136,51 @@
         </button>
       </div>
       <div class="modal-body modal-volver" id="retroalimentacion_compresion">
-        <table>
-          <tr>
-            <td></td>
-            <td>
+        <table class="planilla-tabla">
+          <tr class="inst">
+            <td class="inst"></td>
+            <td class="inst">
               Resultados Esperados
             </td>
-            <td>
+            <td class="inst">
               Resultados Ingresados
             </td>
           </tr>
 
-          <tr>
-            <td>¿La fuerza ejercida por el mamógrafo se encuentra dentro de un rango aceptable?</td>
-            <td id="resultado_fuerza_ejercida_real"></td>
-            <td id="resultado_fuerza_ejercida_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿La fuerza ejercida por el mamógrafo se encuentra dentro de un rango aceptable?</td>
+            <td class="inst" id="resultado_fuerza_ejercida_real"></td>
+            <td class="inst" id="resultado_fuerza_ejercida_ingresado"></td>
           </tr>
 
-          <tr>
-            <td>¿La diferencia entre fuerza real y nominal se encuentra dentro de un rango aceptable al ejercer compresión motorizada?</td>
-            <td id="resultado_diferencia_fuerza_moto_real"></td>
-            <td id="resultado_diferencia_fuerza_moto_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿La diferencia entre fuerza real y nominal se encuentra dentro de un rango aceptable al ejercer compresión motorizada?</td>
+            <td class="inst" id="resultado_diferencia_fuerza_moto_real"></td>
+            <td class="inst" id="resultado_diferencia_fuerza_moto_ingresado"></td>
           </tr>
 
-          <tr>
-            <td>¿La diferencia entre fuerza real y nominal se encuentra dentro de un rango aceptable al ejercer compresión manual?</td>
-            <td id="resultado_diferencia_fuerza_manual_real"></td>
-            <td id="resultado_diferencia_fuerza_manual_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿La diferencia entre fuerza real y nominal se encuentra dentro de un rango aceptable al ejercer compresión manual?</td>
+            <td class="inst" id="resultado_diferencia_fuerza_manual_real"></td>
+            <td class="inst" id="resultado_diferencia_fuerza_manual_ingresado"></td>
           </tr>
 
-          <tr>
-            <td>¿El espesor que el mamógrafo muestra para los slabs de 20 mm es aceptable</td>
-            <td id="resultado_espesor_20_real"></td>
-            <td id="resultado_espesor_20_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿El espesor que el mamógrafo muestra para los slabs de 20 mm es aceptable</td>
+            <td class="inst" id="resultado_espesor_20_real"></td>
+            <td class="inst" id="resultado_espesor_20_ingresado"></td>
           </tr>
 
-          <tr>
-            <td>¿El espesor que el mamógrafo muestra para los slabs de 45 mm es aceptable</td>
-            <td id="resultado_espesor_45_real"></td>
-            <td id="resultado_espesor_45_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿El espesor que el mamógrafo muestra para los slabs de 45 mm es aceptable</td>
+            <td class="inst" id="resultado_espesor_45_real"></td>
+            <td class="inst" id="resultado_espesor_45_ingresado"></td>
           </tr>
 
-          <tr>
-            <td>¿El espesor que el mamógrafo muestra para los slabs de 70 mm es aceptable</td>
-            <td id="resultado_espesor_70_real"></td>
-            <td id="resultado_espesor_70_ingresado"></td>
+          <tr class="inst">
+            <td class="inst">¿El espesor que el mamógrafo muestra para los slabs de 70 mm es aceptable</td>
+            <td class="inst" id="resultado_espesor_70_real"></td>
+            <td class="inst" id="resultado_espesor_70_ingresado"></td>
           </tr>
         </table>
       </div>

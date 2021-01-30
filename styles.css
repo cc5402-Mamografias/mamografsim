@@ -172,15 +172,14 @@
   box-shadow: none;
 }
 
-table {
+.planilla-tabla{
   width: 100%;
   text-align: center;
   border: 1px solid black;
   table-layout: fixed;
   margin-top: 60px;
 }
-th,
-td {
+.inst{
   border: 1px solid black;
   vertical-align: center;
 }

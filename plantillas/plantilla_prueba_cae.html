@@ -12,95 +12,95 @@
 
 
 <table class="planilla-tabla" style="margin-top: 20px;" >
-  <tr>
-    <th colspan="10">Datos registrados</th>
+  <tr class="inst">
+    <th class= "planilla-tabla" colspan="10">Datos registrados</th>
   </tr>
-  <tr>
-    <td></td>
-    <th>Espesor Indicado [mm] </th>
-    <th>mAs</th>
-    <th>kV</th>
-    <th>Ánodo</th>
-    <th>Filtro</th>
-    <th>A (MPV)</th>
-    <th>B (MPV)</th>
-    <th>C</th>
-    <th>SDNR</th>
+  <tr class="inst">
+    <td class="inst"></td>
+    <th class= "inst">Espesor Indicado [mm] </th>
+    <th class= "inst">mAs</th>
+    <th class= "inst">kV</th>
+    <th class= "inst">Ánodo</th>
+    <th class= "inst">Filtro</th>
+    <th class= "inst">A (MPV)</th>
+    <th class= "inst">B (MPV)</th>
+    <th class= "inst">C</th>
+    <th class= "inst">SDNR</th>
   </tr>
 
-  <tr>
-    <th>20 mm de PMMA</th>
-    <td><input class="text-center user-input" type="number" step="any" id="esp_20" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="mas_20" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="kv_20" ></td>
-    <td>
+  <tr class="inst">
+    <th class= "inst">20 mm de PMMA</th>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="esp_20" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="mas_20" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="kv_20" ></td>
+    <td class="inst">
       <select name="ano_20" id="ano_20">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="w">W</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="fil_20" id="fil_20">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="Ag">Ag</option>
       </select>
     </td>
-    <td><input class="text-center user-input" type="number" step="any" id="ampv_20" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="bmpv_20" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="cdest_20" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center" type="number" step="any" id="sdnr_20" readonly> </td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="ampv_20" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="bmpv_20" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="cdest_20" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center" type="number" step="any" id="sdnr_20" readonly> </td>
   </tr>
 
-  <tr>
-    <th>45 mm de PMMA</th>
-    <td><input class="text-center user-input" type="number" step="any" id="esp_45" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="mas_45" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="kv_45" ></td>
-    <td>
+  <tr class="inst">
+    <th class= "inst">45 mm de PMMA</th>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="esp_45" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="mas_45" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="kv_45" ></td>
+    <td class="inst">
       <select name="ano_45" id="ano_45">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="w">W</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="fil_45" id="fil_45">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="Ag">Ag</option>
       </select>
     </td>
-    <td><input class="text-center user-input" type="number" step="any" id="ampv_45" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="bmpv_45" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="cdest_45" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center" type="number" step="any" id="sdnr_45" readonly>  </td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="ampv_45" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="bmpv_45" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="cdest_45" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center" type="number" step="any" id="sdnr_45" readonly>  </td>
   </tr>
 
-  <tr>
-    <th>70 mm de PMMA</th>
-    <td><input class="text-center user-input" type="number" step="any" id="esp_70" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="mas_70" ></td>
-    <td><input class="text-center user-input" type="number" step="any" id="kv_70" ></td>
-    <td>
+  <tr class="inst">
+    <th class= "inst">70 mm de PMMA</th>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="esp_70" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="mas_70" ></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="kv_70" ></td>
+    <td class="inst">
       <select name="ano_70" id="ano_70">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="w">W</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="fil_70" id="fil_70">
         <option value="Mo">Mo</option>
         <option value="Rh">Rh</option>
         <option value="Ag">Ag</option>
       </select>
     </td>
-    <td><input class="text-center user-input" type="number" step="any" id="ampv_70" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="bmpv_70" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center user-input" type="number" step="any" id="cdest_70" onchange="actualizar_funciones(this)"></td>
-    <td><input class="text-center" type="number" step="any"  id="sdnr_70"  readonly></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="ampv_70" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="bmpv_70" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center user-input" type="number" step="any" id="cdest_70" onchange="actualizar_funciones(this)"></td>
+    <td class="inst"><input class="text-center" type="number" step="any"  id="sdnr_70"  readonly></td>
   </tr>
 </table>
 
@@ -108,70 +108,70 @@
 <div style="height:190px">
 
 <table class="planilla-tabla" style="margin-top: 60px; width: 40%; float: left;">
-  <tr>
-    <th>SDNR = |B-A|/C <br> A = VPM del disco/objeto de contraste<br> B = VPM de fondo <br> C = Desviación estándar del fondo
+  <tr class="inst">
+    <th class= "inst">SDNR = |B-A|/C <br> A = VPM del disco/objeto de contraste<br> B = VPM de fondo <br> C = Desviación estándar del fondo
     </th>
   </tr>
 </table>
 
 <table class="planilla-tabla" style="margin-top: 40px; width: 50%; float: right;">
-  <tr>
-    <th colspan="6">Valores aceptables y deseables de SDNR (Fuji CR)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="6">Valores aceptables y deseables de SDNR (Fuji CR)</th>
   </tr>
-  <tr>
-    <th colspan="6">Espesor PMMA (mm)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="6">Espesor PMMA (mm)</th>
   </tr>
-  <tr>
-    <th colspan="2">20</th>
-    <th colspan="2">45</th>
-    <th colspan="2">70</th>
-  </tr>
-
-  <tr>
-    <th>Aceptado</th>
-    <th>Logrado</th>
-    <th>Aceptado</th>
-    <th>Logrado</th>
-    <th>Aceptado</th>
-    <th>Logrado</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">20</th>
+    <th class= "inst" colspan="2">45</th>
+    <th class= "inst" colspan="2">70</th>
   </tr>
 
-  <tr>
-    <td>3.9</td>
-    <td>6.5</td>
-    <td>3.4</td>
-    <td>5.8</td>
-    <td>2.9</td>
-    <td>4.8</td>
+  <tr class="inst">
+    <th class= "inst">Aceptado</th>
+    <th class= "inst">Logrado</th>
+    <th class= "inst">Aceptado</th>
+    <th class= "inst">Logrado</th>
+    <th class= "inst">Aceptado</th>
+    <th class= "inst">Logrado</th>
+  </tr>
+
+  <tr class="inst">
+    <td class="inst">3.9</td>
+    <td class="inst">6.5</td>
+    <td class="inst">3.4</td>
+    <td class="inst">5.8</td>
+    <td class="inst">2.9</td>
+    <td class="inst">4.8</td>
   </tr>
 </table>
 
 </div>
 
-<table class="margin-top-40" >
-  <tr>
-    <th colspan="7">Tolerancia</th>
+<table class="planilla-tabla margin-top-40" >
+  <tr class="inst">
+    <th class= "inst" colspan="7">Tolerancia</th>
   </tr>
 
-  <tr>
-    <th colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 20 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="sdnr_resp1" id="sdnr_resp1">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 20 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="sdnr_resp1" id="sdnr_resp1">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 40 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="sdnr_resp2" id="sdnr_resp2">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 40 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="sdnr_resp2" id="sdnr_resp2">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 70 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="sdnr_resp3" id="sdnr_resp3">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 70 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="sdnr_resp3" id="sdnr_resp3">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
@@ -199,28 +199,28 @@
         </button>
       </div>
       <div class="modal-body modal-volver" id="retroalimentacion_cae">
-        <table class="margin-top-40">
+        <table class="planilla-tabla margin-top-40">
 
-          <tr>
-            <th colspan="4"></th>
-            <th>Esperado</th>
-            <th>Ingresado</th>
+          <tr class="inst">
+            <th class= "inst" colspan="4"></th>
+            <th class= "inst">Esperado</th>
+            <th class= "inst">Ingresado</th>
           </tr>
 
-          <tr>
-            <th colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 20 mm bajo los límites aceptables?</th>
-            <td id="sdnr_1_real"></td>
-            <td id="sdnr_1_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 20 mm bajo los límites aceptables?</th>
+            <td class="inst" id="sdnr_1_real"></td>
+            <td class="inst" id="sdnr_1_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 45 mm bajo los límites aceptables?</th>
-            <td id="sdnr_2_real"></td>
-            <td id="sdnr_2_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 45 mm bajo los límites aceptables?</th>
+            <td class="inst" id="sdnr_2_real"></td>
+            <td class="inst" id="sdnr_2_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 70 mm bajo los límites aceptables?</th>
-            <td id="sdnr_3_real"></td>
-            <td id="sdnr_3_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el SDNR calculado a partir de la exposición del fantoma de 70 mm bajo los límites aceptables?</th>
+            <td class="inst" id="sdnr_3_real"></td>
+            <td class="inst" id="sdnr_3_ingresado"></td>
           </tr>
          
         

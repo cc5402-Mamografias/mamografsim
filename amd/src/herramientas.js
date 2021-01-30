@@ -1,8 +1,8 @@
 // Abstract Herramienta
 "use strict";
 
-var pyKerma_server = "http://localhost:5000";
-//var pyKerma_server = "http://moodle2.cimt.cl/api";
+//var pyKerma_server = "http://localhost:5000";
+var pyKerma_server = "http://moodle2.cimt.cl/api";
 
 //funciones aux
 //operaciones con resultado entero

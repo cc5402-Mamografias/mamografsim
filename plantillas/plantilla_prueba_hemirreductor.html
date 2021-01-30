@@ -10,321 +10,321 @@
 
 
 <table class="planilla-tabla" style="margin-top: 20px;">
-  <tr>
-    <td colspan="2">Configuraciones kv y mAs</td>
+  <tr class="inst">
+    <td class="inst" colspan="2">Configuraciones kv y mAs</td>
   </tr>
 
-  <tr>
-    <th>kV</th>
-    <td><input type="text" class="text-center user-input id="kv_main" value = "" step="any" onchange="actualizar_funciones_iniciales()"></td>
+  <tr class="inst">
+    <th class= "inst">kV</th>
+    <td class="inst"><input type="text" class="text-center user-input id="kv_main" value = "" step="any" onchange="actualizar_funciones_iniciales()"></td>
   </tr>
 
-  <tr>
-    <th>mAs</th>
-    <td><input type="text" class="text-center" id="mas_main" value = "40" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">mAs</th>
+    <td class="inst"><input type="text" class="text-center" id="mas_main" value = "40" step="any" readonly></td>
   </tr>
 </table>
 
 
 <table class="planilla-tabla" style="margin-top: 20px;" >
-  <tr>
-    <th colspan="2">Configuracion I</th>
-    <th>mm Aluminio</th>
-    <th>kerma obtenido (mGy)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuracion I</th>
+    <th class= "inst">mm Aluminio</th>
+    <th class= "inst">kerma obtenido (mGy)</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_1" value = "Mo" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum00_1" value = "0" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma00_1" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <th class= "inst"><input type="text" class="text-center" id="filtro_1" value = "Mo" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum00_1" value = "0" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma00_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
-  <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_1" value = "Mo" step="any" readonly></th>
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <th class= "inst"><input type="text" class="text-center" id="anodo_1" value = "Mo" step="any" readonly></th>
     
-    <th><input type="text" class="text-center" id="alum03_1" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma03_1" step="any" onchange="actualizar_funciones(this)"></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum03_1" value = "0.3" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma03_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
-  <tr>
-    <th>C</th>
-    <td><input class="text-center" type="number" id="C_1" value = "0.12" step="any" readonly></td>
-    <th><input type="text" class="text-center" id="alum04_1" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma04_1" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">C</th>
+    <td class="inst"><input class="text-center" type="number" id="C_1" value = "0.12" step="any" readonly></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum04_1" value = "0.4" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma04_1" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
-<table class="custom-table">
+<table class="planilla-tabla custom-table">
   <tr class="custom-tr">
     
-    <th class="custom-th text-right">EHR:</th>
+    <th class= "custom-th text-right">EHR:</th>
     <td class="custom-td"><input type="text" class="text-center" id="ehr_1" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite inferior:</th>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite inferior:</th>
     <td class="custom-td"><input type="text" class="text-center" id="liminf_1" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite superior:</th>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite superior:</th>
     <td class="custom-td"><input type="text" class="text-center" id="limsup_1" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
 
 <table class="planilla-tabla" style="margin-top: 20px;"  >
-  <tr>
-    <th colspan="2">Configuracion II</th>
-    <th>mm Aluminio</th>
-    <th>kerma obtenido (mGy)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuracion II</th>
+    <th class= "inst">mm Aluminio</th>
+    <th class= "inst">kerma obtenido (mGy)</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_2" value = "Rh" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum00_2" value = "0" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma00_2" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <th class= "inst"><input type="text" class="text-center" id="filtro_2" value = "Rh" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum00_2" value = "0" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma00_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
-  <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_2" value = "Mo" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum03_2" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma03_2" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <th class= "inst"><input type="text" class="text-center" id="anodo_2" value = "Mo" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum03_2" value = "0.3" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma03_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
-  <tr>
-    <th>C</th>
-    <td><input class="text-center" type="number" id="C_2" value = "0.19" step="any" readonly></td>
-    <th><input type="text" class="text-center" id="alum04_2" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma04_2" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">C</th>
+    <td class="inst"><input class="text-center" type="number" id="C_2" value = "0.19" step="any" readonly></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum04_2" value = "0.4" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma04_2" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
-<table class="custom-table">
+<table class="planilla-tabla custom-table">
   <tr class="custom-tr">
     
-    <th class="custom-th text-right">EHR:</th>
+    <th class= "custom-th text-right">EHR:</th>
     <td class="custom-td"><input type="text" class="text-center" id="ehr_2" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite inferior:</th>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite inferior:</th>
     <td class="custom-td"><input type="text" class="text-center" id="liminf_2" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite superior:</th>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite superior:</th>
     <td class="custom-td"><input type="text" class="text-center" id="limsup_2" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
 <table class="planilla-tabla" style="margin-top: 20px;" >
-  <tr>
-    <th colspan="2">Configuracion III</th>
-    <th>mm Aluminio</th>
-    <th>kerma obtenido (mGy)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuracion III</th>
+    <th class= "inst">mm Aluminio</th>
+    <th class= "inst">kerma obtenido (mGy)</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_3" value = "Rh" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum00_3" value = "0" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma00_3" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <th class= "inst"><input type="text" class="text-center" id="filtro_3" value = "Rh" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum00_3" value = "0" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma00_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
-  <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_3" value = "Rh" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum03_3" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma03_3" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <th class= "inst"><input type="text" class="text-center" id="anodo_3" value = "Rh" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum03_3" value = "0.3" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma03_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
-  <tr>
-    <th>C</th>
-    <td><input class="text-center" type="number" id="C_3" value = "0.22" step="any" readonly></td>
-    <th><input type="text" class="text-center" id="alum04_3" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma04_3" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">C</th>
+    <td class="inst"><input class="text-center" type="number" id="C_3" value = "0.22" step="any" readonly></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum04_3" value = "0.4" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma04_3" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
-<table class="custom-table">
+<table class="planilla-tabla custom-table">
   <tr class="custom-tr">
     
-    <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="ehr_3" value = "-" step="any" readonly></td>
+    <th class= "custom-th text-right">EHR:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="ehr_3" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="liminf_3" value = "-" step="any" readonly></td>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite inferior:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="liminf_3" value = "-" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="limsup_3" value = "-" step="any" readonly></td>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite superior:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="limsup_3" value = "-" step="any" readonly></td>
   </tr>
 
 </table>
 <table class="planilla-tabla" style="margin-top: 20px;" >
-  <tr>
-    <th colspan="2">Configuracion IV</th>
-    <th>mm Aluminio</th>
-    <th>kerma obtenido (mGy)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuracion IV</th>
+    <th class= "inst">mm Aluminio</th>
+    <th class= "inst">kerma obtenido (mGy)</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_4" value = "Rh" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum00_4" value = "0" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma00_4" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <th class= "inst"><input type="text" class="text-center" id="filtro_4" value = "Rh" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum00_4" value = "0" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma00_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
-  <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_4" value = "W" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum03_4" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma03_4" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <th class= "inst"><input type="text" class="text-center" id="anodo_4" value = "W" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum03_4" value = "0.3" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma03_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
-  <tr>
-    <th>C</th>
-    <td><input class="text-center" type="number" id="C_4" value = "0.3" step="any" readonly></td>
-    <th><input type="text" class="text-center" id="alum04_4" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma04_4" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">C</th>
+    <td class="inst"><input class="text-center" type="number" id="C_4" value = "0.3" step="any" readonly></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum04_4" value = "0.4" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma04_4" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
-<table class="custom-table">
+<table class="planilla-tabla custom-table">
   <tr class="custom-tr">
     
-    <th class="custom-th text-right">EHR:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="ehr_4" value = "-" step="any" readonly></td>
+    <th class= "custom-th text-right">EHR:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="ehr_4" value = "-" step="any" readonly></td>
 
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="liminf_4" value = "-" step="any" readonly></td>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite inferior:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="liminf_4" value = "-" step="any" readonly></td>
 
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite superior:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="limsup_4" value = "-" step="any" readonly></td>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite superior:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="limsup_4" value = "-" step="any" readonly></td>
 
   </tr>
 
 </table>
 <table class="planilla-tabla" style="margin-top: 20px;">
-  <tr>
-    <th colspan="2">Configuracion V</th>
-    <th>mm Aluminio</th>
-    <th>kerma obtenido (mGy)</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuracion V</th>
+    <th class= "inst">mm Aluminio</th>
+    <th class= "inst">kerma obtenido (mGy)</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <th><input type="text" class="text-center" id="filtro_5" value = "Ag" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum00_5" value = "0" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma00_5" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <th class= "inst"><input type="text" class="text-center" id="filtro_5" value = "Ag" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum00_5" value = "0" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma00_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 
-  <tr>
-    <th>Ánodo</th>
-    <th><input type="text" class="text-center" id="anodo_5" value = "W" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="alum03_5" value = "0.3" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma03_5" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <th class= "inst"><input type="text" class="text-center" id="anodo_5" value = "W" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="alum03_5" value = "0.3" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma03_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
-  <tr>
-    <th>C</th>
-    <td><input class="text-center" type="number" id="C_5" value = "0.32" step="any" readonly></td>
-    <th><input type="text" class="text-center" id="alum04_5" value = "0.4" step="any" readonly></th>
-    <td><input class="text-center user-input" type="number" id="kerma04_5" step="any" onchange="actualizar_funciones(this)"></td>
+  <tr class="inst">
+    <th class= "inst">C</th>
+    <td class="inst"><input class="text-center" type="number" id="C_5" value = "0.32" step="any" readonly></td>
+    <th class= "inst"><input type="text" class="text-center" id="alum04_5" value = "0.4" step="any" readonly></th>
+    <td class="inst"><input class="text-center user-input" type="number" id="kerma04_5" step="any" onchange="actualizar_funciones(this)"></td>
   </tr>
 </table>
 
-<table class="custom-table">
+<table class="planilla-tabla custom-table">
   <tr class="custom-tr">
     
-    <th class="custom-th text-right">EHR:</th>
+    <th class= "custom-th text-right">EHR:</th>
     <td class="custom-td"><input type="text" class="text-center" id="ehr_5" value = "-" step="any" readonly></td>
 
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite inferior:</th>
-    <td class="custom-td"><input type="text" class="text-center" id="liminf_5" value = "-" step="any" readonly></td>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite inferior:</th>
+    <td  class="custom-td"><input type="text" class="text-center" id="liminf_5" value = "-" step="any" readonly></td>
 
   </tr>
 
-  <tr>
-    <th class="custom-th text-right">Límite superior:</th>
+  <tr class="custom-tr">
+    <th class= "custom-th text-right">Límite superior:</th>
     <td class="custom-td"><input type="text" class="text-center" id="limsup_5" value = "-" step="any" readonly></td>
 
   </tr>
 
 </table>
 
-<table class="form-table">
-  <tr>
-    <th>EHR</th>
-    <td><img style="padding: 5px" src="img/formulas/hemirreductor/ehr.gif" alt="ehr" /></td>
+<table class="planilla-tabla form-table">
+  <tr class="inst">
+    <th class= "inst">EHR</th>
+    <td class="inst"><img style="padding: 5px" src="img/formulas/hemirreductor/ehr.gif" alt="ehr" /></td>
   </tr>
 
-  <tr>
-    <th>Límite inferior</th>
-    <td><img style="padding: 5px" src="img/formulas/hemirreductor/liminf.gif" alt="liminf" /></td>
+  <tr class="inst">
+    <th class= "inst">Límite inferior</th>
+    <td class="inst"><img style="padding: 5px" src="img/formulas/hemirreductor/liminf.gif" alt="liminf" /></td>
   </tr>
-  <tr>
-    <th>Límite superior</th>
-    <td><img style="padding: 5px" src="img/formulas/hemirreductor/limsup.gif" alt="limsup" /></td>
+  <tr class="inst">
+    <th class= "inst">Límite superior</th>
+    <td class="inst"><img style="padding: 5px" src="img/formulas/hemirreductor/limsup.gif" alt="limsup" /></td>
   </tr>
-  <tr>
-    <td colspan="2"><img style="padding: 5px" src="img/formulas/hemirreductor/etc.gif" alt="etc" /></td>
+  <tr class="inst">
+    <td class="inst" colspan="2"><img style="padding: 5px" src="img/formulas/hemirreductor/etc.gif" alt="etc" /></td>
   </tr>
 </table>
 
 
-<table class="margin-top-40">
-  <tr>
-    <th colspan="7">Tolerancia</th>
+<table class="planilla-tabla margin-top-40">
+  <tr class="inst">
+    <th class= "inst" colspan="7">Tolerancia</th>
   </tr>
 
-  <tr>
-    <th colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración I?</th>
-    <td colspan="4"><select name="ehr_resp1" id="ehr_resp1">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración I?</th>
+    <td class="inst" colspan="4"><select name="ehr_resp1" id="ehr_resp1">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración II?</th>
-    <td colspan="4"><select name="ehr_resp2" id="ehr_resp2">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración II?</th>
+    <td class="inst" colspan="4"><select name="ehr_resp2" id="ehr_resp2">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración III?</th>
-    <td colspan="4"><select name="ehr_resp3" id="ehr_resp3">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración III?</th>
+    <td class="inst" colspan="4"><select name="ehr_resp3" id="ehr_resp3">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración IV?</th>
-    <td colspan="4"><select name="ehr_resp4" id="ehr_resp4">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración IV?</th>
+    <td class="inst" colspan="4"><select name="ehr_resp4" id="ehr_resp4">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración V?</th>
-    <td colspan="4"><select name="ehr_resp5" id="ehr_resp5">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración V?</th>
+    <td class="inst" colspan="4"><select name="ehr_resp5" id="ehr_resp5">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
@@ -353,38 +353,38 @@
         </button>
       </div>
       <div class="modal-body modal-volver" id="retroalimentacion_hemirreductor">
-        <table class="margin-top-40">
+        <table class="planilla-tabla margin-top-40">
 
-          <tr>
-            <th colspan="4"></th>
-            <th>Esperado</th>
-            <th>Ingresado</th>
+          <tr class="inst">
+            <th class= "inst" colspan="4"></th>
+            <th class= "inst">Esperado</th>
+            <th class= "inst">Ingresado</th>
           </tr>
 
-          <tr>
-            <th colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración I?</th>
-            <td id="ehr_1_real"></td>
-            <td id="ehr_1_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración I?</th>
+            <td class="inst" id="ehr_1_real"></td>
+            <td class="inst" id="ehr_1_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración II?</th>
-            <td id="ehr_2_real"></td>
-            <td id="ehr_2_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración II?</th>
+            <td class="inst" id="ehr_2_real"></td>
+            <td class="inst" id="ehr_2_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración III?</th>
-            <td id="ehr_3_real"></td>
-            <td id="ehr_3_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración III?</th>
+            <td class="inst" id="ehr_3_real"></td>
+            <td class="inst" id="ehr_3_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración IV?</th>
-            <td id="ehr_4_real"></td>
-            <td id="ehr_4_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración IV?</th>
+            <td class="inst" id="ehr_4_real"></td>
+            <td class="inst" id="ehr_4_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración V?</th>
-            <td id="ehr_5_real"></td>
-            <td id="ehr_5_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el EHR dentro de los rangos adecuados en la Configuración V?</th>
+            <td class="inst" id="ehr_5_real"></td>
+            <td class="inst" id="ehr_5_ingresado"></td>
           </tr>
 
         </table>

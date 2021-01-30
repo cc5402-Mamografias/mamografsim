@@ -11,64 +11,64 @@
 <div>
 
 <table class="planilla-tabla" style="margin-top: 20px;">
-  <tr>
-    <th colspan="2">Configuraciones</th>
+  <tr class="inst">
+    <th class= "inst" colspan="2">Configuraciones</th>
   </tr>
 
-  <tr>
-    <th>k<sub>TP</sub></th>
-    <td><input type="text" class="text-center" id="ktp_main" value = "1" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">k<sub>TP</sub></th>
+    <td class="inst"><input type="text" class="text-center" id="ktp_main" value = "1" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th>d<sub>T</sub> (mm)</th>
-    <td><input type="text" class="text-center" id="dt_main" value = "600" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">d<sub>T</sub> (mm)</th>
+    <td class="inst"><input type="text" class="text-center" id="dt_main" value = "600" step="any" readonly></td>
   </tr>
 </table>
 
 
 <table class="planilla-tabla" style="margin-top: 20px;" >
-  <tr>
-    <th colspan="4">Datos registrados</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Datos registrados</th>
   </tr>
-  <tr>
-    <th>Modo</th>
-    <th><input type="text" class="text-center" id="mode_20" value = "Manual" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="mode_45" value = "Manual" step="any" readonly></th>
-    <th><input type="text" class="text-center" id="mode_70" value = "Manual" step="any" readonly></th>
-  </tr>
-
-  <tr>
-    <th>Espesor bloque PMMA (mm)</th>
-    <th>20</th>
-    <th>45</th>
-    <th>70</th>
+  <tr class="inst">
+    <th class= "inst">Modo</th>
+    <th class= "inst"><input type="text" class="text-center" id="mode_20" value = "Manual" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="mode_45" value = "Manual" step="any" readonly></th>
+    <th class= "inst"><input type="text" class="text-center" id="mode_70" value = "Manual" step="any" readonly></th>
   </tr>
 
-  <tr>
-    <th>kV </th>
-    <td><input type="text" class="text-center" id="kv_20" value = "27" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="kv_45" value = "27" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="kv_70" value = "27" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">Espesor bloque PMMA (mm)</th>
+    <th class= "inst">20</th>
+    <th class= "inst">45</th>
+    <th class= "inst">70</th>
   </tr>
 
-  <tr>
-    <th>Filtro</th>
-    <td>
+  <tr class="inst">
+    <th class= "inst">kV </th>
+    <td class="inst"><input type="text" class="text-center" id="kv_20" value = "27" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="kv_45" value = "27" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="kv_70" value = "27" step="any" readonly></td>
+  </tr>
+
+  <tr class="inst">
+    <th class= "inst">Filtro</th>
+    <td class="inst">
       <select name="filtro_20" id="filtro_20" onchange="actualizar_funciones(20)">
         <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="ag">Ag</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="filtro_45" id="filtro_45" onchange="actualizar_funciones(45)">
         <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="ag">Ag</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="filtro_70" id="filtro_70" onchange="actualizar_funciones(70)">
         <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
@@ -78,21 +78,21 @@
   </tr>
 
 
-  <tr>
-    <th>Ánodo</th>
-    <td><select name="anodo_20" id="anodo_20" onchange="actualizar_funciones(20)">
+  <tr class="inst">
+    <th class= "inst">Ánodo</th>
+    <td class="inst"><select name="anodo_20" id="anodo_20" onchange="actualizar_funciones(20)">
       <option value="mo" >Mo</option>
       <option value="rh">Rh</option>
       <option value="w">W</option>
     </select></td>
-    <td>
+    <td class="inst">
       <select name="anodo_45" id="anodo_45" onchange="actualizar_funciones(45)">
         <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
         <option value="w">W</option>
       </select>
     </td>
-    <td>
+    <td class="inst">
       <select name="anodo_70" id="anodo_70" onchange="actualizar_funciones(70)">
         <option value="mo" >Mo</option>
         <option value="rh">Rh</option>
@@ -101,127 +101,127 @@
     </td>
   </tr>
 
-  <tr>
-    <th>mAs<sub>medido</sub></th>
-    <td><input type="text" class="text-center user-input" id="mas_20" value = "" step="any" ></td>
-    <td><input type="text" class="text-center user-input" id="mas_45" value = "" step="any" ></td>
-    <td><input type="text" class="text-center user-input" id="mas_70" value = "" step="any" ></td>
+  <tr class="inst">
+    <th class= "inst">mAs<sub>medido</sub></th>
+    <td class="inst"><input type="text" class="text-center user-input" id="mas_20" value = "" step="any" ></td>
+    <td class="inst"><input type="text" class="text-center user-input" id="mas_45" value = "" step="any" ></td>
+    <td class="inst"><input type="text" class="text-center user-input" id="mas_70" value = "" step="any" ></td>
   </tr>
 
-  <tr>
-    <th>Factor de calibración de calidad del haz(N<sub>mammo</sub>)</th>
-    <td><input type="text" class="text-center" id="n_20" value = "1" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="n_45" value = "1" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="n_70" value = "1" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">Factor de calibración de calidad del haz(N<sub>mammo</sub>)</th>
+    <td class="inst"><input type="text" class="text-center" id="n_20" value = "1" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="n_45" value = "1" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="n_70" value = "1" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th>Kerma Incidente en aire (Ki)</th>
-    <td><input type="text" class="text-center user-input" id="kerma_20" value = "" step="any" onchange="actualizar_funciones(20)" ></td>
-    <td><input type="text" class="text-center user-input" id="kerma_45" value = "" step="any" onchange="actualizar_funciones(45)"></td>
-    <td><input type="text" class="text-center user-input" id="kerma_70" value = "" step="any" onchange="actualizar_funciones(70)"></td>
+  <tr class="inst">
+    <th class= "inst">Kerma Incidente en aire (Ki)</th>
+    <td class="inst"><input type="text" class="text-center user-input" id="kerma_20" value = "" step="any" onchange="actualizar_funciones(20)" ></td>
+    <td class="inst"><input type="text" class="text-center user-input" id="kerma_45" value = "" step="any" onchange="actualizar_funciones(45)"></td>
+    <td class="inst"><input type="text" class="text-center user-input" id="kerma_70" value = "" step="any" onchange="actualizar_funciones(70)"></td>
   </tr>
 
-  <tr>
-    <th>Kerma Corregido</th>
-    <td><input type="text" class="text-center" id="kermacorr_20" value = "" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="kermacorr_45" value = "" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="kermacorr_70" value = "" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">Kerma Corregido</th>
+    <td class="inst"><input type="text" class="text-center" id="kermacorr_20" value = "" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="kermacorr_45" value = "" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="kermacorr_70" value = "" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th>HVL medido (mm Al)</th>
-    <td><input type="text" class="text-center" id="hvl_20" value = "0.35" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="hvl_45" value = "0.35" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="hvl_70" value = "0.35" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">HVL medido (mm Al)</th>
+    <td class="inst"><input type="text" class="text-center" id="hvl_20" value = "0.35" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="hvl_45" value = "0.35" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="hvl_70" value = "0.35" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th>g x c</th>
-    <td><input type="text" class="text-center" id="gc_20" value = "0.377" step="any" readonly ></td>
-    <td><input type="text" class="text-center" id="gc_45" value = "0.196" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="gc_70" value = "0.127" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">g x c</th>
+    <td class="inst"><input type="text" class="text-center" id="gc_20" value = "0.377" step="any" readonly ></td>
+    <td class="inst"><input type="text" class="text-center" id="gc_45" value = "0.196" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="gc_70" value = "0.127" step="any" readonly></td>
   </tr>
 
-  <tr>
-    <th>s (factor ánodo/filtro)</th>
-    <td><input type="text" class="text-center" id="s_20" value = "1" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="s_45" value = "1" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="s_70" value = "1" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">s (factor ánodo/filtro)</th>
+    <td class="inst"><input type="text" class="text-center" id="s_20" value = "1" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="s_45" value = "1" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="s_70" value = "1" step="any" readonly></td>
   </tr>
 
   
-  <tr>
-    <th>Dosis Glandular Media D<sub>g</sub></th>
-    <td><input type="text" class="text-center" id="dgm_20" value = "" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="dgm_45" value = "" step="any" readonly></td>
-    <td><input type="text" class="text-center" id="dgm_70" value = "" step="any" readonly></td>
+  <tr class="inst">
+    <th class= "inst">Dosis Glandular Media D<sub>g</sub></th>
+    <td class="inst"><input type="text" class="text-center" id="dgm_20" value = "" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="dgm_45" value = "" step="any" readonly></td>
+    <td class="inst"><input type="text" class="text-center" id="dgm_70" value = "" step="any" readonly></td>
   </tr>
 </table>
 
 
 
 <table class="planilla-tabla" style="margin-top: 20px;">
-  <tr>
-    <th colspan="4">Límites de DG</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Límites de DG</th>
   </tr>
 
-  <tr>
-    <th>Espesor de PMMA (mm)</th>
-    <th>Espesor equivalente de mama (mm)</th>
-    <th>Nivel Aceptable de D<sub>g</sub></th>
-    <th>Nivel Deseable de D<sub>g</sub></th>
+  <tr class="inst">
+    <th class= "inst">Espesor de PMMA (mm)</th>
+    <th class= "inst">Espesor equivalente de mama (mm)</th>
+    <th class= "inst">Nivel Aceptable de D<sub>g</sub></th>
+    <th class= "inst">Nivel Deseable de D<sub>g</sub></th>
   </tr>
 
-  <tr>
-    <th>20</th>
-    <td>21</td>
-    <td>1.0</td>
-    <td>0.6</td>
+  <tr class="inst">
+    <th class= "inst">20</th>
+    <td class="inst">21</td>
+    <td class="inst">1.0</td>
+    <td class="inst">0.6</td>
   </tr>
 
-  <tr>
-    <th>45</th>
-    <td>53</td>
-    <td>2.5</td>
-    <td>2.0</td>
+  <tr class="inst">
+    <th class= "inst">45</th>
+    <td class="inst">53</td>
+    <td class="inst">2.5</td>
+    <td class="inst">2.0</td>
   </tr>
 
-  <tr>
-    <th>70</th>
-    <td>90</td>
-    <td>6.5</td>
-    <td>5.1</td>
+  <tr class="inst">
+    <th class= "inst">70</th>
+    <td class="inst">90</td>
+    <td class="inst">6.5</td>
+    <td class="inst">5.1</td>
   </tr>
 </table>
 
 
 
 
-<table class="margin-top-40" style="float: right; width: 48%;">
-  <tr>
-    <th colspan="7">Tolerancia</th>
+<table class="planilla-tabla margin-top-40" style="float: right; width: 48%;">
+  <tr class="inst">
+    <th class= "inst" colspan="7">Tolerancia</th>
   </tr>
 
-  <tr>
-    <th colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 20 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="dgm_resp1" id="dgm_resp1">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 20 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="dgm_resp1" id="dgm_resp1">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 40 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="dgm_resp2" id="dgm_resp2">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 40 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="dgm_resp2" id="dgm_resp2">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
       </select></td>
   </tr>
-  <tr>
-    <th colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 70 mm bajo los límites aceptables?</th>
-    <td colspan="4"><select name="dgm_resp3" id="dgm_resp3">
+  <tr class="inst">
+    <th class= "inst" colspan="3">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 70 mm bajo los límites aceptables?</th>
+    <td class="inst" colspan="4"><select name="dgm_resp3" id="dgm_resp3">
         <option disabled selected value> ... </option>
         <option value="Si">Si</option>
         <option value="No">No</option>
@@ -229,53 +229,53 @@
   </tr>
 </table>
 
-<table class="margin-top-40" style="float: left; width: 48%;">
-  <tr>
-    <th colspan="4">Combinación ánodo/filtro</th>
-    <th colspan="3">Factor s</th>
+<table class="planilla-tabla margin-top-40" style="float: left; width: 48%;">
+  <tr class="inst">
+    <th class= "inst" colspan="4">Combinación ánodo/filtro</th>
+    <th class= "inst" colspan="3">Factor s</th>
   </tr>
 
-  <tr>
-    <th colspan="4">Mo/Mo</th>
-    <th colspan="3">1</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Mo/Mo</th>
+    <th class= "inst" colspan="3">1</th>
   </tr>
-  <tr>
-    <th colspan="4">Mo/Rh</th>
-    <th colspan="3">1.017</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Mo/Rh</th>
+    <th class= "inst" colspan="3">1.017</th>
   </tr>
-  <tr>
-    <th colspan="4">Rh/Rh</th>
-    <th colspan="3">1.061</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Rh/Rh</th>
+    <th class= "inst" colspan="3">1.061</th>
   </tr>
-  <tr>
-    <th colspan="4">W/Rh</th>
-    <th colspan="3">1.042</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">W/Rh</th>
+    <th class= "inst" colspan="3">1.042</th>
   </tr>
-  <tr>
-    <th colspan="4">W/Ag</th>
-    <th colspan="3">1.042</th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">W/Ag</th>
+    <th class= "inst" colspan="3">1.042</th>
   </tr>
 </table>
 
 </div>
 
-<table class="margin-top-40" style="float: left; width: 48%;">
+<table class="planilla-tabla margin-top-40" style="float: left; width: 48%;">
 
-  <tr>
-    <th colspan="7">Fórmulas</th>
+  <tr class="inst">
+    <th class= "inst" colspan="7">Fórmulas</th>
   </tr>
-  <tr>
-    <th colspan="4">Kerma corregido a una dist. de 20 mm</th>
-    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k20.gif" alt="k20" /></th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Kerma corregido a una dist. de 20 mm</th>
+    <th class= "inst" colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k20.gif" alt="k20" /></th>
   </tr>
 
-  <tr>
-    <th colspan="4">Kerma corregido a una dist. de 70 mm</th>
-    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k70.gif" alt="k70" /></th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Kerma corregido a una dist. de 70 mm</th>
+    <th class= "inst" colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/k70.gif" alt="k70" /></th>
   </tr>
-  <tr>
-    <th colspan="4">Dosis Glandular Media</th>
-    <th colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/dgm.gif" alt="dgm" /></th>
+  <tr class="inst">
+    <th class= "inst" colspan="4">Dosis Glandular Media</th>
+    <th class= "inst" colspan="3"><img style="padding: 5px" src="img/formulas/kermadgm/dgm.gif" alt="dgm" /></th>
   </tr>
 
 </table>
@@ -301,28 +301,28 @@
         </button>
       </div>
       <div class="modal-body modal-volver" id="retroalimentacion_kermadgm">
-        <table class="margin-top-40">
+        <table class="planilla-tabla margin-top-40">
 
-          <tr>
-            <th colspan="4"></th>
-            <th>Esperado</th>
-            <th>Ingresado</th>
+          <tr class="inst">
+            <th class= "inst" colspan="4"></th>
+            <th class= "inst">Esperado</th>
+            <th class= "inst">Ingresado</th>
           </tr>
 
-          <tr>
-            <th colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 20 mm bajo los límites aceptables?</th>
-            <td id="dgm_1_real"></td>
-            <td id="dgm_1_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 20 mm bajo los límites aceptables?</th>
+            <td class="inst" id="dgm_1_real"></td>
+            <td class="inst" id="dgm_1_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 45 mm bajo los límites aceptables?</th>
-            <td id="dgm_2_real"></td>
-            <td id="dgm_2_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 45 mm bajo los límites aceptables?</th>
+            <td class="inst" id="dgm_2_real"></td>
+            <td class="inst" id="dgm_2_ingresado"></td>
           </tr>
-          <tr>
-            <th colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 70 mm bajo los límites aceptables?</th>
-            <td id="dgm_3_real"></td>
-            <td id="dgm_3_ingresado"></td>
+          <tr class="inst">
+            <th class= "inst" colspan="4">¿Se encuentra el D<sub>g</sub> calculado a partir del bloque PMMA de 70 mm bajo los límites aceptables?</th>
+            <td class="inst" id="dgm_3_real"></td>
+            <td class="inst" id="dgm_3_ingresado"></td>
           </tr>
          
         
